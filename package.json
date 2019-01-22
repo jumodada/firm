@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/jumodada/My-Vue-Wheel/issues"
   },
-  "homepage": "https://github.com/jumodada/My-Vue-Wheel#readme"
+  "homepage": "https://github.com/jumodada/My-Vue-Wheel#readme",
+  "dependencies": {
+    "vue": "^2.5.22"
+  }
 }
