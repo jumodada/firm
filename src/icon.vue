@@ -1,5 +1,6 @@
 <template>
-    <svg class="icon">
+    <svg class="icon" :style="`fill:${color}`">
+
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
@@ -7,7 +8,7 @@
 <script>
     export default {
         name: "icon",
-        props:['name']
+        props:['name','color']
     }
 </script>
 

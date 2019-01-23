@@ -38,11 +38,19 @@
 </head>
 <body>
 <div id="app">
-    <g-button icon="set" icon-position="left">
+    <g-button icon="set"
+              icon-position="left"
+              @click="loading1 = !loading1"
+              :loading="loading1"
+    >
     草
     </g-button>
 
-    <g-button icon="loading" icon-position="left">
+    <g-button icon="loading"
+              icon-position="left"
+              :loading="loading2"
+              @click="loading2 = !loading2"
+    >
         早
     </g-button>
 </div>
