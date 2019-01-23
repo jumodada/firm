@@ -22,5 +22,8 @@
   "homepage": "https://github.com/jumodada/My-Vue-Wheel#readme",
   "dependencies": {
     "vue": "^2.5.22"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0"
   }
 }
