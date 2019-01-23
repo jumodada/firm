@@ -52,13 +52,13 @@
         > .content {
             order: 2;
         }
-        > .g-icon {
+        > .icon {
             order: 1;
             margin-left: 0;
             margin-right: 0.3em;
         }
         &.icon-right {
-            > .g-icon {
+            > .icon {
                 order: 2;
                 margin-right: 0;
                 margin-left:0.3em;
