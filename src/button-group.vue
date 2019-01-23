@@ -6,7 +6,15 @@
 
 <script>
     export default {
-        name: "button-group"
+        name: "button-group",
+        mounted(){
+            Object.keys(this.$el.children).forEach(index=>{
+               let nodeName =  this.$el.children[index].nodeName
+                if(nodeName.toLowerCase() !== 'button'){
+                    console.log('g-button-group的子元素应该全是g-button')
+                }
+            })
+        }
     }
 </script>
 
@@ -16,7 +24,9 @@
     vertical-align: center;
     > .g-button{
         border-radius: 0;
-        margin-left: -1px;
+        &:not(:first-child){
+            margin-left: -1px;
+        }
         &:first-child{
             border-top-left-radius: var(--border-radius);
             border-bottom-left-radius: var(--border-radius);
