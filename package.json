@@ -4,7 +4,8 @@
   "description": "这是一个UI框架",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-test": "parcel watch test/* --no-cache & karma start",
+    "test": "parcel build test/* --no-minify && karma start --single-run"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,17 @@
   },
   "homepage": "https://github.com/jumodada/My-Vue-Wheel#readme",
   "dependencies": {
+    "icon.vue": "^0.1.5",
+    "v8-compile-cache": "^2.0.2",
     "vue": "^2.5.22"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "parcel-bundler": "^1.11.0"
+    "@vue/component-compiler-utils": "^2.0.0",
+    "chai": "^4.1.2",
+    "chai-spies": "^1.0.0",
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.9.2",
+    "vue-template-compiler": "^2.5.16"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
