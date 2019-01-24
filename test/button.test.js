@@ -62,7 +62,7 @@ describe('Button', () => {
         vm.$el.remove()
         vm.$destroy()
     })
-    //deep比较对象属性是否相同
+    //deep比较对象,属性是否相同
     it('点击 button 触发 click 事件', () => {
         const Constructor = Vue.extend(Button)
         const vm = new Constructor({
