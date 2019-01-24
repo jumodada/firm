@@ -9,6 +9,9 @@ Vue.component('g-button-group', ButtonGroup)
 
 new Vue({
     el: '#app',
+
+
+
     data:{
         loading1:false,
         loading2:false,
