@@ -71,15 +71,23 @@
     </div>
    <div style="margin-top: 30px" class="box">
        <div>
-           <g-input value="是的，你会一直喝到最后" disabled>
+           <g-input value="test-disabled" disabled>
 
            </g-input>
-           <g-input value="我想大叔才是你的菜" readonly>
+           <g-input value="test-readonly" readonly>
+
+           </g-input>
+           <g-input value="test-change"
+                    @input="inputChange($event)"
+                    @change="Change($event)"
+                    @blur="blur($event)"
+                    @focus="focus($event)"
+           >
 
            </g-input>
        </div>
        <div class="box">
-           <g-input value="而我只是一棵白菜" error="姓">
+           <g-input value="test-error" error="姓">
 
            </g-input>
        </div>

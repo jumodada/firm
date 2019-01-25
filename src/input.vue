@@ -5,6 +5,11 @@
            :disabled="disabled"
            :readonly="readonly"
            :class="{error:error}"
+           @input="$emit('input',$event)"
+           @change="$emit('change',$event)"
+           @blur="$emit('blur',$event)"
+           @focus="$emit('focus',$event)"
+
     >
     <gIcon v-if="error" name="gantan" color="#F1453D"></gIcon>
     <span v-if="error" :class="{errorMessage:error}">{{error}}</span>

@@ -12,12 +12,24 @@ Vue.component('g-input', Input)
 new Vue({
     el: '#app',
 
-
-
     data:{
         loading1:false,
         loading2:false,
         loading3:false
+    },
+    methods:{
+        inputChange(e){
+            console.log(e.target.value)
+        },
+        Change(e){
+            console.log(e.target.value)
+        },
+        blur(e){
+            console.log(e)
+        },
+        focus(e){
+            console.log(e)
+        }
     }
 })
 
