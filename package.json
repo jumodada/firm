@@ -18,7 +18,7 @@
   "author": "xiaowu",
   "license": "MIT",
   "bugs": {
-  "url": "https://github.com/jumodada/My-Vue-Wheel/issues"
+    "url": "https://github.com/jumodada/My-Vue-Wheel/issues"
   },
   "homepage": "https://github.com/jumodada/My-Vue-Wheel#readme",
   "dependencies": {
@@ -30,6 +30,7 @@
     "@vue/component-compiler-utils": "^2.0.0",
     "chai": "^4.1.2",
     "chai-spies": "^1.0.0",
+    "install": "^0.12.2",
     "karma": "^4.0.0",
     "karma-chai": "^0.1.0",
     "karma-chai-spies": "^0.1.4",
@@ -41,6 +42,8 @@
     "parcel-bundler": "^1.9.2",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
+    "vue": "^2.5.22",
+    "vue-hot-reload-api": "^2.3.1",
     "vue-template-compiler": "^2.5.16"
   },
   "alias": {
