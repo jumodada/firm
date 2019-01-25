@@ -1,5 +1,5 @@
 <template>
-    <button class="g-button"
+    <button class="g-button lala"
             :class="{[`icon-${iconPosition}`]:true}"
             @click="$emit('click')"
     >
