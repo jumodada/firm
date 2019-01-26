@@ -5,10 +5,10 @@
            :disabled="disabled"
            :readonly="readonly"
            :class="{error:error}"
-           @input="$emit('input',$event)"
-           @change="$emit('change',$event)"
-           @blur="$emit('blur',$event)"
-           @focus="$emit('focus',$event)"
+           @input="$emit('input',$event.target.value)"
+           @change="$emit('change',$event.target.value)"
+           @blur="$emit('blur',$event.target.value)"
+           @focus="$emit('focus',$event.target.value)"
 
     >
     <gIcon v-if="error" name="gantan" color="#F1453D"></gIcon>

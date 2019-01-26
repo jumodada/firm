@@ -71,23 +71,30 @@
     </div>
    <div style="margin-top: 30px" class="box">
        <div>
-           <g-input value="test-disabled" disabled>
+           <g-input  disabled>
 
            </g-input>
-           <g-input value="test-readonly" readonly>
+           <g-input  readonly>
 
            </g-input>
-           <g-input value="test-change"
-                    @input="inputChange($event)"
-                    @change="Change($event)"
-                    @blur="blur($event)"
-                    @focus="focus($event)"
+           <g-input
+               @input="inputChange($event)"
+               @change="Change($event)"
+               @blur="blur($event)"
+               @focus="focus($event)"
+
+       >
+
+       </g-input>
+           <g-input
+            v-model="value"
+
            >
 
            </g-input>
        </div>
        <div class="box">
-           <g-input value="test-error" error="姓">
+           <g-input  error="姓名不得少于两个字">
 
            </g-input>
        </div>
