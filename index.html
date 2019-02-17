@@ -37,10 +37,34 @@
             .box{
                 margin: 20px 0;
             }
+
+    </style>
+    <style>
+
     </style>
 </head>
 <body>
 <div id="app">
+  <div style="border:1px solid black">
+      <g-row gutter="20">
+          <g-col span="2">1</g-col>
+          <g-col span="4">2</g-col>
+          <g-col span="6" >3</g-col>
+          <g-col span="12" >4</g-col>
+      </g-row>
+
+      <g-row gutter="20">
+          <g-col span="4">1</g-col>
+          <g-col span="6">2</g-col>
+          <g-col span="8">3</g-col>
+          <g-col span="6">4</g-col>
+      </g-row>
+      <g-row>
+          <g-col span="12" offset="1">1</g-col>
+          <g-col span="12" offset="1">2</g-col>
+      </g-row>
+  </div>
+    <hr>
     <div class="box">
         <g-button icon="set"
                   icon-position="left"
@@ -50,6 +74,23 @@
             草
         </g-button>
 
+        <g-button
+                style="color: white;
+                background-color: #24c507;
+                border-color: #24c507;
+                border-radius: 6px;
+                width: 90px;
+                height: 40px;
+"
+        >
+            大号成功
+        </g-button>
+        <g-button
+                style="color: white;background-color: #f89505;border-color: #f89505;"
+        >
+            自定义警告
+        </g-button>
+
         <g-button icon="loading"
                   icon-position="left"
                   :loading="loading2"
@@ -57,20 +98,27 @@
         >
             早
         </g-button>
+        <g-icon name="set">
+
+        </g-icon>
         <g-button-group>
-            <g-button icon="left">
-                上一页
-            </g-button>
+                   <g-button icon="left"  disabled
+                   >
+                       上一页
+                   </g-button>
             <g-button>
                 更多
             </g-button>
-            <g-button icon="right">
+            <g-button icon="right"
+            >
                 下一页
             </g-button>
         </g-button-group>
     </div>
    <div style="margin-top: 30px" class="box">
-       <div>
+
+
+       <div class="box">
            <g-input  disabled>
 
            </g-input>
@@ -82,15 +130,11 @@
                @change="Change($event)"
                @blur="blur($event)"
                @focus="focus($event)"
-
        >
-
        </g-input>
            <g-input
             v-model="value"
-
            >
-
            </g-input>
        </div>
        <div class="box">

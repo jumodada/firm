@@ -52,8 +52,6 @@
       $box-shadow-color:rgba(0,0,0,0.5);
       $red:#F1453D;
 
-
-
       .wrapper{
           font-size: $font-size;
           display: inline-flex;

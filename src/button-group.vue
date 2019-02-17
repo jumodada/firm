@@ -8,10 +8,11 @@
     export default {
         name: "button-group",
         mounted(){
+            console.log(this.$el.children)
             Object.keys(this.$el.children).forEach(index=>{
                let nodeName =  this.$el.children[index].nodeName
                 if(nodeName.toLowerCase() !== 'button'){
-                    console.log('g-button-group的子元素应该全是g-button')
+                    console.error('g-button-group的子元素应该全是g-button')
                 }
             })
         }
@@ -36,6 +37,7 @@
             border-bottom-right-radius: var(--border-radius);
         }
         &:hover{
+            border-color: #ef6c14;
             position:relative;
             z-index: 1;
         }

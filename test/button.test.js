@@ -17,6 +17,7 @@ describe('Button', () => {
             }
         }).$mount()
         const useElement = vm.$el.querySelector('use')
+        console.log(vm.$el.querySelector('g-icon'))
         expect(useElement.getAttribute('xlink:href')).to.equal('#icon-set')
         vm.$destroy()
     })

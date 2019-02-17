@@ -1,28 +1,55 @@
-<template>
+<template >
     <button class="g-button lala"
-            :class="{[`icon-${iconPosition}`]:true}"
+            :class="{[`icon-${iconPosition}`]:true,
+            }"
+            :disabled="disabled"
             @click="$emit('click')"
+
     >
-        <g-icon  :name="icon" v-if="icon || loading" class="icon" :class="{loading:loading}">
+        <g-icon  :name="icon"
+                 :color="color"
+                 :style="disabledStyle"
+                 v-if="icon || loading"  :class="{loading:loading}">
 
             </g-icon>
-        <div class="content">
+        <div class="content"
+             :style="disabledStyle"
+        >
             <slot></slot>
         </div>
-
-
     </button>
-
 
 </template>
 <script>
-    import Vue from 'vue'
+
     import Icon from'./icon.vue'
-    Vue.component('g-icon',Icon)
     export default {
+        mounted(){
+          console.log(this.$el.querySelector('use'))
+        },
+        components:{
+            'g-icon':Icon
+        },
+        computed:{
+            disabledStyle(){
+                if(this.disabled){
+                    return 'fill:#ccc; pointer-events: none;'
+                }
+            }
+        },
+
         props: {
             icon:{
+                type:String
+            },
+            disabled:{
+              type:Boolean,
+                default:false
+            },
 
+            color:{
+              type:String,
+                default:'black'
             },
             loading:{
                 type:Boolean,
@@ -34,9 +61,7 @@
                 validator(value) {
                     return !(value !== 'left' && value !== 'right');
                 }
-
             },
-
         }
     }
 </script>
@@ -87,9 +112,18 @@
                 order: 1;
             }
         }
+        &[disabled]{
+            border-color: #ccc;
+            color:#ccc;
+            cursor: not-allowed;
+        }
+
         .loading{
             animation: spin 1s infinite linear;
         }
+
+
+
     }
 </style>
 
