@@ -38,7 +38,12 @@
                 default:false
             },
             error:{
-                type:String
+                type:String,
+                validator(val){
+
+                    if(val.length>10)return console.error('提示不能超出10个字')
+                    return true
+                }
             }
         }
     }
