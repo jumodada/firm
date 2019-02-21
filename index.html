@@ -24,9 +24,6 @@
             --border-color-hover: #666;
         }
 
-        #app {
-            margin: 20px;
-        }
 
         body {
             font-size: var(--font-size);
@@ -47,71 +44,88 @@
             max-width: 100%;
         }
             .demoBox{
-                min-height: 50px;
-                background-color: grey;
-                border: 1px solid red;
-            }
-        .main{
+                    height: 100px;
 
+            }
+      .slider{
+          background-color: #333333;
+          width: 300px;
+      }
+      .slider > .fade-enter, .fade-leave-to {
+          margin-left:-300px;
+      }
+        .header{
+            height: 100px;
+            background-color: #666666;
         }
+        .content{
+            background-color: #999999;
+        }
+        .footer{
+            height: 80px;
+            background-color: black;
+        }
+
     </style>
 </head>
 <body>
 <div id="app">
 
-   <div>
-       <g-row class="topbar">
-           <g-col class="demoBox"
-                   span="23"
-                  :pad="{span:18}"
+            <g-layout style="height: 600px;">
+                <g-header >header</g-header>
 
-                  :pc="{span:8}"
-                  :wp="{span:4}"
+                    <g-layout>
+                        <g-slider  style="height: 100%;">slider</g-slider>
+                        <g-content  style="height: 100%">content</g-content>
+                    </g-layout>
+
+                <g-footer >footer</g-footer>
+            </g-layout>
+
+    <hr>
+    <br>
+    <br>
+    <br>
+    <g-layout style="height: 600px;">
+        <g-slider style="height: 100%">slider</g-slider>
+        <g-layout>
+            <g-header >header</g-header>
+            <g-content>content</g-content>
+            <g-footer >footer</g-footer>
+        </g-layout>
+
+    </g-layout>
 
 
-           >
-               <g-row arrange="center">
-                   <g-col class="logo-wrapper">
-                       <img class="logo"  src="https://img.alicdn.com/tfs/TB1_uT8a5ERMeJjSspiXXbZLFXa-143-59.png" alt="">
-                   </g-col>
-               </g-row>
 
-           </g-col>
-           <g-col class="demoBox"
-                   span="1"
-                  :pad="{span:6}"
-                  :pc="{span:16}"
-                  :wp="{span:20}"
+    <!--<div>-->
+       <!--<g-row class="topbar">-->
+           <!--<g-col class="demoBox"-->
+                   <!--span="23"-->
+                  <!--:pad="{span:18}"-->
 
-           ></g-col>
-       </g-row>
-       <!--<g-row class="logo-and-search">-->
-           <!--<g-col class="demoBox" span="4" :phone="{span:8}"></g-col>-->
-           <!--<g-col  class="demoBox" span="14" :phone="{span:8}">-->
-               <!--<g-row class="topbar">-->
-                   <!--<g-col  span="6" >1</g-col>-->
-                   <!--<g-col  span="6">2</g-col>-->
-                   <!--<g-col  span="6">3</g-col>-->
-                   <!--<g-col  span="6">4</g-col>-->
+                  <!--:pc="{span:8}"-->
+                  <!--:wp="{span:4}"-->
+
+
+           <!--&gt;-->
+               <!--<g-row arrange="center">-->
+                   <!--<g-col class="logo-wrapper">-->
+                       <!--<img class="logo"  src="https://img.alicdn.com/tfs/TB1_uT8a5ERMeJjSspiXXbZLFXa-143-59.png" alt="">-->
+                   <!--</g-col>-->
                <!--</g-row>-->
 
            <!--</g-col>-->
-           <!--<g-col class="demoBox" span="6" :phone="{span:8}"></g-col>-->
-       <!--</g-row>-->
-       <!--<g-row class="main">-->
-           <!--<g-col class="demoBox" span="4"></g-col>-->
-           <!--<g-col  class="demoBox" span="14">-->
-               <!--<g-row class="topbar" arrange="center">-->
-                   <!--<g-col span="1">1</g-col>-->
-                   <!--<g-col span="1">2</g-col>-->
-                   <!--<g-col span="1">3</g-col>-->
-                   <!--<g-col span="1">4</g-col>-->
-               <!--</g-row>-->
+           <!--<g-col class="demoBox"-->
+                   <!--span="1"-->
+                  <!--:pad="{span:6}"-->
+                  <!--:pc="{span:16}"-->
+                  <!--:wp="{span:20}"-->
 
-           <!--</g-col>-->
-           <!--<g-col class="demoBox" span="6"></g-col>-->
+           <!--&gt;</g-col>-->
        <!--</g-row>-->
-   </div>
+     <!---->
+   <!--</div>-->
   <!--<div style="border:1px solid black">-->
       <!--<g-row gutter="20" >-->
           <!--<g-col span="12" :phone="{span:6}">1</g-col>-->
@@ -137,86 +151,86 @@
       <!--</g-row>-->
   <!--</div>-->
 
-    <div class="box">
-        <g-button icon="set"
-                  icon-position="left"
-                  @click="loading1 = !loading1"
-                  :loading="loading1"
-        >
-            草
-        </g-button>
+    <!--<div class="box">-->
+        <!--<g-button icon="set"-->
+                  <!--icon-position="left"-->
+                  <!--@click="loading1 = !loading1"-->
+                  <!--:loading="loading1"-->
+        <!--&gt;-->
+            <!--草-->
+        <!--</g-button>-->
 
-        <g-button
-                style="color: white;
-                background-color: #24c507;
-                border-color: #24c507;
-                border-radius: 6px;
-                width: 90px;
-                height: 40px;
-"
-        >
-            大号成功
-        </g-button>
-        <g-button
-                style="color: white;background-color: #f89505;border-color: #f89505;"
-        >
-            自定义警告
-        </g-button>
+        <!--<g-button-->
+                <!--style="color: white;-->
+                <!--background-color: #24c507;-->
+                <!--border-color: #24c507;-->
+                <!--border-radius: 6px;-->
+                <!--width: 90px;-->
+                <!--height: 40px;-->
+<!--"-->
+        <!--&gt;-->
+            <!--大号成功-->
+        <!--</g-button>-->
+        <!--<g-button-->
+                <!--style="color: white;background-color: #f89505;border-color: #f89505;"-->
+        <!--&gt;-->
+            <!--自定义警告-->
+        <!--</g-button>-->
 
-        <g-button icon="loading"
-                  icon-position="left"
-                  :loading="loading2"
-                  @click="loading2 = !loading2"
-        >
-            早
-        </g-button>
-        <g-icon name="set">
+        <!--<g-button icon="loading"-->
+                  <!--icon-position="left"-->
+                  <!--:loading="loading2"-->
+                  <!--@click="loading2 = !loading2"-->
+        <!--&gt;-->
+            <!--早-->
+        <!--</g-button>-->
+        <!--<g-icon name="set">-->
 
-        </g-icon>
-        <g-button-group>
-                   <g-button icon="left"  disabled
-                   >
-                       上一页
-                   </g-button>
-            <g-button>
-                更多
-            </g-button>
-            <g-button icon="right"
-            >
-                下一页
-            </g-button>
-        </g-button-group>
-    </div>
-   <div style="margin-top: 30px" class="box">
-
-
-       <div class="box">
-           <g-input  disabled value="不能使用">
-
-           </g-input>
-           <g-input  readonly value="不能更改">
-
-           </g-input>
-           <g-input
-                   value="事件"
-               @input="inputChange($event)"
-               @change="Change($event)"
-               @blur="blur($event)"
-               @focus="focus($event)"
-       >
-       </g-input>
-           <g-input
-            v-model="value"
-           >
-           </g-input>
-       </div>
-       <div class="box">
-           <g-input  error="姓名不得少于两个字">
+        <!--</g-icon>-->
+        <!--<g-button-group>-->
+                   <!--<g-button icon="left"  disabled-->
+                   <!--&gt;-->
+                       <!--上一页-->
+                   <!--</g-button>-->
+            <!--<g-button>-->
+                <!--更多-->
+            <!--</g-button>-->
+            <!--<g-button icon="right"-->
+            <!--&gt;-->
+                <!--下一页-->
+            <!--</g-button>-->
+        <!--</g-button-group>-->
+    <!--</div>-->
+   <!--<div style="margin-top: 30px" class="box">-->
 
 
-           </g-input>
-       </div>
-   </div>
+       <!--<div class="box">-->
+           <!--<g-input  disabled value="不能使用">-->
+
+           <!--</g-input>-->
+           <!--<g-input  readonly value="不能更改">-->
+
+           <!--</g-input>-->
+           <!--<g-input-->
+                   <!--value="事件"-->
+               <!--@input="inputChange($event)"-->
+               <!--@change="Change($event)"-->
+               <!--@blur="blur($event)"-->
+               <!--@focus="focus($event)"-->
+       <!--&gt;-->
+       <!--</g-input>-->
+           <!--<g-input-->
+            <!--v-model="value"-->
+           <!--&gt;-->
+           <!--</g-input>-->
+       <!--</div>-->
+       <!--<div class="box">-->
+           <!--<g-input  error="姓名不得少于两个字">-->
+
+
+           <!--</g-input>-->
+       <!--</div>-->
+   <!--</div>-->
 
 </div>
 <script src="./src/app.js"></script>

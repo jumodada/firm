@@ -23,7 +23,6 @@
         mounted(){
             this.$children.forEach(vm=>{
                 vm.gutter = this.gutter
-                vm.haha = 'haha'
             })
         },
         computed:{
