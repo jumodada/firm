@@ -1,6 +1,6 @@
 <template>
-<div class="row" :style="{marginLeft:-gutter/2+'px',marginRight:-gutter/2+'px'}"
-
+<div class="row" :style="rowStyle"
+        :class="rowClass"
 >
 <slot></slot>
 </div>
@@ -12,6 +12,12 @@
         props:{
             gutter:{
                 type:[Number,String]
+            },
+            arrange:{
+                type: String,
+                validator(val){
+                  return   ['right','left','center'].includes(val)
+                }
             }
         },
         mounted(){
@@ -19,18 +25,42 @@
                 vm.gutter = this.gutter
                 vm.haha = 'haha'
             })
-            console.log(this.$children);
         },
+        computed:{
+            rowStyle(){
+                return {
+                    marginLeft:-this.gutter/2+'px',
+                    marginRight:-this.gutter/2+'px'
+                }
+            },
+            rowClass(){
+                let {arrange} = this
+                return [arrange && `row-${arrange}`]
+            }
+
+        }
     }
-    // var div =  document.createElement('div')
+
+
+
+    // var div =  document.createElement('div')     created
     // var childDiv = document.createElement('div')
     // div.appendChild(childDiv)
-    // document.body.appendChild(div)
+    // document.body.appendChild(div)               mounted
 
 </script>
 
 <style scoped lang="scss">
 .row{
     display: flex;
+    &-left{
+        justify-content: flex-start;
+    }
+    &-center{
+        justify-content: center;
+    }
+    &-right{
+        justify-content: flex-end;
+    }
 }
 </style>

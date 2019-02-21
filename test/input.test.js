@@ -29,6 +29,7 @@ describe('Input',()=>{
             expect(input.value).to.equal('ha23io 2')
             vm.$destroy()
         })
+
         it('接受 disabled',()=>{
             vm = new Constructor({
                 propsData: {
@@ -76,15 +77,21 @@ describe('Input',()=>{
                 vm.$on(eventName,callback)
                 let event = new Event(eventName)
                 Object.defineProperty(
-                    event,'target',{value:{value:'hi'},enumerable:true},
+                    event,'target',
+                    {
+                        value:{
+                        value:'hi'
+                        },
+                    enumerable:true
+        },
                 )
-
                 let inputElement = vm.$el.querySelector('input')
                 inputElement.dispatchEvent(event)
-
+                //console.log(event)
                 expect(callback).to.have.been.calledWith('hi')
             })
         })
+
     })
 
 })

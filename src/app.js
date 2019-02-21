@@ -34,7 +34,7 @@ new Vue({
         },
         focus(e){
             console.log(e)
-        }
+        },
     }
 })
 

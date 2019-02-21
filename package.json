@@ -1,6 +1,6 @@
 {
-  "name": "my-wheel-test-01",
-  "version": "0.0.4",
+  "name": "my-wheel-0-1",
+  "version": "0.0.3",
   "description": "这是一个UI框架",
   "main": "dist/index.js",
   "scripts": {

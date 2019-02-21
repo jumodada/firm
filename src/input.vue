@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="wrapper" >
     <input type="text"
            :value="value"
            :disabled="disabled"
@@ -40,8 +40,7 @@
             error:{
                 type:String,
                 validator(val){
-
-                    if(val.length>10)return console.error('提示不能超出10个字')
+                    if(val.length>10)return console.error('不能多于十个字')
                     return true
                 }
             }
