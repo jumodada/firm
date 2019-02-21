@@ -14,9 +14,6 @@
                 type:[Number,String]
             }
         },
-        created(){
-
-        },
         mounted(){
             this.$children.forEach(vm=>{
                 vm.gutter = this.gutter
