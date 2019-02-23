@@ -58,9 +58,7 @@
             height: 100px;
             background-color: #666666;
         }
-        .content{
-            background-color: #999999;
-        }
+
         .footer{
             height: 80px;
             background-color: black;
@@ -71,30 +69,74 @@
 <body>
 <div id="app">
 
-            <g-layout style="height: 600px;">
-                <g-header >header</g-header>
 
-                    <g-layout>
-                        <g-slider  style="height: 100%;">slider</g-slider>
-                        <g-content  style="height: 100%">content</g-content>
-                    </g-layout>
+        <g-button @click="showMsg1">top</g-button>
+        <g-button @click="showMsg2">center</g-button>
+        <g-button @click="showMsg3">bottom</g-button>
+       <g-button @click="showMsg4">默认</g-button>
 
-                <g-footer >footer</g-footer>
-            </g-layout>
 
-    <hr>
-    <br>
-    <br>
-    <br>
-    <g-layout style="height: 600px;">
-        <g-slider style="height: 100%">slider</g-slider>
-        <g-layout>
-            <g-header >header</g-header>
-            <g-content>content</g-content>
-            <g-footer >footer</g-footer>
-        </g-layout>
 
-    </g-layout>
+   <g-tabs>
+   <!--<g-tabs :selected.sync="selectedTab">-->
+   <!--<g-tabs :selected="selectedTab"-->
+           <!--@update:selected="selectedTab= $event">-->
+       <g-tabs-header>
+           <template slot="actions">
+                    <button>卧槽</button>
+           </template>
+                <g-tabs-item name="1">
+                    <p>游戏</p>
+                </g-tabs-item>
+           <g-tabs-item name="2">
+               <p>新闻</p>
+           </g-tabs-item>
+           <g-tabs-item name="3">
+               <p>科技</p>
+           </g-tabs-item>
+       </g-tabs-header>
+       <g-tabs-body>
+           <g-tabs-panel name="1">
+               游戏
+           </g-tabs-panel>
+           <g-tabs-panel name="2">
+               新闻
+           </g-tabs-panel>
+           <g-tabs-panel name="3">
+               科技
+           </g-tabs-panel >
+
+       </g-tabs-body>
+   </g-tabs>
+
+
+
+
+
+            <!--<g-layout style="height: 600px;">-->
+                <!--<g-header >header</g-header>-->
+
+                    <!--<g-layout>-->
+                        <!--<g-slider  style="height: 100%;">slider</g-slider>-->
+                        <!--<g-content  style="height: 100%">content</g-content>-->
+                    <!--</g-layout>-->
+
+                <!--<g-footer >footer</g-footer>-->
+            <!--</g-layout>-->
+
+    <!--<hr>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<g-layout style="height: 600px;">-->
+        <!--<g-slider style="height: 100%">slider</g-slider>-->
+        <!--<g-layout>-->
+            <!--<g-header >header</g-header>-->
+            <!--<g-content>content</g-content>-->
+            <!--<g-footer >footer</g-footer>-->
+        <!--</g-layout>-->
+
+    <!--</g-layout>-->
 
 
 

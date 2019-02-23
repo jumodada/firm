@@ -31,7 +31,7 @@ describe('Col', () => {
                 offset: 1
             }
         }).$mount(div)
-        console.log(vm.$el.classList);
+
         expect(vm.$el.classList.contains('offset-1')).to.eq(true)
         vm.$el.remove()
         vm.$destroy()
@@ -99,7 +99,7 @@ describe('Col', () => {
                 }
             }
         }).$mount(div)
-        console.log(vm.$el.classList);
+
         expect(vm.$el.classList.contains('col-widePc-1')).to.eq(true)
         expect(vm.$el.classList.contains('offset-widePc-1')).to.eq(true)
         vm.$el.remove()

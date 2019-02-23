@@ -16,7 +16,7 @@
             arrange:{
                 type: String,
                 validator(val){
-                  return   ['right','left','center'].includes(val)
+                  return   ['right','left','center'].indexOf(val)>-1
                 }
             }
         },

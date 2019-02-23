@@ -57,7 +57,7 @@ describe('Input',()=>{
                 }
             }).$mount()
             const usrElement = vm.$el.querySelector('use')
-            console.error(usrElement)
+            //console.error(usrElement)
             expect(usrElement.getAttribute('xlink:href')).to.equal('#icon-gantan')
             const errorMessage = vm.$el.querySelector('.errorMessage')
             expect(errorMessage).to.exist

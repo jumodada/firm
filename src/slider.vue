@@ -16,16 +16,7 @@
                 hide:false
             }
         },
-        methods:{
-            enter: function (el, done) {
 
-                done()
-            },
-            leave: function (el, done) {
-
-                done()
-            },
-        }
     }
 </script>
 
