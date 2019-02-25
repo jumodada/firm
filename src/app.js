@@ -11,11 +11,8 @@ import Footer from './footer'
 import Slider from './slider'
 import Content from './content'
 import plugin from './plugin.js'
-import tabs from './tabs'
-import tabsHead from './tabs-head'
-import tabsBody from './tabs-body'
-import tabsItem from './tabs-item'
-import tabsPane from './tabs-panel'
+import xTabs from './tabs'
+import xTabsItem from './tabs-item'
 
 Vue.component('g-button', Button)
 Vue.component('g-icon', Icon)
@@ -28,11 +25,8 @@ Vue.component('g-header', Header)
 Vue.component('g-footer', Footer)
 Vue.component('g-slider', Slider)
 Vue.component('g-content', Content)
-Vue.component('g-tabs', tabs)
-Vue.component('g-tabs-header', tabsHead)
-Vue.component('g-tabs-body', tabsBody)
-Vue.component('g-tabs-item', tabsItem)
-Vue.component('g-tabs-panel', tabsPane)
+Vue.component('g-tabs', xTabs)
+Vue.component('g-tabs-item', xTabsItem)
 Vue.use(plugin)
 
 
@@ -42,9 +36,13 @@ new Vue({
         loading1: false,
         loading2: false,
         loading3: false,
-        value: 'v-model'
+        value: 'v-model',
+        selectedTab: '1'
     },
     methods: {
+        yyy(val){
+          console.log(val)
+        },
         inputChange(e) {
             console.log(e)
         },

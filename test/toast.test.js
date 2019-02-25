@@ -24,7 +24,6 @@ describe('props', function () {
             }
         }).$mount(div)
         vm.$on('close', () => {
-            console.log(1)
             expect(document.body.contains(vm.$el)).to.eq(false)
             done()
         })
@@ -69,7 +68,6 @@ describe('props', function () {
                 position:'center'
             }
         }).$mount()
-        console.log(vm.$el)
        expect(vm.$el.classList.contains('position-center')).to.eq(true)
     })
 })

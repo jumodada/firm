@@ -77,42 +77,23 @@
 
 
 
-   <g-tabs>
+   <!--<g-tabs>-->
    <!--<g-tabs :selected.sync="selectedTab">-->
-   <!--<g-tabs :selected="selectedTab"-->
-           <!--@update:selected="selectedTab= $event">-->
-       <g-tabs-header>
-           <template slot="actions">
-                    <button>卧槽</button>
-           </template>
-                <g-tabs-item name="1">
-                    <p>游戏</p>
-                </g-tabs-item>
-           <g-tabs-item name="2">
-               <p>新闻</p>
-           </g-tabs-item>
-           <g-tabs-item name="3">
-               <p>科技</p>
-           </g-tabs-item>
-       </g-tabs-header>
-       <g-tabs-body>
-           <g-tabs-panel name="1">
-               游戏
-           </g-tabs-panel>
-           <g-tabs-panel name="2">
-               新闻
-           </g-tabs-panel>
-           <g-tabs-panel name="3">
-               科技
-           </g-tabs-panel >
-
-       </g-tabs-body>
-   </g-tabs>
 
 
 
+    <g-tabs :selected="selectedTab">
+        <g-tabs-item item="经济xxx" name="1">经济xxxxxxx</g-tabs-item>
+        <g-tabs-item item="体育xx" name="2" disabled>体育xxxxxxx</g-tabs-item>
+        <g-tabs-item item="民生x" name="3" disabled>民生xxxxxxx</g-tabs-item>
+        <g-tabs-item item="游戏" name="4">游戏xxxxxxx</g-tabs-item>
+        <g-tabs-item item="政治" name="5" >民生xxxxxxx</g-tabs-item>
+        <g-tabs-item item="军事" name="6">游戏xxxxxxx</g-tabs-item>
 
-
+        <template slot="actions">
+            <g-button>卧槽</g-button>
+        </template>
+    </g-tabs>
             <!--<g-layout style="height: 600px;">-->
                 <!--<g-header >header</g-header>-->
 

@@ -108,13 +108,30 @@
                         this.$refs.divided.style.height =  `${this.$refs.toast.getBoundingClientRect().height*0.8}px`
                     })
                },
-               exeAutoClosed(){
-                   if (this.autoClosed) {
-                       setTimeout(() => {
-                           this.close()
+                    exeAutoClosed(){
+
+                     if (this.autoClosed) {
+                            setTimeout(() => {
+                            this.leaveActive()
+                            setTimeout(()=>{
+                                 this.close()
+                            },600)
+
                        }, this.autoClosed * 1000)
                    }
                },
+
+                leaveActive(){
+                        if(this.position ==='top'){
+                            let {top,height}  =this.$el.getBoundingClientRect()
+                            this.$el.style.top = `${top-height}px`
+                        }else if(this.position ==='bottom'){
+                            let {bottom,height}  =this.$el.getBoundingClientRect()
+                            this.$el.style.top = `${bottom+height}px`
+                        }else if(this.position ==='center'){
+                            this.$el.style.opacity = 0
+                        }
+                },
                 close() {
                     this.$el.remove()
                     this.$emit('close')
@@ -137,6 +154,7 @@
     $toast-min-height:40px;
     $toast-bg:#e4e0e0;
     $animation-duration:.6s;
+
     @keyframes slideUp {
         0%{
             transform: translateY(0%) translateX(-50%);
@@ -162,7 +180,7 @@
         }
     }
 .toast{
-    animation: fade-in 1s ;
+    transition: all $animation-duration;
     border: 1px solid $toast-bg;
     position: fixed;
     font-size: $font-size;
@@ -176,6 +194,12 @@
     padding: 0 25px;
     padding-right: 5px;
     color: #999999;
+    .bounce-enter-active {
+        animation: bounce-in .5s;
+    }
+    .bounce-leave-active {
+        animation: bounce-in .5s reverse;
+    }
     .message{
         padding: 6px 0;
     }
@@ -198,7 +222,8 @@
         transform: translateX(-50%);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        animation: slideDown $animation-duration;
+        animation: slideDown  $animation-duration;
+
     }
     &.position-bottom{
         top:100%;
@@ -206,7 +231,7 @@
         left: 50%;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        animation: slideUp $animation-duration;
+        animation: slideUp  $animation-duration;
     }
     &.position-center{
         top:50%;
