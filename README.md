@@ -1,5 +1,3 @@
-# Hello VuePress
-=======
 # Xin - 一个 Vue UI 组件
 
 [![Build Status](https://www.travis-ci.org/jumodada/My-Vue-Wheel.svg?branch=master)](https://www.travis-ci.org/jumodada/My-Vue-Wheel)
