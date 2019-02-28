@@ -3,12 +3,7 @@
 [![Build Status](https://www.travis-ci.org/jumodada/My-Vue-Wheel.svg?branch=master)](https://www.travis-ci.org/jumodada/My-Vue-Wheel)
 
 ## 介绍
-1.添加样式，使用本框架前，请在 CSS 中开启 border-box
-
-     ```
-     *,*::before,*::after{box-sizing: border-box;}
-     ```
-     IE8以上浏览器支持此样式
+1.个人的学习vue的项目。样式和功能参照AntDesgin和elementUI,预计五月份会完成15个组件并发布1.0版本。代码每周都会重构并添加新的东西，单元测试也是
 
    2.安装etu
    ```
