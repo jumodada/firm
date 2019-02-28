@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: "gRow",
+        name: "xRow",
         props:{
             gutter:{
                 type:[Number,String]

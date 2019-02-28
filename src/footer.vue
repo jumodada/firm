@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "g-Footer"
+        name: "x-Footer"
     }
 </script>
 

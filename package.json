@@ -5,9 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
-    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run",
+    "t": "parcel build test/* --no-cache --no-minify && karma start --single-run",
     "x": "parcel index.html --no-cache",
-    "build":"npx parcel build index.js --no-minify --no-cache"
+    "build": "npx parcel build index.js --no-minify --no-cache",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -46,7 +48,8 @@
     "sinon-chai": "^3.3.0",
     "vue": "^2.5.22",
     "vue-hot-reload-api": "^2.3.1",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "vuepress": "^0.14.9"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"

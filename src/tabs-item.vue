@@ -29,10 +29,8 @@
             }
         },
         created(){
-
              this.$parent._data.headerClass.push(this.item)
              this.$parent._data.disabledClass[this.name] = this.disabled
-
         }
     }
 </script>
@@ -49,9 +47,12 @@
         0% {
             transform: scale(0);
         }
+        50% {
+            transform: scale(1.5);
+        }
 
         100% {
-            transform: scale(1);
+            transform: scaleX(1);
         }
     }
 </style>

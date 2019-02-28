@@ -14,26 +14,26 @@ describe('tabs', () => {
     //         const div = document.createElement('div')
     //         document.body.appendChild(div)
     //         div.innerHTML = `
-    //         <g-tabs selected="1">
-    //         <g-tabs-header>
-    //             <g-tabs-item name="1">
+    //         <x-tabs selected="1">
+    //         <x-tabs-header>
+    //             <x-tabs-item name="1">
     //                 <p>游戏王的男人</p>
-    //             </g-tabs-item>
-    //         <g-tabs-item name="2">
+    //             </x-tabs-item>
+    //         <x-tabs-item name="2">
     //            <p>新闻</p>
-    //         </g-tabs-item>
+    //         </x-tabs-item>
     //
-    //         </g-tabs-header>
-    //         <g-tabs-body>
-    //         <g-tabs-panel name="1">
+    //         </x-tabs-header>
+    //         <x-tabs-body>
+    //         <x-tabs-panel name="1">
     //            游戏
-    //         </g-tabs-panel>
-    //         <g-tabs-panel name="2">
+    //         </x-tabs-panel>
+    //         <x-tabs-panel name="2">
     //            新闻
-    //         </g-tabs-panel>
+    //         </x-tabs-panel>
     //
-    //         </g-tabs-body>
-    //         </g-tabs>
+    //         </x-tabs-body>
+    //         </x-tabs>
     //         `
     //         let vm = new Vue({
     //             el:div
@@ -53,21 +53,21 @@ describe('tabs', () => {
     //     const div = document.createElement('div')
     //     document.body.appendChild(div)
     //     div.innerHTML = `
-    //         <g-tabs selected="1" postion="left">
-    //         <g-tabs-header>
-    //             <g-tabs-item name="1">
+    //         <x-tabs selected="1" postion="left">
+    //         <x-tabs-header>
+    //             <x-tabs-item name="1">
     //                 <p>游戏王的男人</p>
-    //             </g-tabs-item>
-    //         </g-tabs-item>
+    //             </x-tabs-item>
+    //         </x-tabs-item>
     //
-    //         </g-tabs-header>
-    //         <g-tabs-body>
-    //         <g-tabs-panel name="1">
+    //         </x-tabs-header>
+    //         <x-tabs-body>
+    //         <x-tabs-panel name="1">
     //            游戏
-    //         </g-tabs-panel>
+    //         </x-tabs-panel>
     //
-    //         </g-tabs-body>
-    //         </g-tabs>
+    //         </x-tabs-body>
+    //         </x-tabs>
     //         `
     //     let vm = new Vue({
     //         el:div,

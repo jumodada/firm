@@ -19,7 +19,7 @@
         return valid
     }
     export default {
-        name: "gCol",
+        name: "xCol",
         props:{
             span:{
                 type:[Number,String]

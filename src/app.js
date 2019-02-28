@@ -13,20 +13,26 @@ import Content from './content'
 import plugin from './plugin.js'
 import xTabs from './tabs'
 import xTabsItem from './tabs-item'
+import popover from './popover'
+import collapse from './collapse'
+import collapseItem from './collapse-item'
 
-Vue.component('g-button', Button)
-Vue.component('g-icon', Icon)
-Vue.component('g-button-group', ButtonGroup)
-Vue.component('g-input', Input)
-Vue.component('g-row', Row)
-Vue.component('g-col', Col)
-Vue.component('g-layout', Layout)
-Vue.component('g-header', Header)
-Vue.component('g-footer', Footer)
-Vue.component('g-slider', Slider)
-Vue.component('g-content', Content)
-Vue.component('g-tabs', xTabs)
-Vue.component('g-tabs-item', xTabsItem)
+Vue.component('x-button', Button)
+Vue.component('x-icon', Icon)
+Vue.component('x-button-group', ButtonGroup)
+Vue.component('x-input', Input)
+Vue.component('x-row', Row)
+Vue.component('x-col', Col)
+Vue.component('x-layout', Layout)
+Vue.component('x-header', Header)
+Vue.component('x-footer', Footer)
+Vue.component('x-slider', Slider)
+Vue.component('x-content', Content)
+Vue.component('x-tabs', xTabs)
+Vue.component('x-tabs-item', xTabsItem)
+Vue.component('x-popover', popover)
+Vue.component('x-collapse', collapse)
+Vue.component('x-collapse-item', collapseItem)
 Vue.use(plugin)
 
 
@@ -37,7 +43,8 @@ new Vue({
         loading2: false,
         loading3: false,
         value: 'v-model',
-        selectedTab: '1'
+        selectedTab: '1',
+        selectedTT:['1']
     },
     methods: {
         yyy(val){

@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "g-Header"
+        name: "x-Header"
     }
 </script>
 

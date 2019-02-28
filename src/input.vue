@@ -11,18 +11,18 @@
            @focus="$emit('focus',$event.target.value)"
 
     >
-    <gIcon v-if="error" name="gantan" color="#F1453D"></gIcon>
+    <xIcon v-if="error" name="gantan" color="#F1453D"></xIcon>
     <span v-if="error" :class="{errorMessage:error}">{{error}}</span>
 </div>
 
 </template>
 
 <script>
-    import gIcon from './icon'
+    import xIcon from './icon'
     export default {
         name: "Input",
         components:{
-            gIcon
+            xIcon
         },
         props:{
             value:{

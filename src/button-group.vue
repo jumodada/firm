@@ -1,5 +1,5 @@
 <template>
-     <div class="g-button-group">
+     <div class="x-button-group">
          <slot></slot>
      </div>
 </template>
@@ -12,7 +12,7 @@
             Object.keys(this.$el.children).forEach(index=>{
                let nodeName =  this.$el.children[index].nodeName
                 if(nodeName.toLowerCase() !== 'button'){
-                    console.error('g-button-group的子元素应该全是g-button')
+                    console.error('x-button-group的子元素应该全是x-button')
                 }
             })
         }
@@ -20,10 +20,10 @@
 </script>
 
 <style scoped lang="scss">
-.g-button-group{
+.x-button-group{
     display: inline-flex;
     vertical-align: center;
-    > .g-button{
+    > .x-button{
         border-radius: 0;
         &:not(:first-child){
             margin-left: -1px;

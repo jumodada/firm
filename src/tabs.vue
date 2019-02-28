@@ -23,7 +23,7 @@
 <script>
 
     export default {
-        name: "g-tabs",
+        name: "x-tabs",
         props:{
             selected:{
                 type:String,
@@ -65,17 +65,20 @@
                 let {width,left} = this.$refs.item[this.active-1].getBoundingClientRect()
                 this.$refs.line.style.width = `${width}px`
                 this.$refs.line.style.transform = `translateX(${left}px)`
+            },
+            addDisabled(){
+                Object.keys(this.disabledClass).forEach(child=>{
+                    let childValue =  this.disabledClass[child]
+                    if(childValue){
+                        this.$refs.item[child-1].classList.add('disabled')
+                    }
+                })
             }
         },
         mounted(){
             this.$nextTick(()=>{
                 this.lineMove()
-                Object.keys(this.disabledClass).forEach(child=>{
-                    let childValue =  this.disabledClass[child]
-                    if(childValue){
-                       this.$refs.item[child-1].classList.add('disabled')
-                    }
-                })
+                this.addDisabled()
             })
             this.activeChange()
 
@@ -108,6 +111,8 @@
                     &:hover{
                         color:$blue;
                         font-weight: bold;
+                        transform: translateX(-10%);
+                        transition:  all .3s;
                     }
                     &.active{
                         color:$blue;

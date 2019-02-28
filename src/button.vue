@@ -1,17 +1,17 @@
 <template >
-    <button class="g-button lala"
+    <button class="x-button "
             :class="{[`icon-${iconPosition}`]:true,
             }"
             :disabled="disabled"
             @click="$emit('click')"
 
     >
-        <g-icon  :name="icon"
+        <x-icon  :name="icon"
                  :color="color"
                  :style="disabledStyle"
                  v-if="icon || loading"  :class="{loading:loading}">
 
-            </g-icon>
+            </x-icon>
         <div class="content"
              :style="disabledStyle"
         >
@@ -24,9 +24,9 @@
 
     import Icon from'./icon.vue'
     export default {
-        name:'g-button',
+        name:'x-button',
         components:{
-            'g-icon':Icon
+            'x-icon':Icon
         },
         computed:{
             disabledStyle(){
@@ -72,7 +72,7 @@
             transform: rotate(360deg);
         }
     }
-    .g-button {
+    .x-button {
         font-size: var(--font-size);
         height: var(--button-height);
         padding: 0 1em;
