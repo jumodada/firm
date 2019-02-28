@@ -12,25 +12,16 @@
 
    2.安装etu
    ```
-   npm i --save etu
+      loading。。。。。
    ```     
 
    3.引入etu
    ```
-   import {Button,Icon,ButtonGroup} from 'my-wheel-test-01'
-     import 'my-wheel-test-01/dist/index.css'
-   export default {
-     name: 'App',
-     components:{
-       'g-button':Button,
-       'g-icon':Icon,
-       'g-ButtonGroup':ButtonGroup
-     }
-   }
+  
    ```
    4.引入svg symbols
    ```
-   <script src="//at.alicdn.com/t/font_1029022_3umhd98poyq.js"></script>
+   
    ```
 
 ## 开始使用
