@@ -17,7 +17,7 @@
    
 
 ## 官网
-  https://jumodada.github.io/My-Vue-Wheel/install/
+ https://jumodada.github.io/My-Vue-Wheel/
 
 ## 文档
 
