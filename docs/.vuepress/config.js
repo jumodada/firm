@@ -13,7 +13,6 @@ module.exports = {
                     '/components/input/'
 
                 ]
-
             },
 
         ]

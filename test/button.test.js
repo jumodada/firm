@@ -54,7 +54,7 @@ describe('Button', () => {
         const vm = new Constructor({
             propsData: {
                 icon: 'set',
-                iconPosition: 'right'
+                position: 'right'
             }
         }).$mount(div)
         const icon = vm.$el.querySelector('svg')

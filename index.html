@@ -18,76 +18,9 @@
 <body>
 <div id="app">
 
-
-
-
-
-<x-input></x-input>
-    <x-button icon="set">
-        asdasd
-    </x-button>
-    <div style="overflow: hidden;margin: 300px;">
-        <x-collapse :selected.sync="selectedTT">
-            <x-collapse-item name="1" title="展示">
-                <x-button icon="set">
-                    默认按钮
-                </x-button>
-                <x-button type="primary">
-                    主要按钮
-                </x-button>
-                <x-button type="info">
-                    信息按钮
-                </x-button>
-                <x-button type="success">
-                    成功按钮
-                </x-button>
-                <x-button type="warn">
-                    警告按钮
-                </x-button>
-                <x-button type="error">
-                    错误按钮
-                </x-button>
-            </x-collapse-item>
-        </x-collapse>
-        <x-collapse single :selected.sync="selectedTT"  style="margin-top: 20px">
-            <x-collapse-item title="文章" name="1">
-                <x-popover>
-                    <div slot="content">
-                       <x-button>
-                           =>
-                       </x-button>
-                        <div>
-                            转眼前端的学习已有一年，日常写代码中经常碰到this这个东西。特别是在用vue的时候，this还是有点多的，哈哈。
-                            在翻阅了一部分书籍和一堆大佬的博客后，决定总结一下这些东西，下面谈谈我对this的一些理解，如果有错误，欢迎大家批评指正。如果可以给你带来一些帮助，那是再好不过的了
-                        </div>
-                    </div>
-                    <x-button>
-                        点击弹出
-                    </x-button>
-                </x-popover>
-                <div>
-                    this是在运行时基于函数的执行环境绑定的，它的上下文取决于函数调用时的各种条件。
-                    当一个函数被调用时，会创建一个活动记录(有时候也称执行上下文)。这个记录会包含函数在哪里被调用，函数的调用方法、出今年入的参数等信息。this就是记录其中一个属性，会在函数执行的过程中用到 --你不知道的JavaScript(上)
-                </div>
-            </x-collapse-item>
-            <x-collapse-item title="图片" name="2">
-                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="">
-            </x-collapse-item>
-            <x-collapse-item title="嵌套" name="3"><div>
-                <x-collapse single :selected.sync="selectedTT">
-                    <x-collapse-item title="英雄" name="1">火猫</x-collapse-item>
-                    <x-collapse-item title="定位" name="2">核心，断兵</x-collapse-item>
-                    <x-collapse-item title="出装" name="3">暗灭，电锤</x-collapse-item>
-                    <x-collapse-item title="玩法" name="4">打钱，打架，拿人头</x-collapse-item>
-                    <x-collapse-item title="皮肤" name="5">不买玩你麻痹</x-collapse-item>
-                </x-collapse>
-            </div></x-collapse-item>
-
-        </x-collapse>
-    </div>
-
-
-
+       <x-button icon="set" position="right">
+            asdasd
+       </x-button>
 </div>
 <script src="./src/app.js"></script>
 </body>

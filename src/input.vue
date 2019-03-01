@@ -81,6 +81,7 @@
                   border-color: #ccc;
                   color:#ccc;
                   cursor: not-allowed;
+                  pointer-events: none;
               }
               &.error{
                   border-color: $red;
