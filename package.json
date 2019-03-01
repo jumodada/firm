@@ -9,7 +9,8 @@
     "x": "parcel index.html --no-cache",
     "build": "npx parcel build index.js --no-minify --no-cache",
     "dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "pt":"vuepress build docs;cd docs/.vuepress/dist;git add -A;git commit -m 'deploy';git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages;"
   },
   "repository": {
     "type": "git",
