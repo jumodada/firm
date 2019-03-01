@@ -29,7 +29,7 @@
     export default {
         name:'x-button',
         components:{
-            'x-icon':Icon
+            'x-icon': Icon
         },
         methods:{
           onClick(){
