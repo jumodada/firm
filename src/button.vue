@@ -17,7 +17,9 @@
            <div class="x-button-content"
                 :style="disabledStyle"
            >
-               <slot></slot>
+               <slot>
+
+               </slot>
            </div>
        </button>
 </template>
