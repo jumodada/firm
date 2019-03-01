@@ -1,25 +1,25 @@
-<template >
-    <button class="x-button"
-            :class="[[`icon-${position}`],
+<template>
+       <button class="x-button"
+               :class="[[`icon-${position}`],
              typeStyle,sizeStyle,plainStyle,dangerStyle]
             "
-            ref="button"
-            :style="roundStyle"
-            :disabled="disabled"
-            @click="onClick"
-    >
-        <x-icon  :name="icon"
-                 :color="color"
-                 :style="disabledStyle"
-                 v-if="icon || loading"  :class="{loading:loading}">
-            </x-icon>
-        <div class="x-button-content"
-             :style="disabledStyle"
-        >
-            <slot></slot>
-        </div>
-    </button>
+               ref="button"
+               :style="roundStyle"
+               :disabled="disabled"
+               @click="onClick"
+       >
 
+           <x-icon  :name="icon"
+                    :color="color"
+                    :style="disabledStyle"
+                    v-if="icon || loading"  :class="{loading:loading}">
+           </x-icon>
+           <div class="x-button-content"
+                :style="disabledStyle"
+           >
+               <slot></slot>
+           </div>
+       </button>
 </template>
 <script>
 
@@ -199,6 +199,7 @@
             transform: rotate(360deg);
         }
     }
+
     .x-button {
         font-size: $font-size;
         padding: 0 1em;
@@ -269,10 +270,15 @@
             pointer-events: none;
             border-color: #ebeef5;
             opacity: 0.5;
+            &:hover{
+                color: rgba(0,0,0,.25);
+                border-color: #d9d9d9;
+            }
         }
 
         &.type-error {
             color:white;
+
             background-color: #f56c6c;
             border-color: #f56c6c;
             &:active{

@@ -1,7 +1,7 @@
 <template>
 <div>
 
-     <div style="margin-top: 40px">
+           <div style="margin-top: 40px">
                 <x-button>
                     默认按钮
                 </x-button>
@@ -21,7 +21,8 @@
                     错误按钮
                 </x-button>
             </div>
-    <div style="margin-top: 40px">
+    <div style="margin-top:40px;">error除了本身的点击效果，还可以通过设置danger改变button按钮的hover效果</div>
+    <div style="margin-top: 20px">
         <x-button  plain>
             朴素按钮
         </x-button>
@@ -34,10 +35,10 @@
         <x-button type="success" plain>
             朴素按钮
         </x-button>
-        <x-button type="warn" plain>
+        <x-button type="warn" plain danger>
             朴素按钮
         </x-button>
-        <x-button type="error" plain>
+        <x-button type="error" plain danger>
             朴素按钮
         </x-button>
     </div>
