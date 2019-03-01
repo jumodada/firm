@@ -16,8 +16,8 @@
    ```
    
 
-## 开始使用
-  1.安装
+## 官网
+ https://jumodada.github.io/My-Vue-Wheel/
 
 ## 文档
 
