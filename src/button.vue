@@ -266,7 +266,7 @@
         &[disabled]{
             color: #c0c4cc;
             background:none;
-            cursor: not-allowed;
+            pointer-events: none;
             border-color: #ebeef5;
             opacity: 0.5;
         }
