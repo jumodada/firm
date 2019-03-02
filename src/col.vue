@@ -130,6 +130,7 @@
                             }
                     }
             }
+
             @media (min-width: 1201px){
                     $class-prefix:col-widePc-;
                     $class-offset:offset-widePc-;

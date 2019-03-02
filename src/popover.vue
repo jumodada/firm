@@ -20,7 +20,9 @@
             return {
                 visible: false,
                 animate:false,
-                outClickisOn:false
+                outClickisOn:false,
+                interval:null,
+                timer:null
             }
         },
         mounted(){
@@ -193,44 +195,39 @@
                             currentTime = 300
                            contentOpacity = 0
                        }
-
-
                        this.animate= true
                        this.interval = setInterval(()=>{
                            this.$refs.contentWrapper.style.opacity = contentOpacity
                            contentOpacity += 0.1
                        },30)
                        this.timer = setTimeout(()=>{
-                           clearInterval(this.interval)
                            this.animate= false
                            document.removeEventListener('click', this.toClose)
+                           this.clearTimer()
                        },currentTime)
                    })
             },
             close(){
+                let vm = document.querySelector('.content-wrapper')
+                let opacity = getComputedStyle(vm).opacity
                 if(this.trigger==='hover'){
                     this.$refs.contentWrapper.removeEventListener('mouseleave',this.openAndHoverOut)
                     this.$refs.contentWrapper.addEventListener('mouseenter',this.closeAndHoverIn)
                 }
                 this.outClickisOn  = true
-               setTimeout(()=>{
+                setTimeout(()=>{
                     document.removeEventListener('click', this.toClose)
                     document.addEventListener('click', this.toOpen)
                 })
                 this.clearTimer()
-
-                let vm = document.querySelector('.content-wrapper')
-                let opacity = getComputedStyle(vm).opacity
+                if(parseInt(opacity)===0) opacity =1
                 this.$refs.contentWrapper.style.opacity = opacity
-                let currentTime = (opacity/1)*300
-
-
+                let currentTime = (1/opacity)*300
                 this.animate= true
                 this.interval = setInterval(()=>{
                       this.$refs.contentWrapper.style.opacity -= 0.1
                 },30)
                 this.timer = setTimeout(()=>{
-                    clearInterval(this.interval)
                     this.visible = false
                     this.animate= false
                     this.outClickisOn = false
@@ -239,6 +236,7 @@
                     }
                     document.removeEventListener('click', this.toOpen)
                     document.removeEventListener('click', this.eventHandler)
+                    this.clearTimer()
                 },currentTime)
             },
             onClick () {
@@ -264,6 +262,13 @@
         vertical-align: top;
         position: relative;
     }
+    .contentSlot{
+        max-width: 15em;
+        max-height: 15em;
+        overflow: scroll;
+        overflow-x:auto;
+        overflow-y: auto;
+    }
     .content-wrapper {
         position: absolute;
         border: 1px solid $border-color;
@@ -271,7 +276,7 @@
         filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
         background: white;
         padding: .5em 1em;
-        max-width: 20em;
+        z-index: 1000;
         word-break: break-all;
         &::before, &::after {
             content: '';
@@ -318,7 +323,7 @@
             transform: translateX(-100%);
             margin-left: -10px;
             &::before, &::after {
-                transform: translateY(-50%);
+                transform: translateY(-100%);
                 top: 50%;
             }
             &::before {

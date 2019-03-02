@@ -19,7 +19,6 @@
                   style="width: 1em;height: 1em;"
                   :style="typeStyle"
          >
-
         </x-icon>
     </span>
 </div>
@@ -135,7 +134,7 @@
                           this.$el.remove()
                           this.$emit('close')
                           this.$destroy()
-                      },600)
+                      },450)
                 },
                 onClickClosed(){
                     this.close()
@@ -150,9 +149,9 @@
 
 <style scoped lang="scss">
     $font-size:14px;
-    $toast-min-height:40px;
+    $toast-min-height:20px;
     $toast-bg:#e4e0e0;
-    $animation-duration:.6s;
+    $animation-duration:.45s;
 
     @keyframes slideUp {
         0%{
@@ -182,25 +181,25 @@
     transition: all $animation-duration;
     border: 1px solid $toast-bg;
     position: fixed;
+    z-index: 2000;
     font-size: $font-size;
-    line-height: 1.8;
+    line-height: 1.3;
     min-height: $toast-min-height;
     box-shadow: 0 0 3px rgba(0,0,0,0.5);
     display: flex;
     border-radius: 3px;
     align-items: center;
     background: $toast-bg;
-    padding: 0 25px;
-    padding-right: 5px;
+    padding: 0 2px 0 15px;
     color: #999999;
     .bounce-enter-active {
-        animation: bounce-in .5s;
+        animation: bounce-in .45s;
     }
     .bounce-leave-active {
-        animation: bounce-in .5s reverse;
+        animation: bounce-in .45s reverse;
     }
     .message{
-        padding: 6px 0;
+        padding:0;
     }
     .divided{
         border: 0.5px solid #fcfcf5;
