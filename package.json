@@ -10,7 +10,7 @@
     "build": "npx parcel build index.js --no-minify --no-cache",
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "pt":"npm run docs:build;cd docs/.vuepress/dist;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/My-Vue-Wheel.git master:gh-pages;"
+    "p":"npm run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/My-Vue-Wheel.git master:gh-pages;"
   },
   "repository": {
     "type": "git",

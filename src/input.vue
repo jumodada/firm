@@ -1,6 +1,7 @@
 <template>
-<div class="wrapper" >
+<div class="wrapper" ref="wrapper" :disabled="disabled">
     <input type="text"
+           style="width: 300px"
            :value="value"
            :disabled="disabled"
            :readonly="readonly"
@@ -9,9 +10,11 @@
            @change="$emit('change',$event.target.value)"
            @blur="$emit('blur',$event.target.value)"
            @focus="$emit('focus',$event.target.value)"
+           ref="input"
 
     >
     <xIcon v-if="error" name="gantan" color="#F1453D"></xIcon>
+    <div class="cloak" v-if="disabled" ref="cloak"></div>
     <span v-if="error" :class="{errorMessage:error}">{{error}}</span>
 </div>
 
@@ -44,6 +47,12 @@
                     return true
                 }
             }
+        },
+        mounted(){
+            if(this.disabled){
+                 this.$refs.cloak.style.width = getComputedStyle(this.$refs.wrapper).width
+            }
+
         }
     }
 </script>
@@ -63,7 +72,13 @@
           > :not(:last-child){
               margin-right: .3em;
           }
-
+          .cloak{
+              position: absolute;
+              height: $height;
+              width: 120px;
+              z-index: 2;
+              opacity: 0;
+          }
           > input{
               height: $height;
               border:1px solid $border-color;
@@ -88,6 +103,9 @@
 
               }
 
+          }
+          &[disabled]{
+                cursor: not-allowed;
           }
           .errorMessage{
               color: $red;

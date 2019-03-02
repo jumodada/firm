@@ -34,7 +34,7 @@
         },
         data(){
             return {
-                gutter:0,
+                flex:0,
             }
         },
         computed:{
@@ -62,8 +62,9 @@
             },
             colStyle(){
                 return {
-                    paddingLeft:this.gutter/2 + 'px',
-                    paddingRight:this.gutter/2 + 'px'
+                    paddingLeft:this.flex/2 + 'px',
+                    paddingRight:this.flex/2 + 'px',
+                    marginRight:this.gutter + 'px'
                 }
             }
         }

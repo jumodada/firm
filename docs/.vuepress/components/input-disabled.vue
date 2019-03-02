@@ -1,15 +1,14 @@
 <template>
     <div>
-
         <div style="margin-top: 40px">
-            <x-button icon="loading" :loading="loading" @click="toggle">
-                加载按钮
-            </x-button>
+            <x-Input  :value="value" disabled>
+
+            </x-Input>
         </div>
         <br>
         <br>
-
         <div style="margin-top: 20px">
+
             <x-collapse :selected.sync="selectTab">
                 <x-collapse-item name="1" title="代码">
            <pre>
@@ -28,40 +27,26 @@
 <script>
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
-    import Button from '../../.././src/button'
+    import Input from '../../.././src/input'
     export default {
-        name: "button-loading",
+        name: "input-demo",
         data(){
             return {
                 selectTab:[1],
-                loading:false,
+                value:'不能使用input输入框',
                 content:`
-           <x-button icon="loading" :loading="loading" @click="toggle">
-                加载按钮
-            </x-button>
-
-                                                            js
-                 data(){
-                    return {
-                         loading:false,
-                            }
-                       }
-                        methods:{
-                 toggle(){
-                    this.loading = !this.loading
-                          }
-                  },
-
+           <x-Input v-model="value" disabled></x-Input>
               `
+
             }
         },
         methods:{
-          toggle(){
-              this.loading = !this.loading
-          }
+            toggle(){
+                this.loading = !this.loading
+            }
         },
         components:{
-            'x-button':Button,
+            'x-Input':Input,
             'x-collapse':collapse,
             'x-collapse-item':collapseItem
         }

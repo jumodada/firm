@@ -10,7 +10,7 @@
     export default {
         name: "xRow",
         props:{
-            gutter:{
+            flex:{
                 type:[Number,String]
             },
             arrange:{
@@ -18,18 +18,22 @@
                 validator(val){
                   return   ['right','left','center'].indexOf(val)>-1
                 }
+            },
+            gutter:{
+                type:[Number,String]
             }
         },
         mounted(){
             this.$children.forEach(vm=>{
+                vm.flex = this.flex
                 vm.gutter = this.gutter
             })
         },
         computed:{
             rowStyle(){
                 return {
-                    marginLeft:-this.gutter/2+'px',
-                    marginRight:-this.gutter/2+'px'
+                    marginLeft:-this.flex/2+'px',
+                    marginRight:-this.flex/2+'px'
                 }
             },
             rowClass(){
@@ -39,7 +43,6 @@
 
         }
     }
-
 
 
     // var div =  document.createElement('div')     created

@@ -35,7 +35,7 @@
         <x-button type="success" plain>
             朴素按钮
         </x-button>
-        <x-button type="warn" plain danger>
+        <x-button type="warn" plain>
             朴素按钮
         </x-button>
         <x-button type="error" plain danger>
@@ -123,7 +123,7 @@
                               <x-button type="warn" plain>
                                      朴素按钮
                               </x-button>
-                              <x-button type="error" plain>
+                              <x-button type="error" plain danger>
                                       朴素按钮
                               </x-button>
                       </div>

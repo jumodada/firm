@@ -2,7 +2,8 @@
     <div>
         <div style="margin-top: 40px">
 
-            <x-Input></x-Input>
+            <x-Input v-model="value"></x-Input>
+            {{value}}
 
         </div>
         <br>
@@ -33,23 +34,17 @@
         data(){
             return {
                 selectTab:[1],
-                loading:false,
+                value:'输入框可以接受一个初始值，并v-model',
                 content:`
-           <x-button icon="loading" :loading="loading" @click="toggle">
-                加载按钮
-            </x-button>
+           <x-Input v-model="value"></x-Input>
+            {{value}}
 
                                                             js
-                 data(){
-                    return {
-                         loading:false,
-                            }
-                       }
-                        methods:{
-                 toggle(){
-                    this.loading = !this.loading
-                          }
-                  },
+                  data(){
+            return {
+                value:'输入框可以接受一个初始值，并v-model',
+            }
+        },
 
               `
 

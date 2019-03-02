@@ -10,8 +10,8 @@ module.exports = {
                 title:'组件',
                 children:[ '/components/button/',
                     '/components/icon/',
-                    '/components/input/'
-
+                    '/components/input/',
+                    '/components/grid/'
                 ]
             },
 
