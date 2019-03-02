@@ -48,6 +48,9 @@
                 this.$refs.popover.removeEventListener('mousedown',this.open)
                 this.$refs.popover.removeEventListener('mouseup',this.close)
             }
+                this.clearTimer()   //清除定时器和新增的dom节点
+                this.$el.remove()
+                this.$refs.contentWrapper.remove()
         },
             props:{
                     position:{
@@ -140,7 +143,7 @@
             },
             toOpen(e){
                 if(this.isPopover(e)) {
-                    let vm = document.querySelector('.content-wrapper')
+                    let vm = this.$refs.contentWrapper
                     let opacity = getComputedStyle(vm).opacity
                     this.open(opacity)
                 }
@@ -172,28 +175,30 @@
                 if(this.trigger==='hover'){
                     this.$refs.contentWrapper.removeEventListener('mouseenter',this.closeAndHoverIn)
                     this.$refs.contentWrapper.addEventListener('mouseleave',this.openAndHoverOut)
+                    document.removeEventListener('click', this.eventHandler)
                 }
                     this.outClickisOn = false
                     this.clearTimer()
                   setTimeout(()=>{
-                    document.removeEventListener('click', this.toOpen)
-                    document.addEventListener('click', this.toClose)
-                })
-                    this.visible = true
-                  this.$refs.contentWrapper.style.opacity = 0
-                  this.contentPosition() //搞定内容弹出的位置
-                  this.listenToDocument()//添加document的事件监听，在外部点击可以关闭气泡
-                   this.$nextTick(()=>{
+                      document.removeEventListener('click', this.toOpen)
+                      document.addEventListener('click', this.toClose)
 
-                       var currentTime
-                       var contentOpacity
-                       if(op &&typeof op ==='string'){
+                })
+                   this.$refs.contentWrapper.style.opacity = 0
+                   this.visible = true
+
+                   this.contentPosition() //搞定内容弹出的位置
+                   this.listenToDocument()//添加document的事件监听，在外部点击可以关闭气泡
+
+                       let currentTime
+                       let contentOpacity
+                       if(op &&typeof op ==='number'){
                             this.$refs.contentWrapper.style.opacity = op
                            contentOpacity= op
                             currentTime = (op/1)*300
                        }else{
                             currentTime = 300
-                           contentOpacity = 0
+                            contentOpacity = 0
                        }
                        this.animate= true
                        this.interval = setInterval(()=>{
@@ -205,10 +210,10 @@
                            document.removeEventListener('click', this.toClose)
                            this.clearTimer()
                        },currentTime)
-                   })
+
             },
             close(){
-                let vm = document.querySelector('.content-wrapper')
+                let vm = this.$refs.contentWrapper
                 let opacity = getComputedStyle(vm).opacity
                 if(this.trigger==='hover'){
                     this.$refs.contentWrapper.removeEventListener('mouseleave',this.openAndHoverOut)

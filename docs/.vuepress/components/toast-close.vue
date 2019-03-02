@@ -1,14 +1,14 @@
 <template>
 
     <div style="margin-top: 30px">
-
-
-        <x-button @click="showMsg1">默认顶部弹出</x-button>
-        <x-button @click="showMsg2" type="success">中间渐隐</x-button>
-        <x-button @click="showMsg3" type="warn">底部弹出</x-button>
+        <x-button @click="showMsg1" type="success">默认</x-button>
+        <x-button @click="showMsg2" type="success">文字</x-button>
+        <x-button @click="showMsg3" type="success">其他Icon</x-button>
         <br>
         <br>
-        <div style="color: #666666">全局消息弹框默认出现在顶部,可以通过设置 <code>position</code> 设置消息出现的位置(目前就三个)
+        <div style="color: #666666">默认是关闭按钮 <code>wrong</code>,可以通过 <code>closeButton</code>
+            <br>
+            设置【关闭】的文字或者Icon样式
         </div>
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab">
@@ -37,30 +37,32 @@
             return {
                 selectTab:[1],
                 content:`
-        <x-button @click="showMsg1">顶部弹出</x-button>
-        <x-button @click="showMsg2" type="success">中间渐隐</x-button>
-        <x-button @click="showMsg3" type="warn">底部弹出</x-button>
+        <x-button @click="showMsg1" type="success">默认</x-button>
+        <x-button @click="showMsg2" type="success">文字</x-button>
+        <x-button @click="showMsg3" type="success">其他Icon</x-button>
 
                                                             js
-            methods:{
-            showMsg1() {
+             showMsg1() {
                 this.$toast('顶部消息',{
-
+                    type:'success',
                 })
             },
             showMsg2() {
-                this.$toast('中间消息',{
+                this.$toast('文字',{
                     type:'success',
-                    position:'center'
+                    closeButton:{
+                        text:'关闭'
+                    }
                 })
             },
             showMsg3() {
-                this.$toast('底部消息',{
-                    type:'warn',
-                    position:'bottom'
+                this.$toast('dianzan Icon',{
+                    type:'success',
+                    closeButton:{
+                        closeIcon:'dianzan'
+                    }
                 })
             },
-        },
 
 
 `
@@ -69,19 +71,23 @@
         methods:{
             showMsg1() {
                 this.$toast('顶部消息',{
-
+                    type:'success',
                 })
             },
             showMsg2() {
-                this.$toast('中间消息',{
+                this.$toast('文字',{
                     type:'success',
-                    position:'center'
+                    closeButton:{
+                        text:'关闭'
+                    }
                 })
             },
             showMsg3() {
-                this.$toast('底部消息',{
-                    type:'warn',
-                    position:'bottom'
+                this.$toast('dianzan Icon',{
+                    type:'success',
+                    closeButton:{
+                        closeIcon:'dianzan'
+                    }
                 })
             },
         },

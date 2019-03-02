@@ -31,7 +31,7 @@
                         <a href="https://www.baidu.com">去百度</a>
                     </div>
                 </template>
-                <x-button>点我</x-button>
+                <x-button>focus</x-button>
             </x-popover>
 
 

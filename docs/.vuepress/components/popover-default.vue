@@ -7,11 +7,11 @@
                   <template slot="content" slot-scope="close">
                       <div>支持内部关闭</div>
                       <x-button @click="close.close">
-                          左边
+                          关闭
                       </x-button>
 
                   </template>
-                  <x-button>关闭</x-button>
+                  <x-button>左边</x-button>
               </x-popover>
               <x-popover position="bottom">
                   <template slot="content">

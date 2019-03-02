@@ -56,13 +56,13 @@
                         }
                     }
                 },
+
                 validator(val){
                         let judge =['wrong','correct'].indexOf(val.closeIcon) >-1
                         if(!val.text &&!val.closeIcon)return console.error('至少设置一项')
                         if(val.text && val.text.length>5)return console.error('不能输入超过5个字')
                         if(judge) return true
                         return false
-
                 }
             },
             enableHTML:{
