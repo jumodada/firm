@@ -5,17 +5,19 @@
 
 
             <div style="margin-bottom: 20px">
+                <x-button-group>
                 <x-button @click="bigOne">big</x-button>
                 <x-button @click="mediumOne">medium</x-button>
                 <x-button @click="smallOne">small</x-button>
                 <x-button @click="miniOne">mini</x-button>
+                </x-button-group>
             </div>
+
             <div>
                 <x-button type="primary"  :size="buttonSize">
                     {{buttonSize}}
                 </x-button>
             </div>
-
         </div>
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab">
@@ -37,6 +39,7 @@
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
     import Button from '../../.././src/button'
+    import ButtonGroup from '../../.././src/button-group'
     export default {
         name: "button-disabled",
         data(){
@@ -95,7 +98,8 @@
         components:{
             'x-button':Button,
             'x-collapse':collapse,
-            'x-collapse-item':collapseItem
+            'x-collapse-item':collapseItem,
+            'x-button-group':ButtonGroup
         }
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-      <div class="wrapper" :disabled="disabled">
+      <div class="x-button-wrapper" :disabled="disabled">
           <button class="x-button"
                   :class="[[`icon-${position}`],
              typeStyle,sizeStyle,plainStyle,dangerStyle]
@@ -206,7 +206,7 @@
         }
     }
 
-    .wrapper{
+    .x-button-wrapper{
         display: inline-flex;
         align-items: center;
         .x-button {

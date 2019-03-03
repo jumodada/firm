@@ -6,7 +6,7 @@
         <br>
         <div style="color: #666666">HTMl插槽默认是关闭的,可以通过 <code>enableHTML</code>
             <br>
-            设置为true开启，可以使用HTML标签，例如a链接
+            设置为true开启。
         </div>
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab">
