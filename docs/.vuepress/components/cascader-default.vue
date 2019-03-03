@@ -1,8 +1,8 @@
 <template>
 
     <div style="margin-top: 30px">
-        <x-cascader>
-            
+        <x-cascader :source="source">
+
         </x-cascader>
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab">
@@ -28,7 +28,29 @@
             return {
                 selectTab:[1],
                 content:`
-`
+`,
+                source:[{
+                    name:'四川',
+                    children:[
+                        {name:'成都',
+                            children:[{
+                            name:'青羊区',children:[{
+                                name:'xx中学'
+                                }]}]
+                        },
+                        {name:'绵阳'},
+                        {name:'内江'}
+                    ]
+                },
+                    {
+                        name:'广东',
+                        children:[
+                            {name:'深圳'},
+                            {name:'东莞'},
+                            {name:'佛山'},
+                        ]
+                    }
+                ]
             }
         },
         methods:{
