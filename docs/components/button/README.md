@@ -13,6 +13,18 @@ title: Button按钮
    <br/>
     <br/>
   
+## 按钮的大小  
+  
+  <ClientOnly>
+  <button-size></button-size>
+  </ClientOnly>
+  
+  
+ <br/>
+      < br/>
+      <br/>
+     
+  
 ## 禁用状态
 
 禁用样式，按钮不可用
