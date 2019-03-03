@@ -1,7 +1,7 @@
 <template>
     <div class="popover" ref="popover">
                 <div ref="contentWrapper" class="content-wrapper"
-                     :class="{[`position-${position}`]:true}"
+                     :class="[[`position-${position}`],themeStyle]"
                      v-show="visible">
                     <div class="contentSlot">
                         <slot name="content" :close="close"></slot>
@@ -66,10 +66,17 @@
                         validator(val){
                             return ['click','hover','focus'].indexOf(val)>-1
                         }
+                },
+                theme:{
+                    type: String,
+                    default: 'blackBorder',
+                    validator(val){
+                        return ['blackBorder','whiteBg'].indexOf(val)>-1
+                    }
                 }
             },
         computed:{
-          openEvent(){
+            openEvent(){
                 if(this.trigger ==='click'){
                     return 'click'
                 }else if(this.trigger ==='hover'){
@@ -86,6 +93,11 @@
                 }else{
                     return 'focus'
                 }
+            },
+            themeStyle(){
+              if(this.theme==='whiteBg'){
+                  return 'theme2'
+              }
             }
         },
         methods: {
@@ -195,7 +207,7 @@
                        if(op &&typeof op ==='number'){
                             this.$refs.contentWrapper.style.opacity = op
                            contentOpacity= op
-                            currentTime = (op/1)*300
+                            currentTime = (1 / op)*300
                        }else{
                             currentTime = 300
                             contentOpacity = 0
@@ -359,5 +371,20 @@
                 right: calc(100% - 1px);
             }
         }
+        &.theme2{
+            margin: 0;
+            border:$border-radius solid white;
+            filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 0.6));
+            background: white;
+            z-index: 1000;
+            &::before {
+                display: none;
+            }
+            &::after {
+                display: none;
+            }
+        }
+
     }
+
 </style>
