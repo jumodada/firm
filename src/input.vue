@@ -58,12 +58,7 @@
 </script>
 
 <style scoped lang="scss">
-      $height:32px;
-      $border-color:#999;
-      $border-color-hover:#666;
-      $font-size:12px;
-      $box-shadow-color:rgba(0,0,0,0.5);
-      $red:#F1453D;
+    @import "var";
 
       .wrapper{
           font-size: $font-size;
@@ -74,13 +69,13 @@
           }
           .cloak{
               position: absolute;
-              height: $height;
+              height: $input-height;
               width: 120px;
               z-index: 2;
               opacity: 0;
           }
           > input{
-              height: $height;
+              height: $input-height;
               border:1px solid $border-color;
               padding: 0 8px;
               font-size: inherit;

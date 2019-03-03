@@ -134,15 +134,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    $button-height: 37px;
-    $height:38px;
-    $font-size: 14px;
-    $button-bg: white;
-    $button-active-bg: #eee;
-    $border-radius: 4px;
-    $color: #333;
-    $border-color: #999;
-
+    @import "var";
     @keyframes loop {
         to {
             top: -8px;

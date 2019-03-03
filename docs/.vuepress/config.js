@@ -14,6 +14,7 @@ module.exports = {
                     '/components/grid/',
                     '/components/toast/',
                     '/components/popover/',
+                    '/components/cascader/',
                 ]
             },
 
