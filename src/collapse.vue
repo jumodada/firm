@@ -1,6 +1,6 @@
 <template>
     <div class="collapse">
-       <div class="description">
+       <div class="description" v-if="exhibition">
            <slot name="description"></slot>
        </div>
        <slot></slot>
@@ -38,6 +38,7 @@
         mounted(){
             if(this.exhibition){
             this.$children.forEach(child=>{
+                if(child.$el.classList.contains('collapse'))return //避免自身嵌套出bug
                 child.exhibition = this.exhibition
             })
             }

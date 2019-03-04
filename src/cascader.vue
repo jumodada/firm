@@ -56,16 +56,5 @@
         height: 200px;
         width: 80px;
     }
-    .level1{
-        position: relative;
-    }
-    .level2{
-        position: absolute;
-        left: 100%;
-        top: 0;
-        width: 100%;
-        height: 50px;
-
-    }
 }
 </style>
