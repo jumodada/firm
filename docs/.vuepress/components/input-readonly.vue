@@ -1,15 +1,16 @@
 <template>
     <div>
-        <div style="margin-top: 40px">
-            <x-Input  :value="value" readonly>
-
-            </x-Input>
-        </div>
-        <br>
-        <br>
         <div style="margin-top: 20px">
 
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <div style="margin-top: 40px">
+                        <x-Input  :value="value" readonly>
+
+                        </x-Input>
+                    </div>
+
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>

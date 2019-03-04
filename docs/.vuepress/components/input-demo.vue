@@ -1,16 +1,17 @@
 <template>
     <div>
-        <div style="margin-top: 40px">
 
-            <x-Input v-model="value"></x-Input>
-            {{value}}
-
-        </div>
-        <br>
-        <br>
         <div style="margin-top: 20px">
 
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <div style="margin-top: 40px">
+
+                        <x-Input v-model="value"></x-Input>
+                        {{value}}
+
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>

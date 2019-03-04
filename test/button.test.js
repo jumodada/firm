@@ -73,7 +73,8 @@ describe('Button', () => {
 
         const callback = sinon.fake();
         vm.$on('click', callback)
-        vm.$el.click()
+        vm.$el.querySelector('button').click()
+        console.log(vm.$el)
         expect(callback).to.have.been.called
 
     })

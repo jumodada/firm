@@ -1,20 +1,23 @@
 <template>
 
     <div style="margin-top: 30px">
-        <x-cascader :source="source">
+        <!--<div style="margin-top: 20px">-->
+               <!--<x-collapse :selected.sync="selectTab" exhibition>-->
 
-        </x-cascader>
-        <div style="margin-top: 20px">
-            <x-collapse :selected.sync="selectTab">
-                <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
-                </x-collapse-item>
-            </x-collapse>
-        </div>
+                   <!--<template slot="description">-->
+                       <!--<x-cascader :source="source">-->
+
+                       <!--</x-cascader>-->
+                   <!--</template>-->
+                <!--<x-collapse-item name="1" title="代码">-->
+           <!--<pre>-->
+               <!--<code>-->
+                    <!--{{content}}-->
+               <!--</code>-->
+            <!--</pre>-->
+                <!--</x-collapse-item>-->
+            <!--</x-collapse>-->
+        <!--</div>-->
     </div>
 </template>
 

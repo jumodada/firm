@@ -1,15 +1,18 @@
 <template>
 
     <div style="margin-top: 30px">
-        <x-button @click="showMsg1" type="success">默认</x-button>
-        <br>
-        <br>
-        <div style="color: #666666">HTMl插槽默认是关闭的,可以通过 <code>enableHTML</code>
-            <br>
-            设置为true开启。
-        </div>
+
         <div style="margin-top: 20px">
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <x-button @click="showMsg1" type="success">默认</x-button>
+                    <br>
+                    <br>
+                    <div style="color: #666666">HTMl插槽默认是关闭的,可以通过 <code>enableHTML</code>
+                        <br>
+                        设置为true开启。
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>

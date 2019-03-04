@@ -1,26 +1,26 @@
 <template>
     <div>
 
-        <div style="margin-top: 40px">
-
-
-            <div style="margin-bottom: 20px">
-                <x-button-group>
-                <x-button @click="bigOne">big</x-button>
-                <x-button @click="mediumOne">medium</x-button>
-                <x-button @click="smallOne">small</x-button>
-                <x-button @click="miniOne">mini</x-button>
-                </x-button-group>
-            </div>
-
-            <div>
-                <x-button type="primary"  :size="buttonSize">
-                    {{buttonSize}}
-                </x-button>
-            </div>
-        </div>
         <div style="margin-top: 20px">
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <div style="margin-top: 40px">
+                        <div style="margin-bottom: 20px">
+                            <x-button-group>
+                                <x-button @click="bigOne">big</x-button>
+                                <x-button @click="mediumOne">medium</x-button>
+                                <x-button @click="smallOne">small</x-button>
+                                <x-button @click="miniOne">mini</x-button>
+                            </x-button-group>
+                        </div>
+
+                        <div>
+                            <x-button type="primary"  :size="buttonSize">
+                                {{buttonSize}}
+                            </x-button>
+                        </div>
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>

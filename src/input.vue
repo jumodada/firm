@@ -1,7 +1,6 @@
 <template>
 <div class="wrapper" ref="wrapper" :disabled="disabled">
     <input type="text"
-           style="width: 300px"
            :value="value"
            :disabled="disabled"
            :readonly="readonly"
@@ -70,7 +69,6 @@
           .cloak{
               position: absolute;
               height: $input-height;
-              width: 120px;
               z-index: 2;
               opacity: 0;
           }

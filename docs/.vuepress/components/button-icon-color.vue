@@ -1,24 +1,24 @@
 <template>
     <div>
 
-        <div style="margin-top: 40px">
-
-            <x-button icon="loading" loading color="red">
-                红色
-            </x-button>
-            <x-button icon="set" loading color="green">
-                力量
-            </x-button>
-            <x-button icon="loading" loading color="blue">
-                蓝色
-            </x-button>
-
-        </div>
-        <br>
-        <br>
 
         <div style="margin-top: 20px">
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <div style="margin-top: 40px">
+
+                        <x-button icon="loading" loading color="red">
+                            红色
+                        </x-button>
+                        <x-button icon="set" loading color="green">
+                            力量
+                        </x-button>
+                        <x-button icon="loading" loading color="blue">
+                            蓝色
+                        </x-button>
+
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>

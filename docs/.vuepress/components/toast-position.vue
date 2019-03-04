@@ -2,16 +2,17 @@
 
     <div style="margin-top: 30px">
 
-
-        <x-button @click="showMsg1">默认顶部弹出</x-button>
-        <x-button @click="showMsg2" type="success">中间渐隐</x-button>
-        <x-button @click="showMsg3" type="warn">底部弹出</x-button>
-        <br>
-        <br>
-        <div style="color: #666666">全局消息弹框默认出现在顶部,可以通过设置 <code>position</code> 设置消息出现的位置(目前就三个)
-        </div>
         <div style="margin-top: 20px">
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <x-button @click="showMsg1">默认顶部弹出</x-button>
+                    <x-button @click="showMsg2" type="success">中间渐隐</x-button>
+                    <x-button @click="showMsg3" type="warn">底部弹出</x-button>
+                    <br>
+                    <br>
+                    <div style="color: #666666">全局消息弹框默认出现在顶部,可以通过设置 <code>position</code> 设置消息出现的位置(目前就三个)
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>

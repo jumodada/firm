@@ -1,16 +1,37 @@
 <template>
 
-<div class="collapse-item">
-<div class="collapse-item-title" @click="spread">
+<div class="collapse-item" ref="item">
+<div class="collapse-item-title" @click="onClick" v-if="!exhibition">
     <x-icon name="arrow" class="arrow" ref="arrow" :class="{rotate:open}"></x-icon>
-{{title}}
+    {{title}}
 </div>
-        <transition name="slide">
-            <div class="collapse-item-content" v-show="open">
-                <slot>
-                </slot>
-            </div>
-        </transition>
+
+    <transition   @before-enter="beforeEnter"
+                  @enter="enter"
+                  @before-leave="beforeLeave"
+                  @leave="leave"
+    >
+        <div class="collapse-item-content"
+             v-show="open" ref="content"
+        >
+            <slot>
+            </slot>
+        </div>
+    </transition>
+    <div class="collapse-item-header" @click="onClick"  v-if="exhibition">
+    <div class="header-description">
+        <x-icon style="width: 1em;
+                 height: 1em;
+                 fill: #efecec"
+                name="xia"
+                class="x-icon" ref="xia"
+                :class="{xRotate:open}"></x-icon> <div class="header-title">{{title}}</div>
+    </div>
+
+    </div>
+
+
+
 </div>
 
 </template>
@@ -23,10 +44,10 @@
           return {
               open:false,
               rotate:45,
-              interval:null,
-              timer:null
+              exhibition:false
           }
         },
+
         components:{
             'x-icon':Icon
         },
@@ -38,24 +59,48 @@
             },
             name:{
                 type: String
-            }
+            },
+
         },
         mounted(){
+            setTimeout(()=>{
+                console.log(this.exhibition)
+            })
             this.eventBus&&this.eventBus.$on('update:selected',arr=>{
                 if(arr.indexOf(this.name)>-1){
                     this.open = true
                 }else{
-                    this.open = false
+                        this.open =false
                 }
             })
         },
         methods:{
-            spread(){
+            onClick(){
                 if(this.open){
                     this.eventBus&& this.eventBus.$emit('update:removeSelected',this.name)
                 }else{
                     this.eventBus&& this.eventBus.$emit('update:addSelected',this.name)
                 }
+            },
+            beforeEnter(el) {
+                    el.style.height = 0
+                    el.style.paddingTop = 0
+                    el.style.paddingBottom = 0
+            },
+            enter(el) {
+                    if (el.scrollHeight !== 0) {
+                        el.style.height = el.scrollHeight + 'px'
+                    }
+                    el.style.overflow = 'hidden'
+            },
+            beforeLeave(el) {
+                    el.style.height = el.scrollHeight + 'px'
+                    el.style.overflow = 'hidden'
+            },
+            leave(el) {
+                        el.style.height = 0
+                        el.style.paddingTop = 0
+                        el.style.paddingBottom = 0
             },
         }
     }
@@ -64,27 +109,6 @@
 <style scoped lang="scss">
     $grey:#ddd;
     $border-radius:4px;
-    .slide-enter-active {
-        transition: all .15s ease-in-out;
-
-    }
-    .slide-leave-active{
-        transition: all .1s ease-in-out;
-    }
-    .slide-enter-to,.slide-leave{
-        height: 100%;
-        padding:10px;
-    }
-    .slide-leave-to,.slide-enter {
-        height: 0;
-        padding:0;
-        font-size: 0;
-        border:none;
-        margin: 0;
-    }
-    .slide-enter {
-        opacity: 0;
-    }
 
     .collapse-item{
 
@@ -102,13 +126,66 @@
             .arrow{
                 margin-right: 10px;
                 transform: rotate(0deg);
-                transition: all .3s;
+                transition: all .2s;
             }
             .rotate{
                 margin-right: 10px;
                 transform: rotate(90deg);
-                transition: all .3s;
+                transition: all .2s;
             }
+        }
+        >.collapse-item-header{
+            border: 1px solid #eeeeee;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+            min-height: 30px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align:center;
+            padding:8px 8px;
+            background-color: white;
+            border-bottom: none;
+            .header-description{
+                transition: .3s all ease-in-out;
+                .header-title{
+                    opacity: 0;
+                    margin-left: 10px;
+                    display: inline-flex;
+                    transition: .3s all ease-in-out;
+                    font-family: Avenir;
+                }
+                .x-icon{
+                    transition: .3s all ease-in-out;
+                    transform: rotate(0deg);
+                }
+                .xRotate{
+                    transition: .3s all ease-in-out;
+                    transform: rotate(180deg);
+                }
+
+            }
+            &:hover{
+                cursor:pointer;
+                transition: all .3s;
+                background-color: #ffffff;
+                >.header-description{
+                    opacity: 1;
+                    transform: translateX(-50%);
+                    transition: .3s all ease-in-out;
+                    >.header-title{
+                        opacity: 1;
+                        color: #999999;
+                        transition: .3s all ease-in-out;
+                    }
+                    >.x-icon{
+                        transition: .2s;
+                        fill:#0ab1ef !important;
+                    }
+
+                }
+            }
+
         }
         &:first-child{
             >.collapse-item-title{
@@ -123,8 +200,10 @@
             }
         }
         >.collapse-item-content{
+                transition: .2s all ease-in-out;
                 padding:10px;
                 border-bottom: 1px solid $grey;
+
         }
 
     }

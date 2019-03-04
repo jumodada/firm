@@ -1,6 +1,9 @@
 <template>
     <div class="collapse">
-   <slot></slot>
+       <div class="description">
+           <slot name="description"></slot>
+       </div>
+       <slot></slot>
     </div>
 </template>
 
@@ -20,6 +23,10 @@
           },
             selected:{
               type: Array
+            },
+            exhibition:{
+                type:Boolean,
+                default:false
             }
         },
         provide(){
@@ -29,6 +36,11 @@
         },
 
         mounted(){
+            if(this.exhibition){
+            this.$children.forEach(child=>{
+                child.exhibition = this.exhibition
+            })
+            }
             this.eventBus.$emit('update:selected',this.selected)
             this.eventBus.$on('update:addSelected',name=>{
                 let selectedCopy = JSON.parse(JSON.stringify(this.selected))
@@ -63,6 +75,10 @@
             border: 1px solid #d9d9d9;
             border-radius: 4px;
             border-bottom: 0;
-
+            .description{
+                overflow: auto;
+                margin: 0;
+                padding: 2em 3em;
+            }
         }
 </style>

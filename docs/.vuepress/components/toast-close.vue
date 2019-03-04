@@ -1,17 +1,20 @@
 <template>
 
     <div style="margin-top: 30px">
-        <x-button @click="showMsg1" type="success">默认</x-button>
-        <x-button @click="showMsg2" type="success">文字</x-button>
-        <x-button @click="showMsg3" type="success">其他Icon</x-button>
-        <br>
-        <br>
-        <div style="color: #666666">默认是关闭按钮 <code>wrong</code>,可以通过 <code>closeButton</code>
-            <br>
-            设置【关闭】的文字或者Icon样式
-        </div>
+
         <div style="margin-top: 20px">
-            <x-collapse :selected.sync="selectTab">
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <x-button @click="showMsg1" type="success">默认</x-button>
+                    <x-button @click="showMsg2" type="success">文字</x-button>
+                    <x-button @click="showMsg3" type="success">其他Icon</x-button>
+                    <br>
+                    <br>
+                    <div style="color: #666666">默认是关闭按钮 <code>wrong</code>,可以通过 <code>closeButton</code>
+                        <br>
+                        设置【关闭】的文字或者Icon样式
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
                <code>
