@@ -272,7 +272,7 @@
 </script>
 
 <style scoped lang="scss">
-    $border-color: #333;
+    $border-color: #f3f3f3;
     $border-radius: 4px;
     .popover {
         display: inline-block;
@@ -310,7 +310,7 @@
                 left: 10px;
             }
             &::before {
-                border-top-color: black;
+                border-top-color: #f3f3f3;
                 border-bottom: none;
                 top: 100%;
             }
@@ -327,7 +327,7 @@
             }
             &::before {
                 border-top: none;
-                border-bottom-color: black;
+                border-bottom-color: #f3f3f3;
                 bottom: 100%;
             }
             &::after {
@@ -344,7 +344,7 @@
                 top: 50%;
             }
             &::before {
-                border-left-color: black;
+                border-left-color: #f3f3f3;
                 border-right: none;
                 left: 100%;
             }
@@ -361,7 +361,7 @@
                 top: 50%;
             }
             &::before {
-                border-right-color: black;
+                border-right-color: #f3f3f3;
                 border-left: none;
                 right: 100%;
             }

@@ -67,9 +67,6 @@
 
         },
         mounted(){
-            setTimeout(()=>{
-                console.log(this.exhibition)
-            })
             this.eventBus&&this.eventBus.$on('update:selected',arr=>{
                 if(arr.indexOf(this.name)>-1){
                     this.open = true

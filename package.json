@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "p":"npm run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/My-Vue-Wheel.git master:gh-pages;",
+    "p": "yarn run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/My-Vue-Wheel.git master:gh-pages;",
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
@@ -29,7 +29,6 @@
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21",
     "vuepress": "^0.14.9"
-
   },
   "eslintConfig": {
     "root": true,
@@ -40,9 +39,12 @@
       "plugin:vue/essential",
       "@vue/prettier"
     ],
-    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/no-side-effects-in-computed-properties": "off",
+      "no-console": "off"
     }
   },
   "postcss": {
