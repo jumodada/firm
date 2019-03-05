@@ -132,7 +132,7 @@
                         内部可嵌入元素调用外面close关闭的功能，只需绑定slot-scope。
 
                         <br>
-                        可以设置 <code>theme</code>改变气泡的样式，目前只有默认的黑边框和 <code>whiteBg</code>主题。
+                        可以设置 <code>theme</code>改变气泡的样式，目前只有默认的和<code>whiteBg</code>主题。
                         <br>
                         规定了气泡的大小，如果超出会以scroll展示
                     </div>
