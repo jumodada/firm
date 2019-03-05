@@ -1,13 +1,15 @@
 <template>
 
     <div style="margin-top: 30px">
-        <div style="margin-top: 20px">
+        <div style="margin-top: 20px;">
                <x-collapse :selected.sync="selectTab" exhibition>
 
                    <template slot="description">
-                       <x-cascader :source="source">
+                       <div style="height: 300px">
+                           <x-cascader :source="source">
 
-                       </x-cascader>
+                           </x-cascader>
+                       </div>
                    </template>
                 <x-collapse-item name="1" title="代码">
            <pre>

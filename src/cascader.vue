@@ -1,60 +1,58 @@
 <template>
     <div class="cascader">
-        <div>
-            <slot></slot>
+        <div class="trigger" @click="popoverVisible = !popoverVisible">
         </div>
-        <div class="trigger" @click="popoverVisible=!popoverVisible">
-
+        <div class="popover-wrapper" v-if="popoverVisible">
+            <x-cascader-items :items="source" class="popover"></x-cascader-items>
         </div>
-        <div class="popover" v-show="popoverVisible">
-                <div v-for="sourceItem in source" class="level1">
-                    {{sourceItem.name}}
-                    <div v-for="item in sourceItem.children" class="level2">
-                        {{item.name}}
-                    </div>
-                </div>
-
-        </div>
-        <!--<div class="popover">-->
-            <!--<div v-for="item in source">-->
-                <!--<cascaderItem :source-item="item"></cascaderItem>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </template>
 
 <script>
-    import cascaderItem from './cascader-item'
+    import xCascaderItems from './cascader-item'
     export default {
-        name: "cascader",
-        components:{
-            cascaderItem
+        name: 'x-',
+        components: {
+            xCascaderItems
         },
-        props:{
-            source:{
-                type:Array
+        props: {
+            source: {
+                type: Array
+            },
+            size:{
+                type: String
             }
         },
-        data(){
+        data () {
             return {
-                popoverVisible:false
+                popoverVisible: false,
+
             }
-        }
+        },
     }
 </script>
 
 <style scoped lang="scss">
     @import "var";
-.cascader{
-        .trigger{
-            border:1px solid ;
+    .cascader {
+        position: relative;
+        .trigger {
+            border: 1px solid $border-color;
             height: 32px;
-            width: 100px;
+            width: 200px;
         }
-    .popover{
-        border:1px solid red;
-        height: 200px;
-        width: 80px;
+        .popover-wrapper {
+            position: absolute;
+            top:100%;
+            left: 0;
+            display: flex;
+            @extend .box-shadow;
+            .popover{
+
+            }
+            .label {
+                white-space: nowrap;
+            }
+        }
     }
-}
 </style>

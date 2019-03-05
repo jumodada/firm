@@ -1,5 +1,5 @@
 $border-color-hover:#666;
-$border-color: #999;
+$border-color: #e6e6e6;
 $border-radius: 4px;
 $box-shadow-color:rgba(0,0,0,0.5);
 $button-active-bg: #eee;
@@ -10,3 +10,8 @@ $font-size: 14px;
 $height:38px;
 $red:#F1453D;
 $input-height:32px;
+
+.box-shadow{
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+

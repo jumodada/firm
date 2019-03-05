@@ -25,7 +25,8 @@
                  fill: #efecec"
                 name="xia"
                 class="x-icon" ref="xia"
-                :class="{xRotate:open}"></x-icon> <div class="header-title">{{title}}</div>
+                :class="{xRotate:open}">
+        </x-icon> <div class="header-title" v-if="!title2 || !open">{{title}} </div><div class="header-title" v-else>{{title2}} </div>
     </div>
 
     </div>
@@ -60,6 +61,9 @@
             name:{
                 type: String
             },
+            title2:{
+                type:String,
+            }
 
         },
         mounted(){
