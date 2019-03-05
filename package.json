@@ -2,58 +2,57 @@
   "name": "my-wheel-0-1",
   "version": "0.0.5",
   "description": "这是一个UI框架",
-  "main": "dist/index.js",
+  "private": true,
   "scripts": {
-    "dev-test": "parcel watch test/* --no-cache & karma start",
-    "t": "parcel build test/* --no-cache --no-minify && karma start --single-run",
-    "x": "parcel index.html --no-cache",
-    "build": "npx parcel build index.js --no-minify --no-cache",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "p":"npm run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/My-Vue-Wheel.git master:gh-pages;",
     "dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "p":"npm run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/My-Vue-Wheel.git master:gh-pages;"
+    "docs:build": "vuepress build docs"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jumodada/My-Vue-Wheel.git"
-  },
-  "keywords": [
-    "vue",
-    "ui"
-  ],
-  "author": "xiaowu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jumodada/My-Vue-Wheel/issues"
-  },
-  "homepage": "https://github.com/jumodada/My-Vue-Wheel#readme",
   "dependencies": {
-    "icon.vue": "^0.1.5",
-    "v8-compile-cache": "^2.0.2",
-    "vue": "^2.5.22"
+    "vue": "^2.6.6"
   },
   "devDependencies": {
-    "@vue/component-compiler-utils": "^2.0.0",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-unit-mocha": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-eslint": "^10.0.1",
     "chai": "^4.1.2",
-    "chai-spies": "^1.0.0",
-    "install": "^0.12.2",
-    "karma": "^4.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-chai-spies": "^0.1.4",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-mocha": "^1.3.0",
-    "karma-sinon-chai": "^2.0.2",
-    "mocha": "^5.2.0",
-    "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.9.2",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
-    "sinon": "^7.2.3",
-    "sinon-chai": "^3.3.0",
-    "vue": "^2.5.22",
-    "vue-hot-reload-api": "^2.3.1",
-    "vue-template-compiler": "^2.5.16",
+    "vue-template-compiler": "^2.5.21",
     "vuepress": "^0.14.9"
+
   },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
-  }
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/prettier"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
