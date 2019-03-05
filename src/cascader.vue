@@ -44,6 +44,7 @@
         .popover-wrapper {
             position: absolute;
             top:100%;
+            color:$font-color;
             left: 0;
             display: flex;
             @extend .box-shadow;
