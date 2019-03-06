@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin: 500px;">
         <x-cascader :source="source"></x-cascader>
     </div>
 </template>
@@ -61,6 +61,5 @@
     };
 </script>
 <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
 
 </style>
