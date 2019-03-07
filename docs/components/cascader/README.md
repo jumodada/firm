@@ -17,4 +17,8 @@ title: Cascader 级联选择器
 
 ## 动态数据
 
-loading.....
+<cascader-dynamic></cascader-dynamic>    
+
+<br/>
+<br/>
+<br/>

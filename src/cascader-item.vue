@@ -119,7 +119,7 @@
         align-items: flex-start;
         justify-content: flex-start;
         .now {
-            padding: .5em 0.5em .5em 1em;
+            padding:0.2em 0.4em;
             height: 200px;
             background-color: white;
             overflow-x: hidden;
@@ -129,10 +129,11 @@
             }
             .now-item{
                 display: flex;
-                margin-bottom: 5px;
+                min-width: 6em;
                 align-items: center;
+                margin-bottom: 5px;
                 .x-icon{
-                    margin-left:1.5em;
+                    margin-left:auto;
                 }
                 &:hover{
                     color:#409eff;
