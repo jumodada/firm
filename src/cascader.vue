@@ -64,6 +64,10 @@
                 type:Array,
                 default:()=>[]
             },
+            dynamic:{
+                type:Boolean,
+                default:false
+            }
         },
         data () {
             return {
@@ -171,13 +175,12 @@
                     this.showSelected = ''
                 }
             }
-
         },
         computed:{
             selectedArray(){
                  let length = this.selected.length
 
-                 if(this.selected[length-1]==='$#end'){
+                 if(this.selected[length-1]==='$#end'&&!this.dynamic){
                      this.close()
                     let arr = this.selected.map((item=>item.name))
                      arr.pop()
