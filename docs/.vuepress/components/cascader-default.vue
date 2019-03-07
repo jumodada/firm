@@ -7,8 +7,8 @@
                    <template slot="description">
                        <div style="height: 300px">
                            <x-cascader :source="source"
-                                       :selected="selected"
-                                       @update:selected="selected=$event">
+                                       :selected.sync="selected"
+                           >
 
                            </x-cascader>
                        </div>
@@ -29,8 +29,23 @@
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
     import Cascader from '../../.././src/cascader'
+    import address from "../../../src/address";
+
+    function ajax(parentId=0) {
+       return new Promise((resolve,reject)=>{
+           let result = address.filter(item=>item.parent_id===parentId)
+           resolve(result)
+
+       })
+    }
+    // console.log(ajax())
     export default {
         name: "grid-arrange",
+        // created(){
+        //   ajax(0).then(res=>{
+        //       this.source = res
+        //   })
+        // },
         data(){
             return {
                 selectTab:[1],
@@ -38,58 +53,33 @@
                 content:`
 `,
                 source:[{
-                    name:'四川',
-                    children:[
-                        {name:'成都',
-                            children:[{
-                            name:'青羊区',children:[{
-                                name:'xx中学'
-                                },
-                                    {
-                                        name:'xxx中学'
-                                    },
-                                    {
-                                        name:'xxxx中学'
-                                    }]}]
-                        },
-                        {name:'绵阳',children:[{
-                            name:'仔姜王',
-                                children:[{name:'味道还行'}]
-                            }]},
-                        {name:'内江'}
-                    ]
+                    name:'北京',children:[
+                    {
+                        name:'东城区',
+                        children:[{
+                            name:'东城小学'
+                        }
+
+                            ]
+                    }
+                            ]
                 },
                     {
-                        name:'广东',
-                        children:[
-                            {name:'深圳',children:[
-                                    {
-                                        name:'铁板烧',
-                                        children:[{
-                                            name:'不好吃'
-                                        }]
-                                    }
-                                ]},
-                            {name:'东莞',
+                        name:'四川',
+                        children:[{
+                            name:'成都',
                             children:[
-                                {
-                                    name:'叉烧饭',
-                                    children:[{
-                                        name:'还可以'
-                                    }]
-                                }
-                            ]},
-                            {name:'佛山',children:[
-                                    {
-                                        name:'叶问',
-                                        children:[{
-                                            name:'咏春'
-                                        }]
-                                    }
-                                ]},
-                        ]
-                    }
-                ]
+                                {name:'成都小学'},
+                                {name:'城西小学'},
+                                {name:'城北小学'},
+                                {name:'城南小学'}]
+                        }]
+                    },
+                    {
+                        name:'黑龙江'
+                    },
+
+                    ]
             }
         },
         methods:{
@@ -99,6 +89,19 @@
                     enableHTML:true
                 })
             },
+            // xxxx(){
+            //     ajax(this.selected[0].id).then(res=>{
+            //       let prov = this.source.filter(item=>item.id===this.selected[0].id)[0]
+            //         this.$set(prov,'children',res)
+            //         console.log(this.source)
+            //     })
+            // },
+            // loadData(node,callback){
+            //     let {name,id,parent_id} = node
+            //     ajax(id).then(res=>{
+            //         callback(res)
+            //     })
+            // }
 
         },
         components:{

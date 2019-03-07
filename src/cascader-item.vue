@@ -1,6 +1,8 @@
 <template>
+
     <div class="cascader-item">
-        <div class="now">
+
+        <div class="now" ref="now">
             <div class="now-item"
                  v-for="item in items"
                  @click="onClick(item)"
@@ -11,13 +13,20 @@
                 <x-icon  class="x-icon" name="right" v-if="item.children" color="#e6e6e6"></x-icon>
             </div>
         </div>
-        <div class="next" v-if="rightItems">
-            <x-cascader-items :items="rightItems"
-                              :selected="selected"
-                              :level="level+1"
-                              @update:selected="onUpdateSelected"
-            ></x-cascader-items>
-        </div>
+        <transition
+                @before-enter="beforeEnter"
+                @enter="enter"
+                @before-leave="beforeLeave"
+                @leave="leave"
+        >
+            <div class="next" v-if="rightItems">
+                <x-cascader-items :items="rightItems"
+                                  :selected="selected"
+                                  :level="level+1"
+                                  @update:selected="onUpdateSelected"
+                ></x-cascader-items>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -36,6 +45,9 @@
             level:{
                 type:Number,
                 default:0
+            },
+            loadData:{
+                type:Function
             }
         },
         computed: {
@@ -74,7 +86,23 @@
                 }else{
                     return false
                 }
-            }
+            },
+            beforeEnter(el) {
+                    el.style.opacity=0
+            },
+            enter(el) {
+                setTimeout(()=>{
+                    el.style.opacity=1
+                })
+            },
+            beforeLeave(el) {
+                el.style.opacity=1
+            },
+            leave(el) {
+                setTimeout(()=>{
+                    el.style.opacity=0
+                })
+            },
         },
         components:{
             'x-icon':Icon
@@ -84,6 +112,8 @@
 
 <style scoped lang="scss">
     @import "var";
+
+
     .cascader-item{
         display: flex;
         align-items: flex-start;
@@ -92,11 +122,20 @@
             padding: .5em 0.5em .5em 1em;
             height: 200px;
             background-color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+            &::-webkit-scrollbar{
+              display: none;
+            }
             .now-item{
                 display: flex;
+                margin-bottom: 5px;
                 align-items: center;
                 .x-icon{
                     margin-left:1.5em;
+                }
+                &:hover{
+                    color:#409eff;
                 }
             }
             &:hover{
@@ -104,6 +143,7 @@
             }
         }
         .next {
+            transition: all .3s ease;
             border-left: 1px solid $border-color;
         }
         .activeItem{
