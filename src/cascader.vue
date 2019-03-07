@@ -223,6 +223,7 @@
                 align-items: center;
                 .trigger-x-icon-xia{
                     display: inline-flex;
+                    transition: all .3s ease;
                 }
                 .trigger-x-icon-wrong{
                     display: inline-flex;

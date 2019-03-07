@@ -9,11 +9,11 @@
                            >
 
                            </x-cascader>
-                       <div style="margin-top: 40px">
-
+                       <div style="margin-top: 40px;color: #999999">
+                        数据格式如代码所示，默认选取完成才显示并自动关闭。(选取既展示功能尚未完成，先做动态数据展示，刚把动画过渡效果做好)。
                        </div>
                    </template>
-                <x-collapse-item name="1" title="代码">
+                <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
            <pre>
                <code>
                     {{content}}
