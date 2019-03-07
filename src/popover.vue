@@ -193,8 +193,8 @@
                     this.clearTimer()
                   setTimeout(()=>{
                       document.removeEventListener('click', this.toOpen)
+                      if(this.trigger!=='click') return
                       document.addEventListener('click', this.toClose)
-
                 })
                    this.$refs.contentWrapper.style.opacity = 0
                    this.visible = true

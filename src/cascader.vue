@@ -126,8 +126,6 @@
                 if(this.selected[length-1]==='$#end' ||this.showSelected.length){
                     if(this.showSelected.length &&this.selected[length-1]!=='$#end'){
                         this.$emit('update:selected',this.selectedCopy)
-                        console.log(this.selectedCopy)
-
                     }
                 }else{
                     this.selectedCopy = []
@@ -214,7 +212,7 @@
             align-items: center;
             color: $font-color;
             border-radius: 5px;
-            overflow-x: auto;
+            overflow: auto;
             &:hover{
                 cursor: pointer;
             }

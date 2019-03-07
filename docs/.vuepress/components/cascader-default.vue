@@ -3,14 +3,14 @@
     <div style="margin-top: 30px">
         <div style="margin-top: 20px;">
                <x-collapse :selected.sync="selectTab" exhibition>
-
                    <template slot="description">
-                       <div style="height: 300px">
                            <x-cascader :source="source"
                                        :selected.sync="selected"
                            >
 
                            </x-cascader>
+                       <div style="margin-top: 40px">
+
                        </div>
                    </template>
                 <x-collapse-item name="1" title="代码">
@@ -29,36 +29,39 @@
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
     import Cascader from '../../.././src/cascader'
-    import address from "../../../src/address";
-
-    function ajax(parentId=0) {
-       return new Promise((resolve,reject)=>{
-           let result = address.filter(item=>item.parent_id===parentId)
-           resolve(result)
-
-       })
-    }
-    // console.log(ajax())
     export default {
         name: "grid-arrange",
-        // created(){
-        //   ajax(0).then(res=>{
-        //       this.source = res
-        //   })
-        // },
+
         data(){
             return {
                 selectTab:[1],
                 selected:[1],
                 content:`
-`,
+                   <x-cascader :source="source"
+                   :selected.sync="selected"
+                     >
+                     </x-cascader>
+
+                                                    js
+          data(){
+            return {
+                selected:[1],
                 source:[{
                     name:'北京',children:[
                     {
                         name:'东城区',
                         children:[{
                             name:'东城小学'
-                        }
+                        },
+                            {
+                                name:'东城中学'
+                            },
+                            {
+                                name:'东城大学'
+                            },
+                            {
+                                name:'东城幼儿园'
+                            }
 
                             ]
                     }
@@ -73,10 +76,84 @@
                                 {name:'城西小学'},
                                 {name:'城北小学'},
                                 {name:'城南小学'}]
-                        }]
+                        },
+                            {
+                                name:'雅安',
+                                children:[
+                                    {name:'雅安小学'},
+                                    {name:'雅安中学'},
+                                    {name:'雅安大学'},
+                                    {name:'雅安幼儿园'}]
+                            }]
                     },
                     {
-                        name:'黑龙江'
+                        name:'黑龙江',
+                        children:[{
+                            name:'哈尔滨',
+                            children:[{name:'哈尔滨小学'},{name:'啤酒中学'},{name:'勇闯天涯中学'}]
+                        },
+                            {
+                                name:'齐齐哈尔',
+                                children:[{name:'齐齐哈尔小学'},{name:'齐齐哈尔中学'},{name:'齐齐哈尔大学'}]
+                            }
+                        ]
+                    },
+
+                    ]
+            }
+        },
+`,
+                source:[{
+                    name:'北京',children:[
+                    {
+                        name:'东城区',
+                        children:[{
+                            name:'东城小学'
+                        },
+                            {
+                                name:'东城中学'
+                            },
+                            {
+                                name:'东城大学'
+                            },
+                            {
+                                name:'东城幼儿园'
+                            }
+
+                            ]
+                    }
+                            ]
+                },
+                    {
+                        name:'四川',
+                        children:[{
+                            name:'成都',
+                            children:[
+                                {name:'成都小学'},
+                                {name:'城西小学'},
+                                {name:'城北小学'},
+                                {name:'城南小学'}]
+                        },
+                            {
+                                name:'雅安',
+                                children:[
+                                    {name:'雅安小学'},
+                                    {name:'雅安中学'},
+                                    {name:'雅安大学'},
+                                    {name:'雅安幼儿园'}]
+                            }]
+                    },
+                    {
+                        name:'黑龙江',
+                        children:[{
+                            name:'哈尔滨',
+                            children:[{name:'哈尔滨小学'},{name:'啤酒中学'},{name:'勇闯天涯中学'}]
+                        },
+                            {
+                                name:'齐齐哈尔',
+                                children:[{name:'齐齐哈尔小学'},{name:'齐齐哈尔中学'},{name:'齐齐哈尔大学'}]
+                            }
+                        ]
                     },
 
                     ]
