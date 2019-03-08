@@ -2,7 +2,9 @@
 
     <div class="cascader-item">
 
-        <div class="now" ref="now">
+        <div class="now"
+             :class="`size-${size}`"
+             ref="now">
             <div class="now-item"
                  v-for="item in items"
                  @click="onClick(item)"
@@ -22,7 +24,9 @@
             <div class="next" v-if="rightItems">
                 <x-cascader-items :items="rightItems"
                                   :selected="selected"
+                                  :size="size"
                                   :level="level+1"
+                                  :dynamic="dynamic"
                                   @update:selected="onUpdateSelected"
                 ></x-cascader-items>
             </div>
@@ -46,18 +50,29 @@
                 type:Number,
                 default:0
             },
-            loadData:{
-                type:Function
-            }
+            dynamic:{
+                type:Boolean,
+                default: false
+            },
+            size:{
+                type: String,
+                default:'medium',
+                validator(val){
+                    return ['big','medium','small'].indexOf(val)>-1
+                }
+            },
         },
         computed: {
             rightItems () {
-                let currentSelected = this.selected[this.level]
-                if (currentSelected && currentSelected.children) {
-                    return currentSelected.children
-                } else {
-                    return null
+                if(this.selected &&this.selected[this.level] ){
+                    let xxx = this.items.filter(item=>item.name===this.selected[this.level].name)
+                    if(xxx[0] && xxx[0].children){
+                        return xxx[0].children
+                    }else{
+                        return null
+                    }
                 }
+
             },
         },
         methods:{
@@ -65,7 +80,7 @@
                 let selectedCopy = JSON.parse(JSON.stringify(this.selected))
                 selectedCopy[this.level] = item
                 selectedCopy.splice(this.level+1)
-                if(!item.children){
+                if(!item.children &&!this.dynamic){
                     selectedCopy.push('$#end')
                 }
                 this.$emit('update:selected',selectedCopy)
@@ -127,6 +142,17 @@
             &::-webkit-scrollbar{
               display: none;
             }
+            &.size-big{
+                height: 220px;
+                padding:0.23em 0.45em;
+                font-size: 16px;
+            }
+            &.size-small{
+                 height: 185px;
+                 padding:0.17em 0.37em;
+                 font-size: 13px;
+             }
+
             .now-item{
                 display: flex;
                 min-width: 6em;

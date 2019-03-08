@@ -15,10 +15,34 @@ title: Cascader 级联选择器
 <br/>
 <br/>
 
-## 动态数据
+
+
+## 动态数据 级联选择
+### 以省市区选择为例子
 
 <cascader-dynamic></cascader-dynamic>    
 
 <br/>
 <br/>
 <br/>
+
+
+## 选择即改变
+
+<cascader-select></cascader-select>    
+
+
+<br/>
+<br/>
+<br/>
+
+
+## 选择器的大小选择
+
+<cascader-size></cascader-size>    
+
+
+<br/>
+<br/>
+<br/>
+

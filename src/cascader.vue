@@ -1,6 +1,8 @@
 <template>
     <div class="cascader">
-        <div class="trigger" @click="onClick" ref="trigger">
+        <div class="trigger"
+             :class="`size-${size}`"
+             @click="onClick" ref="trigger">
             <div class="trigger-text">{{selectedArray}}</div>
               <span class="icon-span" @click="clealAll">
                    <transition name="fade" mode="out-in">
@@ -15,7 +17,6 @@
                     <x-icon name="wrong" color="#dbdbdb" class="trigger-x-icon-wrong"
                             key="wrong"
                             v-if="!IconToggle">
-
                     </x-icon>
                 </transition>
               </span>
@@ -33,10 +34,11 @@
                 <x-cascader-items
                         :items="source" class="popover"
                         :selected="selected"
+                        :dynamic="dynamic"
+                        :size="size"
                         @update:selected="onUpdateSelected"
                         v-show="popoverVisible"
-                        :popoverVisible="popoverVisible"
-                >
+                        :popoverVisible="popoverVisible">
                 </x-cascader-items>
             </div>
         </transition>
@@ -58,7 +60,11 @@
                 type: Array
             },
             size:{
-                type: String
+                type: String,
+                default:'medium',
+                validator(val){
+                    return ['big','medium','small'].indexOf(val)>-1
+                }
             },
             selected:{
                 type:Array,
@@ -67,7 +73,14 @@
             dynamic:{
                 type:Boolean,
                 default:false
-            }
+            },
+            loadData:{
+                type:Function
+            },
+            selectToChange:{
+                type:Boolean,
+                default:false
+            },
         },
         data () {
             return {
@@ -83,7 +96,7 @@
                     this.IconToggle=false
                 }
             }
-                this.$refs.trigger.addEventListener('mouseenter',this.mouseenterFn)
+            this.$refs.trigger.addEventListener('mouseenter',this.mouseenterFn)
             this.mouseleaveFn = ()=>{
                 this.IconToggle=true
 
@@ -123,17 +136,59 @@
             },
             onUpdateSelected(newSelected){
                 this.$emit('update:selected',newSelected)
+
+                if(this.loadData){
+                    let newSelectedCopy = JSON.parse(JSON.stringify(newSelected))
+                    let lastItem = newSelectedCopy[newSelectedCopy.length-1]
+                    let itemInSource = []
+                    newSelectedCopy.forEach(item=>{
+                       if(itemInSource.length===0){
+                          this.source.forEach(child=>{
+                                if(child.name===item.name){
+                                    itemInSource.push(child)
+                                }
+                          })
+                       }else{
+                          if(itemInSource[0].children){
+                              itemInSource[0].children.forEach(childItem=>{
+                                  if(childItem.name===item.name){
+                                      itemInSource.pop()
+                                      itemInSource.push(childItem)
+                                  }
+                              })
+                          }
+                       }
+                    })
+                    let updateSource = res=>{
+                         let itemSource= itemInSource[0]
+                        if(res.length>=1){
+                            this.$set(itemSource,'children',res)
+                        }else{
+                            let selectedCopy = JSON.parse(JSON.stringify(this.selected))
+                            selectedCopy.push('$#end')
+                            this.$emit('update:selected',selectedCopy)
+                            this.$nextTick(()=>{
+                                this.close()
+                            })
+                        }
+                    }
+                     this.loadData(lastItem,updateSource)
+                }
             },
             close(){
                 let length = this.selected.length
 
-                if(this.selected[length-1]==='$#end' ||this.showSelected.length){
-                    if(this.showSelected.length &&this.selected[length-1]!=='$#end'){
+                if(!this.selectToChange){
+                    if(this.selected[length-1]==='$#end' ||this.showSelected.length){
+                        if(this.showSelected.length &&this.selected[length-1]!=='$#end'){
+                            this.$emit('update:selected',this.selectedCopy)
+                        }
+                    }else{
+                        this.selectedCopy = []
                         this.$emit('update:selected',this.selectedCopy)
                     }
                 }else{
-                    this.selectedCopy = []
-                    this.$emit('update:selected',this.selectedCopy)
+
                 }
                 this.popoverVisible =false
                 this.remvoeListener()
@@ -148,6 +203,8 @@
             },
             remvoeListener(){
                 document.removeEventListener('click',this.fn)
+                document.removeEventListener('mouseenter',this.mouseenterFn)
+                document.removeEventListener('mouseleave',this.mouseleaveFn)
             },
             beforeEnter(el) {
                 el.style.height = 0
@@ -178,17 +235,26 @@
         },
         computed:{
             selectedArray(){
-                 let length = this.selected.length
-
-                 if(this.selected[length-1]==='$#end'&&!this.dynamic){
-                     this.close()
-                    let arr = this.selected.map((item=>item.name))
-                     arr.pop()
-                     this.showSelected = arr.join(' /')
-                     return this.showSelected
-                 }else{
-                     return this.showSelected
-                 }
+                     let length = this.selected.length
+                   if(!this.selectToChange){
+                       if(this.selected[length-1]==='$#end'){
+                           this.close()
+                           let arr = this.selected.map((item=>item.name))
+                           arr.pop()
+                           this.showSelected = arr.join(' /')
+                           return this.showSelected
+                       }
+                       else{
+                           return this.showSelected
+                       }
+                   }else{
+                       let arr = this.selected.map((item=>item.name))
+                       if(!arr[arr.length-1]){
+                           arr.pop()
+                       }
+                       this.showSelected = arr.join(' /')
+                       return this.showSelected
+                   }
             }
         }
     }
@@ -219,6 +285,18 @@
             &:hover{
                 cursor: pointer;
             }
+            &.size-big{
+                height: 37px;
+                width: 250px;
+                font-size: 16px;
+                padding: 0.4em 1.1em;
+            }
+            &.size-small{
+                height: 27px;
+                width: 200px;
+                font-size: 12px;
+                padding: 0.3em 1em;
+            }
             .icon-span{
                 margin-left: auto;
                 display:flex;
@@ -239,8 +317,6 @@
             .trigger-text{
                 transform: rotate(0deg)
             }
-
-
         }
     }
     .popover-wrapper {
@@ -255,5 +331,9 @@
         .label {
             white-space: nowrap;
         }
+
     }
 </style>
+
+
+

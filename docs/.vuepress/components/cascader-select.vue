@@ -2,23 +2,18 @@
 
     <div style="margin-top: 30px">
         <div style="margin-top: 20px;">
-
             <x-collapse :selected.sync="selectTab" exhibition>
                 <template slot="description">
                     <x-cascader :source.sync="source"
                                 :selected.sync="selected"
                                 :loadData="example"
                                 dynamic
+                                selectToChange
                     >
 
                     </x-cascader>
                     <div style="margin-top: 40px;color: #999999">
-                        使用 <code>dynamic</code>即可把 <code>source</code>作为动态数据传入。
-                        选择关闭将等 <code>ajax</code>请求到来后做判断，这也是完成选择后关闭可能会延时的原因。
-                        <br>
-                        数据格式如代码所示。
-                        还须传递一个函数<code>:loadData="example"</code>。
-                        如代码所示，函数第二个参数是一个回调函数，获取的数据作为参数传给这个回调。
+                        使用 <code>selectToChange</code>，既点既显。
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
@@ -48,9 +43,9 @@
     export default {
         name: "grid-arrange",
         created(){
-          ajax(0).then(res=>{
-              this.source = res
-          })
+            ajax(0).then(res=>{
+                this.source = res
+            })
         },
 
         data(){
@@ -61,7 +56,9 @@
                     <x-cascader :source.sync="source"
                                 :selected.sync="selected"
                                 :loadData="example"
-                                dynamic>
+                                dynamic
+                                selectToChange
+                                >
                     </x-cascader>
 
                                                         js
