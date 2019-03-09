@@ -2,7 +2,7 @@
       <div class="x-button-wrapper" :disabled="disabled">
           <button class="x-button"
                   :class="[[`icon-${position}`],
-             typeStyle,sizeStyle,plainStyle,dangerStyle]
+             typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle]
             "
                   :disabled="disabled"
                   ref="button"
@@ -42,13 +42,11 @@
           },
             dangerAnimation(){
                 let arr = this.$refs.button.classList
-                if(this.type==='error'){
                     arr.remove('loop')
                     arr.add('loop')
                     setTimeout(()=>{     //为什么不用定时器就无法清除呢,cao
                         arr.remove('loop')
                     },300)
-                }
             }
         },
         computed:{
@@ -78,6 +76,11 @@
             dangerStyle(){
                 if(this.danger){
                     return 'danger'
+                }
+            },
+            dashedStyle(){
+                if(this.dashed){
+                    return 'dashed'
                 }
             }
 
@@ -130,6 +133,10 @@
                     return !(value !== 'left' && value !== 'right');
                 }
             },
+            dashed:{
+                type:Boolean,
+                default: false
+            }
         }
     }
 </script>
@@ -286,6 +293,9 @@
                     border-color: #d9d9d9;
                 }
             }
+            &.dashed{
+                border: 1px dashed $border-color;
+            }
 
             &.type-error {
                 color:white;
@@ -430,7 +440,7 @@
             cursor: not-allowed;
         }
     }
-    .loop {
+    .loop{
         position: relative;
         &::before {
             content: '';
@@ -449,8 +459,8 @@
             animation: loop 0.3s ease-in-out ;
             flex-shrink: 0;
         }
-
     }
+
 
 </style>
 

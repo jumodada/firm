@@ -66,6 +66,26 @@
                         圆角按钮
                     </x-button>
                 </div>
+                <div style="margin-top: 40px">
+                    <x-button dashed>
+                        虚线按钮
+                    </x-button>
+                    <x-button type="primary" dashed>
+                        虚线按钮
+                    </x-button>
+                    <x-button type="info" dashed>
+                        虚线按钮
+                    </x-button>
+                    <x-button type="success" dashed>
+                        虚线按钮
+                    </x-button>
+                    <x-button type="warn" dashed>
+                        虚线按钮
+                    </x-button>
+                    <x-button type="error" dashed>
+                        虚线按钮
+                    </x-button>
+                </div>
 
             </template>
             <x-collapse-item name="1" title="代码">

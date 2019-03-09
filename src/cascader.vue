@@ -286,10 +286,10 @@
                 cursor: pointer;
             }
             &.size-big{
-                height: 37px;
-                width: 250px;
+                height: 35px;
+                width: 240px;
                 font-size: 16px;
-                padding: 0.4em 1.1em;
+                padding: 0.35em 1.1em;
             }
             &.size-small{
                 height: 27px;

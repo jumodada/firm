@@ -143,7 +143,7 @@
               display: none;
             }
             &.size-big{
-                height: 220px;
+                height: 210px;
                 padding:0.23em 0.45em;
                 font-size: 16px;
             }

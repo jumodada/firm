@@ -48,6 +48,16 @@ title: Button按钮
    <br/>
     <br/>
 
+
+## 按钮组合
+
+<button-group></button-group>
+<br/>
+   <br/>
+    <br/>
+
+
+
 ## 给图标设置loading状态
 
 通过加入loading控制图标动画，动画完善中，目前就一个。。。。。

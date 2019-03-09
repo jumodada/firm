@@ -19,27 +19,31 @@
 </script>
 
 <style scoped lang="scss">
-.x-button-group{
+ .x-button-group{
     display: inline-flex;
     vertical-align: center;
-    > .x-button{
+    @import "var";
+     /deep/ .x-button{
         border-radius: 0;
-        &:not(:first-child){
-            margin-left: -1px;
-        }
-        &:first-child{
-            border-top-left-radius: var(--border-radius);
-            border-bottom-left-radius: var(--border-radius);
-        }
-        &:last-child{
-            border-top-right-radius: var(--border-radius);
-            border-bottom-right-radius: var(--border-radius);
-        }
         &:hover{
             border-color: #ef6c14;
             position:relative;
             z-index: 1;
         }
     }
+     .x-button-wrapper{
+         &:not(:first-child){
+             margin-left: -1px;
+             border:1px solid red !important;
+         }
+         &:first-child{
+             border-top-left-radius: $border-radius;
+             border-bottom-left-radius: $border-radius;
+         }
+         &:last-child{
+             border-top-right-radius: $border-radius;
+             border-bottom-right-radius: $border-radius;
+         }
+     }
 }
 </style>
