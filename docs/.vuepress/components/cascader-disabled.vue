@@ -2,18 +2,18 @@
 
     <div style="margin-top: 30px">
         <div style="margin-top: 20px;">
-               <x-collapse :selected.sync="selectTab" exhibition>
-                   <template slot="description">
-                           <x-cascader :source="source"
-                                       :selected.sync="selected"
-                           >
+            <x-collapse :selected.sync="selectTab" exhibition>
+                <template slot="description">
+                    <x-cascader :source="source"
+                                :selected.sync="selected"
+                    >
 
-                           </x-cascader>
-                       <div style="margin-top: 40px;color: #999999">
+                    </x-cascader>
+                    <div style="margin-top: 40px;color: #999999">
                         数据格式如代码所示，默认选取完成才显示并自动关闭。选取完成之前不会修改。
-                           (键盘选取功能尚未完成)。
-                       </div>
-                   </template>
+                        (键盘选取功能尚未完成)。
+                    </div>
+                </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
            <pre>
                <code>
@@ -48,7 +48,9 @@
             return {
                 selected:[1],
                 source:[{
-                    name:'北京',children:[
+                    name:'北京',
+                    disabled:true,
+                    children:[
                     {
                         name:'东城区',
                         children:[{
@@ -105,25 +107,27 @@
         },
 `,
                 source:[{
-                    name:'北京',children:[
-                    {
-                        name:'东城区',
-                        children:[{
-                            name:'东城小学'
-                        },
-                            {
-                                name:'东城中学'
+                    name:'北京',
+                    disabled:true,
+                    children:[
+                        {
+                            name:'东城区',
+                            children:[{
+                                name:'东城小学'
                             },
-                            {
-                                name:'东城大学'
-                            },
-                            {
-                                name:'东城幼儿园'
-                            }
+                                {
+                                    name:'东城中学'
+                                },
+                                {
+                                    name:'东城大学'
+                                },
+                                {
+                                    name:'东城幼儿园'
+                                }
 
                             ]
-                    }
-                            ]
+                        }
+                    ]
                 },
                     {
                         name:'四川',
@@ -157,7 +161,7 @@
                         ]
                     },
 
-                    ]
+                ]
             }
         },
         methods:{
@@ -167,6 +171,7 @@
                     enableHTML:true
                 })
             },
+
 
         },
         components:{

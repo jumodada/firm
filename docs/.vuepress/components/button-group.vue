@@ -1,18 +1,18 @@
 <template>
     <div>
 
-        <div style="margin-top: 20px">
+        <div style="margin-top: 20px;">
             <x-collapse :selected.sync="selectTab" exhibition>
                 <template slot="description">
 
-                    <div style="margin-top: 40px">
+                    <div style="margin-top: 40px;display: flex;justify-content: center">
 
                         <x-button-group>
                             <x-button icon="left">
                             左
                              </x-button>
-                            <x-button icon="left">
-                                左
+                            <x-button icon="set">
+                                设置
                             </x-button>
                             <x-button icon="right">
                                 右
@@ -20,9 +20,22 @@
                         </x-button-group>
 
                     </div>
+
+                    <div style="margin-top: 40px;display: flex;justify-content: center">
+
+                        <x-button-group>
+                            <x-button icon="error">
+                                确定
+                            </x-button>
+                            <x-button icon="success">
+                                取消
+                            </x-button>
+                        </x-button-group>
+
+                    </div>
                     <br>
                     <br>
-                    {{describe}}
+                    <div style="color: #999999"> <code>button-group</code>的子元素应该全是 <code>x-button</code>,后续添加button-group的更多功能</div>
                 </template>
                 <x-collapse-item name="1" title="代码">
            <pre>
@@ -48,39 +61,27 @@
         data(){
             return {
                 selectTab:[1],
-                describe:'图标默认放在左边，也可以设置position放置图标在右边',
                 content:`
-           <div style="margin-top: 40px">
-           <x-button icon="set">
-               设置按钮
-           </x-button>
-            <x-button icon="dianzan">
-                点赞按钮
-            </x-button>
-            <x-button icon="download">
-                下载按钮
-            </x-button>
-            <x-button icon="loading">
-                加载按钮
-            </x-button>
-            <x-button icon="left">
-                左
-            </x-button>
-            <x-button icon="right">
-                右
-            </x-button>
-                      </div>
-                <div style="margin-top: 40px">
-            <x-button icon="set" position="right">
-                设置按钮
-            </x-button>
-            <x-button icon="dianzan" position="right">
-                点赞按钮
-            </x-button>
-            <x-button icon="download" position="right">
-                下载按钮
-            </x-button>
-         </div>
+                      <x-button-group>
+                            <x-button icon="left">
+                            左
+                             </x-button>
+                            <x-button icon="set">
+                                设置
+                            </x-button>
+                            <x-button icon="right">
+                                右
+                            </x-button>
+                        </x-button-group>
+
+                        <x-button-group>
+                            <x-button icon="error">
+                                确定
+                            </x-button>
+                            <x-button icon="success">
+                                取消
+                            </x-button>
+                        </x-button-group>
 
               `
 

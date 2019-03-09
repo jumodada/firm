@@ -2,7 +2,7 @@
       <div class="x-button-wrapper" :disabled="disabled">
           <button class="x-button"
                   :class="[[`icon-${position}`],
-             typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle]
+             typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle]
             "
                   :disabled="disabled"
                   ref="button"
@@ -39,6 +39,11 @@
           onClick(){
                 this.$emit('click')
                 this.dangerAnimation()
+              if(this.loading){
+
+              }else{
+
+              }
           },
             dangerAnimation(){
                 let arr = this.$refs.button.classList
@@ -81,6 +86,11 @@
             dashedStyle(){
                 if(this.dashed){
                     return 'dashed'
+                }
+            },
+            loadingStyle(){
+                if(this.loading){
+                    return 'loadingCloak'
                 }
             }
 
@@ -434,6 +444,9 @@
             .loading{
                 animation: spin 1s infinite linear;
             }
+            &.loadingCloak{
+                opacity: .5;
+            }
 
         }
         &[disabled]{
@@ -455,8 +468,8 @@
             right: -3px;
             border-radius: inherit;
             border: 0 solid inherit;
-            opacity: 0.3;
-            animation: loop 0.3s ease-in-out ;
+            opacity: .3;
+            animation: loop .3s ease-in-out ;
             flex-shrink: 0;
         }
     }

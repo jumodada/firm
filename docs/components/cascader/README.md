@@ -46,3 +46,12 @@ title: Cascader 级联选择器
 <br/>
 <br/>
 
+
+## 选择器禁用选项
+
+loading.......   
+
+
+<br/>
+<br/>
+<br/>
