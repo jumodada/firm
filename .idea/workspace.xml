@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/cascader-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/cascader-default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/cascader-disabled.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/cascader-disabled.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/components/cascader/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/cascader/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/cascader-select.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/cascader-select.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cascader-item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/cascader-item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/cascader.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -45,7 +43,7 @@
           <entry key="json" value="11" />
           <entry key="md" value="38" />
           <entry key="scss" value="2" />
-          <entry key="vue" value="198" />
+          <entry key="vue" value="203" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -55,7 +53,7 @@
           <entry key="JavaScript" value="34" />
           <entry key="Markdown" value="38" />
           <entry key="SCSS" value="2" />
-          <entry key="Vue.js" value="198" />
+          <entry key="Vue.js" value="203" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -65,7 +63,7 @@
           <entry key="json" value="135" />
           <entry key="md" value="1599" />
           <entry key="scss" value="150" />
-          <entry key="vue" value="26282" />
+          <entry key="vue" value="26528" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -75,7 +73,7 @@
           <entry key="JavaScript" value="306" />
           <entry key="Markdown" value="1599" />
           <entry key="SCSS" value="150" />
-          <entry key="Vue.js" value="26139" />
+          <entry key="Vue.js" value="26385" />
         </counts>
       </usages-collector>
     </session>
@@ -88,10 +86,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cascader.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+            <state relative-caret-position="981">
+              <caret line="161" column="45" lean-forward="true" selection-start-line="161" selection-start-column="45" selection-end-line="161" selection-end-column="45" />
               <folding>
-                <element signature="e#4426#6282#0" />
                 <element signature="e#6303#6980#0" />
                 <element signature="e#7007#7304#0" />
                 <element signature="e#7334#7565#0" />
@@ -106,24 +103,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/components/cascader/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="639">
-                <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cascader-item.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1859">
-              <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+            <state relative-caret-position="183">
+              <caret line="119" column="14" selection-start-line="119" selection-start-column="14" selection-end-line="119" selection-end-column="14" />
               <folding>
-                <element signature="e#2764#2968#0" />
                 <element signature="e#3114#3330#0" />
               </folding>
             </state>
@@ -131,19 +115,14 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-disabled.vue">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1861">
-              <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+            <state relative-caret-position="1888">
+              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,13 +140,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>leftSelected</find>
       <find>xxx</find>
       <find>selectedCopy</find>
       <find>transit</find>
       <find>command</find>
       <find>transi</find>
-      <find>load</find>
       <find>this.close()</find>
       <find>open</find>
       <find>trigger</find>
@@ -191,6 +168,8 @@
       <find>this.dangerAnimation()</find>
       <find>loop</find>
       <find>check</find>
+      <find>load</find>
+      <find>checkDisabled</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -236,8 +215,6 @@
         <option value="$PROJECT_DIR$/src/popover.vue" />
         <option value="$PROJECT_DIR$/docs/components/tabs/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/config.js" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-select.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-size.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue" />
         <option value="$PROJECT_DIR$/docs/components/button/README.md" />
@@ -247,9 +224,11 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-default.vue" />
         <option value="$PROJECT_DIR$/src/cascader.vue" />
         <option value="$PROJECT_DIR$/src/address.js" />
-        <option value="$PROJECT_DIR$/src/cascader-item.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-disabled.vue" />
         <option value="$PROJECT_DIR$/docs/components/cascader/README.md" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-select.vue" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue" />
+        <option value="$PROJECT_DIR$/src/cascader-item.vue" />
       </list>
     </option>
   </component>
@@ -296,6 +275,13 @@
               <item name="My-Vue-Wheel" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My-Vue-Wheel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My-Vue-Wheel" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="My-Vue-Wheel" type="b2602c69:ProjectViewProjectNode" />
@@ -395,18 +381,18 @@
       <workItem from="1552031344058" duration="11532000" />
       <workItem from="1552095008464" duration="2954000" />
       <workItem from="1552135883324" duration="3319000" />
-      <workItem from="1552183481140" duration="3144000" />
+      <workItem from="1552183481140" duration="5611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202090000" />
+    <option name="totallyTimeSpent" value="204557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18252291" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18252291" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -693,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-select.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-size.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1057">
@@ -711,13 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
           <caret line="87" column="22" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -786,23 +758,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cascader-item.vue">
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1859">
-          <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+        <state relative-caret-position="124">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/components/cascader/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="557">
+            <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-select.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1392">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding>
-            <element signature="e#2764#2968#0" />
-            <element signature="e#3114#3330#0" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-disabled.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-dynamic.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1888">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cascader.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+        <state relative-caret-position="981">
+          <caret line="161" column="45" lean-forward="true" selection-start-line="161" selection-start-column="45" selection-end-line="161" selection-end-column="45" />
           <folding>
-            <element signature="e#4426#6282#0" />
             <element signature="e#6303#6980#0" />
             <element signature="e#7007#7304#0" />
             <element signature="e#7334#7565#0" />
@@ -815,27 +820,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/cascader-disabled.vue">
+    <entry file="file://$PROJECT_DIR$/src/cascader-item.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1861">
-          <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/cascader/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="639">
-            <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-          </first_editor>
-          <second_editor />
+        <state relative-caret-position="183">
+          <caret line="119" column="14" selection-start-line="119" selection-start-column="14" selection-end-line="119" selection-end-column="14" />
+          <folding>
+            <element signature="e#3114#3330#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -19,6 +19,7 @@
                         数据格式如代码所示。
                         还须传递一个函数<code>:loadData="example"</code>。
                         如代码所示，函数第二个参数是一个回调函数，获取的数据作为参数传给这个回调。
+                        (后面加入loading的动画)
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">

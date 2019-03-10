@@ -13,7 +13,8 @@
 
                     </x-cascader>
                     <div style="margin-top: 40px;color: #999999">
-                        使用 <code>selectToChange</code>，既点既显。
+                        使用 <code>selectToChange</code>，既点既显。这里发现有个问题就是再次点击选择栏，之前选的地区虽然是有选中的效果，但是并没有回到之前的高度位置，也就是要重新下拉到之前选中的地方。
+                        后面会修复这个问题
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">

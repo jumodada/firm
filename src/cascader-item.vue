@@ -9,7 +9,7 @@
                  v-for="item in items"
                  @click="onClick(item)"
                  :style="{marginRight:repairPadding(item)}"
-                 :class="{activeItem:activeItem(item)}"
+                 :class="{activeItem:activeItem(item),disabled:item.disabled}"
             >
                 {{item.name}}
                 <x-icon  class="x-icon" name="right" v-if="item.children" color="#e6e6e6"></x-icon>
@@ -118,18 +118,8 @@
                     el.style.opacity=0
                 })
             },
-            checkDisabled(){
-                this.items.forEach((item,index)=>{
-                    if(item.disabled){
-                       this.$refs.now.children[index].classList.add('disabled')
-                    }
-                })
+        },
 
-            }
-        },
-        mounted(){
-            this.checkDisabled()
-        },
         components:{
             'x-icon':Icon
         }
