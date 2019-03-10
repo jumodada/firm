@@ -178,6 +178,7 @@
                             this.$emit('update:selected',selectedCopy)
                             this.$nextTick(()=>{
                                 this.close()
+
                             })
                         }
                     }
@@ -186,7 +187,6 @@
             },
             close(){
                 let length = this.selected.length
-
                 if(!this.selectToChange){
                     if(this.selected[length-1]==='$#end' ||this.showSelected.length){
                         if(this.showSelected.length &&this.selected[length-1]!=='$#end'){
@@ -265,6 +265,9 @@
                            arr.pop()
                        }
                        this.showSelected = arr.join(' /')
+                        if(this.selected[this.selected.length-1]&&this.selected[this.selected.length-1]==='$#end'){
+                            this.close()
+                        }
                        return this.showSelected
                    }
             }

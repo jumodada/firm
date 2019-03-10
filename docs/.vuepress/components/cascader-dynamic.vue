@@ -55,7 +55,7 @@
             let res = address.filter(item=>item.parent_id===parent_id)
            setTimeout(()=>{
                resolve(res)
-           },2000)
+           },1000)
         })
     }
     export default {
@@ -81,7 +81,9 @@
     function ajax(parent_id = 0){
         return new Promise(resolve=>{
             let res = address.filter(item=>item.parent_id===parent_id)
-            resolve(res)
+            setTimeout(()=>{
+               resolve(res)
+           },1000)
         })
     }
 
