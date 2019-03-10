@@ -137,7 +137,7 @@
             },
             onUpdateSelected(newSelected){
                 this.$emit('update:selected',newSelected)
-                if(newSelected[newSelected.length-2]&& newSelected[newSelected.length-2].isLeaf  ||newSelected[newSelected.length-1]&& newSelected[newSelected.length-1].isLeaf)return
+                if(newSelected[newSelected.length-2]&& newSelected[newSelected.length-2].isLeaf  ||newSelected[newSelected.length-1]&& newSelected[newSelected.length-1].isLeaf)return//树叶不走这条路
                 if(this.loadData){
                     let newSelectedCopy = JSON.parse(JSON.stringify(newSelected))
                     let lastItem = newSelectedCopy[newSelectedCopy.length-1]
@@ -174,7 +174,7 @@
                             this.$set(itemSource,'children',res)
                         }else{
                             let selectedCopy = JSON.parse(JSON.stringify(this.selected))
-                            selectedCopy.push('$#end')
+                            selectedCopy.push('$#end')                             //这段后面可以废弃掉的
                             this.$emit('update:selected',selectedCopy)
                             this.$nextTick(()=>{
                                 this.close()
@@ -250,7 +250,7 @@
                            let deleteUndefined = []
                            arr.forEach(item=>{
                                if(item){
-                                   deleteUndefined.push(item)
+                                   deleteUndefined.push(item)                 //在trigger上显示
                                }
                            })
                            this.showSelected = deleteUndefined.join(' /')
@@ -260,7 +260,7 @@
                            return this.showSelected
                        }
                    }else{
-                       let arr = this.selected.map((item=>item.name))
+                       let arr = this.selected.map((item=>item.name))    //选择既改变
                        if(!arr[arr.length-1]){
                            arr.pop()
                        }
