@@ -133,10 +133,11 @@
                        this.contentPosition()
                    })
                 }
+
             },
             onUpdateSelected(newSelected){
                 this.$emit('update:selected',newSelected)
-
+                if(newSelected[newSelected.length-2]&& newSelected[newSelected.length-2].isLeaf  ||newSelected[newSelected.length-1]&& newSelected[newSelected.length-1].isLeaf)return
                 if(this.loadData){
                     let newSelectedCopy = JSON.parse(JSON.stringify(newSelected))
                     let lastItem = newSelectedCopy[newSelectedCopy.length-1]
@@ -160,7 +161,15 @@
                        }
                     })
                     let updateSource = res=>{
+                        if(!this.popoverVisible)return
                          let itemSource= itemInSource[0]
+                        if(this.dynamic &&this.popoverVisible){
+                            let selectedCopy = JSON.parse(JSON.stringify(this.selected))
+                            if(selectedCopy[selectedCopy.length-1] && selectedCopy[selectedCopy.length-1].iconToggle){    //避免提前关闭造成的bug
+                                selectedCopy[selectedCopy.length-1].iconToggle = ''
+                                this.$emit('update:selected',selectedCopy)
+                            }
+                        }
                         if(res.length>=1){
                             this.$set(itemSource,'children',res)
                         }else{
@@ -185,10 +194,8 @@
                         }
                     }else{
                         this.selectedCopy = []
-                        this.$emit('update:selected',this.selectedCopy)
+                        this.$emit('update:selected',this.selectedCopy) //没选完就给空
                     }
-                }else{
-
                 }
                 this.popoverVisible =false
                 this.remvoeListener()
@@ -236,12 +243,17 @@
         computed:{
             selectedArray(){
                      let length = this.selected.length
-                   if(!this.selectToChange){
+                    if(!this.selectToChange){
                        if(this.selected[length-1]==='$#end'){
                            this.close()
                            let arr = this.selected.map((item=>item.name))
-                           arr.pop()
-                           this.showSelected = arr.join(' /')
+                           let deleteUndefined = []
+                           arr.forEach(item=>{
+                               if(item){
+                                   deleteUndefined.push(item)
+                               }
+                           })
+                           this.showSelected = deleteUndefined.join(' /')
                            return this.showSelected
                        }
                        else{

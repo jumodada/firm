@@ -1,5 +1,5 @@
 <template>
-    <svg class="x-icon" :style="`fill:${color}`">
+    <svg class="x-icon" :style="`fill:${color}`" :class="{loading:loading}">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
@@ -8,13 +8,33 @@
     import './svg.js'
     export default {
         name: "x-icon",
-        props:['name','color']
+        props:{
+            name,
+            color:{
+                type:String
+            },
+            loading:{
+                type: Boolean,
+                default:false
+            }
+            }
     }
 </script>
 
 <style scoped lang="scss">
+    @keyframes spin {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
     .x-icon {
         width: 1em;
         height: 1em;
+        &.loading{
+            animation: spin 1s infinite linear;
+        }
     }
 </style>

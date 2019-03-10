@@ -12,7 +12,7 @@
                  :class="{activeItem:activeItem(item),disabled:item.disabled}"
             >
                 {{item.name}}
-                <x-icon  class="x-icon" name="right" v-if="item.children" color="#e6e6e6"></x-icon>
+                <x-icon  class="x-icon"  :loading="iconLoading(item)" :name="theIcon(item) || !item.isLeaf&&'right'"  v-if="item.children || dynamic" color="#e6e6e6"></x-icon>
             </div>
         </div>
         <transition
@@ -62,6 +62,7 @@
                 }
             },
         },
+
         computed: {
             rightItems () {
                 if(this.selected &&this.selected[this.level] ){
@@ -77,10 +78,23 @@
         },
         methods:{
             onClick(item){
+                if(!item.isLeaf){
+                    this.loadingStatus(item)
+                }
+                this.marking(item)
+            },
+            loadingStatus(item){
+                if(this.dynamic && !item.children){
+                    item.iconToggle= 'loading'
+                }else if(this.dynamic &&item&& item.children){
+                    item.iconToggle= ''
+                }
+            },
+            marking(item){
                 let selectedCopy = JSON.parse(JSON.stringify(this.selected))
                 selectedCopy[this.level] = item
                 selectedCopy.splice(this.level+1)
-                if(!item.children &&!this.dynamic){
+                if(!item.children &&!this.dynamic || this.dynamic&&item.isLeaf){
                     selectedCopy.push('$#end')
                 }
                 this.$emit('update:selected',selectedCopy)
@@ -88,8 +102,8 @@
             repairPadding(item){
                 if(item.children){
                     return '0'
-                }else{
-                    return '1.5em'   //最后一个没有箭头，用margin补右边的间隙。还有伪类icon的方法，后面改用这个。
+                }else if(!this.dynamic){
+                    return '1.5em'   //最后一个没有箭头，用margin补右边的间隙。
                 }
             },
             onUpdateSelected(newSelected){
@@ -97,6 +111,19 @@
             },
             activeItem(item){
                 if(this.selected[this.level] && item.name === this.selected[this.level].name){
+                    return true
+                }else{
+                    return false
+                }
+            },
+            theIcon(item){
+                if(!this.selected||!this.selected[this.selected.length-1])return 'right'
+                if(this.selected[this.selected.length-1].id===item.id ){
+                    return this.selected[this.selected.length-1].iconToggle
+                }
+            },
+            iconLoading(item){
+                if(this.dynamic &&this.theIcon(item)==='loading'){
                     return true
                 }else{
                     return false
@@ -117,9 +144,8 @@
                 setTimeout(()=>{
                     el.style.opacity=0
                 })
-            },
+            }
         },
-
         components:{
             'x-icon':Icon
         }
