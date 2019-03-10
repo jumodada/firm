@@ -118,6 +118,17 @@
                     el.style.opacity=0
                 })
             },
+            checkDisabled(){
+                this.items.forEach((item,index)=>{
+                    if(item.disabled){
+                       this.$refs.now.children[index].classList.add('disabled')
+                    }
+                })
+
+            }
+        },
+        mounted(){
+            this.checkDisabled()
         },
         components:{
             'x-icon':Icon
@@ -134,7 +145,7 @@
         align-items: flex-start;
         justify-content: flex-start;
         .now {
-            padding:0.2em 0.4em;
+
             height: 200px;
             background-color: white;
             overflow-x: hidden;
@@ -154,10 +165,15 @@
              }
 
             .now-item{
+                padding:0.2em 0.4em;
                 display: flex;
                 min-width: 6em;
                 align-items: center;
                 margin-bottom: 5px;
+                &.disabled{
+                    pointer-events: none;
+                    opacity: 0.3;
+                }
                 .x-icon{
                     margin-left:auto;
                 }

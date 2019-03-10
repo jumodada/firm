@@ -10,8 +10,9 @@
 
                     </x-cascader>
                     <div style="margin-top: 40px;color: #999999">
-                        数据格式如代码所示，默认选取完成才显示并自动关闭。选取完成之前不会修改。
-                        (键盘选取功能尚未完成)。
+                       你只需在数据上想要禁用的地方加入 <code>disabled:true</code>，便可以禁用这个选项。
+                        动态数据也是同理的。
+                        上面这个例子 <code>北京</code>和 成都里面的<code>成都小学</code>都是不可选的
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
@@ -75,7 +76,7 @@
                         children:[{
                             name:'成都',
                             children:[
-                                {name:'成都小学'},
+                                {name:'成都小学',disabled:true},
                                 {name:'城西小学'},
                                 {name:'城北小学'},
                                 {name:'城南小学'}]
@@ -134,7 +135,7 @@
                         children:[{
                             name:'成都',
                             children:[
-                                {name:'成都小学'},
+                                {name:'成都小学', disabled:true,},
                                 {name:'城西小学'},
                                 {name:'城北小学'},
                                 {name:'城南小学'}]

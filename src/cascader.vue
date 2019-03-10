@@ -231,7 +231,7 @@
                     this.$emit('update:selected',this.selectedCopy)
                     this.showSelected = ''
                 }
-            }
+            },
         },
         computed:{
             selectedArray(){

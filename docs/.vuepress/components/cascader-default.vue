@@ -7,7 +7,6 @@
                            <x-cascader :source="source"
                                        :selected.sync="selected"
                            >
-
                            </x-cascader>
                        <div style="margin-top: 40px;color: #999999">
                         数据格式如代码所示，默认选取完成才显示并自动关闭。选取完成之前不会修改。

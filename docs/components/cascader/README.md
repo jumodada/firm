@@ -49,9 +49,12 @@ title: Cascader 级联选择器
 
 ## 选择器禁用选项
 
-loading.......   
+<cascader-disabled></cascader-disabled>     
 
 
 <br/>
 <br/>
 <br/>
+
+## 更多功能以及主题选择
+loading......
