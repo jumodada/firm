@@ -27,11 +27,7 @@
 
                 </template>
                 <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -43,28 +39,37 @@
     import Col from '../../.././src/col'
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     export default {
         name: "grid-flex",
         data(){
             return {
                 selectTab:[1],
-                content:`
-      <x-row flex="-50">
-            <x-col span="12"></x-col>
-            <x-col span="12"></x-col>
-        </x-row>
-        <div style="margin-top: 15px">
-            <x-row>
-                <x-col span="12"></x-col>
-                <x-col span="12"></x-col>
-            </x-row>
-        </div>
-        <div style="margin-top: 15px">
-            <x-row flex="150">
-                <x-col span="12" ></x-col>
-                <x-col span="12" ></x-col>
-            </x-row>
-        </div>`
+                input1:'```html\n' +
+                    '<x-row flex="-50">\n' +
+                    ' <x-col span="12"></x-col>\n' +
+                    ' <x-col span="12"></x-col>\n' +
+                    '</x-row>\n' +
+                    '                    \n' +
+                    '<x-row>\n' +
+                    '  <x-col span="12"></x-col>\n' +
+                    '  <x-col span="12"></x-col>\n' +
+                    '</x-row>\n' +
+                    '<x-row flex="150">\n' +
+                    ' <x-col span="12"></x-col>\n' +
+                    ' <x-col span="12"></x-col>\n' +
+                    '</x-row>\n' +
+                    '\n' +
+                    '```'
             }
         },
 
@@ -73,7 +78,12 @@
             'x-col':Col,
             'x-collapse':collapse,
             'x-collapse-item':collapseItem
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+        },
     }
 </script>
 

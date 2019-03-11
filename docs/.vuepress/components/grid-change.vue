@@ -47,7 +47,8 @@
                             <x-col span="10"
                                    :pad="{span:6}"
                                    :pc="{span:10}"
-                                   :wp="{span:6}"style="background-color: #e6e6e6;height: 50px;border-radius: 8px"></x-col>
+                                   :wp="{span:6}"style="background-color: #e6e6e6;height: 50px;border-radius: 8px">
+                            </x-col>
                         </x-row>
                     </div>
                     <div style="font-size: 17px;color: #999999;margin-top: 30px">
@@ -58,11 +59,7 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -74,23 +71,80 @@
     import Col from '../../.././src/col'
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     export default {
         name: "grid-arrange",
         data(){
             return {
                 selectTab:[1],
-                content:`
-        <x-row  gutter="20">
-            <x-col  span="12"
-                    :pad="{span:18}"
-                    :pc="{span:8}"
-                    :wp="{span:4}" ></x-col>
-            <x-col  span="12"
-                    :pad="{span:6}"
-                    :pc="{span:16}"
-                    :wp="{span:20}"></x-col>
-        </x-row>
-`
+                input1:'```html\n' +
+                    '\n' +
+                    '<x-row  gutter="20">\n' +
+                    '<x-col  span="12"\n' +
+                    '      :pad="{span:18}"\n' +
+                    '      :pc="{span:8}"\n' +
+                    '      :wp="{span:4}">      \n' +
+                    '</x-col>\n' +
+                    '<x-col  span="12"\n' +
+                    '      :pad="{span:6}"\n' +
+                    '      :pc="{span:16}"\n' +
+                    '      :wp="{span:20}">      \n' +
+                    '</x-col>\n' +
+                    '</x-row>\n' +
+                    '   \n' +
+                    '                    \n' +
+                    ' <x-row gutter="20">\n' +
+                    ' <x-col span="8"\n' +
+                    '     :pad="{span:12}"\n' +
+                    '     :pc="{span:4}"\n' +
+                    '     :wp="{span:10}">\n' +
+                    '                                   \n' +
+                    ' </x-col>\n' +
+                    ' <x-col\n' +
+                    '     :pad="{span:6}"\n' +
+                    '     :pc="{span:10}"\n' +
+                    '     :wp="{span:8}"\n' +
+                    '     span="8" >\n' +
+                    '</x-col>\n' +
+                    '  <x-col\n' +
+                    '     :pad="{span:6}"\n' +
+                    '     :pc="{span:10}"\n' +
+                    '     :wp="{span:6}"\n' +
+                    '     span="8" >  \n' +
+                    '</x-col>\n' +
+                    '</x-row>\n' +
+                    '\n' +
+                    '<x-row gutter="20">\n' +
+                    ' <x-col span="2"\n' +
+                    ' :pad="{span:6}"\n' +
+                    ' :pc="{span:10}"\n' +
+                    ' :wp="{span:6}">\n' +
+                    '</x-col>\n' +
+                    ' <x-col span="6"\n' +
+                    ' :pad="{span:6}"\n' +
+                    ' :pc="{span:10}"\n' +
+                    ' :wp="{span:6}">\n' +
+                    '                                           \n' +
+                    '</x-col>\n' +
+                    ' <x-col span="10"\n' +
+                    ' :pad="{span:6}"\n' +
+                    ' :pc="{span:10}"\n' +
+                    ' :wp="{span:6}">\n' +
+                    ' \n' +
+                    ' </x-col>\n' +
+                    '\n' +
+                    '</x-row>\n' +
+                    '\n' +
+                    '```'
             }
         },
 
@@ -99,7 +153,13 @@
             'x-col':Col,
             'x-collapse':collapse,
             'x-collapse-item':collapseItem
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+        },
+
     }
 </script>
 

@@ -17,10 +17,7 @@
                                 :selected.sync="selected"
                                 :loadData="example"
                                 dynamic
-                                :size="theSize"
-                                style="transition: .3s all ease"
-                    >
-
+                                :size="theSize">
                     </x-cascader>
 
                     <div style="margin-top: 40px;color: #999999">
@@ -29,11 +26,9 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
+                    <br>
+                    <div  v-highlight v-html="js"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -47,6 +42,16 @@
     import collapseItem from '../../.././src/collapse-item'
     import Cascader from '../../.././src/cascader'
     import address from '../../.././src/address.js'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
 
     function ajax(parent_id = 0){
         return new Promise(resolve=>{
@@ -67,48 +72,29 @@
                 selectTab:[1],
                 selected:[1],
                 theSize:'small',
-                content:`
-
-                    <x-button-group>
-                        <x-button @click="theSize='big'">big</x-button>
-                        <x-button @click="theSize='medium'">medium</x-button>
-                        <x-button @click="theSize='small'">small</x-button>
-                    </x-button-group>
-
-
-                    <x-cascader :source.sync="source"
-                                :selected.sync="selected"
-                                :loadData="example"
-                                dynamic
-                                selectToChange
-                                :size="theSize"
-                    >
-
-                    </x-cascader>
-
-                                                        js
-    function ajax(parent_id = 0){
-        return new Promise(resolve=>{
-            let res = address.filter(item=>item.parent_id===parent_id)
-            resolve(res)
-        })
-    }
-
-    export default {
-    data(){
-         theSize:'small',
-    },
-     methods:{
-            example({id},updateSource){
-                ajax(id).then(res=>{
-                    updateSource(res)
-                })
-            }
-        },
-    }
-
-
-`,
+                input1:'```html\n' +
+                    '<x-button-group>\n' +
+                    '    <x-button @click="theSize=\'big\'">big</x-button>\n' +
+                    '    <x-button @click="theSize=\'medium\'">medium</x-button>\n' +
+                    '    <x-button @click="theSize=\'small\'">small</x-button>\n' +
+                    '</x-button-group>\n' +
+                    '\n' +
+                    '<x-cascader :source.sync="source"\n' +
+                    '    :selected.sync="selected"\n' +
+                    '    :loadData="example"\n' +
+                    '    dynamic\n' +
+                    '    :size="theSize">\n' +
+                    '</x-cascader>\n' +
+                    '```',
+                input2:'```js\n' +
+                    'export default {\n' +
+                    '    data(){\n' +
+                    '        return{\n' +
+                    '            theSize:\'small\',\n' +
+                    '        }\n' +
+                    '    }\n' +
+                    '}\n' +
+                    '```',
                 source:[]
             }
         },
@@ -125,7 +111,15 @@
             'x-cascader':Cascader,
             'x-button':Button,
             'x-button-group':ButtonGroup
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+            js() {
+                return marked(this.input2)
+            },
+        },
     }
 </script>
 

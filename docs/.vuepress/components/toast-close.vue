@@ -16,11 +16,10 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
+                    <br>
+                    <br>
+                    <div  v-highlight v-html="js"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -28,47 +27,59 @@
 </template>
 
 <script>
-    import Vue from 'vue'
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
     import plugin from '../../.././src/plugin.js'
     import Button from '../../.././src/button'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     Vue.use(plugin)
     export default {
         name: "grid-arrange",
         data(){
             return {
                 selectTab:[1],
-                content:`
-        <x-button @click="showMsg1" type="success">默认</x-button>
-        <x-button @click="showMsg2" type="success">文字</x-button>
-        <x-button @click="showMsg3" type="success">其他Icon</x-button>
-
-                                                            js
-             showMsg1() {
-                this.$toast('顶部消息',{
-                    type:'success',
-                })
-            },
-            showMsg2() {
-                this.$toast('文字',{
-                    type:'success',
-                    closeButton:{
-                        text:'关闭'
-                    }
-                })
-            },
-            showMsg3() {
-                this.$toast('dianzan Icon',{
-                    type:'success',
-                    closeButton:{
-                        closeIcon:'dianzan'
-                    }
-                })
-            },
-
-
-`
+                input1:'```html\n' +
+                    '<x-button @click="showMsg1" type="success">默认</x-button>\n' +
+                    '<x-button @click="showMsg2" type="success">文字</x-button>\n' +
+                    '<x-button @click="showMsg3" type="success">其他Icon</x-button>\n' +
+                    '```',
+                input2:'```js\n' +
+                    'export default {\n' +
+                    '    methods:{\n' +
+                    '    showMsg1() {\n' +
+                    '      this.$toast(\'顶部消息\',{\n' +
+                    '      type:\'success\',\n' +
+                    '     })\n' +
+                    '    },\n' +
+                    '    showMsg2() {\n' +
+                    '        this.$toast(\'文字\',{\n' +
+                    '           type:\'success\',\n' +
+                    '           closeButton:{\n' +
+                    '           text:\'关闭\'\n' +
+                    '            }\n' +
+                    '        })\n' +
+                    '    },\n' +
+                    '    showMsg3() {\n' +
+                    '        this.$toast(\'dianzan Icon\',{\n' +
+                    '         type:\'success\',\n' +
+                    '         closeButton:{\n' +
+                    '         closeIcon:\'dianzan\'\n' +
+                    '    }\n' +
+                    '      })\n' +
+                    '      },\n' +
+                    '   },\n' +
+                    '}\n' +
+                    '```' +
+                    ''
             }
         },
         methods:{
@@ -98,7 +109,15 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-button':Button
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+            js() {
+                return marked(this.input2)
+            },
+        },
     }
 </script>
 

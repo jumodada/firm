@@ -10,7 +10,6 @@
                         <x-col  span="3" offset="3"  style="background-color: #e6e6e6;height: 50px;border-radius: 8px"></x-col>
                         <x-col span="3" offset="3" style="background-color: #e6e6e6;height: 50px;border-radius: 8px"></x-col>
                         <x-col span="3"  offset="6"style="background-color: #e6e6e6;height: 50px;border-radius: 8px"></x-col>
-
                     </x-row>
                     <div style="margin-top: 15px">
                         <x-row>
@@ -30,11 +29,7 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -46,23 +41,29 @@
     import Col from '../../.././src/col'
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     export default {
         name: "grid-arrange",
         data(){
             return {
                 selectTab:[1],
-                content:`
-    <x-row>
-        <x-col offset="3" span="12"></x-col>
-        <x-col offset="3" span="12"></x-col>
-    </x-row>
-    <x-row>
-        <x-col offset="6" span="12"></x-col>
-    </x-row>
-    <x-row>
-    <x-col  offset="5" span="12"></x-col>
-    </x-row>
-`
+                input1:' \n' +
+                    '```html\n' +
+                    '<x-row arrange="left">\n' +
+                    ' <x-col  span="3" offset="3" ></x-col>\n' +
+                    ' <x-col span="3" offset="3"></x-col>\n' +
+                    ' <x-col span="3"  offset="6"></x-col>\n' +
+                    '</x-row>\n' +
+                    '```'
             }
         },
 
@@ -71,7 +72,12 @@
             'x-col':Col,
             'x-collapse':collapse,
             'x-collapse-item':collapseItem
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+        },
     }
 </script>
 

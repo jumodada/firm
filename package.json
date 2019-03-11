@@ -12,6 +12,11 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
+    "highlight.js": "^9.15.6",
+    "html-loader": "^0.5.5",
+    "markdown-loader": "^5.0.0",
+    "marked": "^0.6.1",
+    "text-loader": "^0.0.1",
     "vue": "^2.6.6"
   },
   "devDependencies": {

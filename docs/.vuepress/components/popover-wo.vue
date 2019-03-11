@@ -9,35 +9,20 @@
                         <x-popover position="left" trigger="hover">
                             <template slot="content" slot-scope="close">
                                 <div>支持内部关闭</div>
-                                <x-button @click="close.close">
-                                    关闭
-                                </x-button>
-
+                                <x-button @click="close.close">关闭</x-button>
                             </template>
                             <x-button>hover</x-button>
                         </x-popover>
                         <x-popover position="bottom">
-                            <template slot="content">
-                                <div>popover内容</div>
-                            </template>
+                            <template slot="content"><div>popover内容</div></template>
                             <x-button>默认</x-button>
                         </x-popover>
                         <x-popover trigger="focus">
                             <template slot="content">
-                                <div class="xxx">
-                                    <div class="xx">
-                                        <x-button>focus</x-button>
-
-                                    </div>
-                                </div>
-                                <div>
                                     <a href="https://www.baidu.com">去百度</a>
-                                </div>
                             </template>
                             <x-button>focus</x-button>
                         </x-popover>
-
-
                     </div>
                     <br>
                     <br>
@@ -52,11 +37,7 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -68,47 +49,42 @@
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
     import Button from '../../.././src/button'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
 
     export default {
         name: "grid-arrange",
         data(){
             return {
                 selectTab:[1],
-                content:`
-              <x-popover position="left" trigger="hover">
-                <template slot="content" slot-scope="close">
-                    <div>支持内部关闭</div>
-                    <x-button @click="close.close">
-                        关闭
-                    </x-button>
-
-                </template>
-                <x-button>hover</x-button>
-            </x-popover>
-            <x-popover position="bottom">
-                <template slot="content">
-                    <div>popover内容</div>
-                </template>
-                <x-button>默认</x-button>
-            </x-popover>
-            <x-popover trigger="focus">
-                <template slot="content">
-                    <div class="xxx">
-                        <div class="xx">
-                            <x-button>focus</x-button>
-
-                        </div>
-                    </div>
-                    <div>
-                        <a href="https://www.baidu.com">去百度</a>
-                    </div>
-                </template>
-                <x-button>点我</x-button>
-            </x-popover>
-
-
-
-`
+                input1:'```html\n' +
+                    '<x-popover position="left" trigger="hover">\n' +
+                    '<template slot="content" slot-scope="close">\n' +
+                    ' <div>支持内部关闭</div>\n' +
+                    ' <x-button @click="close.close">关闭</x-button>\n' +
+                    ' </template>\n' +
+                    ' <x-button>hover</x-button>\n' +
+                    '</x-popover>\n' +
+                    '                        \n' +
+                    '<x-popover position="bottom">\n' +
+                    '  <template slot="content"><div>popover内容</div></template>\n' +
+                    '  <x-button>默认</x-button>\n' +
+                    '</x-popover>\n' +
+                    '                                                \n' +
+                    '<x-popover trigger="focus">\n' +
+                    '  <a href="https://www.baidu.com">去百度</a>\n' +
+                    '  </template> ' +
+                    '<x-button>focus</x-button>\n' +
+                    '</x-popover>\n' +
+                    '```'
             }
         },
         methods:{
@@ -119,7 +95,12 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-button':Button
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+        },
     }
 </script>
 

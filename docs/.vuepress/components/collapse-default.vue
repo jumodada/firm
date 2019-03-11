@@ -49,11 +49,7 @@
                    </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
-             <pre>
-               <code>
-                    {{content}}
-               </code>
-               </pre>
+                    <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -64,6 +60,16 @@
     import collapse from '../../.././src/collapse'
     import collapseItem from '../../.././src/collapse-item'
     import Button from '../../.././src/button'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     export default {
         name: "grid-arrange",
         data(){
@@ -71,25 +77,44 @@
                 selectTab1:[1],
                 selectTab2:['1'],
                 xxx:false,
-                content:`<x-collapse :selected.sync="selectTab2" style="margin-top: 30px" single>
-                           <x-collapse-item name="1" title="英雄">
-                               <div>火猫</div>
-                           </x-collapse-item>
-                           <x-collapse-item name="2" title="装备">
-                               <div>暗灭，电锤</div>
-                           </x-collapse-item>
-                           <x-collapse-item name="3" title="技能">
-                               <div>余烬</div>
-                           </x-collapse-item>
-                           <x-collapse-item name="4" title="地图">
-                               <div>xxxxx</div>
-                           </x-collapse-item>
-                           <x-collapse-item name="5" title="皮肤">
-                               <div>null</div>
-                           </x-collapse-item>
-                       </x-collapse>
-
-`
+                input1:'```html\n' +
+                    ' <x-collapse :selected.sync="selectTab2">\n' +
+                    ' <x-collapse-item name="1" title="英雄">\n' +
+                    '     <div>火猫</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="2" title="装备">\n' +
+                    '      <div>暗灭，电锤</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="3" title="技能">\n' +
+                    '      <div>余烬</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="4" title="地图">\n' +
+                    '     <div>xxxxx</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="5" title="皮肤">\n' +
+                    '    <div>null</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    '</x-collapse>\n' +
+                    '\n' +
+                    '<x-collapse :selected.sync="selectTab2" style="margin-top: 30px" single>\n' +
+                    ' <x-collapse-item name="1" title="英雄">\n' +
+                    '     <div>火猫</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="2" title="装备">\n' +
+                    '    <div>暗灭，电锤</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="3" title="技能">\n' +
+                    '     <div>余烬</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="4" title="地图">\n' +
+                    '     <div>xxxxx</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' <x-collapse-item name="5" title="皮肤">\n' +
+                    '      <div>null</div>\n' +
+                    ' </x-collapse-item>\n' +
+                    ' </x-collapse>\n' +
+                    '\n' +
+                    '```'
             }
         },
         methods:{
@@ -104,7 +129,12 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-button':Button
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+        },
     }
 </script>
 

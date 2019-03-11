@@ -14,11 +14,10 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
+                    <br>
+                    <br>
+                    <div  v-highlight v-html="js"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -31,25 +30,36 @@
     import collapseItem from '../../.././src/collapse-item'
     import plugin from '../../.././src/plugin.js'
     import Button from '../../.././src/button'
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     Vue.use(plugin)
     export default {
         name: "grid-arrange",
         data(){
             return {
                 selectTab:[1],
-                content:`
-        <x-button @click="showMsg1" type="success">默认</x-button>
-
-
-                                                            js
-              showMsg1() {
-                this.$toast('<a href="https://www.google.com/">去谷歌</a>',{
-                    type:'success',
-                    enableHTML:true
-                })
-            },
-
-`
+                input1:'```html\n' +
+                    '<x-button @click="showMsg1" type="success">默认</x-button>\n' +
+                    '```',
+                input2:'```js\n' +
+                    'export default {\n' +
+                    '     methods:{\n' +
+                    '     showMsg1() {\n' +
+                    '      this.$toast(\'<a href="https://www.google.com/">去谷歌</a>\',{\n' +
+                    '      type:\'success\',\n' +
+                    '      enableHTML:true\n' +
+                    '      })\n' +
+                    '  },\n' +
+                    '   },\n' +
+                    '}\n' +
+                    '```'
             }
         },
         methods:{
@@ -64,7 +74,15 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-button':Button
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+            js() {
+                return marked(this.input2)
+            },
+        },
     }
 </script>
 

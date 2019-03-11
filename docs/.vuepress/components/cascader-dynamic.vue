@@ -8,9 +8,7 @@
                     <x-cascader :source.sync="source"
                                 :selected.sync="selected"
                                 :loadData="example"
-                                dynamic
-                    >
-
+                                dynamic>
                     </x-cascader>
                     <div style="margin-top: 40px;color: #999999">
                         使用 <code>dynamic</code>变为动态选择栏。
@@ -33,11 +31,9 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
+                    <br>
+                    <div  v-highlight v-html="js"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -49,7 +45,16 @@
     import collapseItem from '../../.././src/collapse-item'
     import Cascader from '../../.././src/cascader'
     import address from '../../.././src/address.js'
-
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     function ajax(parent_id = 0){
         return new Promise(resolve=>{
             let res = address.filter(item=>item.parent_id===parent_id)
@@ -70,64 +75,43 @@
             return {
                 selectTab:[1],
                 selected:[1],
-                content:`
-                    <x-cascader :source.sync="source"
-                                :selected.sync="selected"
-                                :loadData="example"
-                                dynamic>
-                    </x-cascader>
-
-                                                        js
-    function ajax(parent_id = 0){
-        return new Promise(resolve=>{
-            let res = address.filter(item=>item.parent_id===parent_id)
-            setTimeout(()=>{
-               resolve(res)
-           },1000)
-        })
-    }
-
-    export default {
-     methods:{
-            example({id},updateSource){
-                ajax(id).then(res=>{
-                    updateSource(res)
-                })
-            }
-        },
-    }
-
-
-    数据格式
-     {
-        "id": 1,
-        "name": "北京",
-        "parent_id": 0,
-        "k1": "b",
-        "k2": "bj",
-        "k3": "beijing",
-        "k4": "",
-        "k5": "市",
-        "k6": 110000,
-        "k7": "010",
-        "isLeaf":false
-    },
-     {
-        "id": 36,
-        "name": "东城",
-        "parent_id": 1,
-        "k1": "d",
-        "k2": "dc",
-        "k3": "dongcheng",
-        "k4": "",
-        "k5": "区",
-        "k6": 110101,
-        "k7": "010",
-        "isLeaf":true
-    }
-
-
-`,
+                input1:'```html\n' +
+                    '<x-cascader :source.sync="source"\n' +
+                    ' :selected.sync="selected"\n' +
+                    ' :loadData="example"\n' +
+                    ' dynamic>\n' +
+                    '</x-cascader>\n' +
+                    '```',
+                input2:'```js\n' +
+                    '\n' +
+                    'function ajax(parent_id = 0){\n' +
+                    '        return new Promise(resolve=>{\n' +
+                    '        let res = address.filter(item=>item.parent_id===parent_id)\n' +
+                    '        setTimeout(()=>{\n' +
+                    '          resolve(res)\n' +
+                    '        },1000)\n' +
+                    '        })\n' +
+                    '    }\n' +
+                    'export default {\n' +
+                    '     created(){\n' +
+                    '              ajax(0).then(res=>{\n' +
+                    '                  this.source = res\n' +
+                    '              })\n' +
+                    '            },\n' +
+                    '    data(){\n' +
+                    '        return {\n' +
+                    '            source:[]\n' +
+                    '        }     \n' +
+                    '    },\n' +
+                    '     methods:{\n' +
+                    '        example({id},updateSource){\n' +
+                    '        ajax(id).then(res=>{\n' +
+                    '        updateSource(res)\n' +
+                    '      })\n' +
+                    '      }\n' +
+                    '  },\n' +
+                    '}\n' +
+                    '```',
                 source:[]
             }
         },
@@ -142,7 +126,15 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-cascader':Cascader
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+            js() {
+                return marked(this.input2)
+            },
+        },
     }
 </script>
 

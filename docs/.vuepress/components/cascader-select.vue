@@ -8,9 +8,7 @@
                                 :selected.sync="selected"
                                 :loadData="example"
                                 dynamic
-                                selectToChange
-                    >
-
+                                selectToChange>
                     </x-cascader>
                     <div style="margin-top: 40px;color: #999999">
                         使用 <code>selectToChange</code>，既点既显。这里发现有个问题就是再次点击选择栏，之前选的地区虽然是有选中的效果，但是并没有回到之前的高度位置，也就是要重新下拉到之前选中的地方。
@@ -18,11 +16,7 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
-           <pre>
-               <code>
-                    {{content}}
-               </code>
-            </pre>
+                    <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -34,7 +28,16 @@
     import collapseItem from '../../.././src/collapse-item'
     import Cascader from '../../.././src/cascader'
     import address from '../../.././src/address.js'
-
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/atom-one-dark.css'
+    import marked from 'marked'
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     function ajax(parent_id = 0){
         return new Promise(resolve=>{
             let res = address.filter(item=>item.parent_id===parent_id)
@@ -53,35 +56,14 @@
             return {
                 selectTab:[1],
                 selected:[1],
-                content:`
-                    <x-cascader :source.sync="source"
-                                :selected.sync="selected"
-                                :loadData="example"
-                                dynamic
-                                selectToChange
-                                >
-                    </x-cascader>
-
-                                                        js
-    function ajax(parent_id = 0){
-        return new Promise(resolve=>{
-            let res = address.filter(item=>item.parent_id===parent_id)
-            resolve(res)
-        })
-    }
-
-    export default {
-     methods:{
-            example({id},updateSource){
-                ajax(id).then(res=>{
-                    updateSource(res)
-                })
-            }
-        },
-    }
-
-
-`,
+                input1:'```html\n' +
+                    '<x-cascader :source.sync="source"\n' +
+                    '   :selected.sync="selected"\n' +
+                    '   :loadData="example"\n' +
+                    '   dynamic\n' +
+                    '   selectToChange>\n' +
+                    '</x-cascader>\n' +
+                    '```',
                 source:[]
             }
         },
@@ -96,7 +78,15 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-cascader':Cascader
-        }
+        },
+        computed: {
+            html() {
+                return marked(this.input1)
+            },
+            js() {
+                return marked(this.input2)
+            },
+        },
     }
 </script>
 
