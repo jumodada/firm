@@ -279,7 +279,7 @@
     @import "var";
 
     .fade-enter-active, .fade-leave-active {
-        transition: all .3s;
+        transition: all .2s;
     }
     .fade-enter, .fade-leave-to  {
         opacity: 0;
