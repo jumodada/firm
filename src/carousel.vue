@@ -81,7 +81,6 @@
                             reverse = false
                          }
                          if(this.lastSelected===0&&this.selectedIndex===this.$children.length-1&&this.hasTimer){
-
                          reverse = true
                          }
                          vm.reverse = reverse
