@@ -112,7 +112,6 @@
                 return   this.selected || first.name
             },
             clickSelected(index){
-                this.duration=0.6
                 clearInterval(this.timer2)
                 if(this.selectedIndex===index)return
 
@@ -133,7 +132,8 @@
             hoveroutListener(){
                 this.automationPlay()
                 this.hasTimer = true
-                let duration=0.6
+                let duration= .6
+                this.duration=.6
                 this.nameItems.forEach(vm=>vm.duration=duration)
             },
             clearAndSet(){
@@ -267,6 +267,7 @@
                     border-radius: 4px;
                     transition: all .6s;
                     opacity: 0.6;
+                    cursor: pointer;
                     &:hover{
                         border:1px solid #ef6c14;
                         opacity: 0.1;
