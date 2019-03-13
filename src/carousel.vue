@@ -74,19 +74,19 @@
             },
             updateChildrens(){
 
-                         let selected = this.getSelected()
-                         this.$children.forEach(vm=>{
-                         let reverse =this.selectedIndex > this.lastSelected?false:true
-                         if(this.lastSelected===this.$children.length-1&&this.selectedIndex===0&&this.hasTimer){
+                    let selected = this.getSelected()
+                    this.$children.forEach(vm=>{
+                     let reverse =this.selectedIndex > this.lastSelected?false:true
+                      if(this.lastSelected===this.$children.length-1&&this.selectedIndex===0&&this.hasTimer){
                             reverse = false
-                         }
-                         if(this.lastSelected===0&&this.selectedIndex===this.$children.length-1&&this.hasTimer){
-                         reverse = true
-                         }
-                         vm.reverse = reverse
-                         this.$nextTick(()=>{
-                            vm.selected = selected
-                         })
+                       }
+                      if(this.lastSelected===0&&this.selectedIndex===this.$children.length-1&&this.hasTimer){
+                      reverse = true
+                      }
+                      vm.reverse = reverse
+                      this.$nextTick(()=>{
+                      vm.selected = selected
+                      })
                 })
             },
             getSelected(){
@@ -94,9 +94,15 @@
                 return   this.selected || first.name
             },
             clickSelected(index){
+                this.duration=0.6
+                clearInterval(this.timer2)
+                if(this.selectedIndex===index)return
+
                 this.hoverinListener()
                 this.lastSelected= this.selectedIndex
-                this.$emit('update:selected',this.names[index])
+
+                this.forwardAndBack(this.lastSelected,index)
+
             },
             autoPlaySelected(index){
                 this.lastSelected= this.selectedIndex
@@ -109,6 +115,43 @@
             hoveroutListener(){
                 this.automationPlay()
                 this.hasTimer = true
+            },
+            clearAndSet(){
+                let durationTime = .6
+                clearInterval(this.timer2)
+                setTimeout(()=>{
+                    this.$children.forEach(vm=>vm.duration=durationTime)
+                    this.duration=durationTime
+                })
+            },
+            forwardAndBack(oldVal,newVal){
+                let num
+                let duration
+                let theIndex
+                let oldIndex =oldVal
+                let newIndex =newVal
+                let animationDuration = 500
+
+                num= oldIndex-newIndex
+                if(oldIndex>newIndex){
+                    duration  = this.duration /num
+                    theIndex = oldIndex-1
+
+                }else{
+                    duration  = -this.duration /num
+                    theIndex = oldIndex+1
+                }
+                this.duration = duration
+                this.$children.forEach(vm=>vm.duration=duration)
+                this.$emit('update:selected',this.names[theIndex])
+                if(theIndex===newIndex)return
+                this.timer2 = setInterval(()=>{
+                    if(theIndex===newIndex){
+                        this.clearAndSet()
+                    }
+                    this.$emit('update:selected',this.names[theIndex])
+                    oldIndex>newIndex?theIndex--:theIndex++
+                },duration*animationDuration)
             }
 
         }

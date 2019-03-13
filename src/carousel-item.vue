@@ -1,8 +1,8 @@
 <template>
   <transition @before-enter="beforeEnter"
-              @enter="enter"
-              @before-leave="beforeLeave"
-              @leave="leave">
+              @leave="leave"
+              name="slide"
+  >
     <div class="carousel-item" v-if="visible" :class="{reverse}">
         <slot></slot>
     </div>
@@ -21,7 +21,8 @@
         data(){
             return{
                 selected:null,
-                reverse:false
+                reverse:false,
+                duration:.6
             }
         },
         computed:{
@@ -29,54 +30,46 @@
                 return this.selected === this.name
             }
         },
+        mounted(){
+          this.$parent.duration = this.duration
+        },
         methods:{
             beforeEnter(el) {
-                  el.style.opacity = 0
-                  el.style.transform ='translateX(100%)'
-            },
-            enter(el) {
-                   el.style.opacity = 1
-                   el.style.transform  = 'translateX(0)'
-            },
-            beforeLeave(el) {
-                // el.style.position='absolute'
-                // el.style.top= 0
-                // el.style.left= 0
-                el.style.width='100%'
-                el.style.height='100%'
-                el.style.opacity = 1
-                el.style.transform  = 'translateX(0)'
+                el.style.transition = `${this.duration}s all ease-in-out`
             },
             leave(el) {
-                el.style.opacity = 0
-                el.style.transform = 'translateX(-100%) scale(0.5)'
+                el.style.transition = `${this.duration}s all ease-in-out`
             },
         }
     }
 </script>
 
 <style scoped lang="scss">
-
+    .slide-leave-active {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .slide-enter {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    .slide-enter.reverse {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    .slide-leave-to {
+        transform: translateX(-100%) scale(0.5);
+        opacity: 0;
+    }
+    .slide-leave-to.reverse {
+        transform: translateX(100%) scale(0.5);
+        opacity: 0;
+    }
     .carousel-item{
-            transition: 1s all ease-in-out;
+
     }
 </style>
-.slide-enter-active, .slide-leave-active {
-transition: all .6s;
-}
-.slide-enter {
-transform: translateX(100%);
-opacity: 0;
-}
-.slide-enter.reverse {
-transform: translateX(-100%);
-opacity: 0;
-}
-.slide-leave-to {
-transform: translateX(-100%) scale(0.5);
-opacity: 0;
-}
-.slide-leave-to.reverse {
-transform: translateX(100%) scale(0.5);
-opacity: 0;
-}
+

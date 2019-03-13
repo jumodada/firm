@@ -21,10 +21,23 @@
                                 <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">
                             </div>
                         </x-carousel-item>
+                        <x-carousel-item name="4">
+                            <div class="box">
+                                <img src="http://img.bimg.126.net/photo/31kQlCGP44-34Q5yxvoqmw==/5770237022569104952.jpg" alt="">
+                            </div>
+                        </x-carousel-item>
+                        <x-carousel-item name="5">
+                            <div class="box">
+                                <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">
+                            </div>
+                        </x-carousel-item>
+                        <x-carousel-item name="6">
+                            <div class="box">
+                                <img src="http://img.bimg.126.net/photo/Vhfv3GNwUvVBHERAiE3UGw==/5770237022569104955.jpg" alt="">
+                            </div>
+                        </x-carousel-item>
 
                     </x-carousel>
-
-
                     <br>
                     <br>
                     <br>
