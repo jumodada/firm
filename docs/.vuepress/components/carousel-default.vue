@@ -5,44 +5,44 @@
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab" exhibition>
                 <template slot="description">
-                    <x-carousel :selected.sync="selected">
-                        <x-carousel-item name="1">
-                            <div class="box">
-                                <img src="http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg" alt="">
-                            </div>
-                        </x-carousel-item>
-                        <x-carousel-item name="2">
-                            <div class="box">
-                                <img src="http://pic.58pic.com/58pic/15/68/59/71X58PICNjx_1024.jpg" alt="">
-                            </div>
-                        </x-carousel-item>
-                        <x-carousel-item name="3">
-                            <div class="box">
-                                <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">
-                            </div>
-                        </x-carousel-item>
-                        <x-carousel-item name="4">
-                            <div class="box">
-                                <img src="http://img.bimg.126.net/photo/31kQlCGP44-34Q5yxvoqmw==/5770237022569104952.jpg" alt="">
-                            </div>
-                        </x-carousel-item>
-                        <x-carousel-item name="5">
-                            <div class="box">
-                                <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">
-                            </div>
-                        </x-carousel-item>
-                        <x-carousel-item name="6">
-                            <div class="box">
-                                <img src="http://img.bimg.126.net/photo/Vhfv3GNwUvVBHERAiE3UGw==/5770237022569104955.jpg" alt="">
-                            </div>
-                        </x-carousel-item>
+                        <x-carousel :selected.sync="selected">
+                            <x-carousel-item name="1">
+                                <div class="box">
+                                    <img src="http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg" alt="">
+                                </div>
+                            </x-carousel-item>
+                            <x-carousel-item name="2">
+                                <div class="box">
+                                    <img src="http://img.juimg.com/tuku/yulantu/110123/292-11012313544655.jpg" alt="">
+                                </div>
+                            </x-carousel-item>
+                            <x-carousel-item name="3">
+                                <div class="box">
+                                    <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">
+                                </div>
+                            </x-carousel-item>
+                            <x-carousel-item name="4">
+                                <div class="box">
+                                    <img src="http://img.bimg.126.net/photo/31kQlCGP44-34Q5yxvoqmw==/5770237022569104952.jpg" alt="">
+                                </div>
+                            </x-carousel-item>
+                            <x-carousel-item name="5">
+                                <div class="box">
+                                    <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">
+                                </div>
+                            </x-carousel-item>
+                            <x-carousel-item name="6">
+                                <div class="box">
+                                    <img src="http://img.bimg.126.net/photo/Vhfv3GNwUvVBHERAiE3UGw==/5770237022569104955.jpg" alt="">
+                                </div>
+                            </x-carousel-item>
 
-                    </x-carousel>
+                        </x-carousel>
                     <br>
                     <br>
                     <br>
                     <br>
-                    <div style="color: #666666">全局消息弹框默认出现在顶部,可以通过设置 <code>position</code> 设置消息出现的位置(目前就三个)
+                    <div style="color: #666666">每个<code>item</code>都必须对应一个数字的<code>name</code>，默认开启轮播展示。
                     </div>
                 </template>
                 <x-collapse-item name="1" title="代码">
@@ -79,7 +79,40 @@
         data(){
             return {
                 selectTab:[1],
-                input1:'',
+                input1:'```html\n' +
+                    '<x-carousel :selected.sync="selected">\n' +
+                    '  <x-carousel-item name="1">\n' +
+                    '    <div class="box">\n' +
+                    '      <img src="http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg" alt="">\n' +
+                    '    </div>\n' +
+                    '</x-carousel-item>\n' +
+                    '<x-carousel-item name="2">\n' +
+                    '    <div class="box">\n' +
+                    '      <img src="http://img.juimg.com/tuku/yulantu/110123/292-11012313544655.jpg" alt="">\n' +
+                    '    </div>\n' +
+                    '</x-carousel-item>\n' +
+                    '<x-carousel-item name="3">\n' +
+                    '    <div class="box">\n' +
+                    '      <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">\n' +
+                    '    </div>\n' +
+                    '</x-carousel-item>\n' +
+                    '<x-carousel-item name="4">\n' +
+                    '    <div class="box">\n' +
+                    '      <img src="http://img.bimg.126.net/photo/31kQlCGP44-34Q5yxvoqmw==/5770237022569104952.jpg" alt="">\n' +
+                    '    </div>\n' +
+                    '</x-carousel-item>\n' +
+                    '<x-carousel-item name="5">\n' +
+                    '    <div class="box">\n' +
+                    '      <img src="http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/lvpics/w=1000/sign=a669f57d3a12b31bc76cc929b628377a/503d269759ee3d6d801feef140166d224f4ade2b.jpg" alt="">\n' +
+                    '    </div>\n' +
+                    '</x-carousel-item>\n' +
+                    '<x-carousel-item name="6">\n' +
+                    '    <div class="box">\n' +
+                    '      <img src="http://img.bimg.126.net/photo/Vhfv3GNwUvVBHERAiE3UGw==/5770237022569104955.jpg" alt="">\n' +
+                    '    </div>\n' +
+                    '</x-carousel-item>\n' +
+                    '</x-carousel>\n' +
+                    '```',
                 input2:'',
                 selected:'1'
             }
