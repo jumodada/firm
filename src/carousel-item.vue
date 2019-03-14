@@ -4,19 +4,19 @@
               name="slide"
   >
     <div class="carousel-item" v-if="visible" :class="{reverse}">
-        <slot></slot>
+      <slot></slot>
     </div>
-</transition>
+  </transition>
 </template>
 
 <script>
     export default {
         name: "carousel-item",
         props:{
-          name:{
-              type:String,
-              required:true
-          }
+            name:{
+                type:String,
+                required:true
+            }
         },
         data(){
             return{
@@ -31,7 +31,7 @@
             }
         },
         mounted(){
-          this.$parent.duration = this.duration
+            this.$parent.duration = this.duration
         },
         methods:{
             beforeEnter(el) {
@@ -45,31 +45,29 @@
 </script>
 
 <style scoped lang="scss">
-    .slide-leave-active {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-    }
-    .slide-enter {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    .slide-enter.reverse {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    .slide-leave-to {
-        transform: translateX(-100%) scale(0.5);
-        opacity: 0;
-    }
-    .slide-leave-to.reverse {
-        transform: translateX(100%) scale(0.5);
-        opacity: 0;
-    }
-    .carousel-item{
-
-    }
+  .slide-leave-active {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .slide-enter {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  .slide-enter.reverse {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  .slide-leave-to {
+    transform: translateX(-100%) scale(0.5);
+    opacity: 0;
+  }
+  .slide-leave-to.reverse {
+    transform: translateX(100%) scale(0.5);
+    opacity: 0;
+  }
+  .carousel-item{
+  }
 </style>
-
