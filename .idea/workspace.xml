@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/components/carousel/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/carousel/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/carousel-item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/carousel-item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/carousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/carousel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/button.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/button.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/popover.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/popover.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -53,7 +42,7 @@
           <entry key="js" value="60" />
           <entry key="json" value="20" />
           <entry key="lock" value="4" />
-          <entry key="md" value="52" />
+          <entry key="md" value="55" />
           <entry key="scss" value="2" />
           <entry key="vue" value="276" />
           <entry key="yml" value="1" />
@@ -64,7 +53,7 @@
           <entry key="HTML" value="3" />
           <entry key="JSON" value="20" />
           <entry key="JavaScript" value="60" />
-          <entry key="Markdown" value="52" />
+          <entry key="Markdown" value="55" />
           <entry key="SCSS" value="2" />
           <entry key="Vue.js" value="276" />
           <entry key="YAML" value="1" />
@@ -128,12 +117,46 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/components/carousel/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="611">
+              <first_editor relative-caret-position="729">
                 <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/components/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="230">
+                <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="391">
+                <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               </first_editor>
               <second_editor />
             </state>
@@ -144,7 +167,7 @@
         <entry file="file://$PROJECT_DIR$/src/carousel.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1490">
-              <caret line="121" column="38" lean-forward="true" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
+              <caret line="121" column="38" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
               <folding>
                 <element signature="e#858#883#0" expanded="true" />
               </folding>
@@ -221,7 +244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/unit/example.spec.js" />
         <option value="$PROJECT_DIR$/tests/unit/button.spec.js" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/tests/unit/popover.spec.js" />
@@ -270,8 +292,9 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" />
         <option value="$PROJECT_DIR$/src/carousel.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" />
-        <option value="$PROJECT_DIR$/docs/README.md" />
         <option value="$PROJECT_DIR$/docs/components/carousel/README.md" />
+        <option value="$PROJECT_DIR$/docs/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -437,12 +460,12 @@
       <workItem from="1552536537509" duration="303000" />
       <workItem from="1552543927667" duration="127000" />
       <workItem from="1552544113516" duration="2000" />
-      <workItem from="1552544236749" duration="6931000" />
+      <workItem from="1552544236749" duration="7193000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322810000" />
+    <option name="totallyTimeSpent" value="323072000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -661,22 +684,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Desktop/My-Vue-Wheel-master/yarn.lock" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/toast-default.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -795,20 +802,10 @@
     <entry file="file://$PROJECT_DIR$/src/carousel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1490">
-          <caret line="121" column="38" lean-forward="true" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
+          <caret line="121" column="38" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
           <folding>
             <element signature="e#858#883#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="481">
-            <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -828,8 +825,36 @@
     <entry file="file://$PROJECT_DIR$/docs/components/carousel/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="611">
+          <first_editor relative-caret-position="729">
             <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/components/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="230">
+            <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="391">
+            <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           </first_editor>
           <second_editor />
         </state>

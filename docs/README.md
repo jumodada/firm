@@ -37,7 +37,7 @@
 
 
 ## 官网
- https://jumodada.github.io/My-Vue-Wheel/
+ https://jumodada.github.io/vueXin/
 
 ## 文档
 
