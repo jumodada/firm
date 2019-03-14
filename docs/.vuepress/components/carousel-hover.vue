@@ -53,12 +53,12 @@
     </div>
 </template>
 <script>
-    import Carousel from '../../../src/carousel'
-    import carouselItem from '../../../src/carousel-item'
-    import plugin from '../../../src/plugin.js'
-    import Button from '../../../src/button'
-    import collapse from '../../../src/collapse'
-    import collapseItem from '../../../src/collapse-item'
+    import Carousel from '../../../src/Exhibition/carousel'
+    import carouselItem from '../../../src/Exhibition/carousel-item'
+    import plugin from '../../../src/tickling/plugin.js'
+    import Button from '../../../src/currency/button'
+    import collapse from '../../../src/Exhibition/collapse'
+    import collapseItem from '../../../src/Exhibition/collapse-item'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'
@@ -109,7 +109,7 @@
                     '    </div>\n' +
                     '  </x-carousel-item>\n' +
                     '</x-carousel>\n' +
-                    '```'
+                    '```;'
             }
         },
         methods:{

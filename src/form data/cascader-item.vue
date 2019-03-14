@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import Icon from './icon'
+    import Icon from '../currency/icon'
     export default {
         name: "xCascaderItems",
         props: {
@@ -153,7 +153,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "var";
+    @import "../var";
 
 
     .cascader-item{

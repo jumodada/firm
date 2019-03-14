@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import xIcon from './icon'
+    import xIcon from '../currency/icon'
     export default {
         name: "Input",
         components:{
@@ -57,7 +57,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "var";
+    @import "../var";
 
       .wrapper{
           font-size: $font-size;

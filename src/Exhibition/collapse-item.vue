@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import Icon from './icon'
+    import Icon from '../currency/icon'
     export default {
         name: "x-collapse-item",
         data(){

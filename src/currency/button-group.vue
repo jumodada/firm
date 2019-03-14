@@ -22,7 +22,7 @@
  .x-button-group{
     display: inline-flex;
     vertical-align: center;
-    @import "var";
+    @import "../var";
 
      /deep/ .x-button-wrapper{
 

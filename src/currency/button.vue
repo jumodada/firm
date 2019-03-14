@@ -29,7 +29,7 @@
 </template>
 <script>
 
-    import Icon from'./icon.vue'
+    import Icon from './icon.vue'
     export default {
         name:'x-button',
         components:{
@@ -151,7 +151,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "var";
+    @import "../var";
     @keyframes loop {
         to {
             top: -8px;

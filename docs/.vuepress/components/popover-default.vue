@@ -132,10 +132,10 @@
 </template>
 
 <script>
-    import popover from '../../.././src/popover'
-    import collapse from '../../.././src/collapse'
-    import collapseItem from '../../.././src/collapse-item'
-    import Button from '../../.././src/button'
+    import popover from '../../../src/Exhibition/popover'
+    import collapse from '../../../src/Exhibition/collapse'
+    import collapseItem from '../../../src/Exhibition/collapse-item'
+    import Button from '../../../src/currency/button'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'

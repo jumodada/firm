@@ -47,7 +47,7 @@
 </template>
 
 <script>
-    import Icon from './icon'
+    import Icon from '../currency/icon'
     import xCascaderItems from './cascader-item'
     export default {
         name: 'x-',
@@ -276,7 +276,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "var";
+    @import "../var";
 
     .fade-enter-active, .fade-leave-active {
         transition: all .2s;

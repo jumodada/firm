@@ -10,7 +10,7 @@
 <script>
 
     export default {
-        name: "g-slider",
+        name: "x-slider",
         data(){
             return {
                 hide:false

@@ -34,10 +34,10 @@
 </template>
 
 <script>
-    import collapse from '../../.././src/collapse'
-    import collapseItem from '../../.././src/collapse-item'
-    import Button from '../../.././src/button'
-    import ButtonGroup from '../../.././src/button-group'
+    import collapse from '../../../src/Exhibition/collapse'
+    import collapseItem from '../../../src/Exhibition/collapse-item'
+    import Button from '../../../src/currency/button'
+    import ButtonGroup from '../../../src/currency/button-group'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'

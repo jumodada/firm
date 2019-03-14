@@ -26,9 +26,9 @@
 </template>
 
 <script>
-    import collapse from '../../.././src/collapse'
-    import collapseItem from '../../.././src/collapse-item'
-    import Cascader from '../../.././src/cascader'
+    import collapse from '../../../src/Exhibition/collapse'
+    import collapseItem from '../../../src/Exhibition/collapse-item'
+    import Cascader from '../../../src/form data/cascader'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'
