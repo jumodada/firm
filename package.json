@@ -9,7 +9,8 @@
     "test": "vue-cli-service test:unit",
     "p": "yarn run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/vueXin.git master:gh-pages;",
     "dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "cao":"vuepress eject"
   },
   "dependencies": {
     "highlight.js": "^9.15.6",
