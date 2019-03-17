@@ -4,19 +4,15 @@
   display inline-block
   width 0
   height 0
+  transition .3s all
+  border-left 4px solid transparent
+  border-right 4px solid transparent
+  border-bottom 6px solid $arrowBgColor
   &.up
-    border-left 4px solid transparent
-    border-right 4px solid transparent
-    border-bottom 6px solid $arrowBgColor
+    transform rotate(0deg)
   &.down
-    border-left 4px solid transparent
-    border-right 4px solid transparent
-    border-top 6px solid $arrowBgColor
+    transform rotate(180deg)
   &.right
-    border-top 4px solid transparent
-    border-bottom 4px solid transparent
-    border-left 6px solid $arrowBgColor
+   transform rotate(90deg)
   &.left
-    border-top 4px solid transparent
-    border-bottom 4px solid transparent
-    border-right 6px solid $arrowBgColor
+   transform rotate(270deg)

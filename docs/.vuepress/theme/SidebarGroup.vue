@@ -54,7 +54,7 @@ export default {
 
 .sidebar-heading
   color rgb(81, 90, 110)
-  transition color .15s ease
+  transition .4s all ease
   cursor pointer
   font-size 1.1em
   font-weight bold
@@ -63,7 +63,7 @@ export default {
   margin-top 0
   margin-bottom 0.5rem
   &.open, &:hover
-    color inherit
+    color #e0620d
   .arrow
     position relative
     top -0.12em
