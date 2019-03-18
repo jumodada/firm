@@ -83,11 +83,15 @@ function resolveOpenGroupIndex (route, items) {
 @import 'styles/config.styl'
 
 .sidebar
+  &::-webkit-scrollbar
+    display none
+  transition .4s all ease-in
   ul
     padding 0
     margin 0
     list-style-type none
     color:white
+    transition .4s all ease-in
   a
     display inline-block
   .nav-links

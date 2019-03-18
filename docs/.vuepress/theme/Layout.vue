@@ -72,10 +72,15 @@ export default {
   data () {
     return {
       isSidebarOpen: false,
-      swUpdateEvent: null
+      swUpdateEvent: null,
+        eventBus:new Vue(),
     }
   },
-
+    provide(){
+        return {
+            eventBus: this.eventBus
+        }
+    },
   computed: {
     shouldShowNavbar () {
       const { themeConfig } = this.$site

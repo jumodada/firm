@@ -1,64 +1,64 @@
 <template>
-  <div class="page">
-    <slot name="top"/>
+    <div class="page">
+      <slot name="top"/>
+      <transition :name="name">
+      <Content :custom="false"/>
+      </transition>
+      <div class="page-edit">
+        <div
+                class="edit-link"
+                v-if="editLink"
+        >
+          <a
+                  :href="editLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+          >{{ editLinkText }}</a>
+          <OutboundLink/>
+        </div>
 
-    <Content :custom="false"/>
-
-    <div class="page-edit">
-      <div
-        class="edit-link"
-        v-if="editLink"
-      >
-        <a
-          :href="editLink"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ editLinkText }}</a>
-        <OutboundLink/>
+        <div
+                class="last-updated"
+                v-if="lastUpdated"
+        >
+          <span class="prefix">{{ lastUpdatedText }}: </span>
+          <span class="time">{{ lastUpdated }}</span>
+        </div>
       </div>
 
-      <div
-        class="last-updated"
-        v-if="lastUpdated"
-      >
-        <span class="prefix">{{ lastUpdatedText }}: </span>
-        <span class="time">{{ lastUpdated }}</span>
-      </div>
-    </div>
-
-    <div class="page-nav" v-if="prev || next">
-      <p class="inner">
+      <div class="page-nav" v-if="prev || next">
+        <p class="inner">
         <span
-          v-if="prev"
-          class="prev"
+                v-if="prev"
+                class="prev"
         >
           ←
           <router-link
-            v-if="prev"
-            class="prev"
-            :to="prev.path"
+                  v-if="prev"
+                  class="prev"
+                  :to="prev.path"
           >
             {{ prev.title || prev.path }}
           </router-link>
         </span>
 
-        <span
-          v-if="next"
-          class="next"
-        >
+          <span
+                  v-if="next"
+                  class="next"
+          >
           <router-link
-            v-if="next"
-            :to="next.path"
+                  v-if="next"
+                  :to="next.path"
           >
             {{ next.title || next.path }}
           </router-link>
           →
         </span>
-      </p>
-    </div>
+        </p>
+      </div>
 
-    <slot name="bottom"/>
-  </div>
+      <slot name="bottom"/>
+    </div>
 </template>
 
 <script>
@@ -66,7 +66,21 @@ import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
 
 export default {
   props: ['sidebarItems'],
-
+    inject:['eventBus'],
+    data(){
+      return{
+          name:'down'
+      }
+    },
+    mounted(){
+        this.eventBus.$on('xxx',(val)=>{
+            if(!val){
+               this.name='up'
+            }else{
+                this.name='down'
+            }
+      })
+    },
   computed: {
     lastUpdated () {
       if (this.$page.lastUpdated) {
@@ -199,8 +213,24 @@ function find (page, items, offset) {
 @import 'styles/config.styl'
 @require 'styles/wrapper.styl'
 
-.page
-  padding-bottom 2rem
+.up-enter-active
+    transition all .8s ease
+.up-leave-active
+    transition all .4s ease-out
+.up-enter
+  transform translateY(-100%)
+.up-leave-to
+    transform translateY(100%)
+
+.down-enter-active
+    transition all .8s ease
+.down-leave-active
+    transition all .4s ease-out
+.down-enter
+    transform translateY(100%)
+    opacity 0
+.down-leave-to
+    transform translateY(-100%)
 
 .page-edit
   @extend $wrapper

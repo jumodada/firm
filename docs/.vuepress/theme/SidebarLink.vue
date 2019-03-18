@@ -1,95 +1,96 @@
+<template>
+<div class="SidebarLink">
+    <ul>
+       <li  class="SidebarLink-li" @click="selectedLi" :class="{active:$route.path===item.path}">
+            {{item.title}}
+       </li>
+        <p v-for="(child,index) in item.headers"
+           class="SidebarLink-p"
+           @click="selectedP(index,child)"
+           :class="{active:index===selectedPItem}"
+           v-if="$route.path===item.path">
+            {{child.title}}
+        </p>
+    </ul>
+</div>
+</template>
+
+
 <script>
-import { isActive, hashRE, groupHeaders } from './util'
-
-export default {
-  functional: true,
-
-  props: ['item'],
-
-  render (h, { parent: { $page, $site, $route }, props: { item }}) {
-    // use custom active class matching logic
-    // due to edge case of paths ending with / + hash
-    const selfActive = isActive($route, item.path)
-    // for sidebar: auto pages, a hash link should be active if one of its child
-    // matches
-    const active = item.type === 'auto'
-      ? selfActive || item.children.some(c => isActive($route, item.basePath + '#' + c.slug))
-      : selfActive
-    const link = renderLink(h, item.path, item.title || item.path, active)
-    const configDepth = $page.frontmatter.sidebarDepth != null
-      ? $page.frontmatter.sidebarDepth
-      : $site.themeConfig.sidebarDepth
-    const maxDepth = configDepth == null ? 1 : configDepth
-    const displayAllHeaders = !!$site.themeConfig.displayAllHeaders
-    if (item.type === 'auto') {
-      return [link, renderChildren(h, item.children, item.basePath, $route, maxDepth)]
-    } else if ((active || displayAllHeaders) && item.headers && !hashRE.test(item.path)) {
-      const children = groupHeaders(item.headers)
-      return [link, renderChildren(h, children, item.path, $route, maxDepth)]
-    } else {
-      return link
-    }
+    import Local from '../../localstore'
+  export default {
+      props:['item'],
+      data(){
+          return{
+             selectedPItem:0
+          }
+      },
+      mounted(){
+          let pathName =Local.get('pathName')
+          if(pathName){
+              this.item.headers&&this.item.headers.forEach((item,index)=>{
+                if(item.slug===pathName){
+                    this.selectedPItem =  index
+                }
+            })
+          }
+      },
+      methods:{
+          selectedLi(){
+              Local.set('pathName',null)
+              this.selectedPItem= 0
+             setTimeout(()=>{
+                 this.$router.push({path:`${this.item.path}`})
+             })
+          },
+          selectedP(index,child){
+                this.selectedPItem = index
+                this.$router.push({path:`#${child.slug}`})
+               Local.set('pathName',child.slug)
+          }
+      }
   }
-}
-
-function renderLink (h, to, text, active) {
-  return h('router-link', {
-    props: {
-      to,
-      activeClass: '',
-      exactActiveClass: ''
-    },
-    class: {
-      active,
-      'sidebar-link': true
-    }
-  }, text)
-}
-
-function renderChildren (h, children, path, route, maxDepth, depth = 1) {
-  if (!children || depth > maxDepth) return null
-  return h('ul', { class: 'sidebar-sub-headers' }, children.map(c => {
-    const active = isActive(route, path + '#' + c.slug)
-    return h('li', { class: 'sidebar-sub-header' }, [
-      renderLink(h, path + '#' + c.slug, c.title, active),
-      renderChildren(h, c.children, path, route, maxDepth, depth + 1)
-    ])
-  }))
-}
 </script>
 
-<style lang="stylus">
-@import 'styles/config.styl'
 
-.sidebar .sidebar-sub-headers
-  padding-left 1rem
-  font-size 0.95em
+<style scoped lang="scss">
+  .SidebarLink-li{
+      color: #515a6e;
+      margin: 15px 0 10px 0;
+      padding-left: 20px;
+      transition: .4s all ease-out;
+      &:hover{
+          color:white;
+          border-left: 6px solid #aa1704;
+          box-shadow: rgba(223, 176, 122, 0.7) 0 0 20px;
+          background: linear-gradient(45deg,#f9bc62, #f4c86b);
+          transform:translateX(20px)
+      }
+      &.active{
+          border-left: 6px solid #aa1704;
+          color:#e0620d
+      }
 
-a.sidebar-link
-  font-weight 400
-  display inline-block
-  color rgb(81, 90, 110)
-  border-left 0.25rem solid transparent
-  padding 0.35rem 1rem 0.35rem 1.25rem
-  line-height 1.4
-  width: 100%
-  transition .4s all ease-in-out
-  box-sizing: border-box
-  &:hover
-      color white
-      box-shadow: rgba(223, 176, 122, 0.7) 0px 0px 20px;
-      background: linear-gradient(45deg, rgb(223, 176, 122), rgb(209, 142, 66));
-      transform translateX(20px)
-  &.active
-    font-weight 600
-    color $accentColor
-    border-left-color $accentColor
-  .sidebar-group &
-    padding-left 2rem
-  .sidebar-sub-headers &
-    padding-top 0.25rem
-    padding-bottom 0.25rem
-    border-left none
-    &.active
-      font-weight 500
+  }
+  .SidebarLink-p{
+      color: #999999;
+      margin-left: 60px;
+      font-size: 13px;
+      transition: .3s all ease-in;
+      padding-left: 5px;
+      &:hover{
+            z-index: 10;
+            color:#e0620d;
+            font-size: 14px;
+            border-left: 5px #f25e0e solid;
+      }
+      &.active{
+          z-index: 10;
+          color:#e0620d;
+          font-size: 14px;
+          border-left: 5px #f25e0e solid;
+      }
+  }
 </style>
+
+

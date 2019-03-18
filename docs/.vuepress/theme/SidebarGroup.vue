@@ -10,7 +10,7 @@
     >
       <span>{{ item.title }}</span>
       <span
-        class="arrow"
+        class="arrow1"
         v-if="collapsable"
         :class="open ? 'down' : 'right'">
       </span>
@@ -22,7 +22,7 @@
         class="sidebar-group-items"
         v-if="open || !collapsable"
       >
-        <li v-for="child in item.children">
+        <li v-for="(child,index) in item.children" @click="xxx(index)" ref="li">
           <SidebarLink :item="child"/>
         </li>
       </ul>
@@ -37,7 +37,34 @@ import DropdownTransition from './DropdownTransition.vue'
 export default {
   name: 'SidebarGroup',
   props: ['item', 'first', 'open', 'collapsable'],
-  components: { SidebarLink, DropdownTransition }
+  components: { SidebarLink, DropdownTransition },
+    data(){
+      return {
+          selected:null
+      }
+    },
+    mounted(){
+        this.$refs.li.forEach((item,index)=>{
+            if(item.querySelector('li')&&item.querySelector('li').classList.contains('active')){
+                this.selected = index
+            }
+
+        })
+    },
+    inject:['eventBus'],
+    methods:{
+      xxx(index){
+          if(index===this.selected)return
+          let distance
+              distance=index-this.selected
+            if(distance<0){
+                this.eventBus.$emit('xxx',false)
+            }else{
+                this.eventBus.$emit('xxx',true)
+            }
+               this.selected = index
+      }
+    }
 }
 </script>
 
@@ -64,7 +91,7 @@ export default {
   margin-bottom 0.5rem
   &.open, &:hover
     color #e0620d
-  .arrow
+  .arrow1
     position relative
     top -0.12em
     left 0.5em
