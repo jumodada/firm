@@ -58,7 +58,7 @@
                         可以实现响应式布局，577px以下也就是默认的移动端样式。
                     </div>
                 </template>
-                <x-collapse-item name="1" title="代码">
+                <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
                     <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>

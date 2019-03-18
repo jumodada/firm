@@ -32,6 +32,11 @@
       />
       <SearchBox v-else-if="$site.themeConfig.search !== false"/>
       <NavLinks class="can-hide"/>
+        <a href="https://github.com/jumodada/vueXin" class="Navbar-icon" target="to-github">
+          <x-icon name="github" style="width: 2em;height: 2em">
+          </x-icon>
+        </a>
+
     </div>
   </header>
 </template>
@@ -41,9 +46,10 @@ import SidebarButton from './SidebarButton.vue'
 import AlgoliaSearchBox from '@AlgoliaSearchBox'
 import SearchBox from './SearchBox.vue'
 import NavLinks from './NavLinks.vue'
+import Icon from '../../../src/currency/icon'
 
 export default {
-  components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox },
+  components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox,'x-icon':Icon },
 
   data () {
     return {
@@ -96,6 +102,10 @@ $navbar-horizontal-padding = 1.5rem
   line-height $navbarHeight - 1.4rem
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 10px 20px 0 rgba(0,0,0,0.12)
   position relative
+  .Navbar-icon
+    display flex
+    justify-content center
+    align-items center
   a, span, img
     display inline-block
   .logo
@@ -133,3 +143,4 @@ $navbar-horizontal-padding = 1.5rem
       background-color rgb(81, 90, 110)
       padding-left 1.5rem
 </style>
+
