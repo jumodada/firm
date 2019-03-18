@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/collapse-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/collapse-default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/collapse-icon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/collapse-icon.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/grid-arrange.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/grid-arrange.vue" afterDir="false" />
@@ -21,18 +23,37 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/toast-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/toast-default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/toast-html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/toast-html.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/toast-position.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/toast-position.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/AlgoliaSearchBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/AlgoliaSearchBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/DropdownLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/DropdownLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/DropdownTransition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/DropdownTransition.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/NavLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/NavLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/NavLinks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/NavLinks.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/NotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/NotFound.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/Page.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/Page.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/SWUpdatePopup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/SWUpdatePopup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/SearchBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/SearchBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/SidebarButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/SidebarButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/SidebarGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/SidebarGroup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/svg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/SidebarLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/SidebarLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/search.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/search.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/arrow.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/arrow.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/code.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/code.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/config.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/config.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/custom-blocks.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/custom-blocks.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/mobile.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/mobile.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/nprogress.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/nprogress.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/theme.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/theme.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/toc.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/toc.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/wrapper.styl" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/wrapper.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/components/carousel/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/carousel/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/localstore.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/localstore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unit/button.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/button.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/col.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/col.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/input.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/input.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unit/popover.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/popover.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/row.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/row.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/slides.spec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/tabs-item.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/tabs-item.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/tabs-pane.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/toast.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/toast.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -125,12 +146,13 @@
         <counts>
           <entry key="css" value="1" />
           <entry key="html" value="2" />
-          <entry key="js" value="26" />
+          <entry key="js" value="35" />
           <entry key="json" value="2" />
           <entry key="md" value="1" />
           <entry key="scss" value="3" />
           <entry key="styl" value="19" />
-          <entry key="vue" value="84" />
+          <entry key="svg" value="1" />
+          <entry key="vue" value="92" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -138,31 +160,32 @@
           <entry key="CSS" value="1" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="26" />
+          <entry key="JavaScript" value="35" />
           <entry key="Markdown" value="1" />
           <entry key="SCSS" value="3" />
+          <entry key="SVG" value="1" />
           <entry key="Stylus" value="19" />
-          <entry key="Vue.js" value="84" />
+          <entry key="Vue.js" value="92" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="14" />
-          <entry key="js" value="136" />
+          <entry key="js" value="200" />
           <entry key="json" value="19" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="3761" />
+          <entry key="vue" value="3812" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="14" />
           <entry key="JSON" value="19" />
-          <entry key="JavaScript" value="136" />
+          <entry key="JavaScript" value="200" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="3761" />
+          <entry key="Vue.js" value="3812" />
         </counts>
       </usages-collector>
     </session>
@@ -184,23 +207,22 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/unit/input.test.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-              <folding>
-                <element signature="e#28#49#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/config.js">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Sidebar.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+            <state relative-caret-position="-1846">
+              <folding>
+                <element signature="e#552#597#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,11 +230,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="145" selection-start-line="145" selection-end-line="145" />
+            <state relative-caret-position="12">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
-                <element signature="n#style#0;n#x-icon#0;n#a#0;n#div#0;n#div#0;n#header#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#910#957#0" expanded="true" />
+                <element signature="n#style#0;n#svg#0;n#a#0;n#div#0;n#header#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#1168#1215#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/currency/icon.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/unit/button.spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/unit/popover.spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -309,18 +364,18 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/components/toast-default.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/toast-html.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/toast-position.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/config.js" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/theme/SidebarGroup.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue" />
         <option value="$PROJECT_DIR$/src/svg.js" />
-        <option value="$PROJECT_DIR$/tests/unit/button.spec.js" />
         <option value="$PROJECT_DIR$/tests/unit/col.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/row.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/input.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/toast.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/tabs-item.test.js" />
-        <option value="$PROJECT_DIR$/tests/unit/popover.spec.js" />
         <option value="$PROJECT_DIR$/tests/unit/slides.spec.js" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/config.js" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/theme/SidebarGroup.vue" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue" />
+        <option value="$PROJECT_DIR$/tests/unit/popover.spec.js" />
+        <option value="$PROJECT_DIR$/tests/unit/button.spec.js" />
       </list>
     </option>
   </component>
@@ -374,14 +429,6 @@
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
               <item name="theme" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
-              <item name="theme" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
@@ -538,12 +585,12 @@
       <workItem from="1552632155456" duration="465000" />
       <workItem from="1552807874252" duration="997000" />
       <workItem from="1552829828747" duration="6500000" />
-      <workItem from="1552870083400" duration="26824000" />
+      <workItem from="1552870083400" duration="29515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="360207000" />
+    <option name="totallyTimeSpent" value="362898000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -597,69 +644,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="513">
-            <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/button/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/styles/theme.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Page.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="70" column="24" lean-forward="true" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/SidebarLink.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Sidebar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding>
-            <element signature="e#552#597#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/styles/wrapper.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/collapse-default.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
@@ -811,16 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/SidebarGroup.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="86" column="18" lean-forward="true" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-          <folding>
-            <element signature="e#684#727#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/styles/config.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
@@ -835,24 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/svg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="145" selection-start-line="145" selection-end-line="145" />
-          <folding>
-            <element signature="n#style#0;n#x-icon#0;n#a#0;n#div#0;n#div#0;n#header#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#910#957#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -876,13 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit/button.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/unit/toast.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -896,9 +845,6 @@
     <entry file="file://$PROJECT_DIR$/tests/unit/tabs-pane.test.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit/tabs-item.test.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1662">
@@ -909,20 +855,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit/popover.spec.js">
+    <entry file="file://$PROJECT_DIR$/tests/unit/slides.spec.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/col.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        <state relative-caret-position="-2113">
+          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/input.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#28#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/tabs-body.test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/unit/tabs-head.test.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit/slides.spec.js">
+    <entry file="file://$PROJECT_DIR$/tests/unit/tabs-item.test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/tabs.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="7" lean-forward="true" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding>
+            <element signature="e#28#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/svg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/slider.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Layout.vue">
@@ -935,26 +914,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit/col.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2113">
-          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="26" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/search.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/util.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        <state relative-caret-position="216">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/unit/input.test.js">
+    <entry file="file://$USER_HOME$/Desktop/docs/.vuepress/theme/Navbar.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="125">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#28#49#0" expanded="true" />
+            <element signature="n#style#0;n#x-icon#0;n#a#0;n#div#0;n#header#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1053#1100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/SidebarGroup.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1013">
+          <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+          <folding>
+            <element signature="e#684#727#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/currency/icon.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="n#style#0;n#svg#0;n#a#0;n#div#0;n#header#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1168#1215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/Sidebar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1846">
+          <folding>
+            <element signature="e#552#597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/popover.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/unit/button.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

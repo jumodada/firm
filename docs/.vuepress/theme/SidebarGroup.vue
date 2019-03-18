@@ -44,7 +44,7 @@ export default {
       }
     },
     mounted(){
-        this.$refs.li&&this.$refs.li.forEach((item,index)=>{
+        this.$refs.li && this.$refs.li.forEach((item,index)=>{
             if(item.querySelector('li')&&item.querySelector('li').classList.contains('active')){
                 this.selected = index
             }
@@ -102,4 +102,3 @@ export default {
   transition height .1s ease-out
 
 </style>
-

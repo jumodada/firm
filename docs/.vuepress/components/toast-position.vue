@@ -13,7 +13,7 @@
                     <div style="color: #666666">全局消息弹框默认出现在顶部,可以通过设置 <code>position</code> 设置消息出现的位置(目前就三个)
                     </div>
                 </template>
-                <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
+                <x-collapse-item name="1" title="代码">
                     <div  v-highlight v-html="html"></div>
                     <br>
                     <br>

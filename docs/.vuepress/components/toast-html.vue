@@ -13,7 +13,7 @@
                         设置为true开启。
                     </div>
                 </template>
-                <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
+                <x-collapse-item name="1" title="代码">
                     <div  v-highlight v-html="html"></div>
                     <br>
                     <br>
