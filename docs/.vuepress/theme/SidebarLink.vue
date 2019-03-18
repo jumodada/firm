@@ -20,12 +20,14 @@
     import Local from '../../localstore'
   export default {
       props:['item'],
+      inject:['eventBus'],
       data(){
           return{
              selectedPItem:0
           }
       },
       mounted(){
+
           let pathName =Local.get('pathName')
           if(pathName){
               this.item.headers&&this.item.headers.forEach((item,index)=>{

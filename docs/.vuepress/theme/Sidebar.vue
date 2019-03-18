@@ -38,7 +38,6 @@ export default {
 
   created () {
     this.refreshIndex()
-      console.log(this.items)
   },
 
   watch: {

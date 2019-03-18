@@ -1,9 +1,11 @@
 <template>
     <div class="page">
       <slot name="top"/>
-      <transition :name="name">
-      <Content :custom="false"/>
-      </transition>
+     <div ref="content">
+       <transition :name="name">
+         <Content :custom="false" />
+       </transition>
+     </div>
       <div class="page-edit">
         <div
                 class="edit-link"
@@ -153,6 +155,8 @@ export default {
   },
 
   methods: {
+
+
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
       if (bitbucket.test(repo)) {
@@ -212,6 +216,7 @@ function find (page, items, offset) {
 <style lang="stylus">
 @import 'styles/config.styl'
 @require 'styles/wrapper.styl'
+
 
 .up-enter-active
     transition all .8s ease
