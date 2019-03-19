@@ -28,9 +28,8 @@
           }
         },
          mounted(){
-                this.updateChild()
+                 this.updateChild()
                  this.watchChild()
-
          },
         updated(){
            this.updateChild()

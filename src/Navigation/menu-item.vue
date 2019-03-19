@@ -25,6 +25,17 @@
         methods:{
             onClick(){
                 this.$emit('update:selected',this.name)
+                let judge = this.$parent.$el.classList.contains('x-sub-menu')
+                if(judge){
+                    this.tellParents(this)
+                    this.$parent.closePopover()
+                }
+            },
+            tellParents(that){
+                that.$parent.active= true
+                if(that.$parent.$parent.$options.name==='x-sub-menu'){
+                    this.tellParents(that.$parent)
+                }
             }
         }
     }

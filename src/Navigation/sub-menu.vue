@@ -3,6 +3,7 @@
     <span class="x-sub-menu-title"
           @mouseleave="closePopover"
           @mouseenter="openPopover"
+          :class="{active}"
     >
         <slot name="title"></slot>
     </span>
@@ -29,7 +30,7 @@
         data(){
             return {
                 open:false,
-                timer:null
+                active:false
             }
         },
         props:{
@@ -40,18 +41,10 @@
         },
         methods:{
             openPopover(){
-                clearTimeout(this.timer)
-                setTimeout(()=>{
-                    this.open = true
-                    clearTimeout(this.timer)
-                },300)
+                this.open = true
             },
             closePopover(){
-                clearTimeout(this.timer)
-                setTimeout(()=>{
-                    this.open = false
-                    clearTimeout(this.timer)
-                },300)
+                this.open = false
             },
             beforeEnter(el) {
                 el.style.height = 0
@@ -88,10 +81,46 @@
 <style scoped lang="scss">
         .x-sub-menu{
             position: relative;
+
             &-title{
                 padding: 10px 20px;
                 display: flex;
                 color: #999999;
+
+                &.active{
+                    color:#409eff;
+                    &:after{
+                        left: 0;
+                        width: 100%;
+                    }
+                }
+                &:after{
+                    content: "";
+                    width: 0;
+                    height: 1px;
+                    border-bottom:2px solid #409eff;
+                    position: absolute;
+                    bottom: 1%;
+                    left: 50%;
+                    transition: all .3s ease-in-out;
+                }
+            }
+            .x-sub-menu .x-sub-menu{
+                &-title{
+
+                    &.active{
+                        color:#409eff;
+                        background-color: #eefbfa;
+                    }
+                    &:after{
+                        content: "";
+                        border-bottom: none;
+                        position: absolute;
+                        bottom: 1%;
+                        left: 0;
+                        transition: all .3s ease-in-out;
+                    }
+                }
             }
             .x-popover{
                 margin-top: 2px;
@@ -118,6 +147,7 @@
                         }
                     }
                 }
+
             }
             .x-sub-menu .x-popover{
                 margin-left: 3px;
