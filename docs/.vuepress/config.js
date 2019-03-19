@@ -19,6 +19,7 @@ module.exports = {
                     '/components/cascader/',
                     '/components/carousel/',
                     '/components/tabs/',
+                    '/components/menu/',
                 ]
             },
 

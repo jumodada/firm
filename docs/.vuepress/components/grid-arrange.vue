@@ -24,7 +24,7 @@
                         row组件可以通过设置 <code>arrange</code> 在row组件未被撑满的情况下控制col的位置。
                     </div>
                 </template>
-                <x-collapse-item name="1" title="代码">
+                <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
                     <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>

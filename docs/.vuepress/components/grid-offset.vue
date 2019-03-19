@@ -28,7 +28,7 @@
                         col组件可以通过设置 <code>offset</code>使col向左发生偏移，如果超出24格，会整体缩进。
                     </div>
                 </template>
-                <x-collapse-item name="1" title="代码">
+                <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
                     <div  v-highlight v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
