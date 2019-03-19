@@ -1,13 +1,129 @@
 <template>
-
+<div class="x-sub-menu">
+    <span class="x-sub-menu-title"
+          @mouseleave="closePopover"
+          @mouseenter="openPopover"
+    >
+        <slot name="title"></slot>
+    </span>
+    <transition  @before-enter="beforeEnter"
+                 @enter="enter"
+                 @after-enter="afterEnter"
+                 @before-leave="beforeLeave"
+                 @leave="leave"
+                 @after-leave="afterLeave"
+    >
+        <div class="x-popover" v-show="open"
+             @mouseenter="openPopover"
+             @mouseleave="closePopover"
+        >
+            <slot> </slot>
+        </div>
+    </transition>
+</div>
 </template>
 
 <script>
     export default {
-        name: "sub-menu"
+        name: "x-sub-menu",
+        data(){
+            return {
+                open:false,
+                timer:null
+            }
+        },
+        props:{
+          name:{
+              type:String,
+              required:true
+          }
+        },
+        methods:{
+            openPopover(){
+                clearTimeout(this.timer)
+                setTimeout(()=>{
+                    this.open = true
+                    clearTimeout(this.timer)
+                },300)
+            },
+            closePopover(){
+                clearTimeout(this.timer)
+                setTimeout(()=>{
+                    this.open = false
+                    clearTimeout(this.timer)
+                },300)
+            },
+            beforeEnter(el) {
+                el.style.height = 0
+                el.style.paddingTop = 0
+                el.style.paddingBottom = 0
+                el.style.overflow = 'hidden'
+                el.style.transition = '.3s all ease-in-out'
+            },
+            enter(el) {
+                if (el.scrollHeight !== 0) {
+                    el.style.height = el.scrollHeight + 'px'
+                }
+            },
+            afterEnter(el){
+                el.style.overflow = ''
+            },
+            afterLeave(el){
+                el.style.overflow = ''
+            },
+            beforeLeave(el) {
+                el.style.height = el.scrollHeight + 'px'
+                el.style.overflow = 'hidden'
+            },
+            leave(el) {
+                el.style.height = 0
+                el.style.paddingTop = 0
+                el.style.paddingBottom = 0
+                el.style.transition = '.1s all ease-in-out'
+            },
+        }
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+        .x-sub-menu{
+            position: relative;
+            &-title{
+                padding: 10px 20px;
+                display: flex;
+                color: #999999;
+            }
+            .x-popover{
+                margin-top: 2px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                color: #515a6e;
+                border-radius: 3px;
+                white-space: nowrap;
+                background-color: white;
+                box-shadow:1px 1px 2px fade_out(black, 0.7);
+                transition: .3s all ease-in-out;
+                /deep/.x-menu-item{
+                    font-size: 14px;
+                    transition: .3s all ease-in-out;
+                    &:hover{
+                        color:#409eff;
+                        background-color: #eefbfa;
+                    }
+                    &.active{
+                        border-bottom: none;
+                        &:after{
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .x-sub-menu .x-popover{
+                margin-left: 3px;
+                top: 0;
+                left: 100%;
+            }
+        }
 
 </style>
