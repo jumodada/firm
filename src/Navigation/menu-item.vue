@@ -11,6 +11,9 @@
         created(){
           this.root.addItem(this)
         },
+        beforeDestroy(){
+          clearTimeout(this.timer)
+        },
         props:{
             name:{
                 type:String,
@@ -24,17 +27,23 @@
         },
         methods:{
             onClick(){
+                this.root.selectedArr=[]
                 this.$emit('update:selected',this.name)
                 let judge = this.$parent.$el.classList.contains('x-sub-menu')
                 if(judge){
+                    this.root.selectedArr=[]
+                    this.root.selectedArr.unshift(this.name)
                     this.tellParents(this)
-                    this.$parent.closePopover()
+                    this.$parent.childClosePopover()
                 }
             },
             tellParents(that){
-                that.$parent.active= true
                 if(that.$parent.$parent.$options.name==='x-sub-menu'){
+                    this.root.selectedArr.unshift(that.$parent.name)
                     this.tellParents(that.$parent)
+                }else{
+                    this.root.selectedArr.unshift(that.$parent.name)
+                    console.log(this.root.selectedArr)
                 }
             }
         }

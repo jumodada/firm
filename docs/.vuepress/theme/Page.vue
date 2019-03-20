@@ -219,23 +219,24 @@ function find (page, items, offset) {
 
 
 .up-enter-active
-    transition all .8s ease
+    transition all .6s ease
 .up-leave-active
-    transition all .4s ease-out
+    transition all .3s ease-out
 .up-enter
   transform translateY(-100%)
 .up-leave-to
     transform translateY(100%)
 
 .down-enter-active
-    transition all .8s ease
+    transition all .6s ease
 .down-leave-active
-    transition all .4s ease-out
+    transition all .3s ease-out
 .down-enter
     transform translateY(100%)
     opacity 0
 .down-leave-to
     transform translateY(-100%)
+    opacity 0
 
 .page-edit
   @extend $wrapper

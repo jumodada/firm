@@ -19,7 +19,8 @@
         },
         data(){
           return {
-              items:[]
+              items:[],
+              selectedArr:[]
           }
         },
         provide(){

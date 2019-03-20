@@ -6,6 +6,8 @@
           :class="{active}"
     >
         <slot name="title"></slot>
+        <x-icon  v-if="notStandFirst" name="arrow" :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
+        <x-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"  :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
     </span>
     <transition  @before-enter="beforeEnter"
                  @enter="enter"
@@ -25,12 +27,31 @@
 </template>
 
 <script>
+    import Icon from '../currency/icon'
     export default {
         name: "x-sub-menu",
+        inject:['root'],
         data(){
             return {
                 open:false,
-                active:false
+            }
+        },
+        computed:{
+          active(){
+             return this.root.selectedArr.indexOf(this.name)>-1
+          },
+            notStandFirst(){
+              return this.$parent.$options.name!=='x-menu'
+            },
+            isActive(){
+                if(this.active){
+                    return '#f89708'
+                }else{
+                    return '#bfbfbf'
+                }
+            },
+            iconActive(){
+                return this.open ? true : false;
             }
         },
         props:{
@@ -39,12 +60,35 @@
               required:true
           }
         },
+        components:{
+          'x-icon':Icon
+        },
         methods:{
             openPopover(){
+                clearTimeout(this.timer)
                 this.open = true
+                this.onlyOneOpen()
+
+            },
+            onlyOneOpen(){
+                this.$parent.$children.forEach(child=>{
+                    if(child.open&&child.name!==this.name){
+                        child.open= false
+                    }
+                })
             },
             closePopover(){
-                this.open = false
+
+                this.timer = setTimeout(()=>{
+                    this.open = false
+                    clearTimeout(this.timer)
+                },450)
+            },
+            childClosePopover(){
+                    this.open = false
+                if(this.$parent.$options.name==='x-sub-menu'){
+                    this.$parent.childClosePopover()
+                }
             },
             beforeEnter(el) {
                 el.style.height = 0
@@ -86,7 +130,9 @@
                 padding: 10px 20px;
                 display: flex;
                 color: #999999;
-
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
                 &.active{
                     color:#409eff;
                     &:after{
@@ -103,6 +149,13 @@
                     bottom: 1%;
                     left: 50%;
                     transition: all .3s ease-in-out;
+                }
+                .firstIcon{
+                    transition: .3s all ease;
+                    transform: rotate(0);
+                }
+                .firstIconactive{
+                    transform: rotate(180deg);
                 }
             }
             .x-sub-menu .x-sub-menu{
