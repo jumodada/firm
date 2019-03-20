@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-back1.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-opacity.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/menu-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/menu-vertical.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-vertical.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/components/menu/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/menu/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigation/menu-item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/menu-item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigation/menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/menu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigation/sub-menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/sub-menu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/svg.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -135,7 +126,7 @@
           <entry key="html" value="16" />
           <entry key="js" value="223" />
           <entry key="json" value="19" />
-          <entry key="md" value="239" />
+          <entry key="md" value="265" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
           <entry key="vue" value="13556" />
@@ -146,7 +137,7 @@
           <entry key="HTML" value="16" />
           <entry key="JSON" value="19" />
           <entry key="JavaScript" value="223" />
-          <entry key="Markdown" value="239" />
+          <entry key="Markdown" value="265" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
           <entry key="Vue.js" value="13556" />
@@ -196,10 +187,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-opacity.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
+            <state relative-caret-position="1295">
               <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -210,12 +201,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/components/menu/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="516">
-                <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+              <first_editor relative-caret-position="351">
+                <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               </first_editor>
               <second_editor />
             </state>
@@ -350,9 +341,9 @@
         <option value="$PROJECT_DIR$/src/Navigation/menu-item.vue" />
         <option value="$PROJECT_DIR$/src/Navigation/sub-menu.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-back1.vue" />
-        <option value="$PROJECT_DIR$/docs/components/menu/README.md" />
         <option value="$PROJECT_DIR$/src/Navigation/menu.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-opacity.vue" />
+        <option value="$PROJECT_DIR$/docs/components/menu/README.md" />
       </list>
     </option>
   </component>
@@ -574,12 +565,12 @@
       <workItem from="1552960322129" duration="7263000" />
       <workItem from="1552987172136" duration="11861000" />
       <workItem from="1553046281146" duration="5844000" />
-      <workItem from="1553057225776" duration="34669000" />
+      <workItem from="1553057225776" duration="34833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="427864000" />
+    <option name="totallyTimeSpent" value="428028000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -979,16 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/menu/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="516">
-            <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-back1.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1010,13 +991,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-opacity.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
+        <state relative-caret-position="1295">
           <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#3073#3120#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/components/menu/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="351">
+            <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
