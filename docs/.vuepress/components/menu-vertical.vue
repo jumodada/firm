@@ -1,11 +1,13 @@
 <template>
-    <div style="margin-top: 50px">
+    <div style="margin-top: 50px;display: flex">
 
 
         <x-collapse :selected.sync="selectTab1" exhibition>
             <template slot="description">
                 <div style="color: #999999">
-                    <x-menu :selected.sync="selected" vertical>
+                    <x-menu :selected.sync="selected1" vertical
+                            style="margin-right: 50px"
+                    >
                         <x-sub-menu name="extension" icon-name="set">
                             <template slot="title">设置</template>
                             <x-sub-menu name="user">
@@ -31,7 +33,42 @@
                             <x-menu-item name="parcel">取消的订单</x-menu-item>
                         </x-sub-menu>
                         <x-menu-item name="connect" icon-name="lianxidaogou">联系我们</x-menu-item>
-                        <x-menu-item name="support" icon-name="bangzhuyuzhichi">其他支持</x-menu-item>
+                        <x-menu-item name="support" icon-name="Support">其他支持</x-menu-item>
+                    </x-menu>
+
+
+                    <x-menu :selected.sync="selected2" vertical
+                            text-color="#fff"
+                            active-color="#ffd04b"
+                            active-back-ground-color="#515151"
+                            back-ground-color="#545c64"
+                    >
+                        <x-sub-menu name="extension" icon-name="set">
+                            <template slot="title">设置</template>
+                            <x-sub-menu name="user">
+                                <template slot="title">账号管理</template>
+                                <x-menu-item name="toggle">切换账号</x-menu-item>
+                                <x-menu-item name="cancel">注销</x-menu-item>
+                            </x-sub-menu>
+                            <x-menu-item name="windows">消息通知</x-menu-item>
+                        </x-sub-menu>
+                        <x-sub-menu name="address" icon-name="dizhi">
+                            <template slot="title">地址管理</template>
+                            <x-menu-item name="addAddress">添加地址</x-menu-item>
+                            <x-menu-item name="modifyAddress">修改地址</x-menu-item>
+                            <x-menu-item name="defaultAddress">默认地址选择</x-menu-item>
+                        </x-sub-menu>
+                        <x-sub-menu name="package" icon-name="dingdan">
+                            <template slot="title">我的订单</template>
+                            <x-sub-menu name="order">
+                                <template slot="title">全部订单</template>
+                                <x-menu-item name="delivery">待发货</x-menu-item>
+                                <x-menu-item name="receiving">待收货</x-menu-item>
+                            </x-sub-menu>
+                            <x-menu-item name="parcel">取消的订单</x-menu-item>
+                        </x-sub-menu>
+                        <x-menu-item name="connect" icon-name="lianxidaogou">联系我们</x-menu-item>
+                        <x-menu-item name="support" icon-name="Support">其他支持</x-menu-item>
                     </x-menu>
                     <br>
                     <br>
@@ -69,7 +106,8 @@
         name: "menu-default",
         data(){
             return {
-                selected:['1'],
+                selected1:['connect'],
+                selected2:['connect'],
                 selectTab1:[1],
                 input1:'```html\n' +
                     '<x-menu :selected.sync="selected" vertical>\n' +

@@ -6,6 +6,11 @@
             <template slot="description">
                 <div style="color: #999999">
                     <x-menu :selected.sync="selected"
+                            opacity
+                            text-color="#fff"
+                            active-color="#ffd04b"
+                            active-back-ground-color="#515151"
+                            back-ground-color="#545c64"
                     >
                         <x-sub-menu name="extension">
                             <template slot="title">扩展</template>
@@ -44,11 +49,7 @@
                     <br>
                     <br>
                     <br>
-                    <code>name</code>就是每个组件的索引，必须设置。
-                    <br>
-                    通过<code>:selected.sync="你要头一个选中的item"</code>进行"双向绑定"。
-                    <br>
-                    弹出框是默认 <code>hover</code>触发
+                    使用 <code>opacity</code>，不处于hover状态有一个半透明效果
                 </div>
 
             </template>
@@ -75,30 +76,35 @@
                 selected:['support'],
                 selectTab1:[1],
                 input1:'```html\n' +
-                    '<x-menu :selected.sync="selected" single>\n' +
-                    '   <x-sub-menu name="extension">\n' +
-                    '     <template slot="title">扩展</template>\n' +
-                    '     <x-menu-item name="mac">for Mac</x-menu-item>\n' +
-                    '     <x-menu-item name="windows">for Windows</x-menu-item>\n' +
-                    '   </x-sub-menu>\n' +
-                    '   <x-sub-menu name="learn">\n' +
-                    '       <template slot="title">如何使用</template>\n' +
-                    '       <x-menu-item name="fast">快速入门</x-menu-item>\n' +
-                    '       <x-menu-item name="advanced">进阶配置</x-menu-item>\n' +
-                    '       <x-menu-item name="package">多语言支持</x-menu-item>\n' +
-                    '   <x-sub-menu name="package">\n' +
-                    '       <template slot="title">打包管理</template>\n' +
-                    '       <x-sub-menu name="webpack">\n' +
-                    '          <template slot="title">webpack</template>\n' +
-                    '             <x-menu-item name="rookie">webpack快速上手</x-menu-item>\n' +
-                    '             <x-menu-item name="master">webpack从入门到入土</x-menu-item>\n' +
-                    '             <x-menu-item name="fuck">配你🐴呢</x-menu-item>\n' +
-                    '       </x-sub-menu>\n' +
-                    '       <x-menu-item name="parcel">使用parcel</x-menu-item>\n' +
-                    '       </x-sub-menu>\n' +
-                    '   </x-sub-menu>\n' +
-                    '   <x-menu-item name="connect">联系我们</x-menu-item>\n' +
-                    '   <x-menu-item name="support">其他支持</x-menu-item>\n' +
+                    '<x-menu :selected.sync="selected"\n' +
+                    '        text-color="#fff"\n' +
+                    '        active-color="#ffd04b"\n' +
+                    '        active-back-ground-color="#515151"\n' +
+                    '        back-ground-color="#545c64"\n' +
+                    '>\n' +
+                    '          <x-sub-menu name="extension">\n' +
+                    '         <template slot="title">扩展</template>\n' +
+                    '              <x-menu-item name="mac">for Mac</x-menu-item>\n' +
+                    '                     <x-menu-item name="windows">for Windows</x-menu-item>\n' +
+                    '                 </x-sub-menu>\n' +
+                    '                  <x-sub-menu name="learn">\n' +
+                    '                    <template slot="title">如何使用</template>\n' +
+                    '                   <x-menu-item name="fast">快速入门</x-menu-item>\n' +
+                    '                  <x-menu-item name="advanced">进阶配置</x-menu-item>\n' +
+                    '                <x-menu-item name="package">多语言支持</x-menu-item>\n' +
+                    '                       <x-sub-menu name="package">\n' +
+                    '                      <template slot="title">打包管理</template>\n' +
+                    '                      <x-sub-menu name="webpack">\n' +
+                    '                <template slot="title">webpack</template>\n' +
+                    '                   <x-menu-item name="rookie">webpack快速上手</x-menu-item>\n' +
+                    '                         <x-menu-item name="master">webpack从入门到入土</x-menu-item>\n' +
+                    '                       <x-menu-item name="fuck">配你🐴呢</x-menu-item>\n' +
+                    '                </x-sub-menu>\n' +
+                    '     <x-menu-item name="parcel">使用parcel</x-menu-item>\n' +
+                    '             </x-sub-menu>\n' +
+                    '             </x-sub-menu>\n' +
+                    '         <x-menu-item name="connect">联系我们</x-menu-item>\n' +
+                    '            <x-menu-item name="support">其他支持</x-menu-item>\n' +
                     '</x-menu>\n' +
                     '```'
             }

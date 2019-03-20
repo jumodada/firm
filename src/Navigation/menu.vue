@@ -1,5 +1,10 @@
 <template>
-<div class="x-menu" :class="{vertical}">
+<div class="x-menu"
+     ref="menu"
+     :class="{vertical}"
+     @mouseleave="fadeOut"
+     @mouseenter="fadeIn"
+     :style="{backgroundColor:backGroundColor,color:textColor}">
     <slot></slot>
 </div>
 </template>
@@ -19,12 +24,28 @@
             vertical:{
                 type: Boolean,
                 default:false
+            },
+            backGroundColor:{
+                type: String,
+            },
+            textColor:{
+                type: String,
+            },
+            activeColor:{
+                type:String
+            },
+            activeBackGroundColor:{
+                type:String
+            },
+            opacity:{
+                type:Boolean,
+                default:false
             }
         },
         data(){
           return {
               items:[],
-              selectedArr:[]
+              selectedArr:[],
           }
         },
         provide(){
@@ -33,6 +54,8 @@
           }
         },
          mounted(){
+                 this.isOpacity()
+                 this.tellChildrenColor()
                  this.tellChilcVertical()
                  this.updateChild()
                  this.watchChild()
@@ -44,6 +67,7 @@
             addItem(vm){
                this.items.push(vm)
             },
+
           updateChild(){
               this.items.forEach(vm=>{
                   if(this.selected.indexOf(vm.name)>-1){
@@ -77,6 +101,38 @@
                         }
                     })
                 }
+            },
+            tellChildrenColor(){
+                if(this.textColor&&this.backGroundColor&&this.activeColor){
+                    this.$children.forEach(child=>{
+                        child.textColor = this.textColor
+                        child.changeXianColor(this.activeColor)
+                        if(this.activeColor){
+                            child.activeColor = this.activeColor
+                        }
+                        if(this.activeBackGroundColor){
+                            child.activeBackGroundColor = this.activeBackGroundColor
+                        }
+                        if(child.$options.name==='x-sub-menu'){
+                            child.tellChildrenColor(this.backGroundColor)
+                            if(this.backGroundColor){
+                                child.backGroundColor=this.backGroundColor
+                            }
+                        }
+                    })
+                }
+            },
+            isOpacity(){
+                if(!this.opacity)return
+                this.$refs.menu.style.opacity = .7
+            },
+            fadeIn(){
+                if(!this.opacity)return
+                this.$refs.menu.style.opacity = 1
+            },
+            fadeOut(){
+                if(!this.opacity)return
+                this.$refs.menu.style.opacity = .7
             }
         },
 
@@ -86,12 +142,12 @@
 <style scoped lang="scss">
 .x-menu{
     display: flex;
-    opacity: 0.6;
     transition: .3s all ease-in;
     border-bottom: 1px solid #e6e6e6;
     color: #515a6e;
-    &:hover{
-        opacity: 1;
+
+    &:first-child{
+        padding-left: 40px;
     }
     &.vertical{
         max-width: 15em;

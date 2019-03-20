@@ -1,31 +1,45 @@
 <template>
-<div class="x-sub-menu" :class="{vertical}">
+
+    <div class="x-sub-menu" :class="{vertical}">
     <span class="x-sub-menu-title"
           @mouseleave="closePopover"
           @mouseenter="openPopover"
           @click="clickOpen"
+          :style="{color:textColor}"
           :class="{active}"
+          ref="title"
     >
-        <x-icon :name="iconName" v-if="iconName" class="title-icon"></x-icon>
+        <x-icon  :color="textColor" :name="iconName" v-if="iconName" class="title-icon"></x-icon>
         <slot name="title"></slot>
         <x-icon  v-if="notStandFirst" name="arrow" :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
-        <x-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"  :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
+        <x-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"
+                 :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
     </span>
-    <transition  @before-enter="beforeEnter"
-                 @enter="enter"
-                 @after-enter="afterEnter"
-                 @before-leave="beforeLeave"
-                 @leave="leave"
-                 @after-leave="afterLeave"
-    >
-        <div class="x-popover" v-show="open"
-             @mouseenter="openPopover"
-             @mouseleave="closePopover"
+        <transition  @before-enter="beforeEnter"
+                     @enter="enter"
+                     @after-enter="afterEnter"
+                     @before-leave="beforeLeave"
+                     @leave="leave"
+                     @after-leave="afterLeave"
         >
-            <slot> </slot>
-        </div>
-    </transition>
-</div>
+            <div class="x-popover" v-show="open"
+                 :style="{backgroundColor:backGroundColor}"
+                 @mouseenter="openPopover"
+                 @mouseleave="closePopover"
+            >
+                <slot> </slot>
+            </div>
+        </transition>
+        <transition
+                @before-enter="beforeEnterXian"
+                @enter="enterXian"
+                @before-leave="beforeLeaveXian"
+                @leave="leaveXian"
+        >
+            <div ref="xian" class="xian" v-show="active&&theFirstItem()&&!vertical"></div>
+        </transition>
+    </div>
+
 </template>
 
 <script>
@@ -36,7 +50,11 @@
         data(){
             return {
                 open:false,
-                vertical:false
+                vertical:false,
+                textColor:null,
+                activeColor:null,
+                activeBackGroundColor:null,
+                backGroundColor: null
             }
         },
         computed:{
@@ -139,6 +157,25 @@
                     el.style.transition = '.3s all'
                 }
             },
+            tellChildrenColor(bc){
+                this.$children.forEach(child=>{
+                    if(this.activeColor){
+                        child.activeColor = this.activeColor
+                    }
+                    if(this.activeBackGroundColor){
+                        child.activeBackGroundColor = this.activeBackGroundColor
+                    }
+                    child.textColor = this.textColor
+                    if(child.$options.name==='x-sub-menu'){
+                        child.tellChildrenColor(bc)
+                         if(bc){
+                             child.backGroundColor= bc
+                         }
+
+                    }
+
+                })
+            },
             leave(el) {
                setTimeout(()=>{
                    el.style.height = 0
@@ -146,6 +183,43 @@
                    el.style.paddingBottom = 0
                })
             },
+            changeXianColor(color){
+                this.$refs.xian.style.borderBottomColor = color
+            },
+            theFirstItem(){
+                return this.$parent.$options.name === 'x-menu' ? true : false;
+            },
+            beforeEnterXian(el) {
+                el.style.position= 'relative'
+                el.style.left = '50%'
+                el.style.width=0
+            },
+            enterXian(el) {
+                setTimeout(()=>{
+                    el.style.width= '100%'
+                    el.style.left = '0'
+                })
+            },
+            leaveXian(el){
+                el.style.position= 'relative'
+                el.style.left = '50%'
+                el.style.width=0
+            },
+            beforeLeaveXian(el) {
+                el.style.width= '100%'
+                el.style.left = '0'
+            },
+        },
+        watch:{
+            active(){
+                if(this.active){
+                    this.$refs.title.style.backgroundColor = this.activeBackGroundColor
+                    this.$refs.title.style.color = this.activeColor
+                }else{
+                    this.$refs.title.style.backgroundColor = null
+                    this.$refs.title.style.color = null
+                }
+            }
         }
     }
 </script>
@@ -153,8 +227,14 @@
 <style scoped lang="scss">
         .x-sub-menu{
             position: relative;
+            font-size: 15px;
+            .xian{
+                transition: .3s all ease;
+                width: 100%;
+                border-bottom: 2px solid #409eff;
+            }
             &-title{
-                padding: 10px 20px;
+                padding: 15px 25px;
                 display: flex;
                 color: #999999;
                 justify-content: center;
@@ -166,20 +246,7 @@
                 }
                 &.active{
                     color:#409eff;
-                    &:after{
-                        left: 0;
-                        width: 100%;
-                    }
-                }
-                &:after{
-                    content: "";
-                    width: 0;
-                    height: 1px;
-                    border-bottom:2px solid #409eff;
-                    position: absolute;
-                    bottom: 1%;
-                    left: 50%;
-                    transition: all .3s ease-in-out;
+
                 }
                 .firstIcon{
                     transition: .3s all ease;
@@ -195,23 +262,16 @@
                         color:#409eff;
                         background-color: #eefbfa;
                     }
-                    &:after{
-                        content: "";
-                        border-bottom: none;
-                        position: absolute;
-                        bottom: 1%;
-                        left: 0;
-                        transition: all .3s ease-in-out;
-                    }
+
                 }
             }
             .x-popover{
-                margin-top: 2px;
                 position: absolute;
                 top: 100%;
                 left: 0;
+                margin-top: 5px;
                 color: #515a6e;
-                border-radius:4px;
+                border-radius:2px;
                 white-space: nowrap;
                 background-color: white;
                 box-shadow:1px 1px 2px fade_out(black, 0.7);
@@ -225,9 +285,7 @@
                     }
                     &.active{
                         border-bottom: none;
-                        &:after{
-                            display: none;
-                        }
+
                     }
                 }
 
@@ -240,6 +298,7 @@
             }
             &.vertical{
                 display: inline-flex;
+                width: 100%;
                 flex-direction: column;
                .x-sub-menu-title{
                    padding: 15px 4em 15px 20px;
@@ -250,15 +309,13 @@
                     &.active{
                         color:#409eff;
                         background-color: #eefbfa;
-                        &:after{
-                            display: none;
-                        }
+
                     }
                 }
                 .x-popover{
                     position: static;
-                    margin-top: 2px;
                     color: #515a6e;
+                    margin-top: 0;
                     background-color: inherit;
                     border-radius: 0;
                     white-space: nowrap;
@@ -266,7 +323,6 @@
                     transition: .3s all ease-in-out;
                     /deep/.x-menu-item{
                         font-size: 13px;
-                        margin-left: 1.0em;
                         transition: .3s all ease-in-out;
                         &:hover{
                             color:#409eff;
@@ -274,9 +330,7 @@
                         }
                         &.active{
                             border-bottom: none;
-                            &:after{
-                                display: none;
-                            }
+
                         }
                     }
 
@@ -284,18 +338,18 @@
                 .x-sub-menu{
                     position: relative;
                     .x-popover{
+                        margin-top: 0;
                         position: static;
                         border-radius: 0;
                         transition: .3s all ease-in-out;
                         box-shadow: none;
                         margin-left:0;
                         /deep/.x-menu-item{
-                            margin-left: 1.6em;
+                            display: flex;
+                            justify-content: center;
                             &.active{
                                 border-bottom: none;
-                                &:after{
-                                    display: none;
-                                }
+
                             }
                         }
                     }
