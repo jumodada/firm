@@ -131,14 +131,16 @@
                 el.style.height = el.scrollHeight + 'px'
                 el.style.overflow = 'hidden'
                 el.style.transition = '.1s all ease-in-out'
+                if(this.vertical){
+                    el.style.transition = '.3s all'
+                }
             },
             leave(el) {
-                el.style.height = 0
-                el.style.paddingTop = 0
-                el.style.paddingBottom = 0
-                if(this.vertical){
-                    el.style.transition = '.3s all '
-                }
+               setTimeout(()=>{
+                   el.style.height = 0
+                   el.style.paddingTop = 0
+                   el.style.paddingBottom = 0
+               })
             },
         }
     }
