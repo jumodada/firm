@@ -1,5 +1,5 @@
 <template>
-<div class="x-menu">
+<div class="x-menu" :class="{vertical}">
     <slot></slot>
 </div>
 </template>
@@ -15,6 +15,10 @@
             single:{
                 type: Boolean,
                 default:true
+            },
+            vertical:{
+                type: Boolean,
+                default:false
             }
         },
         data(){
@@ -29,6 +33,7 @@
           }
         },
          mounted(){
+                 this.tellChilcVertical()
                  this.updateChild()
                  this.watchChild()
          },
@@ -62,6 +67,16 @@
                         }
                     })
                 })
+            },
+            tellChilcVertical(){
+                if(this.vertical){
+                    this.$children.forEach(child=>{
+                        child.vertical = true
+                        if(child.$options.name==='x-sub-menu'){
+                            child.tellChilcVertical()
+                        }
+                    })
+                }
             }
         },
 
@@ -77,6 +92,14 @@
     color: #515a6e;
     &:hover{
         opacity: 1;
+    }
+    &.vertical{
+        max-width: 15em;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-bottom: none;
+        border-right: 1px solid #e6e6e6;
     }
 }
 </style>

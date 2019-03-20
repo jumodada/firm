@@ -1,5 +1,5 @@
 <template>
-<div class="x-menu-item" :class="{active:selected}" @click="onClick">
+<div class="x-menu-item" :class="{active:selected,vertical}" @click="onClick">
     <slot></slot>
 </div>
 </template>
@@ -22,7 +22,8 @@
         },
         data(){
             return {
-                selected:false
+                selected:false,
+                vertical:false
             }
         },
         methods:{
@@ -55,6 +56,9 @@
                 position: relative;
                 padding: 10px 20px;
                 transition: .3s width ease-in-out;
+                text-overflow: ellipsis;
+                overflow: hidden;
+
                 &:hover{
                     cursor: pointer;
                 }
@@ -75,6 +79,29 @@
                     bottom: 1%;
                     left: 50%;
                     transition: all .3s ease-in-out;
+                }
+                &.vertical{
+                    font-size: 17px;
+                    padding: 15px 4em 15px 20px;
+                    &.active{
+                        color:#409eff;
+                        background-color: #eefbfa;
+                        &:after{
+                            left: 0;
+                            width: 100%;
+                        }
+                        &:after{
+                            content: "";
+                            width: 0;
+                            height: 1px;
+                            border-bottom:none;
+                            position: absolute;
+                            bottom: 1%;
+                            left: 50%;
+                            transition: all .3s ease-in-out;
+                        }
+                    }
+
                 }
             }
 </style>
