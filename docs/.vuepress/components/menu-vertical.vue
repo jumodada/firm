@@ -6,29 +6,32 @@
             <template slot="description">
                 <div style="color: #999999">
                     <x-menu :selected.sync="selected" vertical>
-                        <x-sub-menu name="extension">
-                            <template slot="title">扩展</template>
-                            <x-menu-item name="mac">for mac</x-menu-item>
-                            <x-menu-item name="windows">for Windows</x-menu-item>
-                        </x-sub-menu>
-                        <x-sub-menu name="learn">
-                            <template slot="title">如何使用</template>
-                            <x-menu-item name="fast">快速入门</x-menu-item>
-                            <x-menu-item name="advanced">进阶配置</x-menu-item>
-                            <x-menu-item name="package">多语言支持</x-menu-item>
-                            <x-sub-menu name="package">
-                                <template slot="title">打包管理</template>
-                                <x-sub-menu name="webpack">
-                                    <template slot="title">webpack</template>
-                                    <x-menu-item name="rookie">webpack快速上手</x-menu-item>
-                                    <x-menu-item name="master">webpack从入门到入土</x-menu-item>
-                                    <x-menu-item name="fuck">配你🐴呢</x-menu-item>
-                                </x-sub-menu>
-                                <x-menu-item name="parcel">使用parcel</x-menu-item>
+                        <x-sub-menu name="extension" icon-name="set">
+                            <template slot="title">设置</template>
+                            <x-sub-menu name="user">
+                                <template slot="title">账号管理</template>
+                                <x-menu-item name="toggle">切换账号</x-menu-item>
+                                <x-menu-item name="cancel">注销</x-menu-item>
                             </x-sub-menu>
+                            <x-menu-item name="windows">消息通知</x-menu-item>
                         </x-sub-menu>
-                        <x-menu-item name="connect">联系我们</x-menu-item>
-                        <x-menu-item name="support">其他支持</x-menu-item>
+                        <x-sub-menu name="address" icon-name="dizhi">
+                            <template slot="title">地址管理</template>
+                            <x-menu-item name="addAddress">添加地址</x-menu-item>
+                            <x-menu-item name="modifyAddress">修改地址</x-menu-item>
+                            <x-menu-item name="defaultAddress">默认地址选择</x-menu-item>
+                        </x-sub-menu>
+                        <x-sub-menu name="package" icon-name="dingdan">
+                            <template slot="title">我的订单</template>
+                            <x-sub-menu name="order">
+                                <template slot="title">全部订单</template>
+                                <x-menu-item name="delivery">待发货</x-menu-item>
+                                <x-menu-item name="receiving">待收货</x-menu-item>
+                            </x-sub-menu>
+                            <x-menu-item name="parcel">取消的订单</x-menu-item>
+                        </x-sub-menu>
+                        <x-menu-item name="connect" icon-name="lianxidaogou">联系我们</x-menu-item>
+                        <x-menu-item name="support" icon-name="bangzhuyuzhichi">其他支持</x-menu-item>
                     </x-menu>
                     <br>
                     <br>
@@ -36,16 +39,13 @@
                     <br>
                     <br>
                     <br>
+                <code>x-sub-menu</code>和<code>x-menu-item</code>都可以设置 <code>icon-name</code>来给选择栏添加图标作为标识
                     <br>
+                    使用 <code>vertical</code> 换为侧栏
                     <br>
+
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <code>name</code>就是每个组件的索引，必须设置。
-                    <br>
-                    弹出框是默认 <code>hover</code>触发
+                    弹出框是默认 <code>click</code>触发
 
                 </div>
             </template>
@@ -72,31 +72,34 @@
                 selected:['1'],
                 selectTab1:[1],
                 input1:'```html\n' +
-                    '<x-menu :selected.sync="selected" single>\n' +
-                    '   <x-sub-menu name="extension">\n' +
-                    '     <template slot="title">扩展</template>\n' +
-                    '     <x-menu-item name="mac">for Mac</x-menu-item>\n' +
-                    '     <x-menu-item name="windows">for Windows</x-menu-item>\n' +
-                    '   </x-sub-menu>\n' +
-                    '   <x-sub-menu name="learn">\n' +
-                    '       <template slot="title">如何使用</template>\n' +
-                    '       <x-menu-item name="fast">快速入门</x-menu-item>\n' +
-                    '       <x-menu-item name="advanced">进阶配置</x-menu-item>\n' +
-                    '       <x-menu-item name="package">多语言支持</x-menu-item>\n' +
-                    '   <x-sub-menu name="package">\n' +
-                    '       <template slot="title">打包管理</template>\n' +
-                    '       <x-sub-menu name="webpack">\n' +
-                    '          <template slot="title">webpack</template>\n' +
-                    '             <x-menu-item name="rookie">webpack快速上手</x-menu-item>\n' +
-                    '             <x-menu-item name="master">webpack从入门到入土</x-menu-item>\n' +
-                    '             <x-menu-item name="fuck">配你🐴呢</x-menu-item>\n' +
-                    '       </x-sub-menu>\n' +
-                    '       <x-menu-item name="parcel">使用parcel</x-menu-item>\n' +
-                    '       </x-sub-menu>\n' +
-                    '   </x-sub-menu>\n' +
-                    '   <x-menu-item name="connect">联系我们</x-menu-item>\n' +
-                    '   <x-menu-item name="support">其他支持</x-menu-item>\n' +
-                    '</x-menu>\n' +
+                    '<x-menu :selected.sync="selected" vertical>\n' +
+                    '<x-sub-menu name="extension" icon-name="set">\n' +
+                    '   <template slot="title">设置</template>\n' +
+                    '       <x-sub-menu name="user">\n' +
+                    '              <template slot="title">账号管理</template>\n' +
+                    '              <x-menu-item name="toggle">切换账号</x-menu-item>\n' +
+                    '          <x-menu-item name="cancel">注销</x-menu-item>\n' +
+                    '            </x-sub-menu>\n' +
+                    '           <x-menu-item name="windows">消息通知</x-menu-item>\n' +
+                    '           </x-sub-menu>\n' +
+                    '         <x-sub-menu name="address" icon-name="dizhi">\n' +
+                    '         <template slot="title">地址管理</template>\n' +
+                    '             <x-menu-item name="addAddress">添加地址</x-menu-item>\n' +
+                    '               <x-menu-item name="modifyAddress">修改地址</x-menu-item>\n' +
+                    '            <x-menu-item name="defaultAddress">默认地址选择</x-menu-item>\n' +
+                    '               </x-sub-menu>\n' +
+                    '           <x-sub-menu name="package" icon-name="dingdan">\n' +
+                    '             <template slot="title">我的订单</template>\n' +
+                    '          <x-sub-menu name="order">\n' +
+                    '                 <template slot="title">全部订单</template>\n' +
+                    '                <x-menu-item name="delivery">待发货</x-menu-item>\n' +
+                    '              <x-menu-item name="receiving">待收货</x-menu-item>\n' +
+                    '        </x-sub-menu>\n' +
+                    '           <x-menu-item name="parcel">取消的订单</x-menu-item>\n' +
+                    '            </x-sub-menu>\n' +
+                    '         <x-menu-item name="connect" icon-name="lianxidaogou">联系我们</x-menu-item>\n' +
+                    '       <x-menu-item name="support" icon-name="bangzhuyuzhichi">其他支持</x-menu-item>\n' +
+                    ' </x-menu>\n' +
                     '```'
             }
         },

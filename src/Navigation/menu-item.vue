@@ -1,10 +1,12 @@
 <template>
 <div class="x-menu-item" :class="{active:selected,vertical}" @click="onClick">
+    <x-icon :name="iconName" style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></x-icon>
     <slot></slot>
 </div>
 </template>
 
 <script>
+    import Icon from '../../src/currency/icon'
     export default {
         name: "x-menu-item",
         inject:['root'],
@@ -18,7 +20,13 @@
             name:{
                 type:String,
                 required:true
+            },
+            iconName:{
+                type: String
             }
+        },
+        components:{
+          'x-icon':Icon
         },
         data(){
             return {
