@@ -6,7 +6,7 @@
          @mouseenter="addHoverColor"
          @mouseleave="removeHoverColor"
          :class="{active:selected,vertical}" @click="onClick">
-        <x-icon   :color="textColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></x-icon>
+        <x-icon   :color="!selected?textColor:activeColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></x-icon>
         <slot></slot>
     </div>
    <transition
@@ -15,7 +15,10 @@
            @before-leave="beforeLeave"
            @leave="leave"
          >
-       <div ref="xian" class="xian" v-show="selected&&theFirstItem()&&!vertical"></div>
+       <div ref="xian" class="xian"
+            v-show="selected&&theFirstItem()&&!vertical"
+
+       ></div>
    </transition>
 </div>
 </template>
@@ -27,6 +30,7 @@
         inject:['root'],
         created(){
           this.root.addItem(this)
+           this.initialColor()
         },
         beforeDestroy(){
           clearTimeout(this.timer)
@@ -117,11 +121,18 @@
             },
             changeXianColor(color){
                     this.$refs.xian.style.borderBottomColor = color
+            },
+            initialColor(){
+                this.$nextTick(()=>{
+                    if(this.activeColor&&this.selected){
+                        this.$refs.item.style.color = this.activeColor
+                    }
+                })
             }
         },
         watch:{
             selected(){
-                if(this.selected){
+                if(this.selected&&this.activeColor){
                     this.$refs.item.style.backgroundColor = this.activeBackGroundColor
                     this.$refs.item.style.color = this.activeColor
                 }else{
