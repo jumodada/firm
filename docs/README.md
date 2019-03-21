@@ -1,7 +1,7 @@
 # Xin   --基于Vue的pc端UI组件库
 
 
-前端学了快一年了,这是我的在vue学习过程中所做的UI组件库
+前端学了一年了,这是我的在vue学习过程中所做的UI组件库
 <br/>
 样式功能参考element Ui和 Ant Design
 
@@ -11,7 +11,7 @@
 
 
 
-[代码地址](https://github.com/jumodada/My-Vue-Wheel)
+[代码地址](https://github.com/jumodada/vueXin)
 
 
 [![Build Status](https://www.travis-ci.org/jumodada/My-Vue-Wheel.svg?branch=master)](https://www.travis-ci.org/jumodada/My-Vue-Wheel)

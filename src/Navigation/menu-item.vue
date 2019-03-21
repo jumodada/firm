@@ -28,7 +28,7 @@
         name: "x-menu-item",
         inject:['root'],
         created(){
-          this.root.addItem(this)
+           this.root.addItem(this)
            this.initialColor()
         },
         beforeDestroy(){
@@ -65,14 +65,17 @@
             onClick(){
                 if(this.disabled)return
                 this.root.selectedArr=[]
-                this.$emit('update:selected',this.name)
+                this.$emit('menuItemUpdate',this.name)
                 let subFather = this.$parent.$el.classList.contains('x-sub-menu')
                 let groupFather = this.$parent.$el.classList.contains('x-menu-item-group')
+                this.root.selectedArr.unshift(this.name)
                 if(subFather||groupFather){
                     this.root.selectedArr=[]
                     this.root.selectedArr.unshift(this.name)
                     this.tellParents(this)
                     this.$parent.childClosePopover()
+                }else{
+                    console.log(this.root.selectedArr)
                 }
 
             },

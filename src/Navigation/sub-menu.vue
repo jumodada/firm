@@ -178,7 +178,6 @@
                             child.backGroundColor= bc
                         }
                     }
-
                 })
             },
             leave(el) {

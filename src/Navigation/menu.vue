@@ -79,7 +79,7 @@
           },
             watchChild(){
                 this.items.forEach(vm=>{
-                    vm.$on('update:selected',name=>{
+                    vm.$on('menuItemUpdate',name=>{
                         if(this.single){
                             this.$emit('update:selected',[name])
                         }else{
