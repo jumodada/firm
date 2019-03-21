@@ -6,7 +6,7 @@
          @mouseenter="addHoverColor"
          @mouseleave="removeHoverColor"
          :class="{active:selected,vertical}" @click="onClick">
-        <x-icon   :color="!selected?textColor:activeColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></x-icon>
+        <x-icon   :color="!selected?textColor:activeColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;width: 1.2em;height: 1.2em;position: relative;top:3px;" v-if="iconName"></x-icon>
         <slot></slot>
     </div>
    <transition
@@ -62,8 +62,9 @@
             onClick(){
                 this.root.selectedArr=[]
                 this.$emit('update:selected',this.name)
-                let judge = this.$parent.$el.classList.contains('x-sub-menu')
-                if(judge){
+                let subFather = this.$parent.$el.classList.contains('x-sub-menu')
+                let groupFather = this.$parent.$el.classList.contains('x-menu-item-group')
+                if(subFather||groupFather){
                     this.root.selectedArr=[]
                     this.root.selectedArr.unshift(this.name)
                     this.tellParents(this)
@@ -72,7 +73,7 @@
 
             },
             tellParents(that){
-                if(that.$parent.$parent.$options.name==='x-sub-menu'){
+                if(that.$parent.$parent.$options.name==='x-sub-menu' ||that.$parent.$parent.$options.name==='x-menu-item-group'){
                     this.root.selectedArr.unshift(that.$parent.name)
                     this.tellParents(that.$parent)
                 }else{
@@ -163,7 +164,6 @@
                 padding: 15px 25px;
                 transition: .3s all ease-in-out;
                 text-overflow: ellipsis;
-                overflow: hidden;
                 &:hover{
                     cursor: pointer;
                 }

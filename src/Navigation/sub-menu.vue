@@ -9,7 +9,7 @@
           :class="{active}"
           ref="title"
     >
-        <x-icon  :color="!active?textColor:activeColor" :name="iconName" v-if="iconName" class="title-icon"></x-icon>
+        <x-icon  :color="!active?textColor:activeColor" :name="iconName" v-if="iconName" class="title-icon"  style="width:1.2em;height: 1.2em"></x-icon>
         <slot name="title"></slot>
         <x-icon  v-if="notStandFirst" name="arrow" :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
         <x-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"
@@ -91,7 +91,7 @@
             tellChilcVertical(){
               this.$children.forEach(child=>{
                   child.vertical = true
-                  if(child.$options.name==='x-sub-menu'){
+                  if(child.$options.name==='x-sub-menu'||child.$options.name==='x-menu-item-group'){
                       child.tellChilcVertical()
                   }
               })
@@ -171,7 +171,12 @@
                          if(bc){
                              child.backGroundColor= bc
                          }
-
+                    }
+                    if(child.$options.name==='x-menu-item-group'){
+                        child.tellChildrenColor(bc)
+                        if(bc){
+                            child.backGroundColor= bc
+                        }
                     }
 
                 })
@@ -240,6 +245,7 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+                vertical-align: center;
                 .title-icon{
                     margin-right: 6px;
                     color: #515a6e;
