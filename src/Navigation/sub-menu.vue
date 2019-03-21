@@ -9,7 +9,7 @@
           :class="{active}"
           ref="title"
     >
-        <x-icon  :color="!active?textColor:activeColor" :name="iconName" v-if="iconName" class="title-icon"  style="width:1.2em;height: 1.2em"></x-icon>
+        <x-icon  :color="!active?textColor:activeColor" :name="iconName" v-if="iconName" class="title-icon" ></x-icon>
         <slot name="title"></slot>
         <x-icon  v-if="notStandFirst" name="arrow" :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
         <x-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"

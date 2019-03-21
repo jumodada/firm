@@ -53,3 +53,21 @@ title: Menu 导航菜单
 ## 内嵌子菜单
 
 <menu-group></menu-group>
+
+<br/>
+<br/>
+<br/>
+
+## 内嵌子菜单横版
+
+<menu-group2></menu-group2>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
