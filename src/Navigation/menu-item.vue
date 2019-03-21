@@ -5,7 +5,7 @@
          :style="{color:textColor}"
          @mouseenter="addHoverColor"
          @mouseleave="removeHoverColor"
-         :class="{active:selected,vertical}" @click="onClick">
+         :class="{active:selected,vertical,disabled}" @click="onClick">
         <x-icon   :color="!selected?textColor:activeColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></x-icon>
         <slot></slot>
     </div>
@@ -17,7 +17,6 @@
          >
        <div ref="xian" class="xian"
             v-show="selected&&theFirstItem()&&!vertical"
-
        ></div>
    </transition>
 </div>
@@ -43,6 +42,10 @@
             },
             iconName:{
                 type: String
+            },
+            disabled:{
+                type:Boolean,
+                default:false
             }
         },
         components:{
@@ -60,6 +63,7 @@
 
         methods:{
             onClick(){
+                if(this.disabled)return
                 this.root.selectedArr=[]
                 this.$emit('update:selected',this.name)
                 let subFather = this.$parent.$el.classList.contains('x-sub-menu')
@@ -73,6 +77,7 @@
 
             },
             tellParents(that){
+                if(this.disabled)return
                 if(that.$parent.$parent.$options.name==='x-sub-menu' ||that.$parent.$parent.$options.name==='x-menu-item-group'){
                     this.root.selectedArr.unshift(that.$parent.name)
                     this.tellParents(that.$parent)
@@ -82,6 +87,7 @@
                 }
             },
             addHoverColor(){
+                if(this.disabled)return
                 if(this.activeColor){
                     this.$refs.item.style.color = this.activeColor
                 }
@@ -90,6 +96,7 @@
                 }
             },
             removeHoverColor(){
+                if(this.disabled)return
                 if(this.activeColor&&!this.selected){
                     this.$refs.item.style.color = this.textColor
                 }
@@ -121,9 +128,11 @@
                 return this.$parent.$options.name === 'x-menu' ? true : false;
             },
             changeXianColor(color){
+                if(this.disabled)return
                     this.$refs.xian.style.borderBottomColor = color
             },
             initialColor(){
+                if(this.disabled)return
                 this.$nextTick(()=>{
                     if(this.activeColor&&this.selected){
                         this.$refs.item.style.color = this.activeColor
@@ -146,6 +155,11 @@
 </script>
 
 <style scoped lang="scss">
+
+    .disabled{
+        opacity: .2;
+        cursor: not-allowed !important;
+    }
     .extend-enter-active, .extend-leave-active {
         transition: all .3s ease;
     }

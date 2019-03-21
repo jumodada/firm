@@ -45,6 +45,8 @@ title: Menu 导航菜单
 
 ## disabled 禁用
 
+<menu-disabled></menu-disabled>
+
 <br/>
 <br/>
 <br/>
@@ -71,3 +73,6 @@ title: Menu 导航菜单
 <br/>
 <br/>
 <br/>
+
+
+

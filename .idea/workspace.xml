@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-group2.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-disabled.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/components/button/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/button/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/components/menu/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/menu/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Navigation/menu-item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/menu-item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigation/sub-menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigation/sub-menu.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -110,7 +108,7 @@
           <entry key="styl" value="20" />
           <entry key="svg" value="4" />
           <entry key="ts" value="1" />
-          <entry key="vue" value="170" />
+          <entry key="vue" value="176" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -124,7 +122,7 @@
           <entry key="SVG" value="4" />
           <entry key="Stylus" value="20" />
           <entry key="TypeScript" value="1" />
-          <entry key="Vue.js" value="170" />
+          <entry key="Vue.js" value="176" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -132,10 +130,10 @@
           <entry key="html" value="16" />
           <entry key="js" value="223" />
           <entry key="json" value="19" />
-          <entry key="md" value="335" />
+          <entry key="md" value="368" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="14471" />
+          <entry key="vue" value="14636" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -143,10 +141,10 @@
           <entry key="HTML" value="16" />
           <entry key="JSON" value="19" />
           <entry key="JavaScript" value="223" />
-          <entry key="Markdown" value="335" />
+          <entry key="Markdown" value="368" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="14471" />
+          <entry key="Vue.js" value="14636" />
         </counts>
       </usages-collector>
     </session>
@@ -166,10 +164,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-disabled.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-313">
+              <caret line="56" column="10" lean-forward="true" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#3073#3120#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2970">
+              <caret line="110" selection-start-line="110" selection-end-line="110" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Navigation/menu-item.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="386">
+              <caret line="172" column="36" lean-forward="true" selection-start-line="172" selection-start-column="36" selection-end-line="172" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#x-icon#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -178,11 +206,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Navigation/sub-menu.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8856">
+              <caret line="328" column="21" lean-forward="true" selection-start-line="328" selection-start-column="21" selection-end-line="328" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/components/menu/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="681">
-                <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+              <first_editor relative-caret-position="557">
+                <caret line="77" selection-start-line="77" selection-end-line="77" />
               </first_editor>
               <second_editor />
             </state>
@@ -203,7 +240,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>svg</find>
       <find>search</find>
       <find>409eff;</find>
       <find>openPopover</find>
@@ -233,6 +269,7 @@
       <find>tellParents</find>
       <find>if(this.activeColor</find>
       <find>.x</find>
+      <find>hover</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -241,7 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/unit/col.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/row.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/input.test.js" />
         <option value="$PROJECT_DIR$/tests/unit/toast.test.js" />
@@ -286,12 +322,13 @@
         <option value="$PROJECT_DIR$/src/Navigation/menu-group.vue" />
         <option value="$PROJECT_DIR$/src/Navigation/menu.vue" />
         <option value="$PROJECT_DIR$/docs/components/button/README.md" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-group2.vue" />
-        <option value="$PROJECT_DIR$/docs/components/menu/README.md" />
-        <option value="$PROJECT_DIR$/src/Navigation/sub-menu.vue" />
-        <option value="$PROJECT_DIR$/src/Navigation/menu-item.vue" />
         <option value="$PROJECT_DIR$/src/Navigation/menu-item-group.vue" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue" />
+        <option value="$PROJECT_DIR$/src/Navigation/menu-item.vue" />
+        <option value="$PROJECT_DIR$/src/Navigation/sub-menu.vue" />
+        <option value="$PROJECT_DIR$/docs/components/menu/README.md" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-disabled.vue" />
       </list>
     </option>
   </component>
@@ -343,33 +380,6 @@
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="button" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="grid" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
@@ -514,12 +524,12 @@
       <workItem from="1552987172136" duration="11861000" />
       <workItem from="1553046281146" duration="5844000" />
       <workItem from="1553057225776" duration="34959000" />
-      <workItem from="1553131827299" duration="7304000" />
+      <workItem from="1553131827299" duration="8703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="435458000" />
+    <option name="totallyTimeSpent" value="436857000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -578,13 +588,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/grid-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="40" column="68" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/grid-flex.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -826,17 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-back1.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-137">
-          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-default.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
@@ -898,31 +890,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-group2.vue">
+    <entry file="file://$PROJECT_DIR$/src/Navigation/menu.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3517">
-          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#7049#7096#0" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2106">
-          <caret line="78" column="30" lean-forward="true" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#4892#4939#0" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="1251">
+          <caret line="149" column="22" selection-start-line="149" selection-start-column="22" selection-end-line="149" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -933,36 +904,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Navigation/sub-menu.vue">
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-group2.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2792">
-          <caret line="53" column="31" lean-forward="true" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+        <state relative-caret-position="-32">
+          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-back1.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="78" column="31" lean-forward="true" selection-end-line="138" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Navigation/menu-item.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="172" column="36" lean-forward="true" selection-start-line="172" selection-start-column="36" selection-end-line="172" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#x-icon#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-menu#0;n#div#0;n#template#0;n#x-collapse#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/components/menu/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="681">
-            <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <first_editor relative-caret-position="557">
+            <caret line="77" selection-start-line="77" selection-end-line="77" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Navigation/menu.vue">
+    <entry file="file://$PROJECT_DIR$/src/Navigation/sub-menu.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1251">
-          <caret line="149" column="22" selection-start-line="149" selection-start-column="22" selection-end-line="149" selection-end-column="22" />
+        <state relative-caret-position="8856">
+          <caret line="328" column="21" lean-forward="true" selection-start-line="328" selection-start-column="21" selection-end-line="328" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Navigation/menu-item.vue">
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-disabled.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="-313">
+          <caret line="56" column="10" lean-forward="true" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
           <folding>
-            <element signature="n#style#0;n#x-icon#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#3073#3120#0" expanded="true" />
           </folding>
         </state>
       </provider>

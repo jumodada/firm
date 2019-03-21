@@ -109,9 +109,9 @@
                     <br>
                     <br>
 
-                    <div style="color: #999999"> 子菜单<code>x-menu-item-group</code>用于在 <code>x-sub-menu</code>里面嵌套展示<code></code>.
-                        就像这个例子一样可以一直嵌套，<code>name</code>命名不能重复。子菜单虽然作为一个包裹容器。
-                        但是选中里面的子元素的时候，<code>x-menu-item-group</code>并不会高亮显示。但依然计入选中的路径里面。
+                    <div style="color: #999999"> 子菜单<code>x-menu-item-group</code>用于在 <code>x-sub-menu</code>里面嵌套展示。
+                        就像这个例子一样可以一直嵌套，并且<code>name</code>命名不能重复。子菜单作为一个包裹容器。
+                        在选中里面的子元素的时候，<code>x-menu-item-group</code>并不会高亮显示,依然计入选中的路径里面。
                     </div>
                 </div>
             </template>
