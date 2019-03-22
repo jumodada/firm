@@ -20,7 +20,7 @@
                             <template slot="title">如何使用</template>
                             <x-menu-item name="fast">快速入门</x-menu-item>
                             <x-menu-item name="advanced">进阶配置</x-menu-item>
-                            <x-menu-item name="package">多语言支持</x-menu-item>
+                            <x-menu-item name="language">多语言支持</x-menu-item>
                             <x-sub-menu name="package">
                                 <template slot="title">打包管理</template>
                                 <x-sub-menu name="webpack">
@@ -100,7 +100,7 @@
                     '                    <template slot="title">如何使用</template>\n' +
                     '                   <x-menu-item name="fast">快速入门</x-menu-item>\n' +
                     '                  <x-menu-item name="advanced">进阶配置</x-menu-item>\n' +
-                    '                <x-menu-item name="package">多语言支持</x-menu-item>\n' +
+                    '                <x-menu-item name="language">多语言支持</x-menu-item>\n' +
                     '                       <x-sub-menu name="package">\n' +
                     '                      <template slot="title">打包管理</template>\n' +
                     '                      <x-sub-menu name="webpack">\n' +
