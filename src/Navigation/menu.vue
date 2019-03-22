@@ -67,7 +67,6 @@
             addItem(vm){
                this.items.push(vm)
             },
-
           updateChild(){
               this.items.forEach(vm=>{
                   if(this.selected.indexOf(vm.name)>-1){

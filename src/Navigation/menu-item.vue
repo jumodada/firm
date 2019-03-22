@@ -30,6 +30,7 @@
         created(){
            this.root.addItem(this)
            this.initialColor()
+
         },
         beforeDestroy(){
           clearTimeout(this.timer)
