@@ -3,7 +3,7 @@
 
 
         <div style="margin-top: 90px">
-            <x-tabs :selected.sync="selected">
+            <x-tabs :selected.sync="selected" cards>
                 <x-tabs-item item="经济" name="1">
                     财经报道
                 </x-tabs-item>
@@ -33,12 +33,14 @@
     import Tabs from '../../../src/Exhibition/tabs'
     import TabsItem from '../../../src/Exhibition/tabs-item'
 
+
     export default {
         name: "button-demo-default",
         data(){
             return {
                 selectTab:['1'],
                 selected:'1',
+
 
             }
         },
@@ -49,7 +51,6 @@
             'x-tabs':Tabs,
             'x-tabs-item':TabsItem
         },
-
     }
 </script>
 

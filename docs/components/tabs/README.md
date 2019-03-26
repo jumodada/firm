@@ -11,21 +11,50 @@ title: Tabs标签页
 
 <br></br>
 ```html
-  <x-tabs :selected.sync="selected">
+ <x-tabs :selected.sync="selected">
                 <x-tabs-item item="经济" name="1">
-                    粤港澳大湾区规划的公布，让人们又开始重新回顾起全球发达经济体区域湾区的历史，但这种梳理历史的视角太小了，当我们把粤港澳大湾区规划和几乎同时推进的5G并联观察时，就会发现，中国根本不是在延续历史上的“湾区”，而是进入一个构建全球最大经济湾区的进程之中。
-                    完全聚焦于中国工业门类的齐整和众多工业品的全球产量第一只能带来一种粗糙的规模感，难以看到这些现象背后所蕴含的底层的、结构化的经济竞争力。组织范畴内的范围经济和规模经济限制了这种分析方式的使用，其实它同样可以在国家这样的经济体层次上使用。从全球范围来看，中国工业在规模经济性和范围经济性方面已经拥有强大优势，这是全球工业板块持续向中国转移的深层动力之一，而这两个经济性也决定了全球经济体工业的空间分布结构。</x-tabs-item>
+                    财经报道
+                </x-tabs-item>
                 <x-tabs-item item="体育" name="2" disabled>体育xxxxxxx</x-tabs-item>
                 <x-tabs-item item="民生" name="3" disabled>民生xxxxxxx</x-tabs-item>
-                <x-tabs-item item="游戏" name="4">本次VG夺冠让我们对TI6之后的中国队伍又看到了希望，而那句CN DOTA BEST DOTA也有了往下传递的可能，不得不说在喷子们说B/P有问题，皮鞋太划的情况下VG的这个冠军很是关键，虽然理性分析的话VG在阵容上确实有点小死板，但这个冠军让我们知道皮队不再是Five爷，卵子并不是高分低能，而老队长也不是只会下菠菜混吃等死！</x-tabs-item>
+                <x-tabs-item item="游戏" name="4">
+                    带带大师兄
+                </x-tabs-item>
                 <x-tabs-item item="科技" name="5" >
-                    对于苹果的iPad mini相信大家都不会陌生，小巧的尺寸，精致的外观及出色的性能表现，从mini到mini4成为了很多朋友随身携带的影音小神器。随着大屏手机进一步占领市场，全球平板市场也趋于疲软，苹果在15年发布了iPad mini4后，这个系列就一直没有再更新。当大家都以为iPad mini4会成为这个系列绝版之作的时候,时隔四年之后，苹果官网悄无声息的上架了最新一代的iPad mini和iPad Air平台电脑。
+                    科技新闻
                 </x-tabs-item>
                 <x-tabs-item item="军事" name="6">
-                    尤其是美国在长达40余年的“冷战”结束后，调整其全球战略，进一步缩小了其庞大的武装力量编制。但为了应付全球范围内的各种实发事件,继续充当“世界警察”的角色,美国在1991年对陆军进行了重大重组,并组建了更为精干的快速反应部队。新组建的快速反应部队由战功卓著、赫赫有名的陆军第82空降师、第101空中突击师、第7步兵师、第24步兵师和第1骑兵团组成。其中，第82空降师是这支快速反应部队的核心力量。
+                    各国军事
                 </x-tabs-item>
-            </x-tabs>
+  </x-tabs>
 ```
 <br></br>
 <br></br>
 <br></br>
+
+
+## 选项卡样式
+<tabs-cards></tabs-cards>
+
+<br></br>
+```html
+ <x-tabs :selected.sync="selected" cards>
+                <x-tabs-item item="经济" name="1">
+                    财经报道
+                </x-tabs-item>
+                <x-tabs-item item="体育" name="2" disabled>体育xxxxxxx</x-tabs-item>
+                <x-tabs-item item="民生" name="3" disabled>民生xxxxxxx</x-tabs-item>
+                <x-tabs-item item="游戏" name="4">
+                    带带大师兄
+                </x-tabs-item>
+                <x-tabs-item item="科技" name="5" >
+                    科技新闻
+                </x-tabs-item>
+                <x-tabs-item item="军事" name="6">
+                    各国军事
+                </x-tabs-item>
+            </x-tabs>
+```
+
+
+## 位置

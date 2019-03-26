@@ -1,6 +1,6 @@
 <template>
     <div class="tabs" :class="positionStyle">
-        <div class="tabs-header">
+        <div class="tabs-header" :class="{cardsStyle:cards}">
             <div  ref="item" class="tabs-header-item"
                   @click="onClick(index+1)" v-for="(item,index) in headerClass">
                 <div  class="tabs-header-name"
@@ -9,8 +9,8 @@
                     {{item}}
                 </div>
             </div>
-            <div ref="line" class="line"></div>
-            <div class="actions-wrapper">
+            <div ref="line" class="line" v-if="!cards"></div>
+            <div class="actions-wrapper" v-if="!cards">
                 <slot name="actions"></slot>
             </div>
         </div>
@@ -36,6 +36,10 @@
                     return ['top','left','right','bottom'].indexOf(val)>-1
                 }
             },
+            cards:{
+                type: Boolean,
+                default: false
+            }
         },
         data(){
             return {
@@ -71,6 +75,7 @@
                 })
             },
             lineMove(){
+                if(this.cards)return
                 let item = this.$refs.item[this.active-1]
                 let   left =  item.offsetLeft
                 let {width} = item.getBoundingClientRect()
@@ -102,6 +107,12 @@
     $blue:#1296db;
     $border-color: #ddd;
     $animation-duration:0.3s;
+    @keyframes xuan {
+       0%{
+           border-bottom: 1px solid $blue;
+
+       }
+    }
     .tabs{
             display: flex;
             flex-direction: column;
@@ -142,6 +153,35 @@
                 }
 
             }
+
+            &.cardsStyle{
+                align-items: normal;
+
+                .tabs-header-item{
+                    border: 1px solid #dddddd;
+                    border-bottom: none;
+                    &:first-child{
+                        border-top-left-radius: 4px;
+                    }
+                    &:last-child{
+                        border-top-right-radius: 4px;
+                    }
+                    &:not(:first-child){
+                        border-left: none;
+                    }
+                    .tabs-header-name{
+                        &:hover{
+                            color:$blue;
+                            font-weight: bold;
+                            transform:none;
+                        }
+                        &.active{
+                            transition: 0s;
+                            border-bottom: solid 1px rgba(255,255,254,255);
+                        }
+                    }
+                }
+            }
             >.line{
                 position: absolute;
                 bottom: 0;
@@ -156,6 +196,7 @@
         }
 
         .tabs-content{
+            margin-top: 25px;
             position: relative;
             overflow: hidden;
             width: 100%;
