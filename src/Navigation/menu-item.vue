@@ -23,6 +23,8 @@
 </template>
 
 <script>
+
+
     import Icon from '../../src/currency/icon'
     export default {
         name: "x-menu-item",

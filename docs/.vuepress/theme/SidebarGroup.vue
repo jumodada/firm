@@ -44,6 +44,9 @@ export default {
       }
     },
     mounted(){
+        this.eventBus.$on('installTo',res=>{
+          console.log(res)
+      })
         this.$refs.li && this.$refs.li.forEach((item,index)=>{
             if(item.querySelector('li')&&item.querySelector('li').classList.contains('active')){
                 this.selected = index
@@ -54,6 +57,11 @@ export default {
     inject:['eventBus'],
     methods:{
       xxx(index){
+          if(this.$route.path==='/install/'){
+              this.eventBus.$emit('xxx',true)
+              this.selected = -1
+              return
+          }
           if(index===this.selected)return
           let distance
               distance=index-this.selected
@@ -64,7 +72,7 @@ export default {
             }
                this.selected = index
       }
-    }
+    },
 }
 </script>
 

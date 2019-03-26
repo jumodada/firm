@@ -27,7 +27,7 @@
           }
       },
       mounted(){
-
+          this.eventBus.$emit('installTo',123)
           let pathName =Local.get('pathName')
           if(pathName){
               this.item.headers&&this.item.headers.forEach((item,index)=>{
@@ -50,7 +50,7 @@
                 this.$router.push({path:`#${child.slug}`})
                Local.set('pathName',child.slug)
           }
-      }
+      },
   }
 </script>
 
