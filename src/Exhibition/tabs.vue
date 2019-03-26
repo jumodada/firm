@@ -1,9 +1,10 @@
 <template>
     <div class="tabs" :class="positionStyle">
         <div class="tabs-header">
-            <div  ref="item" class="tabs-header-item"  @click="onClick(index+1)" v-for="(item,index) in headerClass">
+            <div  ref="item" class="tabs-header-item"
+                  @click="onClick(index+1)" v-for="(item,index) in headerClass">
                 <div  class="tabs-header-name"
-
+                      ref="itemHeader"
                      :class="{active:(index===parseInt(active-1))}">
                     {{item}}
                 </div>
@@ -16,7 +17,6 @@
             <div class="tabs-content">
                 <slot></slot>
             </div>
-
     </div>
 </template>
 
@@ -52,9 +52,18 @@
         },
         methods:{
             onClick(index){
+                 if(this.disabledClass[index])return
+                this.tellChildren(index)
                 this.active = index
-                this.activeChange()
-                this.lineMove()
+                this.$nextTick(()=>{
+                    this.activeChange()
+                    this.lineMove()
+                })
+            },
+            tellChildren(index){
+                this.$children.forEach(child=>{
+                    index<this.active? child.isReverse=true:child.isReverse=false
+                })
             },
             activeChange(){
                 this.$children.forEach(child=>{
@@ -62,7 +71,9 @@
                 })
             },
             lineMove(){
-                let {width,left} = this.$refs.item[this.active-1].getBoundingClientRect()
+                let item = this.$refs.item[this.active-1]
+                let   left =  item.offsetLeft
+                let {width} = item.getBoundingClientRect()
                 this.$refs.line.style.width = `${width}px`
                 this.$refs.line.style.transform = `translateX(${left}px)`
             },
@@ -70,7 +81,7 @@
                 Object.keys(this.disabledClass).forEach(child=>{
                     let childValue =  this.disabledClass[child]
                     if(childValue){
-                        this.$refs.item[child-1].classList.add('disabled')
+                        this.$refs.itemHeader[child-1].classList.add('disabled')
                     }
                 })
             }
@@ -100,30 +111,34 @@
             justify-content: flex-start;
             align-items: center;
             position: relative;
-            border: 1px solid  $border-color;
+            border-bottom: 1px solid  $border-color;
             .tabs-header-item{
                 .tabs-header-name{
                     padding: 0 2em;
                     cursor: pointer;
                     height: 100%;
+                    color:#515a6e;
                     display: flex;
                     align-items: center;
+                    transition:  all .3s;
                     &:hover{
                         color:$blue;
                         font-weight: bold;
                         transform: translateX(-10%);
-                        transition:  all .3s;
                     }
                     &.active{
                         color:$blue;
                         font-weight: bold;
                     }
-
-                }
-                &.disabled{
-                    cursor: not-allowed;
-                    pointer-events: none;
-                    opacity: 0.6;
+                    &.disabled{
+                        cursor: not-allowed;
+                        opacity: 0.4;
+                        &:hover{
+                            color:#727171;
+                            font-weight: normal;
+                            transform: translateX(0);
+                        }
+                    }
                 }
 
             }
@@ -138,6 +153,12 @@
                 margin-right: 2em;
             }
 
+        }
+
+        .tabs-content{
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
 
     }

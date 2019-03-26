@@ -1,8 +1,7 @@
 <template>
  <div>
    <p @click="toggleSliderBar"  :class="{'page-x-icon-move':canIMove}" class="page-x-icon">
-     <x-icon style="width: 2em;height: 2em" color="#8a8a8a" name="liebiao">
-     </x-icon>
+     <img  style="height: 2em;width: 2em"  src="./liebiao.svg" alt="">
    </p>
    <transition name="slide">
      <div class="sidebar" v-show="toggle">
@@ -32,10 +31,9 @@ import SidebarGroup from './SidebarGroup.vue'
 import SidebarLink from './SidebarLink.vue'
 import NavLinks from './NavLinks.vue'
 import { isActive } from './util'
-import Icon from '../../../src/currency/icon'
 
 export default {
-  components: { SidebarGroup, SidebarLink, NavLinks ,'x-icon':Icon},
+  components: { SidebarGroup, SidebarLink, NavLinks },
 
   props: ['items'],
 

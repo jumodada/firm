@@ -1,9 +1,11 @@
 <template>
-    <transition  name="bounce">
-<div v-if="parseInt(active)===parseInt(name)">
-    <slot></slot>
-</div>
-    </transition>
+            <transition
+                    name="slide"
+            >
+                <div class="tabs-item" :class="{disabled:disabled,reverse:isReverse}" v-if="parseInt(active)===parseInt(name)">
+                    <slot></slot>
+                </div>
+            </transition>
 </template>
 
 <script>
@@ -25,34 +27,43 @@
         },
         data(){
             return {
-               active:null
+               active:null,
+                isReverse:false
+
             }
         },
         created(){
-             this.$parent._data.headerClass.push(this.item)
-             this.$parent._data.disabledClass[this.name] = this.disabled
+             this.$parent.headerClass.push(this.item)
+             this.$parent.disabledClass[this.name] = this.disabled
         }
     }
 </script>
 
 <style scoped lang="scss">
-    $animation-duration:0.3s;
-    .bounce-enter-active {
-        animation: bounce-in $animation-duration;
+    .slide-leave-active {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
-    .bounce-leave-active {
-        animation: bounce-in $animation-duration reverse;
+    .slide-enter {
+        transform: translateX(100%);
+        opacity: 0;
     }
-    @keyframes bounce-in {
-        0% {
-            transform: scale(0);
-        }
-        50% {
-            transform: scale(1.5);
-        }
-
-        100% {
-            transform: scaleX(1);
-        }
+    .slide-enter.reverse {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    .slide-leave-to {
+        transform: translateX(-100%) scale(0.5);
+        opacity: 0;
+    }
+    .slide-leave-to.reverse {
+        transform: translateX(100%) scale(0.5);
+        opacity: 0;
+    }
+    .tabs-item{
+        transition: .4s all ease-in-out;
     }
 </style>
