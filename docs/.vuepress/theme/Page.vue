@@ -1,35 +1,35 @@
 <template>
-    <div class="page">
-      <slot name="top"/>
-     <div ref="content">
-       <transition :name="name">
-         <Content :custom="false" />
-       </transition>
-     </div>
-      <div class="page-edit">
-        <div
-                class="edit-link"
-                v-if="editLink"
-        >
-          <a
-                  :href="editLink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-          >{{ editLinkText }}</a>
-          <OutboundLink/>
-        </div>
+        <div class="page" :class="{'page-sliderBar-slide':canIMove}">
+            <slot name="top"/>
+            <div ref="content">
+                <transition :name="name">
+                    <Content :custom="false" />
+                </transition>
+            </div>
+            <div class="page-edit">
+                <div
+                        class="edit-link"
+                        v-if="editLink"
+                >
+                    <a
+                            :href="editLink"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                    >{{ editLinkText }}</a>
+                    <OutboundLink/>
+                </div>
 
-        <div
-                class="last-updated"
-                v-if="lastUpdated"
-        >
-          <span class="prefix">{{ lastUpdatedText }}: </span>
-          <span class="time">{{ lastUpdated }}</span>
-        </div>
-      </div>
+                <div
+                        class="last-updated"
+                        v-if="lastUpdated"
+                >
+                    <span class="prefix">{{ lastUpdatedText }}: </span>
+                    <span class="time">{{ lastUpdated }}</span>
+                </div>
+            </div>
 
-      <div class="page-nav" v-if="prev || next">
-        <p class="inner">
+            <div class="page-nav" v-if="prev || next">
+                <p class="inner">
         <span
                 v-if="prev"
                 class="prev"
@@ -44,10 +44,10 @@
           </router-link>
         </span>
 
-          <span
-                  v-if="next"
-                  class="next"
-          >
+                    <span
+                            v-if="next"
+                            class="next"
+                    >
           <router-link
                   v-if="next"
                   :to="next.path"
@@ -56,22 +56,22 @@
           </router-link>
           →
         </span>
-        </p>
-      </div>
+                </p>
+            </div>
 
-      <slot name="bottom"/>
-    </div>
+            <slot name="bottom"/>
+        </div>
 </template>
 
 <script>
 import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
-
 export default {
   props: ['sidebarItems'],
     inject:['eventBus'],
     data(){
       return{
-          name:'down'
+          name:'down',
+          canIMove:false
       }
     },
     mounted(){
@@ -156,7 +156,6 @@ export default {
 
   methods: {
 
-
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
       if (bitbucket.test(repo)) {
@@ -237,6 +236,11 @@ function find (page, items, offset) {
 .down-leave-to
     transform translateY(-100%)
     opacity 0
+.page
+    transition .4s all ease
+    position relative
+.page-sliderBar-slide
+    transform translateX(-10%)
 
 .page-edit
   @extend $wrapper
