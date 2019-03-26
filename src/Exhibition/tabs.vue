@@ -51,7 +51,7 @@
 
         computed:{
             positionStyle(){
-                return `postion-${this.position}`
+                return `position-${this.position}`
             },
         },
         methods:{
@@ -78,9 +78,15 @@
                 if(this.cards)return
                 let item = this.$refs.item[this.active-1]
                 let   left =  item.offsetLeft
-                let {width} = item.getBoundingClientRect()
-                this.$refs.line.style.width = `${width}px`
-                this.$refs.line.style.transform = `translateX(${left}px)`
+                let top = item.offsetTop
+                let {width,height} = item.getBoundingClientRect()
+                if(this.position==='left'){
+                    this.$refs.line.style.height = `${height}px`
+                    this.$refs.line.style.transform = `translateY(${top}px)`
+                }else{
+                    this.$refs.line.style.width = `${width}px`
+                    this.$refs.line.style.transform = `translateX(${left}px)`
+                }
             },
             addDisabled(){
                 Object.keys(this.disabledClass).forEach(child=>{
@@ -104,18 +110,14 @@
 
 <style scoped lang="scss">
     $tab-height:40px;
-    $blue:#1296db;
+    $blue:rgb(64, 158, 255);
     $border-color: #ddd;
     $animation-duration:0.3s;
-    @keyframes xuan {
-       0%{
-           border-bottom: 1px solid $blue;
 
-       }
-    }
     .tabs{
             display: flex;
             flex-direction: column;
+        transition: .4s all ease-in-out;
         .tabs-header{
             display: flex;
             height: $tab-height;
@@ -197,10 +199,107 @@
 
         .tabs-content{
             margin-top: 25px;
+            transition: .4s all ease-out;
             position: relative;
             overflow: hidden;
             width: 100%;
         }
+        &.position-left{
+            display: flex;
+            flex-direction: row;
+            transition: 0.4s all ease;
+            .tabs-header{
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                align-items: center;
+                position: relative;
+                border-right: 1px solid  $border-color;
+                border-bottom:none;
+                .tabs-header-item{
+                    padding: 10px 0;
+                    .tabs-header-name{
+                        display: flex;
+                        padding: 6px 0;
+                        min-width: 100px;
+                        width: auto;
+                        align-items: center;
+                        justify-content: center;
+                        transition: .4s all;
+                        &:hover{
+                            color:$blue;
+                            font-weight: bold;
+                            font-size: 17px;
+                            transform:none;
+                        }
+                    }
+                }
+                >.line{
+                    position: absolute;
+                    top: 0;
+                    left: 97%;
+                    border-right: $blue solid 3px;
+                    transition: all $animation-duration;
+                }
+            }
+            .tabs-content{
+                margin-left: 25px;
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+            }
+        }
+        &.position-bottom{
+            flex-direction: column-reverse;
+            .tabs-content{
+                margin-bottom: 25px;
 
+            }
+        }
+        &.position-right{
+            display: flex;
+            flex-direction: row-reverse;
+            transition: 0.4s all ease;
+            .tabs-header{
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                align-items: center;
+                position: relative;
+                border-left: 1px solid  $border-color;
+                border-bottom:none;
+                .tabs-header-item{
+                    padding: 10px 0;
+                    .tabs-header-name{
+                        display: flex;
+                        padding: 6px 0;
+                        min-width: 100px;
+                        width: auto;
+                        align-items: center;
+                        justify-content: center;
+                        transition: .4s all;
+                        &:hover{
+                            color:$blue;
+                            font-weight: bold;
+                            font-size: 17px;
+                            transform:none;
+                        }
+                    }
+                }
+                >.line{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border-left: $blue solid 3px;
+                    transition: all $animation-duration;
+                }
+            }
+            .tabs-content{
+                margin-left: 25px;
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+            }
+        }
     }
 </style>

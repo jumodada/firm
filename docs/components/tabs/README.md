@@ -55,6 +55,16 @@ title: Tabs标签页
                 </x-tabs-item>
             </x-tabs>
 ```
+<br></br>
+<br></br>
+<br></br>
+
 
 
 ## 位置
+<tabs-position></tabs-position>
+
+
+<br></br>
+<br></br>
+<br></br>
