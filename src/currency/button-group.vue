@@ -23,27 +23,26 @@
     vertical-align: center;
     @import "../var";
 
-     /deep/ .x-button-wrapper{
+     /deep/ .x-button{
 
-         &:not(:first-child) .x-button{
+         &:not(:first-child){
              margin-left: -1px;
          }
-         &:first-child .x-button{
+         &:first-child{
              border-top-left-radius: $border-radius !important;
              border-bottom-left-radius: $border-radius !important;
          }
-         &:last-child .x-button{
+         &:last-child{
              border-top-right-radius: $border-radius !important;
              border-bottom-right-radius: $border-radius !important;
          }
-         &:hover .x-button{
+         &:hover{
              border-color: #ef6c14;
              position:relative;
              z-index: 1;
          }
-         .x-button{
              border-radius: 0 !important;
-         }
+
      }
 }
 </style>

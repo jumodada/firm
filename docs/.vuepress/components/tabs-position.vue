@@ -55,7 +55,7 @@
                 selected:'1',
                 position:'bottom',
                 group:['top','bottom','left','right'],
-                buttonIndex:0
+                buttonIndex:1
             }
         },
         methods:{
