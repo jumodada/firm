@@ -76,18 +76,28 @@
             },
             lineMove(){
                 if(this.cards)return
-                let item = this.$refs.item[this.active-1]
-                let   left =  item.offsetLeft
-                let top = item.offsetTop
+                const item = this.$refs.item[this.active-1]
+                const {line} = this.$refs
+                let [left,top] =  [item.offsetLeft,item.top]
                 let {width,height} = item.getBoundingClientRect()
                 if(this.position==='left'){
-                    this.$refs.line.style.transform = `translateX(0)`
-                    this.$refs.line.style.height = `${height}px`
+                    line.style.width = 0
+                    line.style.height = `${height}px`
                     this.$refs.line.style.transform = `translateY(${top}px)`
                 }else if(this.position==='top'){
-                    this.$refs.line.style.transform = `translateY(0)`
-                    this.$refs.line.style.width = `${width}px`
-                    this.$refs.line.style.transform = `translateX(${left}px)`
+                    line.style.height = 0
+                    line.style.transform = `translateY(0)`
+                    line.style.width = `${width}px`
+                    line.style.transform = `translateX(${left}px)`
+                }else if(this.position==='right'){
+                    line.style.width = 0
+                    line.style.height = `${height}px`
+                    line.style.transform = `translateY(${top}px)`
+                }else if(this.position==='bottom'){
+                    line.style.height = 0
+                    line.style.transform = `translateY(0)`
+                    line.style.width = `${width}px`
+                    line.style.transform = `translateX(${left}px)`
                 }
             },
             addDisabled(){
@@ -100,21 +110,11 @@
             }
         },
         watch:{
-          position(){
-              if(this.cards)return
-              let item = this.$refs.item[this.active-1]
-              let   left =  item.offsetLeft
-              let top = item.offsetTop
-              let {width,height} = item.getBoundingClientRect()
-              if(this.position==='left'){
-                  this.$refs.line.style.height = `${height}px`
-                  this.$refs.line.style.transform = `translateY(${top}px)`
-              }else if(this.position==='top'){
-                  this.$refs.line.style.transform = `translateY(0)`
-                  this.$refs.line.style.width = `${width}px`
-                  this.$refs.line.style.transform = `translateX(${left}px)`
-              }
-          }
+            position(){
+               setTimeout(()=>{
+                   this.lineMove()
+               },300)
+            }
         },
         mounted(){
             this.$nextTick(()=>{
@@ -198,6 +198,7 @@
             >.line{
                 position: absolute;
                 bottom: 0;
+                left: 0;
                 border-bottom: $blue solid 3px;
                 transition: all $animation-duration;
             }
@@ -224,7 +225,6 @@
                 flex-direction: column;
                 height: auto;
                 align-items: center;
-                position: relative;
                 border-right: 1px solid  $border-color;
                 border-bottom:none;
                 .tabs-header-item{
@@ -248,6 +248,7 @@
                 >.line{
                     position: absolute;
                     top: 0;
+                    left: 97%;
                     border-right: $blue solid 3px;
                     border-bottom: none;
                     border-top: none;
@@ -264,8 +265,39 @@
         }
         &.position-bottom{
             flex-direction: column-reverse;
+            .tabs-header{
+
+                border-top: 1px solid  $border-color;
+                border-bottom:none;
+                .tabs-header-item{
+                    padding: 10px 0;
+                    .tabs-header-name{
+                        display: flex;
+                        padding: 6px 0;
+                        min-width: 100px;
+                        width: auto;
+                        align-items: center;
+                        justify-content: center;
+                        transition: .4s all;
+                        &:hover{
+                            color:$blue;
+                            font-weight: bold;
+                            font-size: 17px;
+                            transform:none;
+                        }
+                    }
+                }
+                >.line{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border-top: $blue solid 1px;
+                    transition: all $animation-duration;
+                }
+            }
             .tabs-content{
                 margin-bottom: 25px;
+                overflow: hidden;
 
             }
         }
@@ -278,7 +310,6 @@
                 flex-direction: column;
                 height: auto;
                 align-items: center;
-                position: relative;
                 border-left: 1px solid  $border-color;
                 border-bottom:none;
                 .tabs-header-item{

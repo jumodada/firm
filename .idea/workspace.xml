@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/tabs-position.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/tabs-position.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exhibition/tabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/tabs.vue" afterDir="false" />
     </list>
@@ -133,7 +132,7 @@
           <entry key="md" value="680" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="19506" />
+          <entry key="vue" value="20112" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -144,7 +143,7 @@
           <entry key="Markdown" value="680" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="19506" />
+          <entry key="Vue.js" value="20112" />
         </counts>
       </usages-collector>
     </session>
@@ -170,10 +169,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/tabs-position.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            <state relative-caret-position="854">
+              <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#1055#1110#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,8 +182,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/tabs.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="257" column="27" selection-start-line="257" selection-start-column="27" selection-end-line="257" selection-end-column="27" />
+            <state relative-caret-position="274">
+              <caret line="83" column="40" lean-forward="true" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+              <folding>
+                <element signature="e#4983#5935#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -191,8 +194,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2889">
-              <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
+            <state relative-caret-position="80">
+              <caret line="103" column="30" lean-forward="true" selection-start-line="103" selection-start-column="30" selection-end-line="103" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -209,7 +212,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
+            <state relative-caret-position="136">
               <caret line="23" column="29" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="29" />
             </state>
           </provider>
@@ -563,12 +566,12 @@
       <workItem from="1553394035500" duration="83000" />
       <workItem from="1553518764330" duration="597000" />
       <workItem from="1553559711744" duration="31971000" />
-      <workItem from="1553647811734" duration="2452000" />
+      <workItem from="1553647811734" duration="9963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="491509000" />
+    <option name="totallyTimeSpent" value="499020000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -583,7 +586,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.17547569" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.17547569" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.5008157" side_tool="true" weight="0.18181819" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -861,6 +864,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#910#955#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -932,27 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2889">
-          <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/tabs-item.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="51" column="19" lean-forward="true" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/components/tabs/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -966,20 +951,45 @@
     <entry file="file://$PROJECT_DIR$/src/var.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/tabs-item.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="51" column="19" lean-forward="true" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/tabs-position.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        <state relative-caret-position="854">
+          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1055#1110#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="103" column="30" lean-forward="true" selection-start-line="103" selection-start-column="30" selection-end-line="103" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/tabs.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="257" column="27" selection-start-line="257" selection-start-column="27" selection-end-line="257" selection-end-column="27" />
+        <state relative-caret-position="274">
+          <caret line="83" column="40" lean-forward="true" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+          <folding>
+            <element signature="e#4983#5935#0" />
+          </folding>
         </state>
       </provider>
     </entry>

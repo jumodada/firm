@@ -11,7 +11,7 @@
         <div style="margin-top: 90px">
 
             <x-tabs :selected.sync="selected" :position="position">
-                <x-tabs-item item="经济" name="1">
+                <x-tabs-item item="经济xxxx" name="1">
                     财经报道xxxxxx
                 </x-tabs-item>
                 <x-tabs-item item="体育" name="2" disabled>体育xxxxxxx</x-tabs-item>
@@ -48,7 +48,7 @@
             return {
                 selectTab:['1'],
                 selected:'1',
-                position:'left'
+                position:'bottom'
             }
         },
         methods:{
