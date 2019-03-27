@@ -8,9 +8,8 @@
     export default {
         name: "button-group",
         mounted(){
-            Object.keys(this.$el.children).forEach(index=>{
-               let nodeName =  this.$el.children[index].classList[0]
-                if(nodeName !== 'x-button-wrapper'){
+           this.$children.forEach(child=>{
+                if(child.$options.name !== 'x-button'){
                     console.error('x-button-group的子元素应该全是x-button')
                 }
             })

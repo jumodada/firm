@@ -2,7 +2,9 @@
             <transition
                     name="slide"
             >
-                <div class="tabs-item" :class="{disabled:disabled,reverse:isReverse}" v-if="parseInt(active)===parseInt(name)">
+                <div class="tabs-item"
+                     :class="{disabled:disabled,reverse:isReverse}"
+                     v-if="parseInt(active)===parseInt(name)">
                     <slot></slot>
                 </div>
             </transition>

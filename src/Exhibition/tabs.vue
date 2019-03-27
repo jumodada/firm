@@ -14,9 +14,9 @@
                 <slot name="actions"></slot>
             </div>
         </div>
-            <div class="tabs-content">
+        <div class="tabs-content">
                 <slot></slot>
-            </div>
+        </div>
     </div>
 </template>
 

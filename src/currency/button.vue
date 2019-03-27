@@ -1,153 +1,18 @@
 <template>
-      <div class="x-button-wrapper" :disabled="disabled">
-          <button class="x-button"
-                  :class="[[`icon-${position}`],
-             typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle]
-            "
-                  :disabled="disabled"
-                  ref="button"
-                  :style="roundStyle"
-                  @click="onClick"
+
+          <button
           >
 
-              <x-icon  :name="icon"
-                       :color="color"
-                       :style="disabledStyle"
-                       v-if="icon || loading"  :class="{loading:loading}">
-              </x-icon>
-              <div class="x-button-content"
-                   :style="disabledStyle"
-              >
-                  <slot>
 
-                  </slot>
-              </div>
-              <div class="cloakLeft" v-if="disabled"></div>
-              <div class="cloakRight" v-if="disabled"></div>
           </button>
-      </div>
+
 </template>
 <script>
 
     import Icon from './icon.vue'
     export default {
         name:'x-button',
-        components:{
-            'x-icon': Icon
-        },
-        methods:{
-          onClick(){
-                this.$emit('click')
-                this.dangerAnimation()
-              if(this.loading){
 
-              }else{
-
-              }
-          },
-            dangerAnimation(){
-                let arr = this.$refs.button.classList
-                    arr.remove('loop')
-                    arr.add('loop')
-                    setTimeout(()=>{     //为什么不用定时器就无法清除呢,cao
-                        arr.remove('loop')
-                    },300)
-            }
-        },
-        computed:{
-            disabledStyle(){
-                if(this.disabled){
-                    return 'fill:#ccc; pointer-events: none;'
-                }
-            },
-            typeStyle(){
-                if(!this.type)return
-                return `type-${this.type}`
-            },
-            sizeStyle(){
-                if(!this.size)return
-                return `size-${this.size}`
-            },
-            roundStyle(){
-                if(this.round){
-                    return 'border-radius:21px;'
-                }
-            },
-            plainStyle(){
-                if(this.plain){
-                    return 'plain'
-                }
-            },
-            dangerStyle(){
-                if(this.danger){
-                    return 'danger'
-                }
-            },
-            dashedStyle(){
-                if(this.dashed){
-                    return 'dashed'
-                }
-            },
-            loadingStyle(){
-                if(this.loading){
-                    return 'loadingCloak'
-                }
-            }
-
-        },
-        props: {
-            icon:{
-                type:String
-            },
-            disabled:{
-                type:Boolean,
-                default:false
-            },
-            type:{
-              type:String,
-              validator(val){
-                  return ['primary','success','warn','error','info'].indexOf(val)>-1
-              },
-            },
-            plain:{
-                type:Boolean,
-                default:false
-            },
-            size:{
-                type:String,
-                default:'medium',
-                validator(val){
-                    return ['big','medium','small','mini'].indexOf(val)>-1
-                }
-            },
-            round:{
-              type:Boolean,
-              default:false
-            },
-            color:{
-              type:String,
-                default:'black'
-            },
-            loading:{
-                type:Boolean,
-                default: false
-            },
-            danger:{
-                type:Boolean,
-                default: false
-            },
-            position:{
-                type:String,
-                default:'left',
-                validator(value) {
-                    return !(value !== 'left' && value !== 'right');
-                }
-            },
-            dashed:{
-                type:Boolean,
-                default: false
-            }
-        }
     }
 </script>
 <style lang="scss" scoped>
@@ -215,9 +80,7 @@
         }
     }
 
-    .x-button-wrapper{
-        display: inline-flex;
-        align-items: center;
+
         .x-button {
             font-size: $font-size;
             padding: 0 1em;
@@ -452,7 +315,6 @@
         &[disabled]{
             cursor: not-allowed;
         }
-    }
     .loop{
         position: relative;
         &::before {

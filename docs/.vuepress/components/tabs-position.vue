@@ -1,11 +1,15 @@
 <template>
     <div>
+
+        <div style="color: #999999;margin-top: 30px">
+            不支持卡片样式标签的位置选择
+        </div>
             <div style="margin-top: 50px">
                 <x-Button-group>
-                    <x-button @click="Top">Top</x-button>
-                    <x-button @click="Bottom">Bottom</x-button>
-                    <x-button @click="Left">Left</x-button>
-                    <x-button @click="Right">Right</x-button>
+                   <x-button v-for="(item,index) in group" :class="{active:index===buttonIndex}"
+                             @click="toggle(item,index)">
+                       {{item}}
+                   </x-button>
                 </x-Button-group>
             </div>
 
@@ -13,7 +17,7 @@
 
             <x-tabs :selected.sync="selected" :position="position">
                 <x-tabs-item item="经济xxxx" name="1">
-                    财经报道xxxxxx
+                    财经报道
                 </x-tabs-item>
                 <x-tabs-item item="体育" name="2" disabled>体育xxxxxxx</x-tabs-item>
                 <x-tabs-item item="民生" name="3" disabled>民生xxxxxxx</x-tabs-item>
@@ -49,22 +53,16 @@
             return {
                 selectTab:['1'],
                 selected:'1',
-                position:'bottom'
+                position:'bottom',
+                group:['top','bottom','left','right'],
+                buttonIndex:0
             }
         },
         methods:{
-            Top(){
-                this.position='top'
-            },
-            Bottom(){
-                this.position='bottom'
-            },
-            Left(){
-                this.position='left'
-            },
-            Right(){
-                this.position='right'
-            }
+         toggle(item,index){
+             this.buttonIndex = index
+             this.position = item
+         }
 
         },
         components:{
@@ -78,6 +76,9 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+        .active{
+            transition: .4s all ease-in-out;
+                background-color: #ffcc66;
+        }
 </style>
