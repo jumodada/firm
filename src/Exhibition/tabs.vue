@@ -78,27 +78,27 @@
                 if(this.cards)return
                 const item = this.$refs.item[this.active-1]
                 const {line} = this.$refs
-                let [left,top] =  [item.offsetLeft,item.top]
+                let positionName
+                let [left,top] = [item.offsetLeft,item.offsetTop]
                 let {width,height} = item.getBoundingClientRect()
-                if(this.position==='left'){
-                    line.style.width = 0
-                    line.style.height = `${height}px`
-                    this.$refs.line.style.transform = `translateY(${top}px)`
-                }else if(this.position==='top'){
-                    line.style.height = 0
-                    line.style.transform = `translateY(0)`
-                    line.style.width = `${width}px`
-                    line.style.transform = `translateX(${left}px)`
-                }else if(this.position==='right'){
-                    line.style.width = 0
-                    line.style.height = `${height}px`
-                    line.style.transform = `translateY(${top}px)`
-                }else if(this.position==='bottom'){
-                    line.style.height = 0
-                    line.style.transform = `translateY(0)`
-                    line.style.width = `${width}px`
-                    line.style.transform = `translateX(${left}px)`
+
+                let position = {
+                    topOrBottom:{
+                        width:`${width}px`,
+                        height:0,
+                        transform: `translate(${left}px,0)`
+                    },
+                    leftOrRight:{
+                        width: 0,
+                        height:`${height}px`,
+                        transform: `translateY(${top}px)`
+                    }
                 }
+                    positionName = this.position === 'left' || this.position === 'right' ? 'leftOrRight' : 'topOrBottom';
+                    line.style.height = position[positionName].height
+                    line.style.width = position[positionName].width
+                    line.style.transform = position[positionName].transform
+
             },
             addDisabled(){
                 Object.keys(this.disabledClass).forEach(child=>{
@@ -169,7 +169,6 @@
 
             &.cardsStyle{
                 align-items: normal;
-
                 .tabs-header-item{
                     border: 1px solid #dddddd;
                     border-bottom: none;
@@ -194,6 +193,7 @@
                         }
                     }
                 }
+
             }
             >.line{
                 position: absolute;

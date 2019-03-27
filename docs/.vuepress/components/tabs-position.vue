@@ -1,14 +1,15 @@
 <template>
     <div>
+            <div style="margin-top: 50px">
+                <x-Button-group>
+                    <x-button @click="Top">Top</x-button>
+                    <x-button @click="Bottom">Bottom</x-button>
+                    <x-button @click="Left">Left</x-button>
+                    <x-button @click="Right">Right</x-button>
+                </x-Button-group>
+            </div>
 
-        <x-Button-group>
-            <x-button @click="Top">Top</x-button>
-            <x-button @click="Bottom">Bottom</x-button>
-            <x-button @click="Left">Left</x-button>
-            <x-button @click="Right">Right</x-button>
-        </x-Button-group>
-
-        <div style="margin-top: 90px">
+        <div style="margin-top: 50px">
 
             <x-tabs :selected.sync="selected" :position="position">
                 <x-tabs-item item="经济xxxx" name="1">
