@@ -12,7 +12,7 @@
 
             <x-tabs :selected.sync="selected" :position="position">
                 <x-tabs-item item="经济" name="1">
-                    财经报道
+                    财经报道xxxxxx
                 </x-tabs-item>
                 <x-tabs-item item="体育" name="2" disabled>体育xxxxxxx</x-tabs-item>
                 <x-tabs-item item="民生" name="3" disabled>民生xxxxxxx</x-tabs-item>

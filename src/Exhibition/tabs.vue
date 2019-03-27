@@ -81,9 +81,11 @@
                 let top = item.offsetTop
                 let {width,height} = item.getBoundingClientRect()
                 if(this.position==='left'){
+                    this.$refs.line.style.transform = `translateX(0)`
                     this.$refs.line.style.height = `${height}px`
                     this.$refs.line.style.transform = `translateY(${top}px)`
-                }else{
+                }else if(this.position==='top'){
+                    this.$refs.line.style.transform = `translateY(0)`
                     this.$refs.line.style.width = `${width}px`
                     this.$refs.line.style.transform = `translateX(${left}px)`
                 }
@@ -96,6 +98,23 @@
                     }
                 })
             }
+        },
+        watch:{
+          position(){
+              if(this.cards)return
+              let item = this.$refs.item[this.active-1]
+              let   left =  item.offsetLeft
+              let top = item.offsetTop
+              let {width,height} = item.getBoundingClientRect()
+              if(this.position==='left'){
+                  this.$refs.line.style.height = `${height}px`
+                  this.$refs.line.style.transform = `translateY(${top}px)`
+              }else if(this.position==='top'){
+                  this.$refs.line.style.transform = `translateY(0)`
+                  this.$refs.line.style.width = `${width}px`
+                  this.$refs.line.style.transform = `translateX(${left}px)`
+              }
+          }
         },
         mounted(){
             this.$nextTick(()=>{
@@ -143,15 +162,7 @@
                         color:$blue;
                         font-weight: bold;
                     }
-                    &.disabled{
-                        cursor: not-allowed;
-                        opacity: 0.4;
-                        &:hover{
-                            color:#727171;
-                            font-weight: normal;
-                            transform: translateX(0);
-                        }
-                    }
+
                 }
 
             }
@@ -237,8 +248,10 @@
                 >.line{
                     position: absolute;
                     top: 0;
-                    left: 97%;
                     border-right: $blue solid 3px;
+                    border-bottom: none;
+                    border-top: none;
+                    border-left: none;
                     transition: all $animation-duration;
                 }
             }
@@ -300,6 +313,16 @@
                 overflow: hidden;
                 width: 100%;
             }
+        }
+    }
+    .disabled{
+        cursor: not-allowed !important;
+        opacity: 0.4;
+        &:hover{
+            color:#727171 !important;
+            font-weight: normal !important;
+            font-size: initial !important;
+            transform: translateX(0) !important;
         }
     }
 </style>
