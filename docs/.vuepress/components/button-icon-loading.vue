@@ -9,6 +9,11 @@
                         <x-button icon="loading" :loading="loading" @click="toggle">
                             加载按钮
                         </x-button>
+                        <x-button style="margin-left: 50px" :icon="loadThat" :circle="circle"
+                                  type="success" @click="toggle2" :loading="loading2">
+                            {{text}}
+                        </x-button>
+
                     </div>
 
                 </template>
@@ -44,6 +49,10 @@
             return {
                 selectTab:[1],
                 loading:false,
+                loading2:false,
+                circle:false,
+                loadThat:'',
+                text:'登录',
                 input1:'```html\n' +
                     '<x-button icon="loading" :loading="loading" @click="toggle">\n' +
                     '加载按钮\n' +
@@ -68,7 +77,19 @@
         methods:{
           toggle(){
               this.loading = !this.loading
-          }
+          },
+            toggle2(){
+                this.loading2 = !this.loading2
+                this.circle = !this.circle
+                if(this.loading2 ){
+                    this.text=''
+                    this.loadThat='loading'
+                }else{
+                    this.text='登录'
+                    this.loadThat=''
+                }
+            },
+
         },
         components:{
             'x-button':Button,

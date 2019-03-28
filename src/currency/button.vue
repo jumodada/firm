@@ -241,7 +241,7 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            transition: all .3s cubic-bezier(.645,.045,.355,1);
+            transition: all .2s;
             >.cloakLeft{
                 float: left;
                 height: inherit;
