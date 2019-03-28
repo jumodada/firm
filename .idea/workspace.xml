@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/components/button/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/button/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/currency/button.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/currency/button.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exhibition/popover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/popover.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -85,16 +84,17 @@
     <session id="1548928165">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="20" />
+          <entry key="project.closed" value="21" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="5" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="21" />
+          <entry key="project.opened" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -108,7 +108,7 @@
           <entry key="styl" value="20" />
           <entry key="svg" value="4" />
           <entry key="ts" value="1" />
-          <entry key="vue" value="244" />
+          <entry key="vue" value="245" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -122,7 +122,7 @@
           <entry key="SVG" value="4" />
           <entry key="Stylus" value="20" />
           <entry key="TypeScript" value="1" />
-          <entry key="Vue.js" value="244" />
+          <entry key="Vue.js" value="245" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -133,7 +133,7 @@
           <entry key="md" value="795" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="21735" />
+          <entry key="vue" value="22083" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -144,7 +144,7 @@
           <entry key="Markdown" value="795" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="21735" />
+          <entry key="Vue.js" value="22083" />
         </counts>
       </usages-collector>
     </session>
@@ -154,50 +154,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#x-button#1;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1337#2245#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/currency/button.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="334">
               <caret line="238" column="40" selection-start-line="238" selection-start-column="40" selection-end-line="238" selection-end-column="40" />
-              <folding>
-                <element signature="e#4113#4312#0" />
-                <element signature="e#4317#4769#0" />
-                <element signature="e#4774#5266#0" />
-                <element signature="e#5271#5416#0" />
-                <element signature="e#7230#7483#0" />
-                <element signature="e#7507#7824#0" />
-                <element signature="e#7845#7910#0" />
-                <element signature="e#10713#11039#0" />
-                <element signature="e#11070#11595#0" />
-                <element signature="e#11622#12183#0" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/components/button/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="322">
-                <caret line="64" column="45" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
-              </first_editor>
-              <second_editor />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -254,7 +224,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/grid-default.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/grid-flex.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/grid-gutter.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/grid-offset.vue" />
@@ -305,6 +274,7 @@
         <option value="$PROJECT_DIR$/src/currency/button.vue" />
         <option value="$PROJECT_DIR$/docs/components/button/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" />
+        <option value="$PROJECT_DIR$/src/Exhibition/popover.vue" />
       </list>
     </option>
   </component>
@@ -548,12 +518,13 @@
       <workItem from="1553518764330" duration="597000" />
       <workItem from="1553559711744" duration="31971000" />
       <workItem from="1553647811734" duration="22265000" />
-      <workItem from="1553734420743" duration="9477000" />
+      <workItem from="1553734420743" duration="9659000" />
+      <workItem from="1553779526783" duration="2530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520799000" />
+    <option name="totallyTimeSpent" value="523511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -568,7 +539,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.17547569" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.17547569" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.5008157" side_tool="true" weight="0.18181819" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -856,13 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="114" column="32" selection-start-line="114" selection-start-column="32" selection-end-line="114" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/tabs-default.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -901,11 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1239#1294#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -923,10 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="959">
           <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2283#2338#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -941,9 +896,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-829">
           <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <element signature="n#style#0;n#x-button#4;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-button#5;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-button#1;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -951,7 +914,7 @@
     <entry file="file://$PROJECT_DIR$/docs/components/button/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="322">
+          <first_editor relative-caret-position="1728">
             <caret line="64" column="45" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
           </first_editor>
           <second_editor />
@@ -962,31 +925,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
           <caret line="238" column="40" selection-start-line="238" selection-start-column="40" selection-end-line="238" selection-end-column="40" />
-          <folding>
-            <element signature="e#4113#4312#0" />
-            <element signature="e#4317#4769#0" />
-            <element signature="e#4774#5266#0" />
-            <element signature="e#5271#5416#0" />
-            <element signature="e#7230#7483#0" />
-            <element signature="e#7507#7824#0" />
-            <element signature="e#7845#7910#0" />
-            <element signature="e#10713#11039#0" />
-            <element signature="e#11070#11595#0" />
-            <element signature="e#11622#12183#0" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue">
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-button#1;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1337#2245#0" />
-          </folding>
+        <state relative-caret-position="176">
+          <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
         </state>
       </provider>
     </entry>

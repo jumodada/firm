@@ -1,12 +1,12 @@
 <template>
     <div class="popover" ref="popover">
-                <div ref="contentWrapper" class="content-wrapper"
+             <div ref="contentWrapper" class="content-wrapper"
                      :class="[[`position-${position}`],themeStyle]"
                      v-show="visible">
                     <div class="contentSlot">
-                        <slot name="content" :close="close"></slot>
+                        <slot name="content" :close="toggle"></slot>
                     </div>
-                </div>
+             </div>
         <span ref="trigger" style="display: inline-block">
             <slot></slot>
         </span>
@@ -19,38 +19,37 @@
         data () {
             return {
                 visible: false,
-                animate:false,
-                outClickisOn:false,
-                interval:null,
-                timer:null
             }
         },
         mounted(){
-            if(this.trigger==='click'){
-                this.$refs.popover.addEventListener('click',this.onClick)
-
-            }else if(this.trigger==='hover'){
-                this.$refs.popover.addEventListener('mouseenter',this.open)
-                this.$refs.popover.addEventListener('mouseleave',this.close)
-            }else{
-                this.$refs.popover.addEventListener('mousedown',this.open)
-                this.$refs.popover.addEventListener('mouseup',this.close)
+            let {popover} = this.$refs
+            this.event = {
+                click:{
+                    event:['click'],
+                    fun:this.onClick
+                },
+                hover:{
+                    event:['mouseenter','mouseleave'],
+                    fun:this.toggle
+                },
+                focus:{
+                    event:['mousedown','mouseup'],
+                    fun:this.toggle
+                }
             }
+            this.event[this.trigger].event.forEach(eventName=>{
+                popover.addEventListener(eventName,this.event[this.trigger].fun)
+            })
 
         },
         beforeDestroy(){
-            if(this.trigger==='click'){
-                this.$refs.popover.removeEventListener('click',this.onClick)
-            }else if(this.trigger==='hover'){
-                this.$refs.popover.removeEventListener('mouseenter',this.open)
-                this.$refs.popover.removeEventListener('mouseleave',this.close)
-            }else{
-                this.$refs.popover.removeEventListener('mousedown',this.open)
-                this.$refs.popover.removeEventListener('mouseup',this.close)
-            }
-                this.clearTimer()   //清除定时器和新增的dom节点
-                this.$el.remove()
-                this.$refs.contentWrapper.remove()
+            let {popover,contentWrapper} = this.$refs
+
+            this.event[this.trigger].event.forEach(eventName=>{
+                popover.removeEventListener(eventName,this.event[this.trigger].fun)
+            })
+            this.$el.remove()
+            contentWrapper.remove()
         },
             props:{
                     position:{
@@ -127,10 +126,12 @@
                 contentWrapper.style.top = x[this.position].top + 'px'
             },
 
-            listenToDocument(){
+            listenerDocument(){
                 document.addEventListener('click',this.eventHandler)
             },
-
+            removeListener(){
+                document.removeEventListener('click', this.eventHandler)
+            },
             isconWrapepr(e){    //判断点击的地方是否在contentWrapper里面
               return   e.path.some(child=>{
                     if(child===this.$refs.contentWrapper){
@@ -150,121 +151,25 @@
                 if(this.outClickisOn)return
                 if(this.isPopover(e) || this.isconWrapepr(e))return
                 if(!this.isconWrapepr(e) && this.$refs.popover &&!(this.$refs.popover===e.target || this.$refs.popover.contains(e.target))) {
-                   this.close()
+                   this.toggle()
                 }
             },
-            toOpen(e){
-                if(this.isPopover(e)) {
-                    let vm = this.$refs.contentWrapper
-                    let opacity = getComputedStyle(vm).opacity
-                    this.open(opacity)
-                }
-            },
-            toClose(e){
-                if(this.isPopover(e)) {
-                    this.close()
-                }
-                if(!this.isPopover(e) && !this.isconWrapepr(e)){
-                    document.removeEventListener('click', this.toClose)
-                    clearTimeout(this.timer)
-                }
-            },
-            closeAndHoverIn(e){
-                if(this.$refs.contentWrapper ===e.target){
-                    this.open()
-                }
-            },
-            openAndHoverOut(e){
-                if(this.$refs.contentWrapper ===e.target){
-                    this.close()
-                }
-            },
-            clearTimer(){
-                clearInterval(this.interval)
-                clearTimeout(this.timer)
-            },
-            open(op){
-                if(this.trigger==='hover'){
-                    this.$refs.contentWrapper.removeEventListener('mouseenter',this.closeAndHoverIn)
-                    this.$refs.contentWrapper.addEventListener('mouseleave',this.openAndHoverOut)
-                    document.removeEventListener('click', this.eventHandler)
-                }
-                    this.outClickisOn = false
-                    this.clearTimer()
-                  setTimeout(()=>{
-                      document.removeEventListener('click', this.toOpen)
-                      if(this.trigger!=='click') return
-                      document.addEventListener('click', this.toClose)
-                })
-                   this.$refs.contentWrapper.style.opacity = 0
-                   this.visible = true
 
-                   this.contentPosition() //搞定内容弹出的位置
-                   this.listenToDocument()//添加document的事件监听，在外部点击可以关闭气泡
-
-                       let currentTime
-                       let contentOpacity
-                       if(op &&typeof op ==='number'){
-                            this.$refs.contentWrapper.style.opacity = op
-                           contentOpacity= op
-                            currentTime = (1 / op)*300
-                       }else{
-                            currentTime = 300
-                            contentOpacity = 0
-                       }
-                       this.animate= true
-                       this.interval = setInterval(()=>{
-                           this.$refs.contentWrapper.style.opacity = contentOpacity
-                           contentOpacity += 0.1
-                       },30)
-                       this.timer = setTimeout(()=>{
-                           this.animate= false
-                           document.removeEventListener('click', this.toClose)
-                           this.clearTimer()
-                       },currentTime)
-
-            },
-            close(){
-                let vm = this.$refs.contentWrapper
-                let opacity = getComputedStyle(vm).opacity
-                if(this.trigger==='hover'){
-                    this.$refs.contentWrapper.removeEventListener('mouseleave',this.openAndHoverOut)
-                    this.$refs.contentWrapper.addEventListener('mouseenter',this.closeAndHoverIn)
+            toggle(){
+                this.visible = !this.visible
+                if(this.visible){
+                    this.contentPosition() //搞定内容弹出的位置
+                    this.listenerDocument()//添加document的事件监听，在外部点击可以关闭气泡
+                }else{
+                     this.removeListener()
                 }
-                this.outClickisOn  = true
-                setTimeout(()=>{
-                    document.removeEventListener('click', this.toClose)
-                    document.addEventListener('click', this.toOpen)
-                })
-                this.clearTimer()
-                if(parseInt(opacity)===0) opacity =1
-                this.$refs.contentWrapper.style.opacity = opacity
-                let currentTime = (1/opacity)*300
-                this.animate= true
-                this.interval = setInterval(()=>{
-                      this.$refs.contentWrapper.style.opacity -= 0.1
-                },30)
-                this.timer = setTimeout(()=>{
-                    this.visible = false
-                    this.animate= false
-                    this.outClickisOn = false
-                    if(this.trigger==='hover'){
-                        this.$refs.contentWrapper.removeEventListener('mouseenter',this.closeAndHoverIn)
-                    }
-                    document.removeEventListener('click', this.toOpen)
-                    document.removeEventListener('click', this.eventHandler)
-                    this.clearTimer()
-                },currentTime)
+
+
             },
             onClick () {
+                if(this.trigger!=='click')return
                 if (this.$refs.trigger.contains(event.target)) {
-                    if(!this.animate){
-                        if (!this.visible) {
-                            this.open()
-                        }else{
-                            this.close()
-                        }
-                    }
+                  this.toggle()
                 }
             }
         },
@@ -277,6 +182,7 @@
     .popover {
         display: inline-block;
         vertical-align: top;
+        transition: .3s all ease-in-out;
         position: relative;
     }
     .contentSlot{
