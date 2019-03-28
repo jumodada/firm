@@ -1,12 +1,20 @@
 <template>
     <div class="popover" ref="popover">
+        <transition
+                @before-enter="beforeEnter"
+                @enter="enter"
+                @before-leave="beforeLeave"
+                @leave="leave">
              <div ref="contentWrapper" class="content-wrapper"
                      :class="[[`position-${position}`],themeStyle]"
+                         @mouseenter="hoverInAndOpen"
+                         @mouseleave="hoverOutAndOpen"
                      v-show="visible">
                     <div class="contentSlot">
                         <slot name="content" :close="toggle"></slot>
                     </div>
              </div>
+        </transition>
         <span ref="trigger" style="display: inline-block">
             <slot></slot>
         </span>
@@ -40,7 +48,6 @@
             this.event[this.trigger].event.forEach(eventName=>{
                 popover.addEventListener(eventName,this.event[this.trigger].fun)
             })
-
         },
         beforeDestroy(){
             let {popover,contentWrapper} = this.$refs
@@ -75,24 +82,6 @@
                 }
             },
         computed:{
-            openEvent(){
-                if(this.trigger ==='click'){
-                    return 'click'
-                }else if(this.trigger ==='hover'){
-                    return 'mouseenter'
-                }else{
-                    return 'focus'
-                }
-          },
-            closeEvent(){
-                if(this.trigger ==='click'){
-                    return 'click'
-                }else if(this.trigger ==='hover'){
-                    return 'mouseleave'
-                }else{
-                    return 'focus'
-                }
-            },
             themeStyle(){
               if(this.theme==='whiteBg'){
                   return 'theme2'
@@ -132,17 +121,29 @@
             removeListener(){
                 document.removeEventListener('click', this.eventHandler)
             },
+            hoverInAndOpen(){
+                if(this.trigger==='click')return
+                    this.toggle(true)
+            },
+            hoverOutAndOpen(){
+                if(this.trigger==='click')return
+                this.toggle()
+            },
             isconWrapepr(e){    //判断点击的地方是否在contentWrapper里面
               return   e.path.some(child=>{
                     if(child===this.$refs.contentWrapper){
                         return true
+                    }else{
+                        return false
                     }
                 })
             },
-            isPopover(e){    //判断点击的地方是否在contentWrapper里面
+            isPopover(e){    //判断点击的地方是否在contentPopover里面
                 return   e.path.some(child=>{
                     if(child===this.$refs.popover){
                         return true
+                    }else{
+                        return false
                     }
                 })
             },
@@ -155,23 +156,40 @@
                 }
             },
 
-            toggle(){
-                this.visible = !this.visible
+            toggle(hoverOPen){
+                clearTimeout(this.timer)
+                if(hoverOPen===true){
+                    this.visible = true
+                }else{
+                        this.visible = !this.visible
+                }
                 if(this.visible){
                     this.contentPosition() //搞定内容弹出的位置
                     this.listenerDocument()//添加document的事件监听，在外部点击可以关闭气泡
                 }else{
                      this.removeListener()
                 }
-
-
             },
             onClick () {
                 if(this.trigger!=='click')return
                 if (this.$refs.trigger.contains(event.target)) {
                   this.toggle()
                 }
-            }
+            },
+            beforeEnter(el) {
+                el.style.opacity = 0
+            },
+            enter(el) {
+              setTimeout(()=>{
+                  el.style.opacity = 1
+              },30)
+            },
+            leave(el){
+                el.style.opacity = 0
+            },
+            beforeLeave(el) {
+                el.style.opacity = 1
+            },
         },
     }
 </script>
@@ -186,6 +204,7 @@
         position: relative;
     }
     .contentSlot{
+        transition: .3s all ease-in-out;
         max-width: 15em;
         max-height: 15em;
         overflow: scroll;
@@ -198,6 +217,7 @@
         border-radius: $border-radius;
         filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
         background: white;
+        transition: .3s all ease-in-out;
         padding: .5em 1em;
         z-index: 1000;
         word-break: break-all;
