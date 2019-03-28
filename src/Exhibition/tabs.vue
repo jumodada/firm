@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="tabs-content">
-                <slot></slot>
+             <slot></slot>
         </div>
     </div>
 </template>
@@ -56,7 +56,7 @@
         },
         methods:{
             onClick(index){
-                 if(this.disabledClass[index])return
+               if(this.disabledClass[index])return
                 this.tellChildren(index)
                 this.active = index
                 this.$nextTick(()=>{
@@ -122,7 +122,6 @@
                 this.addDisabled()
             })
             this.activeChange()
-
         }
     }
 </script>
@@ -357,3 +356,5 @@
         }
     }
 </style>
+
+

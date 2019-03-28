@@ -7,11 +7,11 @@
 
                     <div style="margin-top: 40px">
                         <x-button icon="set">设置按钮</x-button>
-                        <x-button icon="dianzan">点赞按钮</x-button>
-                        <x-button icon="download">下载按钮</x-button>
-                        <x-button icon="loading">加载按钮</x-button>
-                        <x-button icon="left">左</x-button>
-                        <x-button icon="right">右</x-button>
+                        <x-button icon="dianzan"  type="primary">点赞按钮</x-button>
+                        <x-button icon="download" type="success">下载按钮</x-button>
+                        <x-button icon="loading" style="background-color:#ff6666;color: white" color="white">加载按钮</x-button>
+                        <x-button icon="left" style="background-color:#3a4a5a;color: white" color="white">左</x-button>
+                        <x-button icon="right" style="background-color:#3a4a5a;;color: white" color="white">右</x-button>
 
                     </div>
                     <br>

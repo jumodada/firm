@@ -13,8 +13,7 @@
                     <x-button type="warn">警告按钮</x-button>
                     <x-button type="error" >错误按钮</x-button>
                 </div>
-                <div style="margin-top:40px;">error除了本身的点击效果，还可以通过设置danger改变button按钮的hover效果</div>
-                <div style="margin-top: 20px">
+                <div style="margin-top: 40px">
                     <x-button  plain>朴素按钮</x-button>
                     <x-button type="primary" plain>朴素按钮</x-button>
                     <x-button type="info" plain>朴素按钮</x-button>
@@ -37,6 +36,14 @@
                     <x-button type="success" dashed>虚线按钮</x-button>
                     <x-button type="warn" dashed>虚线按钮</x-button>
                     <x-button type="error" dashed>虚线按钮</x-button>
+                </div>
+                <div style="margin-top: 40px">
+                    <x-button circle icon="set"></x-button>
+                    <x-button type="primary" circle icon="lianxidaogou"></x-button>
+                    <x-button type="info" circle icon="shanchu"></x-button>
+                    <x-button type="success" circle icon="correct"></x-button>
+                    <x-button type="warn" circle icon="xing"></x-button>
+                    <x-button type="error" circle icon="wrong"></x-button>
                 </div>
 
             </template>
@@ -71,32 +78,44 @@
         data(){
           return {
               selectTab:[1],
-              input:'```html\n' +
+              input:'\n' +
+                  '```html\n' +
                   '       <x-button>默认按钮</x-button>\n' +
                   '       <x-button type="primary">主要按钮</x-button>\n' +
                   '       <x-button type="info">信息按钮</x-button>\n' +
                   '       <x-button type="success">成功按钮</x-button>\n' +
                   '       <x-button type="warn">警告按钮</x-button>\n' +
                   '       <x-button type="error" >错误按钮</x-button>\n' +
+                  '           \n' +
                   '       <x-button  plain>朴素按钮</x-button>\n' +
                   '       <x-button type="primary" plain>朴素按钮</x-button>\n' +
                   '       <x-button type="info" plain>朴素按钮</x-button>\n' +
                   '       <x-button type="success" plain>朴素按钮</x-button>\n' +
                   '       <x-button type="warn" plain>朴素按钮</x-button>\n' +
                   '       <x-button type="error" plain danger>朴素按钮</x-button>\n' +
+                  '               \n' +
                   '       <x-button round>默认按钮</x-button>\n' +
                   '       <x-button type="primary" round>圆角按钮</x-button>\n' +
                   '       <x-button type="info" round>圆角按钮</x-button>\n' +
                   '       <x-button type="success" round>圆角按钮</x-button>\n' +
                   '       <x-button type="warn" round>圆角按钮</x-button>\n' +
                   '       <x-button type="error" round>圆角按钮</x-button>\n' +
+                  '          \n' +
                   '       <x-button dashed>虚线按钮</x-button>\n' +
                   '       <x-button type="primary" dashed>虚线按钮</x-button>\n' +
                   '       <x-button type="info" dashed>虚线按钮</x-button>\n' +
                   '       <x-button type="success" dashed>虚线按钮</x-button>\n' +
                   '       <x-button type="warn" dashed>虚线按钮</x-button>\n' +
                   '       <x-button type="error" dashed>虚线按钮</x-button>\n' +
-                  '```\n',
+                  '        \n' +
+                  '       <x-button circle icon="set"></x-button>\n' +
+                  '       <x-button type="primary" circle icon="lianxidaogou"></x-button>\n' +
+                  '       <x-button type="info" circle icon="shanchu"></x-button>\n' +
+                  '       <x-button type="success" circle icon="correct"></x-button>\n' +
+                  '       <x-button type="warn" circle icon="xing"></x-button>\n' +
+                  '       <x-button type="error" circle icon="wrong"></x-button>\n' +
+                  '             \n' +
+                  '```',
 
           }
         },

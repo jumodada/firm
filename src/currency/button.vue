@@ -2,7 +2,7 @@
 
           <button class="x-button"
                   :class="[[`icon-${position}`],
-             typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle]
+             typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle,circleStyle]
             "
                   :disabled="disabled"
                   ref="button"
@@ -19,7 +19,6 @@
                    :style="disabledStyle"
               >
                   <slot>
-
                   </slot>
               </div>
               <div class="cloakLeft" v-if="disabled"></div>
@@ -71,6 +70,11 @@
             roundStyle(){
                 if(this.round){
                     return 'border-radius:21px;'
+                }
+            },
+            circleStyle(){
+                if(this.circle){
+                    return 'circle'
                 }
             },
             plainStyle(){
@@ -125,9 +129,16 @@
               default:false
             },
             color:{
-              type:String,
-                default:'black'
+                type:String,
+                default(){
+                    if(this.type){
+                        return 'white'
+                    }else{
+                        return 'black'
+                    }
+                }
             },
+
             loading:{
                 type:Boolean,
                 default: false
@@ -144,6 +155,10 @@
                 }
             },
             dashed:{
+                type:Boolean,
+                default: false
+            },
+            circle:{
                 type:Boolean,
                 default: false
             }
@@ -218,7 +233,7 @@
 
         .x-button {
             font-size: $font-size;
-            padding: 0 1em;
+            padding: 0.1em 1em;
             height:$height;
             border-radius: $border-radius;
             border: 1px solid $border-color;
@@ -323,8 +338,6 @@
                 background-color: #e6a23c;
                 border-color: #e6a23c;
                 &:hover{
-                    color:#e6a23c;
-                    background-color: #fdf6ec;
                     border-color: #e6a23c;
                 }
             }
@@ -333,8 +346,6 @@
                 background-color: #bfbfbf;
                 border-color: #bfbfbf;
                 &:hover{
-                    color:#909399;
-                    background-color: #f4f4f5;
                     border-color: #909399;
                 }
             }
@@ -344,8 +355,6 @@
                 border-color: #67c23a;
                 &:hover{
                     opacity: 1;
-                    color:#67c23a;
-                    background-color: #f0f9eb;
                     border-color: #67c23a;
                 }
             }
@@ -355,8 +364,6 @@
                 border-color: #409EFF;
                 &:hover{
                     opacity: 1;
-                    color:#409EFF;
-                    background-color: #ecf5ff;
                     border-color: #409EFF;
                 }
             }
@@ -437,6 +444,34 @@
                 -webkit-animation-iteration-count: infinite;
                 -moz-animation-iteration-count: infinite;
                 animation-iteration-count: infinite;
+            }
+
+
+            &.circle{
+                width: 2.5em;
+                height: 2.5em;
+                border-radius: 50%;
+                padding: 10px;
+                font-size: 16px;
+                .x-icon  {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+                &.type-primary:hover{
+                background-color: #409EFF;
+                }
+                &.type-success:hover{
+                    background-color: #67c23a;
+                }
+                &.type-warn:hover{
+                    background-color: #e6a23c;
+                }
+                &.type-error:hover{
+                    background-color: #f56c6c;
+                }
+                &.type-info:hover{
+                    background-color: #bfbfbf;
+                }
             }
 
             .loading{
