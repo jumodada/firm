@@ -68,7 +68,7 @@
                         type:String,
                         default:'top',
                         validator(val){
-                            return ['top','bottom','left','right'].indexOf(val)>-1
+                            return ['top','topLeft','topRight','bottom','left','right'].indexOf(val)>-1
                         }
                     },
                 trigger:{
@@ -84,7 +84,7 @@
                     validator(val){
                         return ['blackBorder','whiteBg'].indexOf(val)>-1
                     }
-                }
+                },
             },
         computed:{
             themeStyle(){
@@ -98,10 +98,24 @@
                 const {contentWrapper,trigger} = this.$refs
                 document.body.appendChild(contentWrapper)
                 let {top,left,height,width} = trigger.getBoundingClientRect()
+                let contentWidth = contentWrapper.clientWidth
+                let widthDiffer = -(Number(contentWidth)-width)
+
                 let x = {
+                    topLeft:{
+                        top:top + window.scrollY,
+                        left:left + window.screenX,
+                        transition:`translate(0,-100%)`
+                    },
                     top:{
                         top:top + window.scrollY,
-                        left:left + window.screenX
+                        left:left + window.screenX,
+                        transition:`translate(${widthDiffer/2}px,-100%)`
+                    },
+                    topRight:{
+                        top:top + window.scrollY,
+                        left:left + window.screenX,
+                        transition:`translate(-45%,-100%)`
                     },
                     bottom:{
                         top:top + height + window.scrollY,
@@ -118,6 +132,7 @@
                 }
                 contentWrapper.style.left = x[this.position].left + 'px'
                 contentWrapper.style.top = x[this.position].top + 'px'
+                contentWrapper.style.transform = x[this.position].transition
             },
 
             listenerDocument(){
@@ -174,8 +189,10 @@
                 this.outClick = false
                 this.visible = !this.visible
                 if(this.visible){
-                    this.contentPosition()
-                    this.listenerDocument()
+                    this.$nextTick(()=>{
+                        this.contentPosition()
+                        this.listenerDocument()
+                    })
                 }else{
                      this.removeListener()
                 }
@@ -184,7 +201,9 @@
                 clearTimeout(this.timer)
                 if(e.type==='mouseenter'){
                     this.visible = true
-                    this.contentPosition()
+                    this.$nextTick(()=>{
+                        this.contentPosition()
+                    })
                 }else{
                     this.visible = false
                 }
@@ -193,8 +212,10 @@
                 let judge = this.$refs.trigger.children[0]===document.activeElement
                 if(judge){
                     this.visible = true
-                    this.contentPosition()
-                    this.listenerDocument()
+                    this.$nextTick(()=>{
+                        this.contentPosition()
+                        this.listenerDocument()
+                    })
                 }else{
                     this.removeListener()
                 }
@@ -267,11 +288,47 @@
             height: 0;
             position: absolute;
         }
-        &.position-top {
+        &.position-topLeft{
             transform: translateY(-100%);
             margin-top: -10px;
             &::before, &::after {
-                left: 10px;
+                left: 5px;
+            }
+            &::before {
+                border-top-color: #f3f3f3;
+                border-bottom: none;
+                top: 100%;
+            }
+            &::after {
+                border-top-color: white;
+                border-bottom: none;
+                top: calc(100% - 1px);
+            }
+        }
+        &.position-top{
+            transform: translateY(-100%);
+            margin-top: -10px;
+            &::before, &::after {
+                left: 50%;
+                transform: translateX(-54%);
+            }
+            &::before {
+                border-top-color: #f3f3f3;
+                border-bottom: none;
+                top: 100%;
+            }
+            &::after {
+                border-top-color: white;
+                border-bottom: none;
+                top: calc(100% - 1px);
+            }
+        }
+        &.position-topRight{
+            transform: translateY(-100%);
+            margin-top: -10px;
+            &::before, &::after {
+                left: 100%;
+                transform: translateX(-120%);
             }
             &::before {
                 border-top-color: #f3f3f3;

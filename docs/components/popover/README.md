@@ -17,5 +17,13 @@ title: popover气泡框
 
 <popover-wo></popover-wo>
 
+<br/>
+<br/>
+<br/>
+
+## 十二个位置
+
+<pop-position></pop-position>
+
 
 
