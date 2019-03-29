@@ -8,6 +8,8 @@
                   ref="button"
                   :style="roundStyle"
                   @click="onClick"
+                  @focus="focusOn"
+                  @blur="blurIt"
           >
 
               <x-icon  :name="icon"
@@ -51,6 +53,12 @@
                     setTimeout(()=>{     //为什么不用定时器就无法清除呢,cao
                         arr.remove('loop')
                     },300)
+            },
+            focusOn(){
+
+            },
+            blurIt(){
+
             }
         },
         computed:{
@@ -242,6 +250,9 @@
             justify-content: center;
             align-items: center;
             transition: all .2s;
+            &:focus{
+                border-color: #F1C40F;
+            }
             >.cloakLeft{
                 float: left;
                 height: inherit;

@@ -1,21 +1,26 @@
 <template>
-    <div class="popover" ref="popover">
+    <div class="popover"
+         ref="popover"
+    >
         <transition
                 @before-enter="beforeEnter"
                 @enter="enter"
                 @before-leave="beforeLeave"
-                @leave="leave">
+                @leave="leave"
+                @after-leave="afterLeave"
+        >
              <div ref="contentWrapper" class="content-wrapper"
                      :class="[[`position-${position}`],themeStyle]"
-                         @mouseenter="hoverInAndOpen"
-                         @mouseleave="hoverOutAndOpen"
+                         @mouseenter="hoverInOPen"
+                         @mouseleave="hoverOutAndClose"
                      v-show="visible">
-                    <div class="contentSlot">
-                        <slot name="content" :close="toggle"></slot>
+                    <div class="contentSlot" ref="contentSlot">
+                        <slot name="content" :close="outerClick"></slot>
                     </div>
              </div>
         </transition>
-        <span ref="trigger" style="display: inline-block">
+        <span  ref="trigger"
+               style="display: inline-block">
             <slot></slot>
         </span>
     </div>
@@ -27,6 +32,7 @@
         data () {
             return {
                 visible: false,
+                outClick:false
             }
         },
         mounted(){
@@ -41,8 +47,8 @@
                     fun:this.toggle
                 },
                 focus:{
-                    event:['mousedown','mouseup'],
-                    fun:this.toggle
+                    event:['click'],
+                    fun:this.focusToggle
                 }
             }
             this.event[this.trigger].event.forEach(eventName=>{
@@ -121,13 +127,18 @@
             removeListener(){
                 document.removeEventListener('click', this.eventHandler)
             },
-            hoverInAndOpen(){
-                if(this.trigger==='click')return
-                    this.toggle(true)
+
+            hoverOutAndClose(){
+                if(this.trigger!=='hover')return
+                this.visible = false
             },
-            hoverOutAndOpen(){
-                if(this.trigger==='click')return
-                this.toggle()
+            hoverInOPen(){
+                if(this.outClick||this.trigger!=='hover')return
+                this.visible = true
+            },
+            outerClick(){
+                this.outClick = true
+                this.visible = false
             },
             isconWrapepr(e){    //判断点击的地方是否在contentWrapper里面
               return   e.path.some(child=>{
@@ -155,14 +166,10 @@
                    this.toggle()
                 }
             },
-
-            toggle(hoverOPen){
+            toggle(){
                 clearTimeout(this.timer)
-                if(hoverOPen===true){
-                    this.visible = true
-                }else{
-                        this.visible = !this.visible
-                }
+                this.outClick = false
+                this.visible = !this.visible
                 if(this.visible){
                     this.contentPosition() //搞定内容弹出的位置
                     this.listenerDocument()//添加document的事件监听，在外部点击可以关闭气泡
@@ -174,6 +181,16 @@
                 if(this.trigger!=='click')return
                 if (this.$refs.trigger.contains(event.target)) {
                   this.toggle()
+                }
+            },
+            focusToggle(){
+              let judge = this.$refs.trigger.children[0]===document.activeElement
+                if(judge){
+                    this.visible = true
+                    this.contentPosition()
+                    this.listenerDocument()
+                }else{
+                    this.removeListener()
                 }
             },
             beforeEnter(el) {
@@ -189,7 +206,12 @@
             },
             beforeLeave(el) {
                 el.style.opacity = 1
+                this.$refs.contentSlot.style.overflow='hidden'
             },
+            afterLeave(){
+                this.outClick = false
+                this.$refs.contentSlot.style.overflow=''
+            }
         },
     }
 </script>

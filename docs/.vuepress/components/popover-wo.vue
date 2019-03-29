@@ -18,8 +18,8 @@
                             <x-button>默认</x-button>
                         </x-popover>
                         <x-popover trigger="focus">
-                            <template slot="content">
-                                    <a href="https://www.baidu.com">去百度</a>
+                            <template slot="content" slot-scope="close">
+                                <x-button @click="close.close">关闭</x-button>
                             </template>
                             <x-button>focus</x-button>
                         </x-popover>
