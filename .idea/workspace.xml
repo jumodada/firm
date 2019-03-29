@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/components/popover/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/popover/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exhibition/popover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/popover.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -135,7 +132,7 @@
           <entry key="md" value="835" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="23996" />
+          <entry key="vue" value="24260" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -146,7 +143,7 @@
           <entry key="Markdown" value="835" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="23996" />
+          <entry key="Vue.js" value="24260" />
         </counts>
       </usages-collector>
     </session>
@@ -156,11 +153,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="330" column="42" selection-start-line="330" selection-start-column="42" selection-end-line="330" selection-end-column="42" />
+            <state relative-caret-position="192">
+              <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#5030#5214#0" />
@@ -171,7 +168,6 @@
                 <element signature="e#5155#5475#0" />
                 <element signature="e#5448#5832#0" />
                 <element signature="e#6006#6185#0" />
-                <element signature="e#6676#6812#0" />
                 <element signature="e#6829#7005#0" />
                 <element signature="e#8068#8490#0" />
                 <element signature="e#8515#9021#0" />
@@ -182,10 +178,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
+            <state relative-caret-position="-1234">
               <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -324,8 +320,8 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/components/popover-default.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/popover-wo.vue" />
         <option value="$PROJECT_DIR$/docs/components/popover/README.md" />
-        <option value="$PROJECT_DIR$/src/Exhibition/popover.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue" />
+        <option value="$PROJECT_DIR$/src/Exhibition/popover.vue" />
       </list>
     </option>
   </component>
@@ -578,12 +574,12 @@
       <workItem from="1553647811734" duration="22265000" />
       <workItem from="1553734420743" duration="9659000" />
       <workItem from="1553779526783" duration="6343000" />
-      <workItem from="1553822031165" duration="10836000" />
+      <workItem from="1553822031165" duration="13455000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="538160000" />
+    <option name="totallyTimeSpent" value="540779000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -986,10 +982,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1234">
+          <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="330" column="42" selection-start-line="330" selection-start-column="42" selection-end-line="330" selection-end-column="42" />
+        <state relative-caret-position="192">
+          <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#5030#5214#0" />
@@ -1000,22 +1006,11 @@
             <element signature="e#5155#5475#0" />
             <element signature="e#5448#5832#0" />
             <element signature="e#6006#6185#0" />
-            <element signature="e#6676#6812#0" />
             <element signature="e#6829#7005#0" />
             <element signature="e#8068#8490#0" />
             <element signature="e#8515#9021#0" />
             <element signature="e#9047#9511#0" />
             <element signature="e#9528#9869#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

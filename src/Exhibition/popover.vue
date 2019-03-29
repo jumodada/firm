@@ -104,17 +104,17 @@
                 let x = {
                     topLeft:{
                         top:top + window.scrollY,
-                        left:left + window.screenX,
+                        left:left + window.scrollX,
                         transition:`translate(0,-100%)`
                     },
                     top:{
                         top:top + window.scrollY,
-                        left:left + window.screenX,
+                        left:left + window.scrollX,
                         transition:`translate(${widthDiffer/2}px,-100%)`
                     },
                     topRight:{
                         top:top + window.scrollY,
-                        left:left + window.screenX,
+                        left:left + window.scrollX,
                         transition:`translate(-45%,-100%)`
                     },
                     bottom:{
@@ -123,18 +123,17 @@
                     },
                     left:{
                         top:top  + window.scrollY,
-                        left:left  + window.screenX
+                        left:left  + window.scrollX
                     },
                     right:{
                         top:top  + window.scrollY ,
-                        left:left +width  + window.screenX
+                        left:left +width  + window.scrollX
                     }
                 }
                 contentWrapper.style.left = x[this.position].left + 'px'
                 contentWrapper.style.top = x[this.position].top + 'px'
                 contentWrapper.style.transform = x[this.position].transition
             },
-
             listenerDocument(){
                 document.addEventListener('click',this.eventHandler)
             },
