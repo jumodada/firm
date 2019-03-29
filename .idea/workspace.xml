@@ -156,8 +156,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
+            <state relative-caret-position="566">
+              <caret line="62" column="29" lean-forward="true" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -539,12 +539,12 @@
       <workItem from="1553647811734" duration="22265000" />
       <workItem from="1553734420743" duration="9659000" />
       <workItem from="1553779526783" duration="6343000" />
-      <workItem from="1553822031165" duration="6487000" />
+      <workItem from="1553822031165" duration="6736000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="533811000" />
+    <option name="totallyTimeSpent" value="534060000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -956,8 +956,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
+        <state relative-caret-position="566">
+          <caret line="62" column="29" lean-forward="true" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>

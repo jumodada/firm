@@ -57,7 +57,6 @@
         },
         beforeDestroy(){
             let {popover,contentWrapper} = this.$refs
-
             this.event[this.trigger].event.forEach(eventName=>{
                 popover.removeEventListener(eventName,this.event[this.trigger].fun)
             })
@@ -225,7 +224,9 @@
             },
             afterLeave(){
                 this.outClick = false
-                this.$refs.contentSlot.style.overflow=''
+                if(this.$refs.contentSlot){
+                    this.$refs.contentSlot.style.overflow=''
+                }
             }
         },
     }
