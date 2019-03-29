@@ -36,39 +36,17 @@
             }
         },
         mounted(){
-            let {popover} = this.$refs
-            this.event = {
-                click:{
-                    event:['click'],
-                    fun:this.onClick
-                },
-                hover:{
-                    event:['mouseenter','mouseleave'],
-                    fun:this.hoverToggle
-                },
-                focus:{
-                    event:['click'],
-                    fun:this.focusToggle
-                }
-            }
-            this.event[this.trigger].event.forEach(eventName=>{
-                popover.addEventListener(eventName,this.event[this.trigger].fun)
-            })
+            this.addEventListener()
         },
         beforeDestroy(){
-            let {popover,contentWrapper} = this.$refs
-            this.event[this.trigger].event.forEach(eventName=>{
-                popover.removeEventListener(eventName,this.event[this.trigger].fun)
-            })
-            this.$el.remove()
-            contentWrapper.remove()
+           this.removeAll()
         },
             props:{
                     position:{
                         type:String,
                         default:'top',
                         validator(val){
-                            return ['top','topLeft','topRight','bottom','left','right'].indexOf(val)>-1
+                            return ['top','topLeft','topRight','bottomLeft','bottom','bottomRight','leftTop','left','leftBottom','rightTop','right','rightBottom'].indexOf(val)>-1
                         }
                     },
                 trigger:{
@@ -94,13 +72,23 @@
             }
         },
         methods: {
+            removeAll(){
+                let {popover,contentWrapper} = this.$refs
+                this.event[this.trigger].event.forEach(eventName=>{
+                    popover.removeEventListener(eventName,this.event[this.trigger].fun)
+                })
+                this.$el.remove()
+                contentWrapper.remove()
+                clearTimeout(this.timer)
+            },
             contentPosition(){
                 const {contentWrapper,trigger} = this.$refs
                 document.body.appendChild(contentWrapper)
                 let {top,left,height,width} = trigger.getBoundingClientRect()
                 let contentWidth = contentWrapper.clientWidth
-                let widthDiffer = -(Number(contentWidth)-width)
-
+                let contentHeight = contentWrapper.clientHeight
+                let widthDiffer = - (Number(contentWidth)-width)
+                let heightDiffer = -(Number(contentHeight)-height)
                 let x = {
                     topLeft:{
                         top:top + window.scrollY,
@@ -115,24 +103,78 @@
                     topRight:{
                         top:top + window.scrollY,
                         left:left + window.scrollX,
-                        transition:`translate(-45%,-100%)`
+                        transition:`translate(calc(-100% + ${width}px),-100%)`
                     },
-                    bottom:{
-                        top:top + height + window.scrollY,
-                        left:left + window.screenX
+                    leftTop:{
+                        top:top  + window.scrollY,
+                        left:left  + window.scrollX,
+                        transition:`translate(-100%,0)`
                     },
                     left:{
                         top:top  + window.scrollY,
-                        left:left  + window.scrollX
+                        left:left  + window.scrollX,
+                        transition:`translate(-100%,${heightDiffer/2}px)`
+                    },
+                    leftBottom:{
+                        top:top  + window.scrollY,
+                        left:left  + window.scrollX,
+                        transition:`translate(-100%,-50%)`
+                    },
+                    bottomLeft:{
+                        top:top + height + window.scrollY,
+                        left:left + window.scrollX,
+                        transition:`translate(0,0)`
+                    },
+                    bottom:{
+                        top:top + height + window.scrollY,
+                        left:left + window.scrollX,
+                        transition:`translate(${widthDiffer/2}px,0)`
+                    },
+                    bottomRight:{
+                        top:top + height + window.scrollY,
+                        left:left + window.scrollX,
+                        transition:`translate(calc(-100% + ${width}px),0)`
+                    },
+                    rightTop:{
+                        top:top  + window.scrollY ,
+                        left:left +width  + window.scrollX,
+                        transition:`translate(0,0)`
                     },
                     right:{
                         top:top  + window.scrollY ,
-                        left:left +width  + window.scrollX
+                        left:left +width  + window.scrollX,
+                        transition:`translate(0,${heightDiffer/2}px)`
+                    },
+                    rightBottom:{
+                        top:top  + window.scrollY ,
+                        left:left +width  + window.scrollX,
+                        transition:`translate(0,-50%)`
                     }
+
                 }
                 contentWrapper.style.left = x[this.position].left + 'px'
                 contentWrapper.style.top = x[this.position].top + 'px'
                 contentWrapper.style.transform = x[this.position].transition
+            },
+            addEventListener(){
+                let {popover} = this.$refs
+                this.event = {
+                    click:{
+                        event:['click'],
+                        fun:this.onClick
+                    },
+                    hover:{
+                        event:['mouseenter','mouseleave'],
+                        fun:this.hoverToggle
+                    },
+                    focus:{
+                        event:['click'],
+                        fun:this.focusToggle
+                    }
+                }
+                this.event[this.trigger].event.forEach(eventName=>{
+                    popover.addEventListener(eventName,this.event[this.trigger].fun)
+                })
             },
             listenerDocument(){
                 document.addEventListener('click',this.eventHandler)
@@ -160,10 +202,11 @@
                 })
             },
             hoverOutAndClose(){
+                clearTimeout(this.timer)
                 if(this.trigger!=='hover')return
                 this.timer = setTimeout(()=>{
                     this.visible = false
-                },60)
+                },120)
             },
             hoverInOPen(){
                 clearTimeout(this.timer)
@@ -185,7 +228,6 @@
                 }
             },
             clickToggle(){
-                this.outClick = false
                 this.visible = !this.visible
                 if(this.visible){
                     this.$nextTick(()=>{
@@ -198,13 +240,16 @@
             },
             hoverToggle(e){
                 clearTimeout(this.timer)
+                this.outClick = false
                 if(e.type==='mouseenter'){
                     this.visible = true
                     this.$nextTick(()=>{
                         this.contentPosition()
                     })
                 }else{
-                    this.visible = false
+                    this.timer = setTimeout(()=>{
+                        this.visible = false
+                    },120)
                 }
             },
             focusToggle(){
@@ -340,27 +385,29 @@
                 top: calc(100% - 1px);
             }
         }
-        &.position-bottom {
-            margin-top: 10px;
+        &.position-leftTop{
+            transform: translateX(-100%);
+            margin-left: -10px;
             &::before, &::after {
-                left: 10px;
+                transform: translateY(0%);
+                top: 2px;
             }
             &::before {
-                border-top: none;
-                border-bottom-color: #f3f3f3;
-                bottom: 100%;
+                border-left-color: #f3f3f3;
+                border-right: none;
+                left: 100%;
             }
             &::after {
-                border-top: none;
-                border-bottom-color: white;
-                bottom: calc(100% - 1px);
+                border-left-color: white;
+                border-right: none;
+                left: calc(100% - 1px);
             }
         }
         &.position-left {
             transform: translateX(-100%);
             margin-left: -10px;
             &::before, &::after {
-                transform: translateY(-100%);
+                transform: translateY(-53%);
                 top: 50%;
             }
             &::before {
@@ -374,11 +421,113 @@
                 left: calc(100% - 1px);
             }
         }
+        &.position-leftBottom {
+            transform: translateX(-100%);
+            margin-left: -10px;
+            &::before, &::after {
+                transform: translateY(-100%);
+                top: 99%;
+            }
+            &::before {
+                border-left-color: #f3f3f3;
+                border-right: none;
+                left: 100%;
+            }
+            &::after {
+                border-left-color: white;
+                border-right: none;
+                left: calc(100% - 1px);
+            }
+        }
+        &.position-bottomLeft {
+            margin-top: 10px;
+            &::before, &::after {
+                left: 6px;
+            }
+            &::before {
+                border-top: none;
+                border-bottom-color: #f3f3f3;
+                bottom: 100%;
+            }
+            &::after {
+                border-top: none;
+                border-bottom-color: white;
+                bottom: calc(100% - 1px);
+            }
+        }
+        &.position-bottom {
+            margin-top: 10px;
+            &::before, &::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &::before {
+                border-top: none;
+                border-bottom-color: #f3f3f3;
+                bottom: 100%;
+            }
+            &::after {
+                border-top: none;
+                border-bottom-color: white;
+                bottom: calc(100% - 1px);
+            }
+        }
+        &.position-bottomRight {
+            margin-top: 10px;
+            &::before, &::after {
+                left: 100%;
+                transform: translateX(-103%);
+            }
+            &::before {
+                border-top: none;
+                border-bottom-color: #f3f3f3;
+                bottom: 100%;
+            }
+            &::after {
+                border-top: none;
+                border-bottom-color: white;
+                bottom: calc(100% - 1px);
+            }
+        }
+        &.position-rightTop {
+            margin-left: 10px;
+            &::before, &::after {
+                transform: translateY(10%);
+                top: 0;
+            }
+            &::before {
+                border-right-color: #f3f3f3;
+                border-left: none;
+                right: 100%;
+            }
+            &::after {
+                border-right-color: white;
+                border-left: none;
+                right: calc(100% - 1px);
+            }
+        }
         &.position-right {
             margin-left: 10px;
             &::before, &::after {
                 transform: translateY(-50%);
                 top: 50%;
+            }
+            &::before {
+                border-right-color: #f3f3f3;
+                border-left: none;
+                right: 100%;
+            }
+            &::after {
+                border-right-color: white;
+                border-left: none;
+                right: calc(100% - 1px);
+            }
+        }
+        &.position-rightBottom {
+            margin-left: 10px;
+            &::before, &::after {
+                transform: translateY(-103%);
+                top: 100%;
             }
             &::before {
                 border-right-color: #f3f3f3;

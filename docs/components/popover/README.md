@@ -24,6 +24,3 @@ title: popover气泡框
 ## 十二个位置
 
 <pop-position></pop-position>
-
-
-

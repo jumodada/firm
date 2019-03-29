@@ -9,42 +9,108 @@
 
                         <x-popover position="topLeft">
                             <template slot="content">
-                                <div>top位置</div>
+                                <div>topLeft</div>
+                                <div>topLeft</div>
+                                <div>topLeft</div>
                             </template>
-                            <x-button>hover</x-button>
+                            <x-button>TL</x-button>
                         </x-popover>
                         <x-popover position="top">
                             <template slot="content">
-                                <div>top位置</div>
+                                <div>top</div>
+                                <div>top</div>
+                                <div>top</div>
                             </template>
-                            <x-button>hover</x-button>
+                            <x-button>top</x-button>
                         </x-popover>
                         <x-popover position="topRight">
                             <template slot="content">
-                                <div>topRight位置</div>
+                                <div>topRight</div>
+                                <div>topRight</div>
+                                <div>topRight</div>
                             </template>
-                            <x-button>hover</x-button>
+                            <x-button>TR</x-button>
                         </x-popover>
                     </div>
-                    <div style="margin-left: 100px;margin-top: 30px;display: flex;flex-direction: column;">
+                    <div style="margin-left: 30px;margin-top: 30px;display: inline-flex;flex-direction: column;">
 
-                        <x-popover position="topLeft">
+                        <x-popover position="leftTop" style="margin-bottom: 10px">
                             <template slot="content">
-                                <div>top位置</div>
+                                <div>leftTop</div>
+                                <div>leftTop</div>
+                                <div>leftTop</div>
                             </template>
-                            <x-button>hover</x-button>
+                            <x-button>L T</x-button>
                         </x-popover>
-                        <x-popover position="top">
+                        <x-popover position="left" style="margin-bottom: 10px">
                             <template slot="content">
-                                <div>top位置</div>
+                                <div>left</div>
+                                <div>left</div>
+                                <div>left</div>
                             </template>
-                            <x-button>hover</x-button>
+                            <x-button>left</x-button>
                         </x-popover>
-                        <x-popover position="topRight">
+                        <x-popover position="leftBottom">
                             <template slot="content">
-                                <div>topRight位置</div>
+                                <div>leftBottom</div>
+                                <div>leftBottom</div>
+                                <div>leftBottom</div>
                             </template>
-                            <x-button>hover</x-button>
+                            <x-button>L B</x-button>
+                        </x-popover>
+                    </div>
+                    <div style="margin-left: 190px;margin-top: 30px;display: inline-flex;flex-direction: column;">
+
+                        <x-popover position="rightTop" style="margin-bottom: 10px">
+                            <template slot="content">
+                                <div>rightTop</div>
+                                <div>rightTop</div>
+                                <div>rightTop</div>
+                            </template>
+                            <x-button>R T</x-button>
+                        </x-popover>
+                        <x-popover position="right" style="margin-bottom: 10px">
+                            <template slot="content">
+                                <div>right</div>
+                                <div>right</div>
+                                <div>right</div>
+                            </template>
+                            <x-button style="font-size: 12px">Right</x-button>
+                        </x-popover>
+                        <x-popover position="rightBottom">
+                            <template slot="content">
+                                <div>rightBottom</div>
+                                <div>rightBottom</div>
+                                <div>rightBottom</div>
+                            </template>
+                            <x-button>R B</x-button>
+                        </x-popover>
+                    </div>
+                    <div style="margin-left: 86px;margin-top: 30px">
+
+                        <x-popover position="bottomLeft">
+                            <template slot="content">
+                                <div>bottomLeft</div>
+                                <div>bottomLeft</div>
+                                <div>bottomLeft</div>
+                            </template>
+                            <x-button>BL</x-button>
+                        </x-popover>
+                        <x-popover position="bottom">
+                            <template slot="content">
+                                <div>top</div>
+                                <div>top</div>
+                                <div>top</div>
+                            </template>
+                            <x-button>bottom</x-button>
+                        </x-popover>
+                        <x-popover position="bottomRight">
+                            <template slot="content">
+                                <div>bottom</div>
+                                <div>bottom</div>
+                                <div>bottom</div>
+                            </template>
+                            <x-button>BR</x-button>
                         </x-popover>
                     </div>
                     <br>
@@ -88,25 +154,116 @@
         data(){
             return {
                 selectTab:[1],
-                input1:'```html\n' +
-                    '<x-popover position="left" trigger="hover">\n' +
-                    '<template slot="content" slot-scope="close">\n' +
-                    ' <div>支持内部关闭</div>\n' +
-                    ' <x-button @click="close.close">关闭</x-button>\n' +
-                    ' </template>\n' +
-                    ' <x-button>hover</x-button>\n' +
-                    '</x-popover>\n' +
-                    '                        \n' +
-                    '<x-popover position="bottom">\n' +
-                    '  <template slot="content"><div>popover内容</div></template>\n' +
-                    '  <x-button>默认</x-button>\n' +
-                    '</x-popover>\n' +
-                    '                                                \n' +
-                    '<x-popover trigger="focus">\n' +
-                    '  <a href="https://www.baidu.com">去百度</a>\n' +
-                    '  </template> ' +
-                    '<x-button>focus</x-button>\n' +
-                    '</x-popover>\n' +
+                input1:'\n' +
+                    '```html\n' +
+                    ' <div style="margin-left: 100px;">\n' +
+                    '\n' +
+                    '                        <x-popover position="topLeft">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>topLeft</div>\n' +
+                    '                                <div>topLeft</div>\n' +
+                    '                                <div>topLeft</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>TL</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="top">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>top</div>\n' +
+                    '                                <div>top</div>\n' +
+                    '                                <div>top</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>top</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="topRight">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>topRight</div>\n' +
+                    '                                <div>topRight</div>\n' +
+                    '                                <div>topRight</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>TR</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                    </div>\n' +
+                    '                    <div style="margin-left: 30px;margin-top: 30px;display: inline-flex;flex-direction: column;">\n' +
+                    '\n' +
+                    '                        <x-popover position="leftTop" style="margin-bottom: 10px">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>leftTop</div>\n' +
+                    '                                <div>leftTop</div>\n' +
+                    '                                <div>leftTop</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>L T</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="left" style="margin-bottom: 10px">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>left</div>\n' +
+                    '                                <div>left</div>\n' +
+                    '                                <div>left</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>left</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="leftBottom">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>leftBottom</div>\n' +
+                    '                                <div>leftBottom</div>\n' +
+                    '                                <div>leftBottom</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>L B</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                    </div>\n' +
+                    '                    <div style="margin-left: 190px;margin-top: 30px;display: inline-flex;flex-direction: column;">\n' +
+                    '\n' +
+                    '                        <x-popover position="rightTop" style="margin-bottom: 10px">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>rightTop</div>\n' +
+                    '                                <div>rightTop</div>\n' +
+                    '                                <div>rightTop</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>R T</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="right" style="margin-bottom: 10px">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>right</div>\n' +
+                    '                                <div>right</div>\n' +
+                    '                                <div>right</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button style="font-size: 12px">Right</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="rightBottom">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>rightBottom</div>\n' +
+                    '                                <div>rightBottom</div>\n' +
+                    '                                <div>rightBottom</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>R B</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                    </div>\n' +
+                    '                    <div style="margin-left: 86px;margin-top: 30px">\n' +
+                    '\n' +
+                    '                        <x-popover position="bottomLeft">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>bottomLeft</div>\n' +
+                    '                                <div>bottomLeft</div>\n' +
+                    '                                <div>bottomLeft</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>BL</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="bottom">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>top</div>\n' +
+                    '                                <div>top</div>\n' +
+                    '                                <div>top</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>bottom</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                        <x-popover position="bottomRight">\n' +
+                    '                            <template slot="content">\n' +
+                    '                                <div>bottom</div>\n' +
+                    '                                <div>bottom</div>\n' +
+                    '                                <div>bottom</div>\n' +
+                    '                            </template>\n' +
+                    '                            <x-button>BR</x-button>\n' +
+                    '                        </x-popover>\n' +
+                    '                    </div>\n' +
                     '```'
             }
         },

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/components/popover/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/popover/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exhibition/popover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/popover.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -129,10 +131,10 @@
           <entry key="html" value="16" />
           <entry key="js" value="271" />
           <entry key="json" value="19" />
-          <entry key="md" value="835" />
+          <entry key="md" value="846" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="24260" />
+          <entry key="vue" value="25141" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -140,10 +142,10 @@
           <entry key="HTML" value="16" />
           <entry key="JSON" value="19" />
           <entry key="JavaScript" value="271" />
-          <entry key="Markdown" value="835" />
+          <entry key="Markdown" value="846" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="24260" />
+          <entry key="Vue.js" value="25141" />
         </counts>
       </usages-collector>
     </session>
@@ -156,35 +158,28 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
+            <state relative-caret-position="338">
+              <caret line="242" column="33" lean-forward="true" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#5030#5214#0" />
+                <element signature="e#2078#2921#0" />
+                <element signature="e#2783#2926#0" />
+                <element signature="e#3148#5054#0" />
                 <element signature="e#5128#5196#0" />
-                <element signature="e#5241#5397#0" />
                 <element signature="e#5423#5512#0" />
-                <element signature="e#5541#5573#0" />
-                <element signature="e#5155#5475#0" />
-                <element signature="e#5448#5832#0" />
                 <element signature="e#6006#6185#0" />
                 <element signature="e#6829#7005#0" />
-                <element signature="e#8068#8490#0" />
-                <element signature="e#8515#9021#0" />
+                <element signature="e#9577#9601#0" />
+                <element signature="e#7582#8041#0" />
+                <element signature="e#10978#11483#0" />
+                <element signature="e#11506#11530#0" />
+                <element signature="e#10974#11480#0" />
+                <element signature="e#13007#13512#0" />
+                <element signature="e#14953#15375#0" />
+                <element signature="e#14433#14897#0" />
                 <element signature="e#9047#9511#0" />
+                <element signature="e#15413#15877#0" />
                 <element signature="e#9528#9869#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1234">
-              <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,8 +189,8 @@
         <entry file="file://$PROJECT_DIR$/docs/components/popover/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="554">
-                <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <first_editor relative-caret-position="584">
+                <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
               </first_editor>
               <second_editor />
             </state>
@@ -233,11 +228,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>items</find>
-      <find>update:selected</find>
-      <find>selec</find>
-      <find>addItem</find>
-      <find>tellChildrenColor</find>
       <find>active</find>
       <find>root</find>
       <find>$on</find>
@@ -257,12 +247,17 @@
       <find>closeEvent</find>
       <find>isPopover</find>
       <find>isconWrapepr</find>
-      <find>eventHandler</find>
       <find>hoverOutAndOpen</find>
       <find>toggle</find>
-      <find>listenerDocument</find>
       <find>style</find>
       <find>contentPosition</find>
+      <find>outClick</find>
+      <find>clickToggle</find>
+      <find>onClick</find>
+      <find>this.outClick</find>
+      <find>clickCloseAll</find>
+      <find>eventHandler</find>
+      <find>listenerDocument</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -574,12 +569,12 @@
       <workItem from="1553647811734" duration="22265000" />
       <workItem from="1553734420743" duration="9659000" />
       <workItem from="1553779526783" duration="6343000" />
-      <workItem from="1553822031165" duration="13455000" />
+      <workItem from="1553822031165" duration="19259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="540779000" />
+    <option name="totallyTimeSpent" value="546583000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -975,8 +970,8 @@
     <entry file="file://$PROJECT_DIR$/docs/components/popover/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="554">
-            <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <first_editor relative-caret-position="584">
+            <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
           </first_editor>
           <second_editor />
         </state>
@@ -984,32 +979,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pop-position.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1234">
-          <caret line="28" column="105" selection-start-line="28" selection-start-column="105" selection-end-line="28" selection-end-column="105" />
+        <state relative-caret-position="2794">
+          <caret line="266" column="24" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
           <folding>
+            <element signature="n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#x-popover#0;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-popover#1;n#div#1;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#x-popover#0;n#div#2;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-popover#1;n#div#2;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-button#0;n#x-popover#1;n#div#2;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-popover#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-popover#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-popover#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-popover#1;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-button#0;n#x-popover#1;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
+        <state relative-caret-position="338">
+          <caret line="242" column="33" lean-forward="true" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#5030#5214#0" />
+            <element signature="e#2078#2921#0" />
+            <element signature="e#2783#2926#0" />
+            <element signature="e#3148#5054#0" />
             <element signature="e#5128#5196#0" />
-            <element signature="e#5241#5397#0" />
             <element signature="e#5423#5512#0" />
-            <element signature="e#5541#5573#0" />
-            <element signature="e#5155#5475#0" />
-            <element signature="e#5448#5832#0" />
             <element signature="e#6006#6185#0" />
             <element signature="e#6829#7005#0" />
-            <element signature="e#8068#8490#0" />
-            <element signature="e#8515#9021#0" />
+            <element signature="e#9577#9601#0" />
+            <element signature="e#7582#8041#0" />
+            <element signature="e#10978#11483#0" />
+            <element signature="e#11506#11530#0" />
+            <element signature="e#10974#11480#0" />
+            <element signature="e#13007#13512#0" />
+            <element signature="e#14953#15375#0" />
+            <element signature="e#14433#14897#0" />
             <element signature="e#9047#9511#0" />
+            <element signature="e#15413#15877#0" />
             <element signature="e#9528#9869#0" />
           </folding>
         </state>
