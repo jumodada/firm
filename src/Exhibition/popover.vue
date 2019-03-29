@@ -44,7 +44,7 @@
                 },
                 hover:{
                     event:['mouseenter','mouseleave'],
-                    fun:this.toggle
+                    fun:this.hoverToggle
                 },
                 focus:{
                     event:['click'],
@@ -128,18 +128,6 @@
                 document.removeEventListener('click', this.eventHandler)
             },
 
-            hoverOutAndClose(){
-                if(this.trigger!=='hover')return
-                this.visible = false
-            },
-            hoverInOPen(){
-                if(this.outClick||this.trigger!=='hover')return
-                this.visible = true
-            },
-            outerClick(){
-                this.outClick = true
-                this.visible = false
-            },
             isconWrapepr(e){    //判断点击的地方是否在contentWrapper里面
               return   e.path.some(child=>{
                     if(child===this.$refs.contentWrapper){
@@ -158,33 +146,52 @@
                     }
                 })
             },
-
+            hoverOutAndClose(){
+                if(this.trigger!=='hover')return
+                this.timer = setTimeout(()=>{
+                    this.visible = false
+                },60)
+            },
+            hoverInOPen(){
+                clearTimeout(this.timer)
+                if(this.outClick||this.trigger!=='hover')return
+                this.visible = true
+            },
+            outerClick(){
+                this.outClick = true
+                this.visible = false
+            },
+            clickCloseAll(){
+                this.visible = false
+                this.removeListener()
+            },
             eventHandler(e){
-                if(this.outClickisOn)return
                 if(this.isPopover(e) || this.isconWrapepr(e))return
                 if(!this.isconWrapepr(e) && this.$refs.popover &&!(this.$refs.popover===e.target || this.$refs.popover.contains(e.target))) {
-                   this.toggle()
+                   this.clickCloseAll()
                 }
             },
-            toggle(){
-                clearTimeout(this.timer)
+            clickToggle(){
                 this.outClick = false
                 this.visible = !this.visible
                 if(this.visible){
-                    this.contentPosition() //搞定内容弹出的位置
-                    this.listenerDocument()//添加document的事件监听，在外部点击可以关闭气泡
+                    this.contentPosition()
+                    this.listenerDocument()
                 }else{
                      this.removeListener()
                 }
             },
-            onClick () {
-                if(this.trigger!=='click')return
-                if (this.$refs.trigger.contains(event.target)) {
-                  this.toggle()
+            hoverToggle(e){
+                clearTimeout(this.timer)
+                if(e.type==='mouseenter'){
+                    this.visible = true
+                    this.contentPosition()
+                }else{
+                    this.visible = false
                 }
             },
             focusToggle(){
-              let judge = this.$refs.trigger.children[0]===document.activeElement
+                let judge = this.$refs.trigger.children[0]===document.activeElement
                 if(judge){
                     this.visible = true
                     this.contentPosition()
@@ -193,7 +200,15 @@
                     this.removeListener()
                 }
             },
+            onClick () {
+                if(this.trigger!=='click')return
+                if (this.$refs.trigger.contains(event.target)) {
+                  this.clickToggle()
+                }
+            },
+
             beforeEnter(el) {
+                this.$refs.contentSlot.style.overflow=''
                 el.style.opacity = 0
             },
             enter(el) {

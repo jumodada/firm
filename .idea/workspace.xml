@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/popover-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/popover-default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/popover-wo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/popover-wo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Exhibition/popover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/popover.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/currency/button.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/currency/button.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -136,7 +132,7 @@
           <entry key="md" value="795" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
-          <entry key="vue" value="23248" />
+          <entry key="vue" value="23508" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -147,7 +143,7 @@
           <entry key="Markdown" value="795" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
-          <entry key="Vue.js" value="23248" />
+          <entry key="Vue.js" value="23508" />
         </counts>
       </usages-collector>
     </session>
@@ -160,8 +156,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="207" column="36" selection-start-line="207" selection-start-column="36" selection-end-line="207" selection-end-column="36" />
+            <state relative-caret-position="183">
+              <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -209,8 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>if(this.activeColor</find>
-      <find>hover</find>
       <find>.x</find>
       <find>forwardAndBack</find>
       <find>items</find>
@@ -239,6 +233,8 @@
       <find>isconWrapepr</find>
       <find>eventHandler</find>
       <find>hoverOutAndOpen</find>
+      <find>toggle</find>
+      <find>listenerDocument</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -543,12 +539,12 @@
       <workItem from="1553647811734" duration="22265000" />
       <workItem from="1553734420743" duration="9659000" />
       <workItem from="1553779526783" duration="6343000" />
-      <workItem from="1553822031165" duration="4281000" />
+      <workItem from="1553822031165" duration="6487000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="531605000" />
+    <option name="totallyTimeSpent" value="533811000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -960,8 +956,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="207" column="36" selection-start-line="207" selection-start-column="36" selection-end-line="207" selection-end-column="36" />
+        <state relative-caret-position="183">
+          <caret line="173" column="26" lean-forward="true" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
