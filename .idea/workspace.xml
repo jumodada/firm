@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -131,7 +130,7 @@
           <entry key="html" value="16" />
           <entry key="js" value="271" />
           <entry key="json" value="19" />
-          <entry key="md" value="846" />
+          <entry key="md" value="862" />
           <entry key="scss" value="14" />
           <entry key="styl" value="77" />
           <entry key="vue" value="25166" />
@@ -142,7 +141,7 @@
           <entry key="HTML" value="16" />
           <entry key="JSON" value="19" />
           <entry key="JavaScript" value="271" />
-          <entry key="Markdown" value="846" />
+          <entry key="Markdown" value="862" />
           <entry key="SCSS" value="14" />
           <entry key="Stylus" value="77" />
           <entry key="Vue.js" value="25166" />
@@ -171,8 +170,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="204">
-                <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+              <first_editor relative-caret-position="160">
+                <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
               </first_editor>
               <second_editor />
             </state>
@@ -556,12 +555,12 @@
       <workItem from="1553734420743" duration="9659000" />
       <workItem from="1553779526783" duration="6343000" />
       <workItem from="1553822031165" duration="19662000" />
-      <workItem from="1553910706431" duration="411000" />
+      <workItem from="1553910706431" duration="605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547397000" />
+    <option name="totallyTimeSpent" value="547591000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -972,8 +971,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="204">
-            <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <first_editor relative-caret-position="160">
+            <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           </first_editor>
           <second_editor />
         </state>
