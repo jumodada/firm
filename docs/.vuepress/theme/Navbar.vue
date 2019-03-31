@@ -37,6 +37,7 @@
          <img  style="height: 2em;width: 2em"  src="./github.svg" alt="">
        </a>
     </div>
+    <div class="progress-bar" ref="progressBar"></div>
   </header>
 </template>
 
@@ -54,8 +55,20 @@
                 linksWrapMaxWidth: null
             }
         },
-
+        beforeDestroy(){
+            var _this = this
+            window.removeEventListener('scroll',function percent(){
+                var  scrollTop = document.documentElement.scrollTop
+                var  totalHeight = document.body.offsetHeight-window.screen.availHeight+ _this.$el.offsetHeight
+                _this.$refs.progressBar.style.width= `${(scrollTop/totalHeight)*105}%`
+            }) },
         mounted () {
+            var _this = this
+            window.addEventListener('scroll',function percent(){
+                var  scrollTop = document.documentElement.scrollTop
+                var  totalHeight = document.body.offsetHeight-window.screen.availHeight+ _this.$el.offsetHeight
+                _this.$refs.progressBar.style.width= `${(scrollTop/totalHeight)*105}%`
+            })
             const MOBILE_DESKTOP_BREAKPOINT = 719 // refer to config.styl
             const NAVBAR_VERTICAL_PADDING = parseInt(css(this.$el, 'paddingLeft')) + parseInt(css(this.$el, 'paddingRight'))
             const handleLinksWrapWidth = () => {
@@ -101,6 +114,13 @@
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 10px 20px 0 rgba(0,0,0,0.12)
     position relative
     transition .4s all ease-in
+    .progress-bar
+      position fixed
+      top 58px
+      left -30px
+      width 105%
+      height 4px
+      background-color #ffcc66
     .navbar-icon
       display flex
       position relative

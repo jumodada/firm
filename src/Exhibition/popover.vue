@@ -89,7 +89,7 @@
                 let contentHeight = contentWrapper.clientHeight
                 let widthDiffer = - (Number(contentWidth)-width)
                 let heightDiffer = -(Number(contentHeight)-height)
-                let x = {
+                let position = {
                     topLeft:{
                         top:top + window.scrollY,
                         left:left + window.scrollX,
@@ -152,9 +152,9 @@
                     }
 
                 }
-                contentWrapper.style.left = x[this.position].left + 'px'
-                contentWrapper.style.top = x[this.position].top + 'px'
-                contentWrapper.style.transform = x[this.position].transition
+                contentWrapper.style.left = position[this.position].left + 'px'
+                contentWrapper.style.top = position[this.position].top + 'px'
+                contentWrapper.style.transform = position[this.position].transition
             },
             addEventListener(){
                 let {popover} = this.$refs

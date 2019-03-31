@@ -14,7 +14,9 @@
 [代码地址](https://github.com/jumodada/vueXin)
 
 
-[![Build Status](https://www.travis-ci.org/jumodada/My-Vue-Wheel.svg?branch=master)](https://www.travis-ci.org/jumodada/My-Vue-Wheel)
+[![Build Status](https://www.travis-ci.org/jumodada/vueXin.svg?branch=master)](https://www.travis-ci.org/jumodada/vueXin)
+<img src="https://img.shields.io/github/license/jumodada/vueXin.svg" />
+
 
 ## 介绍
 1.个人的学习vue的项目。样式和功能参照AntDesgin和elementUI,预计五月份会完成15个组件并发布1.0版本。代码每周都会重构并添加新的东西，单元测试也是
