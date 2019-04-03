@@ -1,17 +1,26 @@
 <template>
 <div class="x-pagination">
-            <span v-for="page in pages"
-                  class="x-pagination-span"
-                  :class="{active:page===currentPage,separator:page==='...'}"
-            >
-            {{page}}
-            </span>
+            <ul class="x-pagination-ul">
+                <li
+                        v-for="page in pages"
+                class="x-pagination-li"
+                :class="{active:page===currentPage,separator:(page==='...')}">
+                    <span v-if="(page!=='...')">{{page}}</span>
+                    <Dots  v-if="(page==='...')" class="x-pagination-li-icon"></Dots>
+                </li>
+            </ul>
 </div>
 </template>
 
 <script>
+    import Dots from '../currency/dynamic icon/dots'
+    import Icon from '../currency/icon'
     export default {
         name: "x-pagination",
+        components:{
+          'x-icon':Icon,
+            Dots
+        },
         props:{
             totalPage:{
                 type:Number,
@@ -60,13 +69,15 @@
 
 <style scoped lang="scss">
             .x-pagination{
-                &-span{
+                &-li{
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 6px 6px;
+                    vertical-align: center;
+                    padding: 4px 6px;
                     margin-left: 5px;
-                    min-width: 18px;
+                    min-width: 20px;
+                    min-height: 25px;
                     border:1px solid #cdcdcd;
                     border-radius: 3px;
                     color: rgb(96, 98, 102);
@@ -76,13 +87,23 @@
                         color: #409eff;
                     }
                     &.separator{
+                        position: relative;
+                        top: 5px;
                         border:none;
-                        font-size: 18px;
+                        font-size: 16px;
                     }
                     &.active{
                         border:1px solid #409eff;
                         cursor: default;
                     }
+                    &-icon{
+                        position: relative;
+                        top: 14px;
+                        &:hover{
+                            fill: #409eff;
+                        }
+                    }
                 }
             }
 </style>
+
