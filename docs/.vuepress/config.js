@@ -19,6 +19,7 @@ module.exports = {
                     '/components/carousel/',
                     '/components/tabs/',
                     '/components/menu/',
+                    '/components/pagination/',
                 ]
             },
 
