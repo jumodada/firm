@@ -118,7 +118,7 @@
       position fixed
       top 58px
       left -30px
-      width 105%
+      width 0
       height 4px
       background-color #ffcc66
     .navbar-icon

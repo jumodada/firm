@@ -24,5 +24,6 @@ title: carousel走马灯
 <br/>
 
 
-## 更多功能以及轮播动画选择
-loading......
+## Card卡片
+
+<carousel-card></carousel-card>  
