@@ -10,12 +10,14 @@
         <br>
         <x-collapse :selected.sync="selectTab1" exhibition>
             <x-pagination
-                    :total-page="5"
+                    style="margin-left: 50px"
+                    :total-page="30"
                     :current-page="2"
                     :one-page-number="10"
             >
-
             </x-pagination>
+            <br>
+            <br>
             <template slot="description">
                 <div style="color: #999999">
 

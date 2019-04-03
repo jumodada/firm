@@ -1,6 +1,9 @@
 <template>
 <div class="x-pagination">
-            <span v-for="page in pages">
+            <span v-for="page in pages"
+                  class="x-pagination-span"
+                  :class="{active:page===currentPage,separator:page==='...'}"
+            >
             {{page}}
             </span>
 </div>
@@ -32,10 +35,16 @@
             }
         },
         data(){
-            let pages = [1,this.totalPage,this.currentPage,this.currentPage,this.currentPage-1,this.currentPage+1,this.currentPage+2]
 
+            let u =unique([1,this.totalPage,this.currentPage,this.currentPage+1,this.currentPage+2].sort((a,b)=>a-b))
+            let u2 = u.reduce((prev,current,index,array)=>{
+                prev.push(current)
+                array[index+1]!==undefined&&array[index+1]-array[index]>1&&prev.push('...')
+
+                return prev
+            },[])
             return {
-                pages:unique(pages.sort((a,b)=>a-b))
+                pages:u2
             }
         }
 
@@ -49,6 +58,31 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+            .x-pagination{
+                &-span{
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 6px 6px;
+                    margin-left: 5px;
+                    min-width: 18px;
+                    border:1px solid #cdcdcd;
+                    border-radius: 3px;
+                    color: rgb(96, 98, 102);
+                    cursor: pointer;
+                    transition: .3s all  ease;
+                    &:hover{
+                        color: #409eff;
+                    }
+                    &.separator{
+                        border:none;
+                        font-size: 18px;
+                    }
+                    &.active{
+                        border:1px solid #409eff;
+                        cursor: default;
+                    }
+                }
+            }
 </style>
