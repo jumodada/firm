@@ -7,7 +7,6 @@
         name: "dots"
     }
 </script>
-
 <style  scoped type="text/css">@keyframes lds-ellipsis3 {
                            0%, 25% {
                                left: 32px;
@@ -133,24 +132,26 @@
     height: 40px;
     border-radius: 50%;
     background: #f00;
-    position: relative;
-    -webkit-animation: lds-ellipsis 2.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-    animation: lds-ellipsis 2.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    position: absolute;
+    top: 100px;
+    left: 32px;
+    -webkit-animation: lds-ellipsis 2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    animation: lds-ellipsis 2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
 }
 .lds-ellipsis div:nth-child(1) div {
-    -webkit-animation: lds-ellipsis2 2.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-    animation: lds-ellipsis2 2.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-    background: #89dbed;
+    -webkit-animation: lds-ellipsis2 2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    animation: lds-ellipsis2 2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    background: #34a0e8;
 }
 .lds-ellipsis div:nth-child(2) div {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s;
-    background: #5bc1e4;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+    background: #74b6f9;
 }
 .lds-ellipsis div:nth-child(3) div {
-    -webkit-animation-delay: -0.55s;
-    animation-delay: -0.55s;
-    background: #5faded;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+    background: #afd6f1;
 }
 .lds-ellipsis div:nth-child(4) div {
     -webkit-animation-delay: 0s;
@@ -158,14 +159,14 @@
     background: #409eff;
 }
 .lds-ellipsis div:nth-child(5) div {
-    -webkit-animation: lds-ellipsis3 2.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-    animation: lds-ellipsis3 2.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-    background: #89dbed;
+    -webkit-animation: lds-ellipsis3 2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    animation: lds-ellipsis3 2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    background: #34a0e8;
 }
 .lds-ellipsis {
-    width: 27px !important;
-    height: 27px !important;
-    -webkit-transform: translate(-13.5px, -13.5px) scale(0.135) translate(13.5px, 13.5px);
-    transform: translate(-13.5px, -13.5px) scale(0.135) translate(13.5px, 13.5px);
+    width: 20px !important;
+    height: 20px !important;
+    -webkit-transform: translate(-10px, -10px) scale(0.1) translate(10px, 10px);
+    transform: translate(-10px, -10px) scale(0.1) translate(10px, 10px);
 }
 </style>

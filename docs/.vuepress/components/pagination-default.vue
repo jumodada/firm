@@ -12,7 +12,7 @@
             <x-pagination
                     style="margin-left: 50px"
                     :total-page="30"
-                    :current-page="2"
+                    :current-page="30"
                     :one-page-number="10"
             >
             </x-pagination>
