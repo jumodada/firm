@@ -66,6 +66,13 @@
             onChange:{
                 type:Function,
                 default:null
+            },
+            pagerCount:{
+                type:Number,
+                default:5,
+                validator(val){
+                    return val < 5 || val > 18 ? false : true;
+                }
             }
         },
         data(){
@@ -79,8 +86,30 @@
                 if(this.totalPage>1)return true
                 return false
             },
+           currentArray(){
+                let arr = [1,this.totalPage]
+               let halfCount = Math.floor(this.pagerCount/2)
+               let [j,k]=[1,1]
+               let currentPage=this.currentPage
+               for(let i=0;i<=halfCount;i++){
+                   if(this.currentPage-i<=1){
+                       arr.push(currentPage+j+halfCount)
+                       j++
+                   }else{
+                       arr.push(currentPage-i)
+                   }
+                   if(this.currentPage+i>=this.totalPage){
+                       arr.push(currentPage-k-halfCount)
+                       k++
+                   }else{
+                       arr.push(currentPage+i)
+                   }
+               }
+
+             return arr
+           },
          pages(){
-            return unique([1,this.totalPage,this.currentPage,this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2]
+            return unique(this.currentArray
                  .filter(n=>n>=1&&n<=this.totalPage)
                  .sort((a,b)=>a-b))
                  .reduce((prev,current,index,array)=>{

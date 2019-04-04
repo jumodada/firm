@@ -13,6 +13,7 @@
                     style="margin-left: 50px"
                     :total-page="20"
                     :current-page.sync="currentPage"
+                    :pager-count="7"
                     :one-page-number="10"
                     :on-change="xxx"
             >
@@ -20,6 +21,9 @@
 
             <br>
             <br>
+            <div style="color: #515a6e">
+
+            </div>
             <template slot="description">
                 <div style="color: #999999">
 
@@ -54,11 +58,12 @@
             return {
                 selectTab1:[1],
                 selected:'1',
-                currentPage:5,
+                currentPage:2,
                 input1:'```html\n' +
                     ' <x-pagination\n' +
                     '    style="margin-left: 50px"\n' +
                     '    :total-page="20"\n' +
+                        ' :pager-count="7"\n'+
                     '    :current-page.sync="currentPage"\n' +
                     '    :on-change="xxx"\n' +
                     '      >\n' +
