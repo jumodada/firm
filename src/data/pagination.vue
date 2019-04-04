@@ -85,11 +85,7 @@
         methods:{
             toggleIcon(page,e,index){
                 if(typeof page==='number')return
-                if(e.type==='mouseenter'){
-                    this.activeIcon=index
-                }else{
-                    this.activeIcon=null
-                }
+                this.activeIcon = e.type === 'mouseenter' ? index : null;
 
             },
             changeCurrentPage(page,index){
@@ -98,20 +94,21 @@
                     this.$emit('update:currentPage',page)
                 }else{
                     let currentPage = this.currentPage
-                   
-                    if(index<this.pages.length/2){
-                       if(currentPage>9){
-                           this.$emit('update:currentPage',currentPage-5)
-                       }else if(4<currentPage<=9){
-                           this.$emit('update:currentPage',currentPage-3)
-                       }
-                    }else{
-                       if(this.totalPage-currentPage>9){
-                           this.$emit('update:currentPage',currentPage+5)
-                       }else if(4<this.totalPage-currentPage<=9){
-                           this.$emit('update:currentPage',currentPage+3)
-                       }
+                    let direction,number,differ
+                    direction = index < this.pages.length / 2 ? 'left' : 'right';
+                    differ = direction === 'left' ? currentPage : this.totalPage - currentPage
+                    number = differ > 9 ? 'more' : 'less';
+                    let distance = {
+                        left:{
+                          less:currentPage - 3 ,
+                          more:currentPage - 5
+                        },
+                        right:{
+                            less:currentPage + 3 ,
+                            more:currentPage + 5
+                        }
                     }
+                    this.$emit('update:currentPage',distance[direction][number])
                 }
             }
         }
