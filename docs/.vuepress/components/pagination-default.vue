@@ -14,7 +14,7 @@
                     :total-page="20"
                     :current-page.sync="currentPage"
                     :one-page-number="10"
-
+                    :on-change="xxx"
             >
             </x-pagination>
 
@@ -56,43 +56,30 @@
                 selected:'1',
                 currentPage:5,
                 input1:'```html\n' +
-                    '<x-carousel :selected.sync="selected">\n' +
-                    '  <x-carousel-item name="1">\n' +
-                    '    <div class="box">\n' +
-                    '     1\n' +
-                    '    </div>\n' +
-                    '  </x-carousel-item>\n' +
-                    '  <x-carousel-item name="2">\n' +
-                    '    <div class="box">\n' +
-                    '     2\n' +
-                    '    </div>\n' +
-                    '   </x-carousel-item>\n' +
-                    '   <x-carousel-item name="3">\n' +
-                    '    <div class="box">\n' +
-                    '     3\n' +
-                    '    </div>\n' +
-                    '   </x-carousel-item>\n' +
-                    '   <x-carousel-item name="4">\n' +
-                    '    <div class="box">\n' +
-                    '     4\n' +
-                    '   </div>\n' +
-                    '  </x-carousel-item>\n' +
-                    '  <x-carousel-item name="5">\n' +
-                    '   <div class="box">\n' +
-                    '     5\n' +
-                    '   </div>\n' +
-                    '  </x-carousel-item>\n' +
-                    '  <x-carousel-item name="6">\n' +
-                    '   <div class="box">\n' +
-                    '     6\n' +
-                    '   </div>\n' +
-                    '  </x-carousel-item>\n' +
-                    '</x-carousel>\n' +
+                    ' <x-pagination\n' +
+                    '    style="margin-left: 50px"\n' +
+                    '    :total-page="20"\n' +
+                    '    :current-page.sync="currentPage"\n' +
+                    '    :on-change="xxx"\n' +
+                    '      >\n' +
+                    '</x-pagination>\n' +
+                    '\n' +
+                    '\n' +
+                    'export default{\n' +
+                    'methods:{\n' +
+                    '            xxx(){\n' +
+                    '                console.log(this.currentPage)\n' +
+                    '            }\n' +
+                    '        },\n' +
+                    '}\n' +
+                    '\n' +
                     '```'
             }
         },
         methods:{
-
+            xxx(){
+                console.log(this.currentPage)
+            }
         },
         components:{
             'x-button':Button,
@@ -109,13 +96,4 @@
 </script>
 <style>
 
-    .box {
-        width: 100%;
-        height: 350px;
-        background: #ddd;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-    }
 </style>

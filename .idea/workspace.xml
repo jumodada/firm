@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/components/pagination/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/pagination/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/pagination.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/pagination.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -109,7 +111,7 @@
           <entry key="styl" value="24" />
           <entry key="svg" value="5" />
           <entry key="ts" value="1" />
-          <entry key="vue" value="276" />
+          <entry key="vue" value="279" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -124,7 +126,7 @@
           <entry key="SVG" value="5" />
           <entry key="Stylus" value="24" />
           <entry key="TypeScript" value="1" />
-          <entry key="Vue.js" value="276" />
+          <entry key="Vue.js" value="279" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -132,23 +134,23 @@
           <entry key="html" value="28" />
           <entry key="js" value="299" />
           <entry key="json" value="19" />
-          <entry key="md" value="928" />
+          <entry key="md" value="970" />
           <entry key="scss" value="14" />
           <entry key="styl" value="161" />
           <entry key="svg" value="9" />
-          <entry key="vue" value="29709" />
+          <entry key="vue" value="29946" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="28" />
+          <entry key="HTML" value="32" />
           <entry key="JSON" value="19" />
           <entry key="JavaScript" value="299" />
-          <entry key="Markdown" value="928" />
+          <entry key="Markdown" value="966" />
           <entry key="SCSS" value="14" />
           <entry key="SVG" value="9" />
           <entry key="Stylus" value="161" />
-          <entry key="Vue.js" value="29709" />
+          <entry key="Vue.js" value="29946" />
         </counts>
       </usages-collector>
     </session>
@@ -182,11 +184,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/pagination.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="85" column="37" lean-forward="true" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+            <state relative-caret-position="294">
+              <caret line="127" column="28" lean-forward="true" selection-start-line="127" selection-start-column="28" selection-end-line="127" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#979#1027#0" expanded="true" />
@@ -195,25 +197,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/currency/icon.vue">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-305">
-              <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+            <state relative-caret-position="162">
+              <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#x-pagination#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-disabled.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+            <state relative-caret-position="87">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#x-pagination#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#798#851#0" expanded="true" />
+                <element signature="n#script#0;n#!!top" />
+                <element signature="e#1842#1988#0" />
               </folding>
             </state>
           </provider>
@@ -223,8 +229,8 @@
         <entry file="file://$PROJECT_DIR$/docs/components/pagination/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="189">
-                <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <first_editor relative-caret-position="270">
+                <caret line="10" selection-start-line="10" selection-end-line="10" />
               </first_editor>
               <second_editor />
             </state>
@@ -245,7 +251,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>line</find>
       <find>tabs-content</find>
       <find>ini</find>
       <find>$blue</find>
@@ -275,6 +280,7 @@
       <find>ICONTOGGLE</find>
       <find>1..2em</find>
       <find>console.log</find>
+      <find>html</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -324,16 +330,16 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/theme/Navbar.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue" />
         <option value="$PROJECT_DIR$/docs/components/carousel/README.md" />
-        <option value="$PROJECT_DIR$/docs/components/pagination/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/config.js" />
         <option value="$PROJECT_DIR$/src/currency/icon.vue" />
         <option value="$PROJECT_DIR$/src/svg.js" />
         <option value="$PROJECT_DIR$/src/assets/separate.svg" />
         <option value="$PROJECT_DIR$/src/currency/dynamic icon/dots.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue" />
         <option value="$PROJECT_DIR$/src/form data/cascader-item.vue" />
         <option value="$PROJECT_DIR$/src/currency/dynamic icon/riight.vue" />
         <option value="$PROJECT_DIR$/src/data/pagination.vue" />
+        <option value="$PROJECT_DIR$/docs/components/pagination/README.md" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue" />
       </list>
     </option>
   </component>
@@ -380,6 +386,13 @@
               <item name="vueXin" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
@@ -609,12 +622,12 @@
       <workItem from="1554083214464" duration="1750000" />
       <workItem from="1554198363303" duration="418000" />
       <workItem from="1554262521386" duration="13672000" />
-      <workItem from="1554344561976" duration="14939000" />
+      <workItem from="1554344561976" duration="16771000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="586559000" />
+    <option name="totallyTimeSpent" value="588391000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -668,13 +681,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/tabs-default.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -723,13 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="116" column="13" lean-forward="true" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="959">
-          <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -975,26 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/pagination/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="189">
-            <caret line="7" selection-start-line="7" selection-end-line="7" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/form data/cascader.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1241">
-          <caret line="278" column="11" lean-forward="true" selection-start-line="278" selection-start-column="11" selection-end-line="278" selection-end-column="11" />
-          <folding>
-            <element signature="e#1670#1705#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/currency/dynamic icon/riight.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
@@ -1009,19 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-pagination#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#798#851#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -1029,13 +995,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/form data/cascader.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1241">
+          <caret line="278" column="11" lean-forward="true" selection-start-line="278" selection-start-column="11" selection-end-line="278" selection-end-column="11" />
+          <folding>
+            <element signature="e#1670#1705#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/pagination.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="85" column="37" lean-forward="true" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+        <state relative-caret-position="294">
+          <caret line="127" column="28" lean-forward="true" selection-start-line="127" selection-start-column="28" selection-end-line="127" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#979#1027#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/components/pagination/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="270">
+            <caret line="10" selection-start-line="10" selection-end-line="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="57" column="11" lean-forward="true" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-disabled.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding>
+            <element signature="n#script#0;n#!!top" />
+            <element signature="e#1842#1988#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/pagination-default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-pagination#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

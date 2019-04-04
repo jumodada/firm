@@ -62,6 +62,10 @@
             hideIfOnePage:{
                 type:Boolean,
                 default:true
+            },
+            onChange:{
+                type:Function,
+                default:null
             }
         },
         data(){
@@ -109,7 +113,9 @@
                         }
                     }
                     this.$emit('update:currentPage',distance[direction][number])
+                    this.activeIcon = null
                 }
+                this.onChange()
             }
         }
 
