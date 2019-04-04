@@ -128,7 +128,10 @@
             compiledMarkdown() {
                 return marked(this.input)
             }
-        }
+        },
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 

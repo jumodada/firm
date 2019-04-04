@@ -113,7 +113,10 @@
             'x-collapse':collapse,
             'x-collapse-item':collapseItem,
             'x-button-group':ButtonGroup
-        }
+        },
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 

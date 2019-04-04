@@ -281,6 +281,9 @@
                 return marked(this.input1)
             },
         },
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 

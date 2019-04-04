@@ -86,6 +86,9 @@
                 console.log(this.currentPage)
             }
         },
+        beforeDestroy(){
+          this.$el.remove()
+        },
         components:{
             'x-button':Button,
             'x-collapse':collapse,

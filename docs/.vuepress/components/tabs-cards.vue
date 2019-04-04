@@ -51,6 +51,9 @@
             'x-tabs':Tabs,
             'x-tabs-item':TabsItem
         },
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 

@@ -73,6 +73,9 @@
             'x-tabs-item':TabsItem,
             'x-Button-group':ButtonGroup
         },
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 

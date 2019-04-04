@@ -152,6 +152,9 @@
                 return marked(this.input2)
             },
         },
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 

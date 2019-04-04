@@ -70,7 +70,9 @@
             },
 
         },
-
+        beforeDestroy(){
+            this.$el.remove()
+        },
     }
 </script>
 
