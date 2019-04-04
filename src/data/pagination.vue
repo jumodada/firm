@@ -1,5 +1,5 @@
 <template>
-<div class="x-pagination">
+<div class="x-pagination" v-show="ifOnePage">
     <div class="x-pagination-button"
          @click="changeCurrentPage(currentPage-1)"
          :class="{disabled:currentPage===1}">
@@ -74,6 +74,11 @@
             }
         },
        computed:{
+            ifOnePage(){
+                if(!this.hideIfOnePage)return true
+                if(this.totalPage>1)return true
+                return false
+            },
          pages(){
             return unique([1,this.totalPage,this.currentPage,this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2]
                  .filter(n=>n>=1&&n<=this.totalPage)
