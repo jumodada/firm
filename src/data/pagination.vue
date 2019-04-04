@@ -1,27 +1,32 @@
 <template>
 <div class="x-pagination">
-    <div class="x-pagination-button" :class="{disabled:currentPage===1}">
+    <div class="x-pagination-button"
+         @click="changeCurrentPage(currentPage-1)"
+         :class="{disabled:currentPage===1}">
+
         <x-icon class="x-pagination-li-icon" name="left" color="#707070">
 
         </x-icon>
     </div>
             <ul class="x-pagination-ul">
                 <li
-                        v-for="page in pages"
-                        @mouseenter="toggleIcon(page,$event)"
-                        @mouseleave="toggleIcon(page,$event)"
+                        v-for="(page,index) in pages"
+                        @mouseenter="toggleIcon(page,$event,index)"
+                        @mouseleave="toggleIcon(page,$event,index)"
+                        @click="changeCurrentPage(page,index)"
                 class="x-pagination-li"
                 :class="{active:page===currentPage,separator:(page==='...')}">
-                    <span v-if="(page!=='...')">{{page}}</span>
+                    <span v-if="(typeof page==='number')">{{page}}</span>
                     <transition name="fade" mode="out-in">
-                        <Dots key="dynamic" v-if="(page==='...')&&!IconToggle" class="x-pagination-li-icon"></Dots>
-                        <x-icon  key="static" class="x-pagination-li-icon" color="#8a8a8a" v-if="(page==='...')&&IconToggle" name="more"></x-icon>
+                        <Dots key="dynamic" v-if="page==='...'&&index===activeIcon" class="x-pagination-li-icon"></Dots>
+                        <x-icon  key="static" class="x-pagination-li-icon" color="#8a8a8a" v-if="page==='...'&&index!==activeIcon" name="more"></x-icon>
                     </transition>
                 </li>
             </ul>
-    <div class="x-pagination-button"  :class="{disabled:currentPage===totalPage}" style="margin-left: 5px">
+    <div class="x-pagination-button"
+         @click="changeCurrentPage(currentPage+1)"
+         :class="{disabled:currentPage===totalPage}" style="margin-left: 5px">
         <x-icon  class="x-pagination-li-icon" name="right" color="#707070">
-
         </x-icon>
     </div>
 </div>
@@ -60,28 +65,54 @@
             }
         },
         data(){
-
-            let u =unique([1,this.totalPage,this.currentPage,this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2]
-                .filter(n=>n>=1&&n<=this.totalPage)
-                .sort((a,b)=>a-b))
-                .reduce((prev,current,index,array)=>{
-                prev.push(current)
-                array[index+1]!==undefined&&array[index+1]-array[index]>1&&prev.push('...')
-
-                return prev
-            },[])
             return {
-                pages:u,
-                IconToggle:true
+                activeIcon:null
             }
         },
-        mounted(){
+       computed:{
+         pages(){
+            return unique([1,this.totalPage,this.currentPage,this.currentPage-1,this.currentPage-2,this.currentPage+1,this.currentPage+2]
+                 .filter(n=>n>=1&&n<=this.totalPage)
+                 .sort((a,b)=>a-b))
+                 .reduce((prev,current,index,array)=>{
+                     prev.push(current)
+                     array[index+1]!==undefined&&array[index+1]-array[index]>1&&prev.push('...')
 
-        },
+                     return prev
+                 },[])
+         }
+       },
         methods:{
-            toggleIcon(page,e){
-                if(page!=='...')return
-                    this.IconToggle = e.type === 'mouseleave' ? true : false;
+            toggleIcon(page,e,index){
+                if(typeof page==='number')return
+                if(e.type==='mouseenter'){
+                    this.activeIcon=index
+                }else{
+                    this.activeIcon=null
+                }
+
+            },
+            changeCurrentPage(page,index){
+                if(page<=0||page>this.totalPage)return
+                if(typeof page==='number'){
+                    this.$emit('update:currentPage',page)
+                }else{
+                    let currentPage = this.currentPage
+                   
+                    if(index<this.pages.length/2){
+                       if(currentPage>9){
+                           this.$emit('update:currentPage',currentPage-5)
+                       }else if(4<currentPage<=9){
+                           this.$emit('update:currentPage',currentPage-3)
+                       }
+                    }else{
+                       if(this.totalPage-currentPage>9){
+                           this.$emit('update:currentPage',currentPage+5)
+                       }else if(4<this.totalPage-currentPage<=9){
+                           this.$emit('update:currentPage',currentPage+3)
+                       }
+                    }
+                }
             }
         }
 
@@ -99,7 +130,7 @@
     .fade-enter-active, .fade-leave-active {
         transition: all .15s;
     }
-    .fade-enter, .fade-leave-to  {
+    .fade-enter, .fade-leave-to{
         opacity: 0;
     }
             .x-pagination{

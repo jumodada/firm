@@ -123,11 +123,7 @@
                 }
             },
             iconLoading(item){
-                if(this.dynamic &&this.theIcon(item)==='loading'){
-                    return true
-                }else{
-                    return false
-                }
+                return this.dynamic && this.theIcon(item) === 'loading' ? true : false;
             },
             beforeEnter(el) {
                     el.style.opacity=0
@@ -154,7 +150,6 @@
 
 <style scoped lang="scss">
     @import "../var";
-
 
     .cascader-item{
         display: flex;

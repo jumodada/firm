@@ -12,10 +12,12 @@
             <x-pagination
                     style="margin-left: 50px"
                     :total-page="30"
-                    :current-page="30"
+                    :current-page.sync="currentPage"
                     :one-page-number="10"
+
             >
             </x-pagination>
+
             <br>
             <br>
             <template slot="description">
@@ -52,6 +54,7 @@
             return {
                 selectTab1:[1],
                 selected:'1',
+                currentPage:30,
                 input1:'```html\n' +
                     '<x-carousel :selected.sync="selected">\n' +
                     '  <x-carousel-item name="1">\n' +
