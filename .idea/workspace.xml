@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" afterDir="false" />
@@ -115,7 +114,7 @@
           <entry key="styl" value="24" />
           <entry key="svg" value="5" />
           <entry key="ts" value="1" />
-          <entry key="vue" value="331" />
+          <entry key="vue" value="333" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -130,7 +129,7 @@
           <entry key="SVG" value="5" />
           <entry key="Stylus" value="24" />
           <entry key="TypeScript" value="1" />
-          <entry key="Vue.js" value="331" />
+          <entry key="Vue.js" value="333" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -142,7 +141,7 @@
           <entry key="scss" value="14" />
           <entry key="styl" value="161" />
           <entry key="svg" value="9" />
-          <entry key="vue" value="32668" />
+          <entry key="vue" value="33126" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -154,7 +153,7 @@
           <entry key="SCSS" value="14" />
           <entry key="SVG" value="9" />
           <entry key="Stylus" value="161" />
-          <entry key="Vue.js" value="32668" />
+          <entry key="Vue.js" value="33126" />
         </counts>
       </usages-collector>
     </session>
@@ -167,8 +166,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+            <state relative-caret-position="260">
+              <caret line="155" column="36" lean-forward="true" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="36" />
               <folding>
                 <element signature="e#1013#1048#0" expanded="true" />
               </folding>
@@ -179,8 +178,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
+            <state relative-caret-position="-241">
+              <caret line="58" column="29" lean-forward="true" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -188,15 +187,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="30" column="67" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
+            <state relative-caret-position="-1884">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#x-carousel-item#0;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#x-carousel-item#1;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#x-carousel-item#2;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#x-carousel-item#3;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#x-carousel-item#4;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#x-carousel-item#3;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#x-carousel-item#4;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#x-carousel-item#5;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -206,8 +205,8 @@
         <entry file="file://$PROJECT_DIR$/docs/components/carousel/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="162">
-                <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+              <first_editor relative-caret-position="81">
+                <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
               </first_editor>
               <second_editor />
             </state>
@@ -228,7 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onClick</find>
       <find>this.outClick</find>
       <find>clickCloseAll</find>
       <find>eventHandler</find>
@@ -253,11 +251,12 @@
       <find>autoPlaySelected</find>
       <find>clickSelected</find>
       <find>forwardAndBack</find>
-      <find>goBack</find>
       <find>selectedIndex</find>
       <find>lastSelected</find>
       <find>length</find>
       <find>tellChildren</find>
+      <find>duration</find>
+      <find>goBack</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -311,12 +310,12 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-group.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue" />
+        <option value="$PROJECT_DIR$/docs/components/carousel/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue" />
-        <option value="$PROJECT_DIR$/docs/components/carousel/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue" />
-        <option value="$PROJECT_DIR$/src/Exhibition/carousel-item.vue" />
         <option value="$PROJECT_DIR$/src/Exhibition/carousel.vue" />
+        <option value="$PROJECT_DIR$/src/Exhibition/carousel-item.vue" />
       </list>
     </option>
   </component>
@@ -607,12 +606,12 @@
       <workItem from="1554198363303" duration="418000" />
       <workItem from="1554262521386" duration="13672000" />
       <workItem from="1554344561976" duration="25258000" />
-      <workItem from="1554426293414" duration="17030000" />
+      <workItem from="1554426293414" duration="21148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="613908000" />
+    <option name="totallyTimeSpent" value="618026000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1006,57 +1005,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+        <state relative-caret-position="55">
+          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-hover.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
-          <caret line="77" column="31" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
+          <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/components/carousel/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="162">
-            <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <first_editor relative-caret-position="81">
+            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="30" column="67" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#x-carousel-item#0;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#x-carousel-item#1;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#x-carousel-item#2;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-carousel-item#3;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-carousel-item#4;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        <state relative-caret-position="260">
+          <caret line="155" column="36" lean-forward="true" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="36" />
           <folding>
             <element signature="e#1013#1048#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1884">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#x-carousel-item#0;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#x-carousel-item#1;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#x-carousel-item#2;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#x-carousel-item#3;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#x-carousel-item#4;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#x-carousel-item#5;n#x-carousel#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
+        <state relative-caret-position="-241">
+          <caret line="58" column="29" lean-forward="true" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
         </state>
       </provider>
     </entry>

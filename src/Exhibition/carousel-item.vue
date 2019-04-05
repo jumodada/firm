@@ -3,7 +3,9 @@
               @leave="leave"
               name="slide"
   >
-    <div class="carousel-item" v-if="visible"
+    <div class="carousel-item"
+         ref="carousel"
+         v-if="visible" @click="bounce"
          :class="{reverse,[exhibitionStyle]:card}">
         <slot></slot>
     </div>
@@ -23,7 +25,7 @@
             return{
                 selected:[],
                 reverse:false,
-                duration:.6,
+                duration:.5,
                 card:false,
                 childrenLength:0,
                 cardSelected:[]
@@ -47,7 +49,6 @@
             exhibitionStyle(){
                 let index = this.cardSelected.indexOf(Number(this.name))
                 let position = ['left','main','right']
-                console.log(`position-${position[index]}`)
                 return `position-${position[index]}`
             }
         },
@@ -59,8 +60,17 @@
                 el.style.transition = `${this.duration}s all ease-in-out`
             },
             leave(el) {
-                el.style.transition = `${this.duration}s all ease-in-out`
+                el.style.transition = `${this.duration}s all`
             },
+            bounce(){
+                let [direction,index] = [this.exhibitionStyle.slice(9,16),this.$parent.selectedIndex]
+                console.log(direction)
+               if(direction==='left'){
+                   this.$parent.goBack(index,'back')
+               }else if(direction==='right'){
+                   this.$parent.goBack(index,'go')
+               }
+            }
         }
     }
 </script>
@@ -90,22 +100,28 @@
     opacity: 0;
   }
   .carousel-item{
+    cursor: pointer;
     &.position-left{
       width: 50%;
       position: absolute;
+      top: 0;
+      left: -10px;
       transform:scale(0.82);
     }
     &.position-main{
       color: #e08806;
       width: 50%;
       transform: translateX(50%);
-      z-index: 2;
-      position: absolute;
+      position: relative;
+      z-index: 3;
     }
     &.position-right{
       color: green;
       transform: translateX(100%) scale(0.82);
       width: 50%;
+      position: absolute;
+      top: 0;
+      left: 10px;
     }
   }
 </style>

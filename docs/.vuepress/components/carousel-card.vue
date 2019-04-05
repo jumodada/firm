@@ -4,33 +4,32 @@
         <div style="margin-top: 20px">
             <x-carousel :selected.sync="selected" card>
                 <x-carousel-item name="1">
-                    <div class="box" style="background-color: #f0f0ee">
+                    <div class="box" style="background-color: #f0f0ee;height: 210px">
                         1
                     </div>
                 </x-carousel-item>
                 <x-carousel-item name="2">
-                    <div class="box" style="background-color: #e3e3e0">
+                    <div class="box" style="background-color: #aaaaa7;height: 210px">
                         2
                     </div>
                 </x-carousel-item>
                 <x-carousel-item name="3">
-                    <div class="box" style="background-color: #d7d7d4">
+                    <div class="box" style="background-color: #d7d7d4;height: 210px">
                         3
                     </div>
                 </x-carousel-item>
-                <x-carousel-item name="4" style="background-color: #c3c3c1">
-                    <div class="box">
+                <x-carousel-item name="4">
+                    <div class="box" style="background-color: #c3c3c1;height: 210px">
                         4
                     </div>
                 </x-carousel-item>
-                <x-carousel-item name="5" style="background-color: #b8b8b4">
-                    <div class="box">
+                <x-carousel-item name="5">
+                    <div class="box" style="background-color: #b8b8b4;height: 210px">
                         5
                     </div>
                 </x-carousel-item>
-                <x-carousel-item name="6" style="background-color: #aaaaa7
-">
-                    <div class="box">
+                <x-carousel-item name="6">
+                    <div class="box" style="background-color: #e3e3e0;height: 210px">
                         6
                     </div>
                 </x-carousel-item>
@@ -42,10 +41,7 @@
         <x-collapse :selected.sync="selectTab1" exhibition>
 
             <template slot="description">
-                <div style="color: #999999">
-                    每个<code>item</code>必须得对应一个索引数字 <code>name</code>,你可以在外面控制这个组件的宽度高度。
 
-                </div>
             </template>
             <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
                 <div v-html="html"></div>

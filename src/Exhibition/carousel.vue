@@ -4,14 +4,14 @@
          @mouseenter="hoverinListener"
     >
         <div class="x-carousel-window">
-            <div class="x-carousel-wrapper">
+            <div class="x-carousel-wrapper" :class="{[card]:card}">
                  <span @click="goBack(selectedIndex,'back')">
                  <x-icon  name="left" class="x-icon x-icon-left" color="#f49303">后退</x-icon>
                  </span>
                 <span @click="goBack(selectedIndex,'go')" class="x-carousel-icon-right">
                 <x-icon  name="right" class="x-icon x-icon-right" color="#f49303">前进</x-icon>
                  </span>
-                <slot></slot>
+                    <slot></slot>
             </div>
         </div>
         <div class="x-carousel-button-group">
@@ -154,12 +154,12 @@
             hoveroutListener(){
                 this.automationPlay()
                 this.hasTimer = true
-                let duration= .6
-                this.duration=.6
+                let duration= .5
+                this.duration=.5
                 this.nameItems.forEach(vm=>vm.duration=duration)
             },
             clearAndSet(){
-                let durationTime = .6
+                let durationTime = .5
                 clearInterval(this.timer2)
                 setTimeout(()=>{
                     this.nameItems.forEach(vm=>vm.duration=durationTime)
@@ -259,6 +259,10 @@
             position: relative;
             overflow: hidden;
             width: 100%;
+            height: auto;
+            &.card{
+                height: 210px;
+            }
         }
         .x-carousel-button-group{
             opacity: 0;
@@ -267,6 +271,7 @@
             justify-content: center;
             align-items: center;
             transition: all .4s ease-in-out;
+            z-index: 5;
             transform: translateY(700%);
             .x-carousel-button{
                 padding: 0;
