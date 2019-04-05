@@ -2,34 +2,34 @@
     <div style="margin-top: 30px">
 
         <div style="margin-top: 20px">
-
-            <x-carousel :selected.sync="selected">
+            <x-carousel :selected.sync="selected" card>
                 <x-carousel-item name="1">
-                    <div class="box">
+                    <div class="box" style="background-color: #f0f0ee">
                         1
                     </div>
                 </x-carousel-item>
                 <x-carousel-item name="2">
-                    <div class="box">
+                    <div class="box" style="background-color: #e3e3e0">
                         2
                     </div>
                 </x-carousel-item>
                 <x-carousel-item name="3">
-                    <div class="box">
+                    <div class="box" style="background-color: #d7d7d4">
                         3
                     </div>
                 </x-carousel-item>
-                <x-carousel-item name="4">
+                <x-carousel-item name="4" style="background-color: #c3c3c1">
                     <div class="box">
                         4
                     </div>
                 </x-carousel-item>
-                <x-carousel-item name="5">
+                <x-carousel-item name="5" style="background-color: #b8b8b4">
                     <div class="box">
                         5
                     </div>
                 </x-carousel-item>
-                <x-carousel-item name="6">
+                <x-carousel-item name="6" style="background-color: #aaaaa7
+">
                     <div class="box">
                         6
                     </div>
@@ -44,10 +44,7 @@
             <template slot="description">
                 <div style="color: #999999">
                     每个<code>item</code>必须得对应一个索引数字 <code>name</code>,你可以在外面控制这个组件的宽度高度。
-                    <br>
-                    这里面的代码展示不能高亮,我 <code>TM</code>也不知道为什么,<code>highLight.js</code>和这个组件似乎有冲突，一用高亮就卡死,我TM也是醉了，草。
-                    <br>
-                    后面再考虑解决这个问题，现在以我的能力实在是没办法
+
                 </div>
             </template>
             <x-collapse-item name="1" title="展示代码" title2="隐藏代码">

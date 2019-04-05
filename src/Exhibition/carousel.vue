@@ -1,28 +1,27 @@
 <template>
-  <div class="x-carousel"
-       @mouseleave="hoveroutListener"
-       @mouseenter="hoverinListener"
-
-  >
-    <div class="x-carousel-window">
-      <div class="x-carousel-wrapper">
+    <div class="x-carousel"
+         @mouseleave="hoveroutListener"
+         @mouseenter="hoverinListener"
+    >
+        <div class="x-carousel-window">
+            <div class="x-carousel-wrapper">
                  <span @click="goBack(selectedIndex,'back')">
                  <x-icon  name="left" class="x-icon x-icon-left" color="#f49303">后退</x-icon>
                  </span>
-        <span @click="goBack(selectedIndex,'go')" class="x-carousel-icon-right">
+                <span @click="goBack(selectedIndex,'go')" class="x-carousel-icon-right">
                 <x-icon  name="right" class="x-icon x-icon-right" color="#f49303">前进</x-icon>
                  </span>
-        <slot></slot>
-      </div>
-    </div>
-    <div class="x-carousel-button-group">
-      <button
-              @mouseenter="hoverSelected(index-1)"
-              @click="clickSelected(index-1)" class="x-carousel-button" v-for="index in childrenLength" :class="{active:selectedIndex===index-1}">
-      </button>
-    </div>
+                <slot></slot>
+            </div>
+        </div>
+        <div class="x-carousel-button-group">
+            <button
+                    @mouseenter="hoverSelected(index-1)"
+                    @click="clickSelected(index-1)" class="x-carousel-button" v-for="index in childrenLength" :class="{active:selectedIndex===index-1}">
+            </button>
+        </div>
 
-  </div>
+    </div>
 </template>
 
 <script>
@@ -39,6 +38,10 @@
                 default:true
             },
             toHover:{
+                type:Boolean,
+                default: false
+            },
+            card:{
                 type:Boolean,
                 default: false
             }
@@ -60,6 +63,9 @@
             this.computedNumbers()
             this.updateChildrens(this.selected)
             this.automationPlay()
+            if(this.card){
+                this.tellChildren()
+            }
         },
         updated(){
             this.updateChildrens(this.selected)
@@ -85,15 +91,21 @@
             automationPlay(){
                 clearTimeout(this.timer)
                 let run = () => {
-                    this.autoIndex = this.names.indexOf(this.getSelected())
-                    this.autoIndex++
-                    if(this.autoIndex===this.names.length){
-                        this.autoIndex=0
+                    let autoIndex = this.names.indexOf(this.getSelected())
+                   autoIndex++
+                    if(autoIndex===this.names.length){
+                        autoIndex=0
                     }
-                    this.autoPlaySelected(this.autoIndex)
+                    this.autoPlaySelected(autoIndex)
                     this.timer = setTimeout(run,this.autoTimerDuration)
                 }
                 this.timer = setTimeout(run,this.autoTimerDuration)
+            },
+            tellChildren(){
+               this.$children.forEach(child=>{
+                   child.card = true
+                   child.childrenLength = this.childrenLength
+               })
             },
             updateChildrens(){
                 let selected = this.getSelected()
@@ -155,11 +167,8 @@
                 })
             },
             forwardAndBack(oldVal,newVal){
-                let num
-                let duration
-                let theIndex
-                let oldIndex =oldVal
-                let newIndex =newVal
+                let num,duration,theIndex
+                let [oldIndex,newIndex] =[oldVal,newVal]
                 let animationDuration = 500
                 num= oldIndex-newIndex
                 if(oldIndex>newIndex){
@@ -204,83 +213,83 @@
 </script>
 
 <style scoped lang="scss">
-  .x-carousel{
-    .x-icon{
-      width: 3em;
-      height: 3em;
-      opacity: 0;
-      transition: all .4s ease-in-out;
-      z-index: 10;
-      cursor: pointer;
-      &:hover{
-        opacity: 1;
-        cursor: pointer;
-      }
-    }
-    &:hover{
-      .x-icon-right{
-        opacity: 1;
-        transform: translateY(-50%) translateX(-100%);
-      }
-      .x-icon-left{
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-      }
-      .x-carousel-button-group{
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    &-window{
-      .x-icon-left{
-        position: absolute;
-        top: 50%;
-        opacity: 0;
-        transform: translateY(-50%) translateX(-100%);
-      }
-      .x-icon-right{
-        position: absolute;
-        top: 50%;
-        left: 100%;
-        opacity: 0;
-        transform: translateY(-50%) translateX(0%);
-      }
-    }
-    &-wrapper{
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-    }
-    .x-carousel-button-group{
-      opacity: 0;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all .4s ease-in-out;
-      transform: translateY(700%);
-      .x-carousel-button{
-        padding: 0;
-        position: relative;
-        top: -3em;
-        margin: 0 .5em;
-        height: 6px;
-        border:1px solid #eeeeee;
-        outline: none;
-        width: 3em;
-        border-radius: 4px;
-        transition: all .6s;
-        opacity: 0.6;
-        cursor: pointer;
-        &:hover{
-          border:1px solid #ef6c14;
-          opacity: 0.1;
+    .x-carousel{
+        .x-icon{
+            width: 3em;
+            height: 3em;
+            opacity: 0;
+            transition: all .4s ease-in-out;
+            z-index: 10;
+            cursor: pointer;
+            &:hover{
+                opacity: 1;
+                cursor: pointer;
+            }
         }
-      }
-      .active{
-        background-color: #ef6c14;
-        border:1px solid #ef6c14;
-      }
+        &:hover{
+            .x-icon-right{
+                opacity: 1;
+                transform: translateY(-50%) translateX(-100%);
+            }
+            .x-icon-left{
+                opacity: 1;
+                transform: translateY(-50%) translateX(0);
+            }
+            .x-carousel-button-group{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        &-window{
+            .x-icon-left{
+                position: absolute;
+                top: 50%;
+                opacity: 0;
+                transform: translateY(-50%) translateX(-100%);
+            }
+            .x-icon-right{
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                opacity: 0;
+                transform: translateY(-50%) translateX(0%);
+            }
+        }
+        &-wrapper{
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        .x-carousel-button-group{
+            opacity: 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all .4s ease-in-out;
+            transform: translateY(700%);
+            .x-carousel-button{
+                padding: 0;
+                position: relative;
+                top: -3em;
+                margin: 0 .5em;
+                height: 6px;
+                border:1px solid #eeeeee;
+                outline: none;
+                width: 3em;
+                border-radius: 4px;
+                transition: all .6s;
+                opacity: 0.6;
+                cursor: pointer;
+                &:hover{
+                    border:1px solid #ef6c14;
+                    opacity: 0.1;
+                }
+            }
+            .active{
+                background-color: #ef6c14;
+                border:1px solid #ef6c14;
+            }
+        }
     }
-  }
 </style>

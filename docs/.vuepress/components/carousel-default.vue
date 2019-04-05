@@ -79,7 +79,7 @@
         data(){
             return {
                 selectTab1:[1],
-                selected:'1',
+                selected:['1'],
                 input1:'```html\n' +
                     '<x-carousel :selected.sync="selected">\n' +
                     '  <x-carousel-item name="1">\n' +
