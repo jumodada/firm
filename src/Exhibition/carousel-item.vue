@@ -1,5 +1,6 @@
 <template>
-  <transition @before-enter="beforeEnter"
+  <transition
+              @before-enter="beforeEnter"
               @leave="leave"
               name="slide"
   >
@@ -25,7 +26,7 @@
             return{
                 selected:[],
                 reverse:false,
-                duration:.5,
+                duration:.6,
                 card:false,
                 childrenLength:0,
                 cardSelected:[]
@@ -61,22 +62,16 @@
             },
             leave(el) {
                if(this.card){
-                   if(!this.reverse){
-                       el.style.transform = 'translateX(-30%) scale(0.6)'
-                   }else{
-                       el.style.transform = ' translateX(-30%) scale(0.6)'
-                   }
-                   el.style.opacity= 0
+                   let reverse = this.reverse ? 50 : -50;
+                   el.style.transform = `translateX(${reverse}%) scale(0.6)`
                }
                 el.style.transition = `${this.duration}s all`
             },
             bounce(){
                 let [direction,index] = [this.exhibitionStyle.slice(9,16),this.$parent.selectedIndex]
-               if(direction==='left'){
-                   this.$parent.goBack(index,'back')
-               }else if(direction==='right'){
-                   this.$parent.goBack(index,'go')
-               }
+                if(direction==='main')return
+                let move = {left:'back', right:'go'}
+                this.$parent.goBack(index,move[direction])
             }
         }
     }

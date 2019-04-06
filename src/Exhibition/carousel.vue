@@ -5,10 +5,10 @@
     >
         <div class="x-carousel-window">
             <div class="x-carousel-wrapper" :class="{[card]:card}">
-                 <span @click="goBack(selectedIndex,'back')">
+                 <span @click="lowSpeed(selectedIndex,'back')">
                  <x-icon  name="left" class="x-icon x-icon-left" color="#f49303">后退</x-icon>
                  </span>
-                <span @click="goBack(selectedIndex,'go')" class="x-carousel-icon-right">
+                <span @click="lowSpeed(selectedIndex,'go')" class="x-carousel-icon-right">
                 <x-icon  name="right" class="x-icon x-icon-right" color="#f49303">前进</x-icon>
                  </span>
                     <slot></slot>
@@ -44,6 +44,10 @@
             card:{
                 type:Boolean,
                 default: false
+            },
+            autoTimerDuration:{
+                type:Number,
+                default: 2000
             }
         },
         data(){
@@ -51,7 +55,7 @@
                 childrenLength:0,
                 lastSelected:null,
                 hasTimer:true,
-                autoTimerDuration:2000
+                canIRun:true
             }
         },
         components:{
@@ -154,12 +158,12 @@
             hoveroutListener(){
                 this.automationPlay()
                 this.hasTimer = true
-                let duration= .5
-                this.duration=.5
+                let duration= .6
+                this.duration=.6
                 this.nameItems.forEach(vm=>vm.duration=duration)
             },
             clearAndSet(){
-                let durationTime = .5
+                let durationTime = .6
                 clearInterval(this.timer2)
                 setTimeout(()=>{
                     this.nameItems.forEach(vm=>vm.duration=durationTime)
@@ -190,6 +194,14 @@
                     oldIndex>newIndex?theIndex--:theIndex++
                 },duration*animationDuration)
             },
+            lowSpeed(index,goOrback){
+                if(!this.canIRun)return
+                this.goBack(index,goOrback)
+                this.canIRun = false
+                setTimeout(()=>{
+                    this.canIRun = true
+                },350)
+            },
             goBack(index,goOrback){
                 this.hasTimer = true
                 if(goOrback==='go'){
@@ -203,7 +215,7 @@
                         index=this.names.length-1
                     }
                 }
-                let duration=.2
+                let duration = this.card ? .6 : .35;
                 this.nameItems.forEach(vm=>vm.duration=duration)
                 this.lastSelected= this.selectedIndex
                 this.$emit('update:selected',this.names[index])
