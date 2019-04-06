@@ -60,11 +60,18 @@
                 el.style.transition = `${this.duration}s all ease-in-out`
             },
             leave(el) {
+               if(this.card){
+                   if(!this.reverse){
+                       el.style.transform = 'translateX(-30%) scale(0.6)'
+                   }else{
+                       el.style.transform = ' translateX(-30%) scale(0.6)'
+                   }
+                   el.style.opacity= 0
+               }
                 el.style.transition = `${this.duration}s all`
             },
             bounce(){
                 let [direction,index] = [this.exhibitionStyle.slice(9,16),this.$parent.selectedIndex]
-                console.log(direction)
                if(direction==='left'){
                    this.$parent.goBack(index,'back')
                }else if(direction==='right'){
@@ -109,14 +116,12 @@
       transform:scale(0.82);
     }
     &.position-main{
-      color: #e08806;
       width: 50%;
       transform: translateX(50%);
       position: relative;
       z-index: 3;
     }
     &.position-right{
-      color: green;
       transform: translateX(100%) scale(0.82);
       width: 50%;
       position: absolute;

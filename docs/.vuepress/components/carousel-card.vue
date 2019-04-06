@@ -41,7 +41,9 @@
         <x-collapse :selected.sync="selectTab1" exhibition>
 
             <template slot="description">
-
+                <div style="color: #666666">
+                    使用 <code>card</code>可以改成卡片化样式，默认高度为`210px`。可以点击两侧图片切换。
+                </div>
             </template>
             <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
                 <div v-html="html"></div>
@@ -74,7 +76,7 @@
                 selectTab1:[1],
                 selected:'1',
                 input1:'```html\n' +
-                    '<x-carousel :selected.sync="selected">\n' +
+                    '<x-carousel :selected.sync="selected" card>\n' +
                     '  <x-carousel-item name="1">\n' +
                     '    <div class="box">\n' +
                     '     1\n' +

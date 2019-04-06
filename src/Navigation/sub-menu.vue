@@ -118,6 +118,7 @@
                 },450)
             },
             clickOpen(){
+                if(!this.vertical)return
                 this.open = !this.open
             },
             childClosePopover(){

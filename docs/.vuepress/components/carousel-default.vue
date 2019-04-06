@@ -45,9 +45,6 @@
                 <div style="color: #999999">
                     每个<code>item</code>必须得对应一个索引数字 <code>name</code>,你可以在外面控制这个组件的宽度高度。
                     <br>
-                    这里面的代码展示不能高亮,我 <code>TM</code>也不知道为什么,<code>highLight.js</code>和这个组件似乎有冲突，一用高亮就卡死,我TM也是醉了，草。
-                    <br>
-                    后面再考虑解决这个问题，现在以我的能力实在是没办法
                 </div>
             </template>
             <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
