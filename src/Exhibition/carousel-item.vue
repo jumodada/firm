@@ -48,8 +48,7 @@
                 }
             },
             exhibitionStyle(){
-                let index = this.cardSelected.indexOf(Number(this.name))
-                let position = ['left','main','right']
+                let [index,position] = [this.cardSelected.indexOf(Number(this.name)),['left','main','right']]
                 return `position-${position[index]}`
             }
         },
