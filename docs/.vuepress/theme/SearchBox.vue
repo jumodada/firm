@@ -1,18 +1,29 @@
 <template>
   <div class="search-box">
-    <input
-      @input="query = $event.target.value"
-      aria-label="Search"
-      :value="query"
-      :class="{ 'focused': focused }"
-      autocomplete="off"
-      spellcheck="false"
-      @focus="focused = true"
-      @blur="focused = false"
-      @keyup.enter="go(focusIndex)"
-      @keyup.up="onUp"
-      @keyup.down="onDown"
+  <div class="search-box-search">
+    <img ref="search" @click="inputShow=!inputShow" class="search-box-search-img" src="./search.svg" alt="">
+    <transition
+            @before-enter="beforeEnter"
+            @enter="Enter"
+            @before-leave="beforeLeave"
+            @leave="leave"
     >
+     <input
+             @input="query = $event.target.value"
+             aria-label="Search"
+             :value="query"
+             :class="{ 'focused': focused }"
+             autocomplete="off"
+             spellcheck="false"
+             @focus="focused = true"
+             @blur="focused = false"
+             @keyup.enter="go(focusIndex)"
+             @keyup.up="onUp"
+             @keyup.down="onDown"
+             v-show="inputShow"
+     >
+    </transition>
+  </div>
     <ul
       class="suggestions"
       v-if="showSuggestions"
@@ -41,7 +52,8 @@ export default {
     return {
       query: '',
       focused: false,
-      focusIndex: 0
+      focusIndex: 0,
+      inputShow:false
     }
   },
 
@@ -102,6 +114,24 @@ export default {
   },
 
   methods: {
+      beforeEnter(el) {
+          el.style.width = 0
+          el.style.transition='.35s all ease-in-out'
+          this.$refs.search.style.transform = 'translateX(-15rem)'
+      },
+      Enter(el){
+             setTimeout(()=>{
+                 el.style.width = ''
+             },15)
+      },
+      beforeLeave(el){
+          el.style.transition='.35s all ease-in-out'
+          el.style.width = ''
+      },
+      leave(el) {
+          el.style.width = 0
+          this.$refs.search.style.transform = 'translateX(0)'
+      },
     getPageLocalePath (page) {
       for (const localePath in this.$site.locales || {}) {
         if (localePath !== '/' && page.path.indexOf(localePath) === 0) {
@@ -154,23 +184,41 @@ export default {
 <style lang="stylus">
 @import 'styles/config.styl'
 
+.slide-fade-enter-active,.slide-fade-leave-active
+  transition all .3s ease
+
+.slide-fade-enter, .slide-fade-leave-to
+   opacity 0
+
 .search-box
   display inline-block
   position relative
   margin-right 1rem
+ .search-box-search
+   position absolute
+   top -1rem
+   left -20rem
+   display inline-flex
+   justify-content center
+   align-items center
+   cursor pointer
+ .search-box-search-img
+   transition .35s all ease
+   position relative
+   left 15rem
   input
     cursor text
-    width 10rem
-    color lighten($textColor, 25%)
+    width 14rem
+    color #ef6c14
     display inline-block
-    border 1px solid darken($borderColor, 10%)
-    border-radius 2rem
+    border none
+    border-bottom 3px solid #ef6c14
     font-size 0.9rem
     line-height 2rem
     padding 0 0.5rem 0 2rem
     outline none
-    transition all .2s ease
-    background #fff url(search.svg) 0.6rem 0.5rem no-repeat
+    transition all .35s ease
+    background #515a6e
     background-size 1rem
     &:focus
       cursor auto

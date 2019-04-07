@@ -1,7 +1,6 @@
 <template>
   <header class="navbar">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
-
     <router-link
             :to="$localePath"
             class="home-link"
@@ -17,7 +16,11 @@
               class="site-name"
               v-if="$siteTitle"
               :class="{ 'can-hide': $site.themeConfig.logo }"
-      >{{ $siteTitle }}
+      >
+         <div class="site-name-span">
+            <img class="site-name-img" src="./xin.svg" alt="">
+           {{$siteTitle}}
+         </div>
       </span>
     </router-link>
 
@@ -105,7 +108,7 @@
 <style lang="stylus">
   @import 'styles/config.styl'
 
-  $navbar-vertical-padding = 0.7rem
+  $navbar-vertical-padding = 0.9rem
   $navbar-horizontal-padding = 1.5rem
 
   .navbar
@@ -116,7 +119,7 @@
     transition .4s all ease-in
     .progress-bar
       position fixed
-      top 58px
+      top 4rem
       left -30px
       width 0
       height 4px
@@ -141,6 +144,15 @@
       font-weight 600
       color #f89708
       position relative
+    .site-name-span
+       display inline-flex
+       justify-content center
+       align-items center
+       outline none
+    .site-name-img
+      position relative
+      top -4px
+
     .links
       padding-left 1.5rem
       box-sizing border-box
