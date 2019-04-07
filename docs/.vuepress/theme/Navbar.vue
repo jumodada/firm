@@ -105,7 +105,7 @@
     }
 </script>
 
-<style lang="stylus">
+<style scoped  lang="stylus">
   @import 'styles/config.styl'
 
   $navbar-vertical-padding = 0.9rem
@@ -115,7 +115,7 @@
     padding $navbar-vertical-padding $navbar-horizontal-padding
     line-height $navbarHeight - 1.4rem
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 10px 20px 0 rgba(0,0,0,0.12)
-    position relative
+    position fixed
     transition .4s all ease-in
     .progress-bar
       position fixed

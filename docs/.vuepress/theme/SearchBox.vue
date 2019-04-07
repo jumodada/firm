@@ -181,7 +181,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style  scoped lang="stylus">
 @import 'styles/config.styl'
 
 .slide-fade-enter-active,.slide-fade-leave-active
