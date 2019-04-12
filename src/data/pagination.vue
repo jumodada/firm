@@ -115,7 +115,6 @@
                  .reduce((prev,current,index,array)=>{
                      prev.push(current)
                      array[index+1]!==undefined&&array[index+1]-array[index]>1&&prev.push('...')
-
                      return prev
                  },[])
          }

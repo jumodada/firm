@@ -140,7 +140,7 @@
       margin-right 0.8rem
       vertical-align top
     .site-name
-      font-size 1.3rem
+      font-size 2rem
       font-weight 600
       color #f89708
       position relative
