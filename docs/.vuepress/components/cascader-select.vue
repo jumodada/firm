@@ -16,7 +16,7 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
-                    <div  v-highlight v-html="html"></div>
+                    <div  v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -28,16 +28,7 @@
     import collapseItem from '../../../src/Exhibition/collapse-item'
     import Cascader from '../../../src/form data/cascader'
     import address from '../../../tests/fixtures/address.js'
-    import hljs from 'highlight.js';
-    import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'
-    import Vue from 'vue'
-    Vue.directive('highlight', (el) => {
-        let blocks = el.querySelectorAll('pre code')
-        blocks.forEach((block) => {
-            hljs.highlightBlock(block)
-        })
-    })
     function ajax(parent_id = 0){
         return new Promise(resolve=>{
             let res = address.filter(item=>item.parent_id===parent_id)

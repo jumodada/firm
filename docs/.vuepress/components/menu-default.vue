@@ -65,7 +65,6 @@
     import subMenu from '../../../src/Navigation/sub-menu'
     import collapse from '../../../src/Exhibition/collapse'
     import collapseItem from '../../../src/Exhibition/collapse-item'
-    import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'
 
     export default {

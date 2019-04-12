@@ -80,6 +80,9 @@
                 activeIcon:null
             }
         },
+        beforeDestroy(){
+          this.$el.remove()
+        },
        computed:{
             ifOnePage(){
                 if(!this.hideIfOnePage)return true
