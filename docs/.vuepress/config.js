@@ -20,6 +20,7 @@ module.exports = {
                     '/components/tabs/',
                     '/components/menu/',
                     '/components/pagination/',
+                    '/components/table/',
                 ]
             },
 
