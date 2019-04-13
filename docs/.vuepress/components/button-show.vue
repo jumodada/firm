@@ -1,10 +1,6 @@
 <template>
     <div>
-        {{selected}}
-        <x-table :columns="columns" :data="data"  @changeItem="x">
-
-        </x-table>
-        <x-table style="margin-top: 30px" :columns="columns" :data="data" compact>
+        <x-table style="margin-top: 30px" :columns="columns" :data="data" :stripe="false">
 
         </x-table>
     </div>
@@ -13,7 +9,7 @@
 <script>
     import Table from '../../../src/data/table'
     export default {
-        name: "table-default",
+        name: "button-show",
         components:{
             'x-table':Table
         },
@@ -23,7 +19,7 @@
                 columns:[
                     {text:'名字',field:'name'},
                     {text:'价格',field:'price'}
-                    ],
+                ],
                 data:[
                     {id:1,name:'C语言程序设计',price:100+'￥'},
                     {id:2,name:'JavaScript高级程序设计',price:80+'￥'},
@@ -33,17 +29,6 @@
                 selected:[]
             }
         },
-        methods:{
-            x(obj){
-                let {selected,item,index} = obj
-                    if(selected){
-                        this.selected.push(item)
-                    }else{
-                        let index = this.selected.indexOf(item)
-                        this.selected.splice(index,1)
-                    }
-            }
-        }
     }
 </script>
 
