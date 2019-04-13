@@ -123,7 +123,7 @@
                     </div>
                 </template>
                 <x-collapse-item name="1" title="展示代码" title2="隐藏代码">
-                    <div  v-highlight v-html="html"></div>
+                    <div   v-html="html"></div>
                 </x-collapse-item>
             </x-collapse>
         </div>
@@ -135,16 +135,8 @@
     import collapse from '../../../src/Exhibition/collapse'
     import collapseItem from '../../../src/Exhibition/collapse-item'
     import Button from '../../../src/currency/button'
-    import hljs from 'highlight.js';
-    import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'
-    import Vue from 'vue'
-    Vue.directive('highlight', (el) => {
-        let blocks = el.querySelectorAll('pre code')
-        blocks.forEach((block) => {
-            hljs.highlightBlock(block)
-        })
-    })
+
     export default {
         name: "grid-arrange",
         data(){
