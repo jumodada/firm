@@ -275,7 +275,10 @@
         beforeDestroy(){
             this.$el.remove()
         },
+
     }
+
+
 </script>
 
 <style scoped>

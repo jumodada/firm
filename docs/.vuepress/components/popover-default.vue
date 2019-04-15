@@ -2,7 +2,6 @@
 
     <div style="margin-top: 50px">
 
-
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab" exhibition>
                 <template slot="description">

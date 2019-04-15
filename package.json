@@ -10,11 +10,12 @@
     "p": "yarn run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/vueXin.git master:gh-pages;",
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "cao":"vuepress eject"
+    "cao": "vuepress eject"
   },
   "dependencies": {
     "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "markdown-loader": "^5.0.0",
     "marked": "^0.6.1",
     "text-loader": "^0.0.1",
