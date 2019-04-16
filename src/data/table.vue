@@ -3,18 +3,19 @@
         <table class="x-table" :class="{bordered,compact,stripe:stripe}">
             <thead class="x-table-head">
             <tr>
-                <th v-if="checkBoxOn"><input type="checkbox"></th>
-                <th v-for="column in columns">
+                <th v-if="checkBoxOn"><input @change="onChangeAllItems" ref="input"
+                                             type="checkbox"></th>
+                <th v-for="column in columns" :key="column.field">
                     {{column.text}}
                 </th>
             </tr>
             </thead>
             <tbody>
-              <tr v-for="(item,index) in data">
-                  <th><input v-if="checkBoxOn" @change="changeItem(item,index,$event)" type="checkbox"></th>
+              <tr v-for="(item,index) in data" :key="item.key">
+                  <th v-if="checkBoxOn"><input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox"></th>
                   <td v-if="numberVisible">{{index+1}}</td>
                     <template v-for="column in columns">
-                        <td>
+                        <td :key="column.field">
                             {{item[column.field]}}
                         </td>
                     </template>
@@ -47,7 +48,11 @@
 
             data:{
                 type: Array,
-                required: true
+                required: true,
+                validator(item){
+                    if(item.id)return false
+                    return true
+                }
             },
             numberVisible:{
                 type:Boolean,
@@ -56,11 +61,43 @@
             checkBoxOn:{
                 type:Boolean,
                 default:false
+            },
+            selectedItems:{
+                type:Array,
+                default:()=>[]
+            }
+        },
+        watch:{
+            selectedItems(){
+                let selectedStatus = this.selectedItems.length===this.data.length?'All':this.selectedItems.length>0?'half':'none'
+                this.$refs.input.indeterminate = selectedStatus==='half'
+                this.$refs.input.checked = selectedStatus==='All'
             }
         },
         methods:{
+            inSelected(item){
+              return this.selectedItems.filter(child=>child.key===item.key).length>0
+            },
             changeItem(item,index,e){
-               this.$emit('changeItem',{selected:e.target.checked,item,index})
+               let selected = e.target.checked
+                let clone = JSON.parse(JSON.stringify(this.selectedItems))
+                if(selected){
+                     clone.push(item)
+                }else{
+                    var itemIndex
+                    clone.forEach((child,index)=>{
+                        if(child.key===item.key){
+                            itemIndex = index
+                        }
+                    })
+                    clone.splice(itemIndex,1)
+                }
+                this.$emit('update:selectedItems',clone)
+            },
+            onChangeAllItems(e){
+                let selected = e.target.checked
+                this.$emit('update:selectedItems',selected?this.data:[])
+
             }
         }
     }

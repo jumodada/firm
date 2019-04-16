@@ -1,11 +1,8 @@
 <template>
     <div>
-        {{selected}}
-        <x-table :columns="columns" :data="data"  @changeItem="x">
-
+        <x-table :columns="columns" :data="data" check-box-on :selected-items.sync="selected">
         </x-table>
         <x-table style="margin-top: 30px" :columns="columns" :data="data" compact>
-
         </x-table>
     </div>
 </template>
@@ -25,24 +22,16 @@
                     {text:'价格',field:'price'}
                     ],
                 data:[
-                    {id:1,name:'C语言程序设计',price:100+'￥'},
-                    {id:2,name:'JavaScript高级程序设计',price:80+'￥'},
-                    {id:3,name:'Java编程思想',price:60+'￥'},
-                    {id:4,name:'Python从入门到精通',price:50+'￥'},
+                    {key:1,name:'C语言程序设计',price:100+'￥'},
+                    {key:2,name:'JavaScript高级程序设计',price:80+'￥'},
+                    {key:3,name:'Java编程思想',price:60+'￥'},
+                    {key:4,name:'Python从入门到精通',price:50+'￥'},
                 ],
                 selected:[]
             }
         },
         methods:{
-            x(obj){
-                let {selected,item,index} = obj
-                    if(selected){
-                        this.selected.push(item)
-                    }else{
-                        let index = this.selected.indexOf(item)
-                        this.selected.splice(index,1)
-                    }
-            }
+
         }
     }
 </script>
