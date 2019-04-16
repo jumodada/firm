@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/table.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exhibition/carousel-item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/carousel-item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exhibition/carousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/carousel.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -113,7 +113,7 @@
           <entry key="styl" value="31" />
           <entry key="svg" value="7" />
           <entry key="ts" value="1" />
-          <entry key="vue" value="403" />
+          <entry key="vue" value="405" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -129,7 +129,7 @@
           <entry key="SVG" value="7" />
           <entry key="Stylus" value="31" />
           <entry key="TypeScript" value="1" />
-          <entry key="Vue.js" value="403" />
+          <entry key="Vue.js" value="405" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -141,7 +141,7 @@
           <entry key="scss" value="14" />
           <entry key="styl" value="171" />
           <entry key="svg" value="9" />
-          <entry key="vue" value="38172" />
+          <entry key="vue" value="38204" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -153,7 +153,7 @@
           <entry key="SCSS" value="14" />
           <entry key="SVG" value="9" />
           <entry key="Stylus" value="171" />
-          <entry key="Vue.js" value="38172" />
+          <entry key="Vue.js" value="38204" />
         </counts>
       </usages-collector>
     </session>
@@ -163,11 +163,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="73" column="64" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
+            <state relative-caret-position="105">
+              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -175,8 +175,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
+            <state relative-caret-position="6">
               <caret line="20" column="36" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="113" column="30" lean-forward="true" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1046">
+              <caret line="66" column="19" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -195,7 +213,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console.log</find>
       <find>x-carousel-item</find>
       <find>updateChildrens</find>
       <find>autoIndex</find>
@@ -210,7 +227,6 @@
       <find>lastSelected</find>
       <find>length</find>
       <find>tellChildren</find>
-      <find>duration</find>
       <find>goBack</find>
       <find>clickOpen</find>
       <find>.6</find>
@@ -225,6 +241,8 @@
       <find>pagin</find>
       <find>table</find>
       <find>suggestions</find>
+      <find>duration</find>
+      <find>hasTimer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -244,8 +262,6 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue" />
         <option value="$PROJECT_DIR$/src/Navigation/menu-item.vue" />
         <option value="$PROJECT_DIR$/src/Navigation/sub-menu.vue" />
-        <option value="$PROJECT_DIR$/src/Exhibition/carousel.vue" />
-        <option value="$PROJECT_DIR$/src/Exhibition/carousel-item.vue" />
         <option value="$PROJECT_DIR$/src/currency/dynamic icon/pacman.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/theme/Page.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue" />
@@ -284,6 +300,8 @@
         <option value="$PROJECT_DIR$/docs/.vuepress/config.js" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" />
         <option value="$PROJECT_DIR$/src/data/table.vue" />
+        <option value="$PROJECT_DIR$/src/Exhibition/carousel-item.vue" />
+        <option value="$PROJECT_DIR$/src/Exhibition/carousel.vue" />
       </list>
     </option>
   </component>
@@ -347,13 +365,6 @@
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
               <item name="vueXin" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
-              <item name="theme" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="install" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -366,6 +377,24 @@
               <item name="vueXin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Exhibition" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Navigation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tickling" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -509,12 +538,12 @@
       <workItem from="1555119218189" duration="9276000" />
       <workItem from="1555300421366" duration="10584000" />
       <workItem from="1555341597381" duration="381000" />
-      <workItem from="1555377990497" duration="8584000" />
+      <workItem from="1555377990497" duration="9466000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="678262000" />
+    <option name="totallyTimeSpent" value="679144000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -527,7 +556,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.17336152" />
       <window_info id="npm" order="1" side_tool="true" />
@@ -543,7 +571,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5017618" side_tool="true" weight="0.54545456" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4982382" weight="0.34889436" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4982382" visible="true" weight="0.34889436" />
       <window_info anchor="bottom" id="Thumbnails" order="11" weight="0.32923833" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -557,22 +585,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Desktop/未命名文件夹/2.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/未命名文件夹/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1320" />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/carousel-card.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3213">
@@ -892,17 +904,31 @@
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
+        <state relative-caret-position="6">
           <caret line="20" column="36" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/table.vue">
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel-item.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="73" column="64" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
+        <state relative-caret-position="1046">
+          <caret line="66" column="19" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/carousel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="113" column="30" lean-forward="true" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
         </state>
       </provider>
     </entry>

@@ -67,6 +67,7 @@
                 el.style.transition = `${this.duration}s all`
             },
             bounce(){
+                if(!this.card)return
                 let [direction,index] = [this.exhibitionStyle.slice(9,16),this.$parent.selectedIndex]
                 if(direction==='main')return
                 let move = {left:'back', right:'go'}

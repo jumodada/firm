@@ -158,8 +158,7 @@
             hoveroutListener(){
                 this.automationPlay()
                 this.hasTimer = true
-                let duration= .6
-                this.duration=.6
+                let duration = this.duration= .6
                 this.nameItems.forEach(vm=>vm.duration=duration)
             },
             clearAndSet(){
