@@ -2,9 +2,7 @@
         <div class="page" :class="{'page-sliderBar-slide':canIMove}">
             <slot name="top"/>
             <div ref="content">
-                <transition :name="name">
                     <Content :custom="false" />
-                </transition>
             </div>
             <div class="page-edit">
                 <div
@@ -215,32 +213,6 @@ function find (page, items, offset) {
 <style lang="stylus">
 @import 'styles/config.styl'
 @require 'styles/wrapper.styl'
-
-
-.up-enter-active
-    transition all .6s ease
-.up-leave-active
-    transition all .3s ease-out
-.up-enter
-  transform translateY(-100%)
-.up-leave-to
-    transform translateY(100%)
-
-.down-enter-active
-    transition all .6s ease
-.down-leave-active
-    transition all .3s ease-out
-.down-enter
-    transform translateY(100%)
-    opacity 0
-.down-leave-to
-    transform translateY(-100%)
-    opacity 0
-.page
-    transition .4s all ease
-    position relative
-.page-sliderBar-slide
-    transform translateX(-10%)
 
 .page-edit
   @extend $wrapper

@@ -84,7 +84,7 @@
                 if(selected){
                      clone.push(item)
                 }else{
-                    var itemIndex
+                    let itemIndex
                     clone.forEach((child,index)=>{
                         if(child.key===item.key){
                             itemIndex = index
