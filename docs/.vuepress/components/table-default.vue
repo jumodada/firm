@@ -1,6 +1,6 @@
 <template>
     <div>
-        <x-table :columns="columns" :data="data" check-box-on :selected-items.sync="selected">
+        <x-table :columns="columns" :data="data" check-box-on :selected-items.sync="selected" :stripe="false">
         </x-table>
         <x-table style="margin-top: 30px" :columns="columns" :data="data" compact>
         </x-table>

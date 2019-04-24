@@ -6,7 +6,13 @@
                 <th v-if="checkBoxOn"><input @change="onChangeAllItems" ref="input"
                                              type="checkbox"></th>
                 <th v-for="column in columns" :key="column.field">
-                    {{column.text}}
+                   <div class="x-table-th">
+                           {{column.text}}
+                        <span class="x-table-th-icon">
+                            <x-icon  name="shang"   color="#515a6e"></x-icon>
+                            <x-icon style="margin-top: 2px" name="xia1"  color="#515a6e"></x-icon>
+                        </span>
+                   </div>
                 </th>
             </tr>
             </thead>
@@ -26,8 +32,12 @@
 </template>
 
 <script>
+    import Icon from '../currency/icon'
     export default {
         name: "x-table",
+        components:{
+          'x-icon': Icon
+        },
         props:{
             stripe:{
                 type:Boolean,
@@ -122,7 +132,7 @@
                 }
                 &.compact{
                     td,th{
-                        padding: 4px;
+                        padding: 6px;
                     }
                 }
                 &.stripe{
@@ -137,10 +147,29 @@
                 td,th{
                     color:lighten(#515a6e,13.5%);
                     text-align: left;
-                    padding: 8px;
+                    padding: 13px;
                     border-bottom: 1px solid #efefef;
                 }
+                tr{
+                    &:hover{
+                        transition: .3s all ease;
+                        background-color: lighten(#f1eeee,3.5%);
+                    }
+                }
+                &-th{
+                    display: inline-flex;
+                    align-items: center;
+                    &-icon{
+                        margin-left: .15em;
+                        display: inline-flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        width: .8em;
+                        height: .8em;
 
+                    }
+                }
             }
         }
 </style>
+
