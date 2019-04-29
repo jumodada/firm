@@ -276,6 +276,7 @@
                 el.style.opacity = 0
             },
             enter(el) {
+
               setTimeout(()=>{
                   el.style.opacity = 1
               },30)

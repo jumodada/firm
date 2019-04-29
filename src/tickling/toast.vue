@@ -240,6 +240,7 @@
     &.type-success{
         background-color: #e1f3d8;
         border: #e1f3d8;
+
         box-shadow: 0 0 3px #1fab06;
         color: #67c23a;
     }

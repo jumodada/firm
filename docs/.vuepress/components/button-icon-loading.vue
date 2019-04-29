@@ -36,7 +36,13 @@
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'
-   z
+    import Vue from 'vue'
+    Vue.directive('highlight', (el) => {
+        let blocks = el.querySelectorAll('pre code')
+        blocks.forEach((block) => {
+            hljs.highlightBlock(block)
+        })
+    })
     export default {
         name: "button-loading",
         data(){
@@ -69,9 +75,9 @@
             }
         },
         methods:{
-          toggle(){
-              this.loading = !this.loading
-          },
+            toggle(){
+                this.loading = !this.loading
+            },
             toggle2(){
                 this.loading2 = !this.loading2
                 this.circle = !this.circle
@@ -83,7 +89,6 @@
                     this.loadThat=''
                 }
             },
-
         },
         components:{
             'x-button':Button,
@@ -105,5 +110,4 @@
 </script>
 
 <style>
-
 </style>

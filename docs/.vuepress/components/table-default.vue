@@ -1,6 +1,6 @@
 <template>
     <div>
-        <x-table :columns="columns" :data="data" check-box-on :selected-items.sync="selected" :stripe="false">
+        <x-table :columns="columns" :data="data" check-box-on :selected-items.sync="selected" :stripe="false" :sortBy.sync="sortBy">
         </x-table>
         <x-table style="margin-top: 30px" :columns="columns" :data="data" compact>
         </x-table>
@@ -21,6 +21,10 @@
                     {text:'名字',field:'name'},
                     {text:'价格',field:'price'}
                     ],
+                sortBy:{
+                     name:'',
+                     price:'desc'
+                },
                 data:[
                     {key:1,name:'C语言程序设计',price:100+'￥'},
                     {key:2,name:'JavaScript高级程序设计',price:80+'￥'},

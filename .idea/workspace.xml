@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/wukunyun.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/wukunyun.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/components/button/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components/button/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exhibition/popover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exhibition/popover.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/currency/icon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/currency/icon.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/table.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/svg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tickling/toast.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/tickling/toast.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -24,8 +30,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+            <state relative-caret-position="651">
+              <caret line="128" column="40" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+              <folding>
+                <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/currency/icon.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -33,8 +51,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="101">
+              <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+              <folding>
+                <element signature="n#style#0;n#x-table#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+              <folding>
+                <element signature="e#1193#1248#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,8 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>autoIndex</find>
-      <find>this.lastSelected</find>
       <find>this.selected</find>
       <find>selected</find>
       <find>childrenLength</find>
@@ -83,6 +114,8 @@
       <find>hasTimer</find>
       <find>ou</find>
       <find>selectedItems</find>
+      <find>Toast</find>
+      <find>text</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,9 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Navigation/menu-item.vue" />
-        <option value="$PROJECT_DIR$/src/Navigation/sub-menu.vue" />
-        <option value="$PROJECT_DIR$/src/currency/dynamic icon/pacman.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/theme/NavLinks.vue" />
         <option value="$PROJECT_DIR$/../../../resume/interview/1.html" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/collapse-default.vue" />
@@ -117,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/data/pagination.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/theme/styles/theme.styl" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-show.vue" />
-        <option value="$PROJECT_DIR$/docs/components/button/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/theme/SearchBox.vue" />
         <option value="$PROJECT_DIR$/docs/components/table/README.md" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/popover-wo.vue" />
@@ -133,23 +162,25 @@
         <option value="$PROJECT_DIR$/src/layout/header.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-size.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-disabled.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-icon-color.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/button-group.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/theme/Page.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" />
         <option value="$PROJECT_DIR$/src/svg.js" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue" />
+        <option value="$PROJECT_DIR$/docs/components/button/README.md" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue" />
+        <option value="$PROJECT_DIR$/src/tickling/toast.vue" />
+        <option value="$PROJECT_DIR$/src/Exhibition/popover.vue" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" />
+        <option value="$PROJECT_DIR$/src/currency/icon.vue" />
         <option value="$PROJECT_DIR$/src/data/table.vue" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="111" />
-    <option name="y" value="207" />
     <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -157,7 +188,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,21 +218,6 @@
               <item name="vueXin" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name=".vuepress" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -216,12 +231,31 @@
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
               <item name="vueXin" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="button" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="install" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
               <item name="vueXin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vueXin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vueXin" type="b2602c69:ProjectViewProjectNode" />
@@ -269,6 +303,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -421,12 +456,17 @@
       <workItem from="1555936781241" duration="343000" />
       <workItem from="1556069998160" duration="36000" />
       <workItem from="1556076831869" duration="365000" />
-      <workItem from="1556114200779" duration="6219000" />
+      <workItem from="1556114200779" duration="6413000" />
+      <workItem from="1556154955314" duration="1283000" />
+      <workItem from="1556187026006" duration="64000" />
+      <workItem from="1556266159131" duration="2918000" />
+      <workItem from="1556336085973" duration="635000" />
+      <workItem from="1556546625543" duration="4061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="689098000" />
+    <option name="totallyTimeSpent" value="698253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -445,7 +485,6 @@
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.5008157" side_tool="true" weight="0.18181819" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Quokka" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32923833" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -456,8 +495,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5017618" side_tool="true" weight="0.54545456" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4982382" weight="0.3482032" />
-      <window_info anchor="bottom" id="Thumbnails" order="11" weight="0.32923833" />
+      <window_info anchor="bottom" id="Thumbnails" order="10" weight="0.32923833" />
+      <window_info anchor="bottom" id="Quokka" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4982382" weight="0.3482032" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -467,38 +507,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/menu-disabled.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="60" column="11" lean-forward="true" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Navigation/menu.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="93" column="32" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/install/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/carousel/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="81">
-            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/tabs-cards.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-203">
@@ -527,16 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1840">
           <caret line="153" selection-start-line="153" selection-end-line="153" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/components/button/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="747">
-            <caret line="88" selection-start-line="88" selection-end-line="88" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -576,13 +574,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/public/favicon.ico" />
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/toast-position.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1776">
-          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/theme/DropdownTransition.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-304" />
@@ -684,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="308" column="17" lean-forward="true" selection-start-line="308" selection-start-column="17" selection-end-line="308" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/layout/header.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -708,9 +692,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/dist/404.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/dist/404.html" />
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-size.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -728,16 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-          <folding>
-            <element signature="e#1013#1068#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon-color.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -748,27 +720,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="43" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-group.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="643">
           <caret line="47" column="3" selection-start-line="47" selection-start-column="3" selection-end-line="53" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="73" selection-end-column="6" />
-          <folding>
-            <element signature="e#2701#2756#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -789,13 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/svg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -803,10 +751,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon-loading.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="100" column="14" lean-forward="true" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-button#1;n#div#0;n#template#0;n#x-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1013#1068#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-demo-default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="133" column="10" lean-forward="true" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
+          <folding>
+            <element signature="e#2701#2756#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="278" selection-start-line="278" selection-end-line="278" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tickling/toast.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5614">
+          <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#x-icon#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/toast-position.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+          <folding>
+            <element signature="e#955#1010#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tickling/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/components/button/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="683">
+            <caret line="66" selection-start-line="66" selection-end-line="66" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/currency/button-group.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/currency/icon.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#x-table#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-icon.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding>
+            <element signature="e#1193#1248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+        <state relative-caret-position="651">
+          <caret line="128" column="40" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

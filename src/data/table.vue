@@ -3,14 +3,20 @@
         <table class="x-table" :class="{bordered,compact,stripe:stripe}">
             <thead class="x-table-head">
             <tr>
-                <th v-if="checkBoxOn"><input @change="onChangeAllItems" ref="input"
+                <th v-if="checkBoxOn">
+                    <input @change="onChangeAllItems" ref="input"
                                              type="checkbox"></th>
                 <th v-for="column in columns" :key="column.field">
                    <div class="x-table-th">
                            {{column.text}}
-                        <span class="x-table-th-icon">
-                            <x-icon  name="shang"   color="#515a6e"></x-icon>
-                            <x-icon style="margin-top: 2px" name="xia1"  color="#515a6e"></x-icon>
+                        <span class="x-table-th-icon"
+                              @click="changeSort(column.field)"
+                              v-if="column.field in sortBy">
+                            <x-icon name="shang"   :color="sortBy[column.field]==='asc'?'#0ab1ef':'#656E69'"
+                            >
+                            </x-icon>
+                            <x-icon style="margin-top: 2px" name="xia1"
+                                    :color="sortBy[column.field]==='desc'?'#0ab1ef':'#656E69'"></x-icon>
                         </span>
                    </div>
                 </th>
@@ -64,6 +70,10 @@
                     return true
                 }
             },
+            sortBy:{
+              type:Object,
+              default:()=>({})
+            },
             numberVisible:{
                 type:Boolean,
                 default:false
@@ -107,7 +117,18 @@
             onChangeAllItems(e){
                 let selected = e.target.checked
                 this.$emit('update:selectedItems',selected?this.data:[])
-
+            },
+            changeSort(key){
+                const sortCopy = JSON.parse(JSON.stringify(this.sortBy))
+                let oldValue = sortCopy[key]
+                if(oldValue==='asc'){
+                    sortCopy[key] = 'desc'
+                }else if(oldValue==='desc'){
+                    sortCopy[key] = true
+                }else{
+                    sortCopy[key] = 'asc'
+                }
+                this.$emit('update:sortBy',sortCopy)
             }
         }
     }
@@ -166,6 +187,8 @@
                         justify-content: center;
                         width: .8em;
                         height: .8em;
+                        cursor: pointer;
+
 
                     }
                 }
