@@ -213,7 +213,12 @@ function find (page, items, offset) {
 <style lang="stylus">
 @import 'styles/config.styl'
 @require 'styles/wrapper.styl'
-
+*{
+    transition all .3s ease-in-out
+}
+.page-sliderBar-slide
+    transition all .3s ease
+    transform translateX(-10%)
 .page-edit
   @extend $wrapper
   padding-top 1rem

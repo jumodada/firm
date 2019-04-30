@@ -10,7 +10,7 @@
                    <div class="x-table-th">
                            {{column.text}}
                         <span class="x-table-th-icon"
-                              @click="changeSort(column.field)"
+                              @click="changeSort(column.field,$event)"
                               v-if="column.field in sortBy">
                             <x-icon name="shang"   :color="sortBy[column.field]==='asc'?'#0ab1ef':'#656E69'"
                             >
@@ -118,15 +118,16 @@
                 let selected = e.target.checked
                 this.$emit('update:selectedItems',selected?this.data:[])
             },
-            changeSort(key){
+            changeSort(key,e){
+                console.log(e)
                 const sortCopy = JSON.parse(JSON.stringify(this.sortBy))
                 let oldValue = sortCopy[key]
                 if(oldValue==='asc'){
                     sortCopy[key] = 'desc'
                 }else if(oldValue==='desc'){
-                    sortCopy[key] = true
-                }else{
                     sortCopy[key] = 'asc'
+                }else{
+                    sortCopy[key] = true
                 }
                 this.$emit('update:sortBy',sortCopy)
             }
@@ -139,6 +140,7 @@
         .x-table-wrapper{
             -webkit-font-smoothing: antialiased;
             .x-table{
+                transition: .3s all;
                 width: 100%;
                 color:#515a6e;
                 border-collapse: collapse;
