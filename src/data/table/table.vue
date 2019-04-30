@@ -9,18 +9,22 @@
                 <th v-for="column in columns" :key="column.field">
                     <div class="x-table-th">
                         {{column.text}}
-                        {{column.sortBy}}
+                        {{column.field}}
                         <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon  :style="{fill:order==='ascending'?'109CCB':'#666666'}" @click="sortUp(column.field)" name="asc"></x-icon>
-                            <x-icon :style="{fill:order==='descending'?'109CCB':'#666666'}" @click="sortDown(column.field)" style="margin-top: 2px" name="desc"></x-icon>
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order[column.field]==='ascending'?'109CCB':'#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order[column.field]==='descending'?'109CCB':'#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                         </span>
                     </div>
                 </th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(item,index) in data" :key="item.key">
-                <th v-if="checkBoxOn"><input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox"></th>
+            <tr v-for="(item,index) in bodyData" :key="item.key">
+                <th v-if="checkBoxOn">
+                    <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                </th>
                 <td v-if="numberVisible">{{index+1}}</td>
                 <template v-for="column in columns">
                     <td :key="column.field">
@@ -82,17 +86,28 @@
         },
         data(){
           return {
-              order:true
+              order:{},
+              bodyData:{}
           }
+        },
+        mounted(){
+            this.bodyData = JSON.parse(JSON.stringify(this.data))
+            this.setOrderAttr()
         },
         watch:{
             selectedItems(){
-                let selectedStatus = this.selectedItems.length===this.data.length?'All':this.selectedItems.length>0?'half':'none'
+                let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
                 this.$refs.input.indeterminate = selectedStatus==='half'
                 this.$refs.input.checked = selectedStatus==='All'
             }
         },
         methods:{
+            setOrderAttr(){
+                if(!this.defaultSort)return
+                this.columns.forEach(item=>{
+                    this.order[item.field] = true
+                })
+            },
             inSelected(item){
                 return this.selectedItems.filter(child=>child.key===item.key).length>0
             },
@@ -114,23 +129,25 @@
             },
             onChangeAllItems(e){
                 let selected = e.target.checked
-                this.$emit('update:selectedItems',selected?this.data:[])
+                this.$emit('update:selectedItems',selected?this.bodyData:[])
+            },
+            clickSort(field,direction){
+                this.order[field] = this.order[field] === true ? direction : this.order[field] = this.order[field] === direction ? true : direction;
+                if(this.order[field]!==true){
+                    this.bodyData = this.bodyData.sort((a,b)=>{
+                        return direction==='ascending'?a[field]-b[field]:b[field]-a[field]
+                    })
+                }else{
+                    this.bodyData = JSON.parse(JSON.stringify(this.data))
+                }
             },
             sortUp(field){
-                console.log(field)
-                this.order = this.order === true ? 'ascending' : this.order = this.order === 'ascending' ? true : 'ascending';
-                let dataCopy = JSON.parse(JSON.stringify(this.data))
-                if(this.defaultSort.prop){
-                    dataCopy = dataCopy.sort((a,b)=>{
-                        return a[field]-b[field]
-                    })
-                }
-                console.log(dataCopy)
-                this.$emit('update:data',dataCopy)
+               this.clickSort(field,'ascending')
             },
-            sortDown(){
-                this.order = this.order === true ? 'descending' : this.order = this.order === 'descending' ? true : 'descending';
-            }
+            sortDown(field){
+                this.clickSort(field,'descending')
+            },
+
         }
     }
 </script>

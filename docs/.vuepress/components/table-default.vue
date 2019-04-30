@@ -1,12 +1,10 @@
 <template>
     <div>
         <x-table :columns="columns1"
-                 :data.sync="data" check-box-on
+                 :data="data" check-box-on
                  :selected-items.sync="selected"
                  :defaultSort="defaultSort"
                  :stripe="false">
-        </x-table>
-        <x-table style="margin-top: 30px" :columns="columns2" :data="data" compact>
         </x-table>
     </div>
 </template>
