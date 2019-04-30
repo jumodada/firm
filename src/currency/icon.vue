@@ -2,7 +2,6 @@
     <svg class="x-icon" @click="$emit('click',$event)"  :style="`fill:${color}`" :class="{loading:loading}">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
-
 </template>
 
 <script>

@@ -1,14 +1,18 @@
 <template>
     <div>
-        <x-table :columns="columns" :data="data" check-box-on :selected-items.sync="selected" :stripe="false" :sortBy.sync="sortBy">
+        <x-table :columns="columns1"
+                 :data.sync="data" check-box-on
+                 :selected-items.sync="selected"
+                 :defaultSort="defaultSort"
+                 :stripe="false">
         </x-table>
-        <x-table style="margin-top: 30px" :columns="columns" :data="data" compact>
+        <x-table style="margin-top: 30px" :columns="columns2" :data="data" compact>
         </x-table>
     </div>
 </template>
 
 <script>
-    import Table from '../../../src/data/table'
+    import Table from '../../../src/data/table/table'
     export default {
         name: "table-default",
         components:{
@@ -17,29 +21,28 @@
         data(){
             return {
                 currentPage:1,
-                columns:[
+                columns1:[
+                    {text:'名字',field:'name',sortBy:true},
+                    {text:'价格',field:'price',sortBy:true}
+                ],
+                columns2:[
                     {text:'名字',field:'name'},
                     {text:'价格',field:'price'}
-                    ],
-                sortBy:{
-                     name:'',
-                     price:'desc'
-                },
-                data:[
-                    {key:1,name:'C语言程序设计',price:100+'￥'},
-                    {key:2,name:'JavaScript高级程序设计',price:80+'￥'},
-                    {key:3,name:'Java编程思想',price:60+'￥'},
-                    {key:4,name:'Python从入门到精通',price:50+'￥'},
                 ],
-                selected:[]
+                data:[
+                    {key:1,name:'JavaScript高级程序设计',price:80},
+                    {key:2,name:'Java编程思想',price:60},
+                    {key:3,name:'C语言程序设计',price:100},
+                    {key:4,name:'Python从入门到精通',price:50},
+                ],
+                selected:[],
+                defaultSort: {prop:'name',order:''}
             }
         },
         methods:{
-
         }
     }
 </script>
 
 <style scoped>
-
 </style>

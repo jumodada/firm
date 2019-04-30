@@ -4,7 +4,6 @@
         <div style="margin-top: 20px">
             <x-collapse :selected.sync="selectTab" exhibition>
                 <template slot="description">
-
                     <div style="margin-top: 40px">
                         <x-button icon="set">设置按钮</x-button>
                         <x-button icon="dianzan"  type="primary">点赞按钮</x-button>

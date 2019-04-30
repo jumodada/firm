@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import Table from '../../../src/data/table'
+    import Table from '../../../src/data/table/table'
     export default {
         name: "button-show",
         components:{
