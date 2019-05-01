@@ -4,7 +4,8 @@
                  :data="data" check-box-on
                  :selected-items.sync="selected"
                  :defaultSort="defaultSort"
-                 :stripe="false">
+                 :stripe="false"
+        >
         </x-table>
     </div>
 </template>
@@ -29,8 +30,8 @@
                 ],
                 data:[
                     {key:1,name:'JavaScript高级程序设计',price:80},
-                    {key:2,name:'Java编程思想',price:60},
-                    {key:3,name:'C语言程序设计',price:100},
+                    {key:2,name:'C语言程序设计',price:100},
+                    {key:3,name:'Java编程思想',price:60},
                     {key:4,name:'Python从入门到精通',price:50},
                 ],
                 selected:[],

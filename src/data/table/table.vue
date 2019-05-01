@@ -133,13 +133,13 @@
             },
             clickSort(field,direction){
                 this.order[field] = this.order[field] === true ? direction : this.order[field] = this.order[field] === direction ? true : direction;
-                if(this.order[field]!==true){
-                    this.bodyData = this.bodyData.sort((a,b)=>{
-                        return direction==='ascending'?a[field]-b[field]:b[field]-a[field]
-                    })
-                }else{
-                    this.bodyData = JSON.parse(JSON.stringify(this.data))
-                }
+                this.bodyData = this.order[field] !== true ? this.bodyData.sort((a, b) => {
+                    if (a[field] < b[field]) {
+                        return direction === 'ascending' ? -1 : 1
+                    } else if (a[field] > b[field]) {
+                        return direction === 'ascending' ? 1 : -1
+                    }
+                }) : JSON.parse(JSON.stringify(this.data));
             },
             sortUp(field){
                this.clickSort(field,'ascending')
