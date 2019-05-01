@@ -276,7 +276,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../var";
+    @import "../global";
 
     .fade-enter-active, .fade-leave-active {
         transition: all .2s;

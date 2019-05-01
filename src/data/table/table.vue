@@ -34,15 +34,18 @@
             </tr>
             </tbody>
         </table>
+        <loading v-if="loading" class="x-table-loading"></loading>
     </div>
 </template>
 
 <script>
+    import loading from '../../currency/dynamic icon/loading'
     import Icon from '../../currency/icon'
     export default {
         name: "x-table",
         components:{
-            'x-icon': Icon
+            'x-icon': Icon,
+            loading: loading
         },
         props:{
             stripe:{
@@ -69,7 +72,10 @@
                     return true
                 }
             },
-
+            loading:{
+              type:Boolean,
+              default:false
+            },
             numberVisible:{
                 type:Boolean,
                 default:false
@@ -155,6 +161,7 @@
 <style lang="scss">
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
+        position: relative;
         .x-table{
             transition: .3s all;
             width: 100%;
@@ -214,6 +221,18 @@
                     height: 1em;
                     cursor: pointer;
                 }
+            }
+            &-loading{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(255,255,255,.6);
+                z-index: 2;
             }
         }
     }
