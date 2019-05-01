@@ -252,6 +252,10 @@
             }
         }
         &-window{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
             .x-icon-left{
                 position: absolute;
                 top: 50%;

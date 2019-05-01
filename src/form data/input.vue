@@ -98,7 +98,11 @@
 
           }
           &[disabled]{
-                cursor: not-allowed;
+              cursor: not-allowed;
+              -webkit-user-select:none;
+              -moz-user-select:none;
+              -ms-user-select:none;
+              user-select:none;
           }
           .errorMessage{
               color: $red;

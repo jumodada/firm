@@ -136,6 +136,10 @@
             }
         }
         >.collapse-item-header{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
             border: 1px solid #eeeeee;
             filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
             min-height: 30px;

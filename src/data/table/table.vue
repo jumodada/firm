@@ -182,11 +182,18 @@
                     }
                 }
             }
+            th{
+                -webkit-user-select:none;
+                -moz-user-select:none;
+                -ms-user-select:none;
+                user-select:none;
+            }
             td,th{
                 color:lighten(#515a6e,13.5%);
                 text-align: left;
                 padding: 13px;
                 border-bottom: 1px solid #efefef;
+
             }
             tr{
                 &:hover{

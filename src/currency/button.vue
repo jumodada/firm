@@ -322,6 +322,10 @@
                 pointer-events: none;
                 border-color: #ebeef5;
                 opacity: 0.5;
+                -webkit-user-select:none;
+                -moz-user-select:none;
+                -ms-user-select:none;
+                user-select:none;
                 &:hover{
                     color: rgba(0,0,0,.25);
                     border-color: #d9d9d9;
