@@ -1,5 +1,5 @@
 <template>
-    <div class="x-table-wrapper">
+    <div class="x-table-wrapper" :style="`${maxHeight}+ px`">
         <table class="x-table" :class="{bordered,compact,stripe:stripe}">
             <thead class="x-table-head">
             <tr>
@@ -12,9 +12,9 @@
                         {{column.field}}
                         <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order[column.field]==='ascending'?'109CCB':'#666666'}" name="asc"></x-icon>
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order[column.field]==='descending'?'109CCB':'#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                         </span>
                     </div>
                 </th>
@@ -51,6 +51,9 @@
             stripe:{
                 type:Boolean,
                 default: true
+            },
+            maxHeight:{
+              type:[Number,String]
             },
             compact:{
                 type:Boolean,
@@ -98,7 +101,7 @@
         },
         mounted(){
             this.bodyData = JSON.parse(JSON.stringify(this.data))
-            this.setOrderAttr()
+            // this.setOrderAttr()
         },
         watch:{
             selectedItems(){
@@ -138,14 +141,11 @@
                 this.$emit('update:selectedItems',selected?this.bodyData:[])
             },
             clickSort(field,direction){
-                this.order[field] = this.order[field] === true ? direction : this.order[field] = this.order[field] === direction ? true : direction;
-                this.bodyData = this.order[field] !== true ? this.bodyData.sort((a, b) => {
-                    if (a[field] < b[field]) {
-                        return direction === 'ascending' ? -1 : 1
-                    } else if (a[field] > b[field]) {
-                        return direction === 'ascending' ? 1 : -1
-                    }
+                this.order.state = this.order.state === true || this.order.name !== field ? direction : (this.order.state = this.order.state === direction ? true : direction);
+                this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) => {
+                    return  a[field] < b[field]?direction === 'ascending' ? -1 : 1:direction === 'ascending' ? 1 : -1
                 }) : JSON.parse(JSON.stringify(this.data));
+                this.order.name = field
             },
             sortUp(field){
                this.clickSort(field,'ascending')
