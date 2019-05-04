@@ -1,41 +1,70 @@
 <template>
-    <div class="x-table-wrapper" :style="`${maxHeight}+ px`">
-        <table class="x-table" :class="{bordered,compact,stripe:stripe}">
-            <thead class="x-table-head">
-            <tr>
-                <th v-if="checkBoxOn">
-                    <input @change="onChangeAllItems" ref="input"
-                           type="checkbox"></th>
-                <th v-for="column in columns" :key="column.field">
-                    <div class="x-table-th">
-                        {{column.text}}
-                        {{column.field}}
-                        <span class="x-table-th-icon" v-if="column.sortBy=== true">
+       <div class="x-table-wrapper" ref="wrapper">
+         <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}">
+             <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table">
+                 <colgroup>
+                     <col v-for="column in columns" :key="column.field" :style="{width:`${column.width}px`}">
+                 </colgroup>
+                 <thead class="x-table-head">
+                 <tr>
+                     <th v-if="checkBoxOn">
+                         <input @change="onChangeAllItems" ref="input" type="checkbox">
+                     </th>
+                     <th v-for="column in columns" :key="column.field">
+                            <div class="x-table-th">
+                                {{column.text}}
+                                {{column.field}}
+                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
-                        </span>
-                    </div>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(item,index) in bodyData" :key="item.key">
-                <th v-if="checkBoxOn">
-                    <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                </th>
-                <td v-if="numberVisible">{{index+1}}</td>
-                <template v-for="column in columns">
-                    <td :key="column.field">
-                        {{item[column.field]}}
-                    </td>
-                </template>
-            </tr>
-            </tbody>
-        </table>
-        <loading v-if="loading" class="x-table-loading"></loading>
-    </div>
+                           </span>
+                            </div>
+                     </th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr v-for="(item,index) in bodyData" :key="item.key">
+                     <th v-if="checkBoxOn">
+                         <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                     </th>
+                     <td v-if="numberVisible">{{index+1}}</td>
+                     <template v-for="column in columns">
+                         <td :key="column.field">
+                             {{item[column.field]}}
+                         </td>
+                     </template>
+                 </tr>
+                 </tbody>
+             </table>
+         </div>
+           <table class="x-table x-table-copy" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width">
+               <colgroup>
+                   <col v-for="column in columns" :key="column.field" :style="{width:`${column.width}px`}">
+               </colgroup>
+               <thead class="x-table-head">
+               <tr>
+                   <th v-if="checkBoxOn">
+                       <input @change="onChangeAllItems" type="checkbox">
+                   </th>
+                   <th v-for="column in columns" :key="column.field">
+                       <div class="x-table-th">
+                           {{column.text}}
+                           {{column.field}}
+                           <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                       </div>
+                   </th>
+               </tr>
+               </thead>
+           </table>
+           <loading v-if="loading" class="x-table-loading"></loading>
+      </div>
 </template>
 
 <script>
@@ -100,8 +129,9 @@
           }
         },
         mounted(){
-            this.bodyData = JSON.parse(JSON.stringify(this.data))
-            // this.setOrderAttr()
+                this.setBodtData()
+                let tableCopy = this.$refs.table.cloneNode(true)
+                console.log()
         },
         watch:{
             selectedItems(){
@@ -111,11 +141,8 @@
             }
         },
         methods:{
-            setOrderAttr(){
-                if(!this.defaultSort)return
-                this.columns.forEach(item=>{
-                    this.order[item.field] = true
-                })
+            setBodtData(){
+                this.bodyData = JSON.parse(JSON.stringify(this.data))
             },
             inSelected(item){
                 return this.selectedItems.filter(child=>child.key===item.key).length>0
@@ -158,7 +185,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
         position: relative;
@@ -200,7 +227,6 @@
                 text-align: left;
                 padding: 13px;
                 border-bottom: 1px solid #efefef;
-
             }
             tr{
                 &:hover{
@@ -233,6 +259,12 @@
                 align-items: center;
                 background-color: rgba(255,255,255,.6);
                 z-index: 2;
+            }
+            &-copy{
+                width: 100%;
+                position: absolute;
+                top: 0;
+                background-color: #f9f9f9;
             }
         }
     }
