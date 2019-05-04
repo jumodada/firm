@@ -46,7 +46,7 @@
                <thead class="x-table-head">
                <tr>
                    <th v-if="checkBoxOn">
-                       <input @change="onChangeAllItems" type="checkbox">
+                       <input @change="onChangeAllItems" type="checkbox" ref="input">
                    </th>
                    <th v-for="column in columns" :key="column.field">
                        <div class="x-table-th">
@@ -130,7 +130,7 @@
         },
         mounted(){
                 this.setBodtData()
-                let tableCopy = this.$refs.table.cloneNode(true)
+
                 console.log()
         },
         watch:{
