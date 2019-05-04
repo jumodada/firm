@@ -1,19 +1,19 @@
 <template>
        <div class="x-table-wrapper" ref="wrapper">
-         <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}">
+           <!--           主体-->
+             <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}">
              <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table">
                  <colgroup>
-                     <col v-for="column in columns" :key="column.field" :style="{width:`${column.width}px`}">
+                     <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                  </colgroup>
                  <thead class="x-table-head">
                  <tr>
                      <th v-if="checkBoxOn">
                          <input @change="onChangeAllItems" ref="input" type="checkbox">
                      </th>
-                     <th v-for="column in columns" :key="column.field">
+                     <th v-for="column in headerColumns" :key="column.field">
                             <div class="x-table-th">
                                 {{column.text}}
-                                {{column.field}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
@@ -38,20 +38,20 @@
                  </tr>
                  </tbody>
              </table>
-         </div>
+             </div>
+           <!--           固定头部-->
            <table class="x-table x-table-copy" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width">
                <colgroup>
-                   <col v-for="column in columns" :key="column.field" :style="{width:`${column.width}px`}">
+                   <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                </colgroup>
                <thead class="x-table-head">
                <tr>
                    <th v-if="checkBoxOn">
                        <input @change="onChangeAllItems" type="checkbox" ref="input">
                    </th>
-                   <th v-for="column in columns" :key="column.field">
+                   <th v-for="column in headerColumns" :key="column.field">
                        <div class="x-table-th">
                            {{column.text}}
-                           {{column.field}}
                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
@@ -63,6 +63,45 @@
                </tr>
                </thead>
            </table>
+             <!--                左边固定-->
+           <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}">
+           <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
+               <colgroup>
+                   <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+               </colgroup>
+               <thead class="x-table-head">
+               <tr>
+                   <th v-if="checkBoxOn">
+                       <input @change="onChangeAllItems" ref="input" type="checkbox">
+                   </th>
+                   <th v-for="column in fixedLeft" :key="column.field">
+                       <div class="x-table-th">
+                           {{column.text}}
+                           <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                       </div>
+                   </th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr v-for="(item,index) in bodyData" :key="item.key">
+                   <th v-if="checkBoxOn">
+                       <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                   </th>
+                   <td v-if="numberVisible">{{index+1}}</td>
+                   <template v-for="column in fixedLeft">
+                       <td :key="column.field">
+                           {{item[column.field]}}
+                       </td>
+                   </template>
+               </tr>
+               </tbody>
+           </table>
+           </div>
            <loading v-if="loading" class="x-table-loading"></loading>
       </div>
 </template>
@@ -120,18 +159,25 @@
                 type:Array,
                 default:()=>[]
             },
-            defaultSort:Object
+            defaultSort:Object,
         },
         data(){
           return {
               order:{},
-              bodyData:{}
+              bodyData:{},
+              headerColumns: {},
+              fixedLeft:[],
+              fixedRight:[]
           }
         },
         mounted(){
-                this.setBodtData()
-
-                console.log()
+                this.setBodyData()
+                this.setColumns()
+                this.$nextTick(()=>{
+                    this.checkFixedAndClone()
+                    this.setFixedWidth()
+                 })
+            console.log(this.bodyData)
         },
         watch:{
             selectedItems(){
@@ -141,8 +187,28 @@
             }
         },
         methods:{
-            setBodtData(){
+              checkFixedAndClone(){
+                this.columns.forEach(item=>{
+                   if(item.fixed){
+                       this.fixedLeft.push(item)
+                   }else if(item.fixed==='right'){
+                       this.fixedRight.push(item)
+                   }
+                })
+               },
+              setFixedWidth(){
+                  let totalWidth = 0
+                  this.fixedLeft.forEach(item=>{
+                      totalWidth += item.width
+                  })
+                  console.log(totalWidth)
+                  this.$refs.tableLeft.style.width = '300px'
+              },
+            setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
+            },
+            setColumns(){
+                this.headerColumns = JSON.parse(JSON.stringify(this.columns))
             },
             inSelected(item){
                 return this.selectedItems.filter(child=>child.key===item.key).length>0
@@ -265,6 +331,15 @@
                 position: absolute;
                 top: 0;
                 background-color: #f9f9f9;
+            }
+            &-left{
+                position: absolute;
+                left: 0;
+                top: 0;
+                overflow: hidden;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
             }
         }
     }
