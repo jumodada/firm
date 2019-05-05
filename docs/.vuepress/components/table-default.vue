@@ -6,7 +6,6 @@
                  :defaultSort="defaultSort"
                  :stripe="false"
                  maxHeight="400"
-                 maxWidth="500"
         >
         </x-table>
     </div>

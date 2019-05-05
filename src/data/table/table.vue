@@ -1,99 +1,101 @@
 <template>
-    <div class="x-table-wrapper" ref="wrapper">
-        <!--           主体-->
-        <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
-            <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table" @wheel="scrollGradient('main',$event)">
-                <colgroup>
-                    <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
-                </colgroup>
-                <thead class="x-table-head" v-if="!columns[0].width">
-                <tr>
-                    <th v-if="checkBoxOn">
-                        <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
-                    </th>
-                    <th v-for="column in headerColumns" :key="column.field">
-                        <div class="x-table-th">
-                            {{column.text}}
-                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
+    <div>
+        <div class="x-table-wrapper" ref="wrapper">
+            <!--           固定头部-->
+            <div class="x-table-copy" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
+                    <colgroup>
+                        <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+                    </colgroup>
+                    <thead class="x-table-head">
+                    <tr>
+                        <th v-if="checkBoxOn">
+                            <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                        </th>
+                        <th v-for="column in headerColumns" :key="column.field">
+                            <div class="x-table-th">
+                                {{column.text}}
+                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-                <tbody ref="tBodyMain">
-                <tr v-for="(item,index) in bodyData" :key="item.key" ref="trMain">
-                    <th v-if="checkBoxOn">
-                        <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                    </th>
-                    <td v-if="numberVisible">{{index+1}}</td>
-                    <template v-for="column in headerColumns">
-                        <td :key="column.field">
-                            <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
-                        </td>
-                    </template>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <!--           固定头部-->
-        <div class="x-table-copy" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
-            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
-                <colgroup>
-                    <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
-                </colgroup>
-                <thead class="x-table-head">
-                <tr>
-                    <th v-if="checkBoxOn">
-                        <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
-                    </th>
-                    <th v-for="column in headerColumns" :key="column.field">
-                        <div class="x-table-th">
-                            {{column.text}}
-                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <!--           主体-->
+            <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table" @wheel="scrollGradient('main',$event)">
+                    <colgroup>
+                        <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+                    </colgroup>
+                    <thead class="x-table-head" v-if="!columns[0].width">
+                    <tr>
+                        <th v-if="checkBoxOn">
+                            <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                        </th>
+                        <th v-for="column in headerColumns" :key="column.field">
+                            <div class="x-table-th">
+                                {{column.text}}
+                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody ref="tBodyMain">
+                    <tr v-for="(item,index) in bodyData" :key="item.key" ref="trMain">
+                        <th v-if="checkBoxOn">
+                            <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                        </th>
+                        <td v-if="numberVisible">{{index+1}}</td>
+                        <template v-for="column in headerColumns">
+                            <td :key="column.field">
+                                <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--                左边固定-->
+            <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${fixedLeftHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
+                  @wheel="scrollGradient('left',$event)"
+                  @mouseenter="leftWrapperHover"
+                  @mouseleave="leftWrapperHover"
+            >
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
+                    <colgroup>
+                        <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                    </colgroup>
+                    <tbody>
+                    <tr v-for="(item,index) in bodyData" :key="item.key"
+                        @mouseenter="hoverChangeMain(index,$event)"
+                        @mouseleave="hoverChangeMain(index,$event)"
+                    >
+                        <th v-if="checkBoxOn">
+                            <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                        </th>
+                        <td v-if="numberVisible">{{index+1}}</td>
+                        <template v-for="column in fixedLeft">
+                            <td :key="column.field" ref="tableLeftTd">
+                                <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <loading v-if="loading" class="x-table-loading"></loading>
         </div>
-        <!--                左边固定-->
-        <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
-              @wheel="scrollGradient('left',$event)"
-              @mouseenter="leftWrapperHover"
-              @mouseleave="leftWrapperHover"
-        >
-            <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
-                <colgroup>
-                    <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
-                </colgroup>
-                <tbody>
-                <tr v-for="(item,index) in bodyData" :key="item.key"
-                    @mouseenter="hoverChangeMain(index,$event)"
-                    @mouseleave="hoverChangeMain(index,$event)"
-                >
-                    <th v-if="checkBoxOn">
-                        <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                    </th>
-                    <td v-if="numberVisible">{{index+1}}</td>
-                    <template v-for="column in fixedLeft">
-                        <td :key="column.field" ref="tableLeftTd">
-                            <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
-                        </td>
-                    </template>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <loading v-if="loading" class="x-table-loading"></loading>
     </div>
 </template>
 
@@ -154,6 +156,15 @@
                 default:()=>[]
             },
             defaultSort:Object,
+        },
+        computed:{
+          fixedLeftHeight(){
+              if(this.maxWidth){
+                  return `${this.maxHeight-15}`
+              }else{
+                  return `${this.maxHeight}`
+              }
+          }
         },
         data(){
             return {
@@ -326,6 +337,7 @@
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
         position: relative;
+        overflow-x: hidden;
         .x-table{
             transition: .3s all;
             min-width: 100%;
@@ -401,7 +413,7 @@
             &-copy{
                 width: 100%;
                 position: absolute;
-                top: 0;
+                top: -10%;
                 background-color: #f9f9f9;
                 z-index: 3;
                 &::-webkit-scrollbar{
@@ -414,6 +426,8 @@
                 left: 0;
                 top: 0;
                 overflow: hidden;
+                background-color: white;
+                box-shadow: 0 0 10px rgba(0,0,0,.12);
                 &::-webkit-scrollbar{
                     display: none;
                 }
