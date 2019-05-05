@@ -47,7 +47,7 @@
             <thead class="x-table-head">
             <tr>
                 <th v-if="checkBoxOn">
-                    <input @change="onChangeAllItems" type="checkbox" ref="input">
+                    <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
                 </th>
                 <th v-for="column in headerColumns" :key="column.field">
                     <div class="x-table-th">
@@ -193,8 +193,13 @@
         watch:{
             selectedItems(){
                 let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
-                this.$refs.input.indeterminate = selectedStatus==='half'
-                this.$refs.input.checked = selectedStatus==='All'
+                if(this.columns[0].width){
+                    this.$refs.fixedInput.indeterminate = selectedStatus==='half'
+                    this.$refs.fixedInput.checked = selectedStatus==='All'
+                }else{
+                    this.$refs.input.indeterminate = selectedStatus==='half'
+                    this.$refs.input.checked = selectedStatus==='All'
+                }
             }
         },
         methods:{
