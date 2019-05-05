@@ -64,7 +64,11 @@
             </thead>
         </table>
         <!--                左边固定-->
-        <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper" @wheel="scrollGradient('left',$event)">
+        <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
+              @wheel="scrollGradient('left',$event)"
+              @mouseenter="leftWrapperHover"
+              @mouseleave="leftWrapperHover"
+        >
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                 <colgroup>
                     <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
@@ -170,7 +174,8 @@
                 bodyData:{},
                 headerColumns: {},
                 fixedLeft:[],
-                fixedRight:[]
+                fixedRight:[],
+                canIListen:true
             }
         },
         mounted(){
@@ -179,7 +184,6 @@
             this.$nextTick(()=>{
                 this.checkFixedAndClone()
                 this.setFixedWidth()
-                this.hiddenOther()
             })
             this.tableAddEventListener()
         },
@@ -196,11 +200,13 @@
         methods:{
             tableAddEventListener(){
                 this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
+                    if(!this.canIListen)return
                     this.scrollGradient('main',e,'handle')
                 })
             },
             tableRemoveEventListener(){
                 this.$refs.tableMainWrapper.removeEventListener('scroll',(e)=>{
+                    if(!this.canIListen)return
                     this.scrollGradient('main',e,'handle')
                 })
             },
@@ -232,11 +238,6 @@
                 tableLeftWrapperWidth += this.fixedLeft[leftArr.pop()+1].width
                 this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
                 this.$refs.tableLeft.style.width = width
-            },
-            hiddenOther(){
-                this.$nextTick(()=>{
-                    console.log(this.$refs.table);
-                })
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
@@ -299,15 +300,15 @@
                     this.$refs[x[part][1]].scrollTop += e.deltaY
                     setTimeout(()=>{
                         this.repairScrollTop(x[part][0],x[part][1])
-                    },30)
-                    setTimeout(()=>{
-                        this.repairScrollTop(x[part][0],x[part][1])
-                    },10)
+                    },25)
                 }
             },
             repairScrollTop(part1,part2){
                 let scrollTop = this.$refs[part1].scrollTop
                 this.$refs[part2].scrollTop= scrollTop
+            },
+            leftWrapperHover(e){
+                this.canIListen = e.type === 'mouseenter' ? false : true;
             }
         }
     }
@@ -392,11 +393,12 @@
                 width: 100%;
                 position: absolute;
                 top: 0;
-                z-index: 2;
+                z-index: 3;
                 background-color: #FCF9F9;
             }
             &-left{
                 position: absolute;
+                z-index: 2;
                 left: 0;
                 top: 0;
                 overflow: hidden;
