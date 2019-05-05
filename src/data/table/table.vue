@@ -1,8 +1,8 @@
 <template>
        <div class="x-table-wrapper" ref="wrapper">
            <!--           主体-->
-             <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}">
-             <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table">
+             <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
+             <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table" @wheel="scrollGradient('main',$event)">
                  <colgroup>
                      <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                  </colgroup>
@@ -12,8 +12,8 @@
                          <input @change="onChangeAllItems" ref="input" type="checkbox">
                      </th>
                      <th v-for="column in headerColumns" :key="column.field">
-                            <div class="x-table-th">
-                                {{column.text}}
+                            <div class="x-table-th" :style="{visibility:column.fixed?'hidden':''}">
+                               <span> {{column.text}}</span>
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
@@ -24,15 +24,15 @@
                      </th>
                  </tr>
                  </thead>
-                 <tbody>
-                 <tr v-for="(item,index) in bodyData" :key="item.key">
+                 <tbody ref="tBodyMain">
+                 <tr v-for="(item,index) in bodyData" :key="item.key" ref="trMain">
                      <th v-if="checkBoxOn">
                          <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
                      </th>
                      <td v-if="numberVisible">{{index+1}}</td>
-                     <template v-for="column in columns">
+                     <template v-for="column in headerColumns">
                          <td :key="column.field">
-                             {{item[column.field]}}
+                            <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
                          </td>
                      </template>
                  </tr>
@@ -64,7 +64,7 @@
                </thead>
            </table>
              <!--                左边固定-->
-           <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}">
+           <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper" @wheel="scrollGradient('left',$event)">
            <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                <colgroup>
                    <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
@@ -75,7 +75,7 @@
                        <input @change="onChangeAllItems" ref="input" type="checkbox">
                    </th>
                    <th v-for="column in fixedLeft" :key="column.field">
-                       <div class="x-table-th">
+                       <div class="x-table-th" :style="{visibility:column.fixed?'hidden':''}">
                            {{column.text}}
                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
@@ -88,14 +88,17 @@
                </tr>
                </thead>
                <tbody>
-               <tr v-for="(item,index) in bodyData" :key="item.key">
+               <tr v-for="(item,index) in bodyData" :key="item.key"
+                   @mouseenter="hoverChangeMain(index,$event)"
+                   @mouseleave="hoverChangeMain(index,$event)"
+               >
                    <th v-if="checkBoxOn">
                        <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
                    </th>
                    <td v-if="numberVisible">{{index+1}}</td>
                    <template v-for="column in fixedLeft">
-                       <td :key="column.field">
-                           {{item[column.field]}}
+                       <td :key="column.field" ref="tableLeftTd">
+                           <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
                        </td>
                    </template>
                </tr>
@@ -176,8 +179,8 @@
                 this.$nextTick(()=>{
                     this.checkFixedAndClone()
                     this.setFixedWidth()
+                    this.hiddenOther()
                  })
-            console.log(this.bodyData)
         },
         watch:{
             selectedItems(){
@@ -188,22 +191,41 @@
         },
         methods:{
               checkFixedAndClone(){
-                this.columns.forEach(item=>{
+                this.columns.forEach((item,index)=>{
                    if(item.fixed){
-                       this.fixedLeft.push(item)
+                        let columnsCopy = JSON.parse(JSON.stringify(this.columns))
+                        columnsCopy.splice(index,1)
+                        columnsCopy.unshift(item)
+                       this.headerColumns.splice(index,1)
+                       this.headerColumns.unshift(item)
+                       this.fixedLeft = columnsCopy
                    }else if(item.fixed==='right'){
+                       let columnsCopy = JSON.parse(JSON.stringify(this.columns))
+                       columnsCopy.splice(index,1).unshift(item)
                        this.fixedRight.push(item)
                    }
                 })
+
                },
-              setFixedWidth(){
-                  let totalWidth = 0
-                  this.fixedLeft.forEach(item=>{
-                      totalWidth += item.width
-                  })
-                  console.log(totalWidth)
-                  this.$refs.tableLeft.style.width = '300px'
-              },
+            setFixedWidth(){
+                let {width} = getComputedStyle(this.$refs.table)
+                let [tableLeftWrapperWidth,leftArr] = [0,[]]
+
+                this.fixedLeft.forEach((item,index)=>{
+                    if(item.fixed==='left'){
+                        tableLeftWrapperWidth += item.width
+                        leftArr.push(index)
+                    }
+                })
+                tableLeftWrapperWidth += this.fixedLeft[leftArr.pop()+1].width
+                this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
+                this.$refs.tableLeft.style.width = width
+            },
+            hiddenOther(){
+                    this.$nextTick(()=>{
+                        console.log(this.$refs.table);
+                    })
+            },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
             },
@@ -246,6 +268,27 @@
             sortDown(field){
                 this.clickSort(field,'descending')
             },
+            hoverChangeMain(index,e){
+                let typeName = {
+                    mouseenter:'#FCF9F9',
+                    mouseleave:''
+                }
+                this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
+            },
+            scrollGradient(part,e){
+                let x ={
+                    left:[`tableLeftWrapper`,`tableMainWrapper`],
+                    main:[`tableMainWrapper`,`tableLeftWrapper`]
+                }
+                this.$refs[x[part][1]].scrollTop += e.deltaY
+                setTimeout(()=>{
+                    this.repairScrollTop(x[part][0],x[part][1])
+                },30)
+            },
+            repairScrollTop(part1,part2){
+                let scrollTop = this.$refs[part1].scrollTop
+                this.$refs[part2].scrollTop= scrollTop
+            }
 
         }
     }
@@ -277,7 +320,7 @@
                 tbody {
                     >tr{
                         &:nth-child(odd){
-                            background-color: lighten(#f1eeee,3.5%);
+                            background-color: #FCF9F9;
                         }
                     }
                 }
@@ -297,7 +340,7 @@
             tr{
                 &:hover{
                     transition: .3s all ease;
-                    background-color: lighten(#f1eeee,3.5%);
+                    background-color: #FCF9F9;
                 }
             }
             &-th{
@@ -330,13 +373,13 @@
                 width: 100%;
                 position: absolute;
                 top: 0;
-                background-color: #f9f9f9;
+                background-color: #FCF9F9;
             }
             &-left{
                 position: absolute;
                 left: 0;
                 top: 0;
-                overflow: hidden;
+               overflow: hidden;
                 &::-webkit-scrollbar{
                     display: none;
                 }
