@@ -1,112 +1,112 @@
 <template>
-       <div class="x-table-wrapper" ref="wrapper">
-           <!--           主体-->
-             <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
-             <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table" @wheel="scrollGradient('main',$event)">
-                 <colgroup>
-                     <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
-                 </colgroup>
-                 <thead class="x-table-head">
-                 <tr>
-                     <th v-if="checkBoxOn">
-                         <input @change="onChangeAllItems" ref="input" type="checkbox">
-                     </th>
-                     <th v-for="column in headerColumns" :key="column.field">
-                            <div class="x-table-th" :style="{visibility:column.fixed?'hidden':''}">
-                               <span> {{column.text}}</span>
-                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
+    <div class="x-table-wrapper" ref="wrapper">
+        <!--           主体-->
+        <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
+            <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table" @wheel="scrollGradient('main',$event)">
+                <colgroup>
+                    <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+                </colgroup>
+                <thead class="x-table-head">
+                <tr>
+                    <th v-if="checkBoxOn">
+                        <input @change="onChangeAllItems" ref="input" type="checkbox">
+                    </th>
+                    <th v-for="column in headerColumns" :key="column.field">
+                        <div class="x-table-th" :style="{visibility:column.fixed?'hidden':''}">
+                            <span> {{column.text}}</span>
+                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                            </div>
-                     </th>
-                 </tr>
-                 </thead>
-                 <tbody ref="tBodyMain">
-                 <tr v-for="(item,index) in bodyData" :key="item.key" ref="trMain">
-                     <th v-if="checkBoxOn">
-                         <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                     </th>
-                     <td v-if="numberVisible">{{index+1}}</td>
-                     <template v-for="column in headerColumns">
-                         <td :key="column.field">
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody ref="tBodyMain">
+                <tr v-for="(item,index) in bodyData" :key="item.key" ref="trMain">
+                    <th v-if="checkBoxOn">
+                        <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                    </th>
+                    <td v-if="numberVisible">{{index+1}}</td>
+                    <template v-for="column in headerColumns">
+                        <td :key="column.field">
                             <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
-                         </td>
-                     </template>
-                 </tr>
-                 </tbody>
-             </table>
-             </div>
-           <!--           固定头部-->
-           <table class="x-table x-table-copy" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width">
-               <colgroup>
-                   <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
-               </colgroup>
-               <thead class="x-table-head">
-               <tr>
-                   <th v-if="checkBoxOn">
-                       <input @change="onChangeAllItems" type="checkbox" ref="input">
-                   </th>
-                   <th v-for="column in headerColumns" :key="column.field">
-                       <div class="x-table-th">
-                           {{column.text}}
-                           <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                        </td>
+                    </template>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--           固定头部-->
+        <table class="x-table x-table-copy" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width">
+            <colgroup>
+                <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+            </colgroup>
+            <thead class="x-table-head">
+            <tr>
+                <th v-if="checkBoxOn">
+                    <input @change="onChangeAllItems" type="checkbox" ref="input">
+                </th>
+                <th v-for="column in headerColumns" :key="column.field">
+                    <div class="x-table-th">
+                        {{column.text}}
+                        <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                       </div>
-                   </th>
-               </tr>
-               </thead>
-           </table>
-             <!--                左边固定-->
-           <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper" @wheel="scrollGradient('left',$event)">
-           <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
-               <colgroup>
-                   <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
-               </colgroup>
-               <thead class="x-table-head">
-               <tr>
-                   <th v-if="checkBoxOn">
-                       <input @change="onChangeAllItems" ref="input" type="checkbox">
-                   </th>
-                   <th v-for="column in fixedLeft" :key="column.field">
-                       <div class="x-table-th" :style="{visibility:column.fixed?'hidden':''}">
-                           {{column.text}}
-                           <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                    </div>
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <!--                左边固定-->
+        <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper" @wheel="scrollGradient('left',$event)">
+            <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
+                <colgroup>
+                    <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                </colgroup>
+                <thead class="x-table-head">
+                <tr>
+                    <th v-if="checkBoxOn">
+                        <input @change="onChangeAllItems" ref="input" type="checkbox">
+                    </th>
+                    <th v-for="column in fixedLeft" :key="column.field">
+                        <div class="x-table-th" :style="{visibility:column.fixed?'hidden':''}">
+                            {{column.text}}
+                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                       </div>
-                   </th>
-               </tr>
-               </thead>
-               <tbody>
-               <tr v-for="(item,index) in bodyData" :key="item.key"
-                   @mouseenter="hoverChangeMain(index,$event)"
-                   @mouseleave="hoverChangeMain(index,$event)"
-               >
-                   <th v-if="checkBoxOn">
-                       <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                   </th>
-                   <td v-if="numberVisible">{{index+1}}</td>
-                   <template v-for="column in fixedLeft">
-                       <td :key="column.field" ref="tableLeftTd">
-                           <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
-                       </td>
-                   </template>
-               </tr>
-               </tbody>
-           </table>
-           </div>
-           <loading v-if="loading" class="x-table-loading"></loading>
-      </div>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in bodyData" :key="item.key"
+                    @mouseenter="hoverChangeMain(index,$event)"
+                    @mouseleave="hoverChangeMain(index,$event)"
+                >
+                    <th v-if="checkBoxOn">
+                        <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                    </th>
+                    <td v-if="numberVisible">{{index+1}}</td>
+                    <template v-for="column in fixedLeft">
+                        <td :key="column.field" ref="tableLeftTd">
+                            <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
+                        </td>
+                    </template>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <loading v-if="loading" class="x-table-loading"></loading>
+    </div>
 </template>
 
 <script>
@@ -124,7 +124,7 @@
                 default: true
             },
             maxHeight:{
-              type:[Number,String]
+                type:[Number,String]
             },
             compact:{
                 type:Boolean,
@@ -147,8 +147,8 @@
                 }
             },
             loading:{
-              type:Boolean,
-              default:false
+                type:Boolean,
+                default:false
             },
             numberVisible:{
                 type:Boolean,
@@ -165,22 +165,26 @@
             defaultSort:Object,
         },
         data(){
-          return {
-              order:{},
-              bodyData:{},
-              headerColumns: {},
-              fixedLeft:[],
-              fixedRight:[]
-          }
+            return {
+                order:{},
+                bodyData:{},
+                headerColumns: {},
+                fixedLeft:[],
+                fixedRight:[]
+            }
         },
         mounted(){
-                this.setBodyData()
-                this.setColumns()
-                this.$nextTick(()=>{
-                    this.checkFixedAndClone()
-                    this.setFixedWidth()
-                    this.hiddenOther()
-                 })
+            this.setBodyData()
+            this.setColumns()
+            this.$nextTick(()=>{
+                this.checkFixedAndClone()
+                this.setFixedWidth()
+                this.hiddenOther()
+            })
+            this.tableAddEventListener()
+        },
+        beforeDestroy(){
+            this.tableRemoveEventListener()
         },
         watch:{
             selectedItems(){
@@ -190,27 +194,35 @@
             }
         },
         methods:{
-              checkFixedAndClone(){
+            tableAddEventListener(){
+                this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
+                    this.scrollGradient('main',e,'handle')
+                })
+            },
+            tableRemoveEventListener(){
+                this.$refs.tableMainWrapper.removeEventListener('scroll',(e)=>{
+                    this.scrollGradient('main',e,'handle')
+                })
+            },
+            checkFixedAndClone(){
                 this.columns.forEach((item,index)=>{
-                   if(item.fixed){
+                    if(item.fixed){
                         let columnsCopy = JSON.parse(JSON.stringify(this.columns))
                         columnsCopy.splice(index,1)
                         columnsCopy.unshift(item)
-                       this.headerColumns.splice(index,1)
-                       this.headerColumns.unshift(item)
-                       this.fixedLeft = columnsCopy
-                   }else if(item.fixed==='right'){
-                       let columnsCopy = JSON.parse(JSON.stringify(this.columns))
-                       columnsCopy.splice(index,1).unshift(item)
-                       this.fixedRight.push(item)
-                   }
+                        this.headerColumns.splice(index,1)
+                        this.headerColumns.unshift(item)
+                        this.fixedLeft = columnsCopy
+                    }else if(item.fixed==='right'){
+                        let columnsCopy = JSON.parse(JSON.stringify(this.columns))
+                        columnsCopy.splice(index,1).unshift(item)
+                        this.fixedRight.push(item)
+                    }
                 })
-
-               },
+            },
             setFixedWidth(){
                 let {width} = getComputedStyle(this.$refs.table)
                 let [tableLeftWrapperWidth,leftArr] = [0,[]]
-
                 this.fixedLeft.forEach((item,index)=>{
                     if(item.fixed==='left'){
                         tableLeftWrapperWidth += item.width
@@ -222,9 +234,9 @@
                 this.$refs.tableLeft.style.width = width
             },
             hiddenOther(){
-                    this.$nextTick(()=>{
-                        console.log(this.$refs.table);
-                    })
+                this.$nextTick(()=>{
+                    console.log(this.$refs.table);
+                })
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
@@ -263,7 +275,7 @@
                 this.order.name = field
             },
             sortUp(field){
-               this.clickSort(field,'ascending')
+                this.clickSort(field,'ascending')
             },
             sortDown(field){
                 this.clickSort(field,'descending')
@@ -275,21 +287,28 @@
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
             },
-            scrollGradient(part,e){
+            scrollGradient(part,e,scrollType){
                 let x ={
                     left:[`tableLeftWrapper`,`tableMainWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
                 }
-                this.$refs[x[part][1]].scrollTop += e.deltaY
-                setTimeout(()=>{
-                    this.repairScrollTop(x[part][0],x[part][1])
-                },30)
+                if(scrollType==='handle'){
+                    let scrollTop = this.$refs[x[part][0]].scrollTop
+                    this.$refs[x[part][1]].scrollTop= scrollTop
+                }else{
+                    this.$refs[x[part][1]].scrollTop += e.deltaY
+                    setTimeout(()=>{
+                        this.repairScrollTop(x[part][0],x[part][1])
+                    },30)
+                    setTimeout(()=>{
+                        this.repairScrollTop(x[part][0],x[part][1])
+                    },10)
+                }
             },
             repairScrollTop(part1,part2){
                 let scrollTop = this.$refs[part1].scrollTop
                 this.$refs[part2].scrollTop= scrollTop
             }
-
         }
     }
 </script>
@@ -373,13 +392,14 @@
                 width: 100%;
                 position: absolute;
                 top: 0;
+                z-index: 2;
                 background-color: #FCF9F9;
             }
             &-left{
                 position: absolute;
                 left: 0;
                 top: 0;
-               overflow: hidden;
+                overflow: hidden;
                 &::-webkit-scrollbar{
                     display: none;
                 }
