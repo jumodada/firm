@@ -62,7 +62,7 @@
                         @mouseleave="leftWrapperHover"
                 >
                     <colgroup>
-                        <col style="width: 60px">
+                        <col style="width:60px">
                         <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead class="x-table-head" v-if="!columns[0].width">
@@ -89,9 +89,9 @@
                         @mouseenter="hoverChangeMain(index,$event)"
                         @mouseleave="hoverChangeMain(index,$event)"
                         ref="trMain">
-                        <th v-if="checkBoxOn">
+                        <td v-if="checkBoxOn">
                             <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                        </th>
+                        </td>
                         <td v-if="numberVisible">{{index+1}}</td>
                         <template v-for="column in headerColumns">
                             <td :key="column.field">
@@ -281,20 +281,21 @@
             },
             setFixedWidth(){
                 let {width} = getComputedStyle(this.$refs.table)
-                let [tableLeftWrapperWidth,leftArr] = [0,[]]
+                let [tableLeftWrapperWidth,leftArr,totalWidth] = [0,[],0]
                 this.fixedLeft.forEach((item,index)=>{
+                    totalWidth += item.width
                     if(item.fixed==='left'){
                         tableLeftWrapperWidth += item.width
                         leftArr.push(index)
                     }
                 })
-                tableLeftWrapperWidth += 60  //按钮固定的宽度
-                this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
-                this.$refs.tableLeft.style.width = width
-                this.$refs.tableFixedLeftHeader.style.width = getComputedStyle(this.$refs.tableFixedLeftHeader).width
-                this.$refs.tableFixedLeftHeaderWrapper.style.width = tableLeftWrapperWidth+'px'
-                this.$refs.wrapper.style.width = getComputedStyle(this.$refs.table).width
-                this.$refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
+                tableLeftWrapperWidth += 60 //按钮固定的宽度
+                 this.$refs.tableLeft.style.width = totalWidth+ 60+leftArr.length +'px'
+                 this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
+                 this.$refs.tableFixedLeftHeader.style.width = totalWidth+60+leftArr.length +'px'
+                 this.$refs.tableFixedLeftHeaderWrapper.style.width = tableLeftWrapperWidth+'px'
+                 this.$refs.wrapper.style.width = totalWidth+60+leftArr.length +'px'
+                 this.$refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
 
             },
             setBodyData(){

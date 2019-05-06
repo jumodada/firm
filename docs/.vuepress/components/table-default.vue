@@ -6,7 +6,7 @@
                  :defaultSort="defaultSort"
                  :stripe="false"
                  maxHeight="400"
-                 max-width="600"
+                 max-width="400"
         >
         </x-table>
     </div>
@@ -25,7 +25,7 @@
                 columns1:[
                     {text:'名字',field:'name',sortBy:true,width:100,fixed:'left'},
                     {text:'价格',field:'price',sortBy:true,width:120,fixed:'left'},
-                    {text:'年份',field:'year',sortBy:true,width:180},
+                    {text:'年份',field:'year',sortBy:true,width:100},
                     {text:'简介',field:'introduction',sortBy:true,width:200},
                     //{text:'作者',field:'author',sortBy:true,width:200},
                 ],

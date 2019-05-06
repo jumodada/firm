@@ -20,17 +20,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="290" column="49" selection-start-line="290" selection-start-column="49" selection-end-line="290" selection-end-column="49" />
+            <state relative-caret-position="385">
+              <caret line="296" column="84" selection-start-line="296" selection-start-column="84" selection-end-line="296" selection-end-column="84" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -43,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
+            <state relative-caret-position="-228">
+              <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -84,7 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>n</find>
       <find>table</find>
       <find>bodyData</find>
       <find>headerColumns</find>
@@ -97,7 +94,6 @@
       <find>input</find>
       <find>overflow</find>
       <find>setFixedWidth</find>
-      <find>tableLeftWrapper</find>
       <find>x-table-left</find>
       <find>&amp;-left</find>
       <find>x-table</find>
@@ -113,7 +109,9 @@
       <find>transition</find>
       <find>hoverChangeMain</find>
       <find>column</find>
+      <find>col</find>
       <find>colgroup</find>
+      <find>tableLeftWrapper</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -171,8 +169,8 @@
         <option value="$PROJECT_DIR$/src/currency/dynamic icon/loading.vue" />
         <option value="$PROJECT_DIR$/src/tickling/plugin.js" />
         <option value="$PROJECT_DIR$/docs/components/table/README.md" />
-        <option value="$PROJECT_DIR$/src/data/table/table.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" />
+        <option value="$PROJECT_DIR$/src/data/table/table.vue" />
       </list>
     </option>
   </component>
@@ -423,12 +421,12 @@
       <workItem from="1556967016917" duration="39000" />
       <workItem from="1556967091439" duration="12092000" />
       <workItem from="1557019898341" duration="20428000" />
-      <workItem from="1557106067969" duration="21802000" />
+      <workItem from="1557106067969" duration="25778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="816657000" />
+    <option name="totallyTimeSpent" value="820633000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -835,16 +833,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-228">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="290" column="49" selection-start-line="290" selection-start-column="49" selection-end-line="290" selection-end-column="49" />
+        <state relative-caret-position="385">
+          <caret line="296" column="84" selection-start-line="296" selection-start-column="84" selection-end-line="296" selection-end-column="84" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -853,13 +856,6 @@
             <element signature="e#5954#6011#0" expanded="true" />
             <element signature="e#14462#14612#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
         </state>
       </provider>
     </entry>
