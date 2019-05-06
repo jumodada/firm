@@ -1,5 +1,5 @@
 <template>
-    <div style="position:relative;">
+    <div style="position:relative;" ref="totalWrapper" >
         <div class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
                 <colgroup>
@@ -50,7 +50,7 @@
                 </thead>
             </table>
         </div>
-        <div class="x-table-wrapper" ref="wrapper">
+        <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
             <!--           主体-->
             <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
                 <table
@@ -282,7 +282,8 @@
                 this.$refs.tableLeft.style.width = width
                 this.$refs.tableFixedLeftHeader.style.width = getComputedStyle(this.$refs.tableFixedLeftHeader).width
                 this.$refs.tableFixedLeftHeaderWrapper.style.width = tableLeftWrapperWidth+'px'
-                this.$refs.wrapper.style.width = getComputedStyle(this.$refs.tableMainWrapper).width
+                this.$refs.wrapper.style.width = getComputedStyle(this.$refs.table).width
+                this.$refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
 
             },
             setBodyData(){
@@ -335,7 +336,6 @@
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
             },
             scrollGradient(part,e,scrollType){
-                console.log(e)
                 let x ={
                     left:[`tableLeftWrapper`,`tableMainWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
@@ -371,6 +371,9 @@
         border-left: 1px solid white;
         margin: 0;
         padding: 0;
+        &.borderHidden{
+            border-bottom: none;
+        }
     }
     .x-table{
         transition: .3s all;
