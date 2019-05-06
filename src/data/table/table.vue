@@ -3,6 +3,7 @@
         <div  :class="{boxShadowNone:hiddenShadow}" class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
                 <colgroup>
+                    <col style="width: 60px">
                     <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
                 </colgroup>
                 <thead class="x-table-head">
@@ -28,6 +29,7 @@
         <div class="x-table-header-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
                 <colgroup>
+                    <col style="width: 60px">
                     <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                 </colgroup>
                 <thead class="x-table-head">
@@ -60,6 +62,7 @@
                         @mouseleave="leftWrapperHover"
                 >
                     <colgroup>
+                        <col style="width: 60px">
                         <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead class="x-table-head" v-if="!columns[0].width">
@@ -108,6 +111,7 @@
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                     <colgroup>
+                        <col style="width: 60px">
                         <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody>
@@ -284,7 +288,7 @@
                         leftArr.push(index)
                     }
                 })
-                tableLeftWrapperWidth += this.fixedLeft[leftArr.pop()+1].width
+                tableLeftWrapperWidth += 60  //按钮固定的宽度
                 this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
                 this.$refs.tableLeft.style.width = width
                 this.$refs.tableFixedLeftHeader.style.width = getComputedStyle(this.$refs.tableFixedLeftHeader).width
