@@ -1,35 +1,39 @@
 <template>
-    <div>
-        <div class="x-table-wrapper" ref="wrapper">
-            <!--           固定头部-->
-            <div class="x-table-copy" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
-                    <colgroup>
-                        <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
-                    </colgroup>
-                    <thead class="x-table-head">
-                    <tr>
-                        <th v-if="checkBoxOn">
-                            <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
-                        </th>
-                        <th v-for="column in headerColumns" :key="column.field">
-                            <div class="x-table-th">
-                                {{column.text}}
-                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
+    <div style="position:relative;">
+        <div class="x-table-copy" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
+            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
+                <colgroup>
+                    <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+                </colgroup>
+                <thead class="x-table-head">
+                <tr>
+                    <th v-if="checkBoxOn">
+                        <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                    </th>
+                    <th v-for="column in headerColumns" :key="column.field">
+                        <div class="x-table-th">
+                            {{column.text}}
+                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="x-table-wrapper" ref="wrapper">
             <!--           主体-->
             <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table" @wheel="scrollGradient('main',$event)">
+                <table
+                        class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
+                        @wheel="scrollGradient('main',$event)"
+                        @mouseenter="leftWrapperHover"
+                        @mouseleave="leftWrapperHover"
+                >
                     <colgroup>
                         <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
@@ -158,13 +162,13 @@
             defaultSort:Object,
         },
         computed:{
-          fixedLeftHeight(){
-              if(this.maxWidth){
-                  return `${this.maxHeight-15}`
-              }else{
-                  return `${this.maxHeight}`
-              }
-          }
+            fixedLeftHeight(){
+                if(this.maxWidth){
+                    return `${this.maxHeight-15}`
+                }else{
+                    return `${this.maxHeight}`
+                }
+            }
         },
         data(){
             return {
@@ -204,16 +208,10 @@
         },
         methods:{
             setMainWidth(){
-                // tableMainWrapper
                 this.$refs.table.style.width = getComputedStyle(this.$refs.table).width
                 this.$refs.tableMainWrapper.style.width = this.maxWidth +'px'
             },
             setHeaderToTop(){
-                if(this.columns[0].width){
-                   let {height} = getComputedStyle(this.$refs.tableFixedHeader)
-                    this.$refs.tableFixedHeader.style.top = -parseInt(height)+'px'
-                    this.$refs.wrapper.style.top = parseInt(height)+'px'
-                }
                 this.$refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
                 this.$refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
             },
@@ -338,99 +336,100 @@
         -webkit-font-smoothing: antialiased;
         position: relative;
         overflow-x: hidden;
-        .x-table{
-            transition: .3s all;
-            min-width: 100%;
-            color:#515a6e;
-            border-collapse: collapse;
-            border-spacing: 0;
-            border-bottom: 1px solid #efefef;
-            overflow: auto;
-            &.bordered{
-                border:1px solid #efefef;
-                td,th{
-                    border: 1px solid #efefef;
-                }
+        border-bottom: 1px solid #efefef;
+    }
+    .x-table{
+        transition: .3s all;
+        min-width: 100%;
+        color:#515a6e;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-bottom: 1px solid #efefef;
+        overflow: auto;
+        &.bordered{
+            border:1px solid #efefef;
+            td,th{
+                border: 1px solid #efefef;
             }
-            &.compact{
-                td,th{
-                    padding: 6px;
-                }
+        }
+        &.compact{
+            td,th{
+                padding: 6px;
             }
-            &.stripe{
-                tbody {
-                    >tr{
-                        &:nth-child(odd){
-                            background-color: #FCF9F9;
-                        }
+        }
+        &.stripe{
+            tbody {
+                >tr{
+                    &:nth-child(odd){
+                        background-color: #FCF9F9;
                     }
                 }
             }
-            th{
-                -webkit-user-select:none;
-                -moz-user-select:none;
-                -ms-user-select:none;
-                user-select:none;
+        }
+        th{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+        td,th{
+            color:lighten(#515a6e,13.5%);
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #efefef;
+        }
+        tr{
+            &:hover{
+                transition: .3s all ease;
+                background-color: #FCF9F9;
             }
-            td,th{
-                color:lighten(#515a6e,13.5%);
-                text-align: left;
-                padding: 13px;
-                border-bottom: 1px solid #efefef;
-            }
-            tr{
-                &:hover{
-                    transition: .3s all ease;
-                    background-color: #FCF9F9;
-                }
-            }
-            &-th{
+        }
+        &-th{
+            display: inline-flex;
+            align-items: center;
+            &-icon{
+                fill: #666666;
+                margin-left: .15em;
                 display: inline-flex;
-                align-items: center;
-                &-icon{
-                    fill: #666666;
-                    margin-left: .15em;
-                    display: inline-flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    width: 1em;
-                    height: 1em;
-                    cursor: pointer;
-                }
-            }
-            &-loading{
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                display: flex;
+                flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                background-color: rgba(255,255,255,.6);
-                z-index: 2;
+                width: 1em;
+                height: 1em;
+                cursor: pointer;
             }
-            &-copy{
-                width: 100%;
-                position: absolute;
-                top: -10%;
-                background-color: #f9f9f9;
-                z-index: 3;
-                &::-webkit-scrollbar{
-                    display: none;
-                }
+        }
+        &-loading{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255,255,255,.6);
+            z-index: 2;
+        }
+        &-copy{
+            width: 100%;
+            position: absolute;
+            top: -10%;
+            background-color: #f9f9f9;
+            z-index: 3;
+            &::-webkit-scrollbar{
+                display: none;
             }
-            &-left{
-                position: absolute;
-                z-index: 2;
-                left: 0;
-                top: 0;
-                overflow: hidden;
-                background-color: white;
-                box-shadow: 0 0 10px rgba(0,0,0,.12);
-                &::-webkit-scrollbar{
-                    display: none;
-                }
+        }
+        &-left{
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,.12);
+            &::-webkit-scrollbar{
+                display: none;
             }
         }
     }
