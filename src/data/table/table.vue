@@ -1,6 +1,31 @@
 <template>
     <div style="position:relative;">
-        <div class="x-table-copy" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
+        <div class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
+                <colgroup>
+                    <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                </colgroup>
+                <thead class="x-table-head">
+                <tr>
+                    <th v-if="checkBoxOn">
+                        <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                    </th>
+                    <th v-for="column in fixedLeft" :key="column.field">
+                        <div class="x-table-th">
+                            {{column.text}}
+                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="x-table-header-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
                 <colgroup>
                     <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
@@ -164,7 +189,7 @@
         computed:{
             fixedLeftHeight(){
                 if(this.maxWidth){
-                    return `${this.maxHeight-15}`
+                    return `${this.maxHeight-14}`
                 }else{
                     return `${this.maxHeight}`
                 }
@@ -184,10 +209,10 @@
             this.setBodyData()
             this.setColumns()
             this.$nextTick(()=>{
+                this.setHeaderToTop()
                 this.checkFixedAndClone()
                 this.setFixedWidth()
                 this.setMainWidth()
-                this.setHeaderToTop()
             })
             this.tableAddEventListener()
         },
@@ -255,6 +280,9 @@
                 tableLeftWrapperWidth += this.fixedLeft[leftArr.pop()+1].width
                 this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
                 this.$refs.tableLeft.style.width = width
+                this.$refs.tableFixedLeftHeader.style.width = getComputedStyle(this.$refs.tableFixedLeftHeader).width
+                this.$refs.tableFixedLeftHeaderWrapper.style.width = tableLeftWrapperWidth+'px'
+
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
@@ -335,8 +363,11 @@
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
         position: relative;
-        overflow-x: hidden;
+        overflow-y: hidden;
         border-bottom: 1px solid #efefef;
+        border-left: 1px solid white;
+        margin: 0;
+        padding: 0;
     }
     .x-table{
         transition: .3s all;
@@ -410,24 +441,38 @@
             background-color: rgba(255,255,255,.6);
             z-index: 2;
         }
-        &-copy{
+        &-header-main{
             width: 100%;
             position: absolute;
-            top: -10%;
+            top: -9.8%;
             background-color: #f9f9f9;
             z-index: 3;
             &::-webkit-scrollbar{
                 display: none;
             }
+            table{
+                thead{
+                    background-color: #f9f9f9;
+                }
+            }
+        }
+        &-header-left{
+            width: 100%;
+            position: absolute;
+            top: -9.8%;
+            left: 0;
+            background-color: #f9f9f9;
+            box-shadow: 6px 1px 6px -4px rgba(0,0,0,0.15);
+            z-index: 4;
         }
         &-left{
             position: absolute;
             z-index: 2;
-            left: 0;
+            left: -1px;
             top: 0;
             overflow: hidden;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,.12);
+            box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
             &::-webkit-scrollbar{
                 display: none;
             }
