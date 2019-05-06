@@ -33,14 +33,14 @@
                     {text:'价格',field:'price'}
                 ],
                 data:[
-                    {key:1,name:'JavaScript高级程序设计',price:80,year:1,introduction:'       '},
-                    {key:2,name:'C语言教程',price:100,year:2,introduction:'                    '},
-                    {key:3,name:'Java编程思想',price:60,year:3,introduction:'                  '},
-                    {key:4,name:'Python从入门到精通',price:50,year:4,introduction:'               '},
-                    {key:5,name:'JavaScript高级程序设计',price:80,year:5,introduction:'                 '},
-                    {key:6,name:'你不知道的JavaScript',price:200,year:6,introduction:'               '},
-                    {key:7,name:'Java从入门到精通',price:120,year:7,introduction:'             '},
-                    {key:8,name:'webpack从入门到入土',price:140,year:8,introduction:'                '},
+                    {key:1,name:'JavaScript高级程序设计',price:80,year:1,introduction:'   adsd  '},
+                    {key:2,name:'C语言教程',price:100,year:2,introduction:'     sadasd    '},
+                    {key:3,name:'Java编程思想',price:60,year:3,introduction:'     dds       '},
+                    {key:4,name:'Python从入门到精通',price:50,year:4,introduction:'    fgfg     '},
+                    {key:5,name:'JavaScript高级程序设计',price:80,year:5,introduction:'sdsd         '},
+                    {key:6,name:'你不知道的JavaScript',price:200,year:6,introduction:'gfgf         '},
+                    {key:7,name:'Java从入门到精通',price:120,year:7,introduction:' sds       '},
+                    {key:8,name:'webpack从入门到入土',price:140,year:8,introduction:'     dfd         '},
 
                 ],
                 selected:[],

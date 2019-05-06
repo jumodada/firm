@@ -33,7 +33,7 @@
                 <thead class="x-table-head">
                 <tr>
                     <th v-if="checkBoxOn">
-                        <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                        <input @change="onChangeAllItems" type="checkbox" ref="fixedMainInput">
                     </th>
                     <th v-for="column in headerColumns" :key="column.field">
                         <div class="x-table-th">
@@ -282,6 +282,7 @@
                 this.$refs.tableLeft.style.width = width
                 this.$refs.tableFixedLeftHeader.style.width = getComputedStyle(this.$refs.tableFixedLeftHeader).width
                 this.$refs.tableFixedLeftHeaderWrapper.style.width = tableLeftWrapperWidth+'px'
+                this.$refs.wrapper.style.width = getComputedStyle(this.$refs.tableMainWrapper).width
 
             },
             setBodyData(){
@@ -334,6 +335,7 @@
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
             },
             scrollGradient(part,e,scrollType){
+                console.log(e)
                 let x ={
                     left:[`tableLeftWrapper`,`tableMainWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
@@ -341,6 +343,7 @@
                 if(scrollType==='handle'){
                     let scrollTop = this.$refs[x[part][0]].scrollTop
                     this.$refs[x[part][1]].scrollTop= scrollTop
+                    this.$refs.tableFixedHeaderWrapper.scrollLeft = this.$refs.tableMainWrapper.scrollLeft
                 }else{
                     this.$refs[x[part][1]].scrollTop += e.deltaY
                     setTimeout(()=>{
@@ -363,7 +366,7 @@
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
         position: relative;
-        overflow-y: hidden;
+        overflow: hidden;
         border-bottom: 1px solid #efefef;
         border-left: 1px solid white;
         margin: 0;
@@ -444,7 +447,7 @@
         &-header-main{
             width: 100%;
             position: absolute;
-            top: -9.8%;
+            top: -12.3%;
             background-color: #f9f9f9;
             z-index: 3;
             &::-webkit-scrollbar{
@@ -459,10 +462,10 @@
         &-header-left{
             width: 100%;
             position: absolute;
-            top: -9.8%;
+            top: -12.3%;
             left: 0;
             background-color: #f9f9f9;
-            box-shadow: 6px 1px 6px -4px rgba(0,0,0,0.15);
+            box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
             z-index: 4;
         }
         &-left{
