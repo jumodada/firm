@@ -1,6 +1,6 @@
 <template>
     <div style="position:relative;" ref="totalWrapper" >
-        <div class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+        <div  :class="{boxShadowNone:hiddenShadow}" class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
                 <colgroup>
                     <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
@@ -67,7 +67,8 @@
                         <th v-if="checkBoxOn">
                             <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
                         </th>
-                        <th v-for="column in headerColumns" :key="column.field">
+                        <th v-for="column in headerColumns"
+                            :key="column.field">
                             <div class="x-table-th">
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
@@ -81,7 +82,10 @@
                     </tr>
                     </thead>
                     <tbody ref="tBodyMain">
-                    <tr v-for="(item,index) in bodyData" :key="item.key" ref="trMain">
+                    <tr v-for="(item,index) in bodyData" :key="item.key"
+                        @mouseenter="hoverChangeMain(index,$event)"
+                        @mouseleave="hoverChangeMain(index,$event)"
+                        ref="trMain">
                         <th v-if="checkBoxOn">
                             <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
                         </th>
@@ -100,6 +104,7 @@
                   @wheel="scrollGradient('left',$event)"
                   @mouseenter="leftWrapperHover"
                   @mouseleave="leftWrapperHover"
+                  :class="{boxShadowNone:hiddenShadow}"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                     <colgroup>
@@ -109,6 +114,7 @@
                     <tr v-for="(item,index) in bodyData" :key="item.key"
                         @mouseenter="hoverChangeMain(index,$event)"
                         @mouseleave="hoverChangeMain(index,$event)"
+                        ref="trLeft"
                     >
                         <th v-if="checkBoxOn">
                             <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
@@ -202,7 +208,8 @@
                 headerColumns: {},
                 fixedLeft:[],
                 fixedRight:[],
-                canIListen:true
+                canIListen:true,
+                hiddenShadow:true
             }
         },
         mounted(){
@@ -334,16 +341,23 @@
                     mouseleave:''
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
+                this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
             },
             scrollGradient(part,e,scrollType){
                 let x ={
                     left:[`tableLeftWrapper`,`tableMainWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
                 }
+                let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
+                if(scrollLeft===0){
+                    this.hiddenShadow = true
+                }else{
+                    this.hiddenShadow = false
+                }
                 if(scrollType==='handle'){
                     let scrollTop = this.$refs[x[part][0]].scrollTop
                     this.$refs[x[part][1]].scrollTop= scrollTop
-                    this.$refs.tableFixedHeaderWrapper.scrollLeft = this.$refs.tableMainWrapper.scrollLeft
+                    this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 }else{
                     this.$refs[x[part][1]].scrollTop += e.deltaY
                     setTimeout(()=>{
@@ -363,6 +377,9 @@
 </script>
 
 <style lang="scss" scoped>
+    *{
+        transition: .3s all ease;
+    }
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
         position: relative;
@@ -417,7 +434,6 @@
         }
         tr{
             &:hover{
-                transition: .3s all ease;
                 background-color: #FCF9F9;
             }
         }
@@ -483,5 +499,8 @@
                 display: none;
             }
         }
+    }
+    .boxShadowNone{
+        box-shadow: none !important;
     }
 </style>
