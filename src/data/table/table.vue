@@ -58,8 +58,8 @@
                 <table
                         class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
                         @wheel="scrollGradient('main',$event)"
-                        @mouseenter="leftWrapperHover"
-                        @mouseleave="leftWrapperHover"
+                        @mouseenter="WrapperHover"
+                        @mouseleave="WrapperHover"
                 >
                     <colgroup>
                         <col v-if="checkBoxOn" style="width:60px">
@@ -102,11 +102,11 @@
                     </tbody>
                 </table>
             </div>
-            <!--                左边固定-->
-            <div  v-if="fixedLeft" class="x-table-left" :style="{maxHeight:`${fixedLeftHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
+            <!--  左边固定  -->
+            <div   class="x-table-left" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
                   @wheel="scrollGradient('left',$event)"
-                  @mouseenter="leftWrapperHover"
-                  @mouseleave="leftWrapperHover"
+                  @mouseenter="WrapperHover"
+                  @mouseleave="WrapperHover"
                   :class="{boxShadowNone:hiddenShadow}"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
@@ -125,7 +125,34 @@
                         </th>
                         <td v-if="numberVisible">{{index+1}}</td>
                         <template v-for="column in fixedLeft">
-                            <td :key="column.field" ref="tableLeftTd">
+                            <td :key="column.field">
+                                <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--  右边固定  -->
+            <div class="x-table-right" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
+                  @wheel="scrollGradient('left',$event)"
+                  @mouseenter="WrapperHover"
+                  @mouseleave="WrapperHover"
+                  :class="{boxShadowNone:hiddenShadow}"
+            >
+                <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
+                    <colgroup>
+                        <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
+                    </colgroup>
+                    <tbody>
+                    <tr v-for="(item,index) in bodyData" :key="item.key"
+                        @mouseenter="hoverChangeMain(index,$event)"
+                        @mouseleave="hoverChangeMain(index,$event)"
+                        ref="trRight"
+                    >
+                        <td v-if="numberVisible">{{index+1}}</td>
+                        <template v-for="column in fixedRight">
+                            <td :key="column.field">
                                 <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
                             </td>
                         </template>
@@ -197,7 +224,7 @@
             defaultSort:Object,
         },
         computed:{
-            fixedLeftHeight(){
+            fixedWrapperHeight(){
                 if(this.maxWidth){
                     return `${this.maxHeight-14}`
                 }else{
@@ -216,12 +243,15 @@
                 hiddenShadow:true
             }
         },
+        // created(){
+        //     this.checkFixed()
+        // },
         mounted(){
-            this.setBodyData()
             this.setColumns()
+            this.checkFixed()
+            this.setBodyData()
             this.$nextTick(()=>{
                 this.setHeaderToTop()
-                this.checkFixedAndClone()
                 this.setFixedWidth()
                 this.setMainWidth()
             })
@@ -248,8 +278,12 @@
                 this.$refs.tableMainWrapper.style.width = this.maxWidth +'px'
             },
             setHeaderToTop(){
+                let height = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
+                console.log(height)
                 this.$refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
                 this.$refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
+                this.$refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
+                this.$refs.tableFixedHeaderWrapper.style.top = '-'+height
             },
             tableAddEventListener(){
                 this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
@@ -263,7 +297,7 @@
                     this.scrollGradient('main',e,'handle')
                 })
             },
-            checkFixedAndClone(){
+            checkFixed(){
                 this.columns.forEach((item,index)=>{
                     if(item.fixed){
                         let columnsCopy = JSON.parse(JSON.stringify(this.columns))
@@ -280,29 +314,43 @@
                 })
             },
             setFixedWidth(){
-                let [tableLeftWrapperWidth,leftArr,totalWidth,refs] = [0,[],0,this.$refs]
+                let [tableLeftWrapperWidth,tableRightWrapperWidth,leftArr,rightArr,totalWidth,refs] = [0,0,[],[],0,this.$refs]
                 this.fixedLeft.forEach((item,index)=>{
                     totalWidth += item.width
                     if(item.fixed==='left'){
                         tableLeftWrapperWidth += item.width
                         leftArr.push(index)
+                    }else if(item.fixed==='right'){
+                        tableRightWrapperWidth += item.width
+                        rightArr.push(index)
                     }
                 })
                 let Width = this.checkBoxOn?totalWidth+ 60 +leftArr.length +'px':totalWidth +leftArr.length +'px'
+                let rightWidth = totalWidth +rightArr.length +'px'
                 this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
-                let maxWidth = tableLeftWrapperWidth+'px'
-                refs.tableLeft.style.width = Width
-                refs.tableLeftWrapper.style.width = maxWidth
-                refs.tableFixedLeftHeader.style.width = Width
-                refs.tableFixedLeftHeaderWrapper.style.width = maxWidth
+                if(leftArr.length>0){
+                    this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
+                }else if(rightArr.length>0){
+                    this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper'])
+                }
+                this.setTableWidth(refs,Width)
+                refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
+            },
+            setColumnFixedWidth(refs,Width,tableWrapperWidth,name){
+                let maxWidth = tableWrapperWidth+'px'
+                refs[name[0]].style.width = Width
+                refs[name[1]].style.width = maxWidth
+                refs[name[2]].style.width = Width
+                refs[name[3]].style.width = maxWidth
+            },
+            setTableWidth(refs,Width){
                 refs.tableFixedHeader.style.width = Width
                 refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)+1+'px'
                 refs.wrapper.style.width = Width
-                refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
-
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
+
             },
             setColumns(){
                 this.headerColumns = JSON.parse(JSON.stringify(this.columns))
@@ -350,6 +398,7 @@
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
                 this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
+                this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
             },
             scrollGradient(part,e,scrollType){
                 let x ={
@@ -377,7 +426,7 @@
                 let scrollTop = this.$refs[part1].scrollTop
                 this.$refs[part2].scrollTop= scrollTop
             },
-            leftWrapperHover(e){
+            WrapperHover(e){
                 this.canIListen = e.type === 'mouseenter' ? false : true;
             }
         }
@@ -474,7 +523,7 @@
         &-header-main{
             width: 100%;
             position: absolute;
-            top: -12.3%;
+            top: 0;
             background-color: #f9f9f9;
             z-index: 3;
             &::-webkit-scrollbar{
@@ -489,7 +538,7 @@
         &-header-left{
             width: 100%;
             position: absolute;
-            top: -12.3%;
+            top: 0;
             left: 0;
             background-color: #f9f9f9;
             box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
@@ -503,6 +552,18 @@
             overflow: hidden;
             background-color: white;
             box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+        &-right{
+            position: absolute;
+            z-index: 2;
+            right: -1px;
+            top: 0;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
             &::-webkit-scrollbar{
                 display: none;
             }
