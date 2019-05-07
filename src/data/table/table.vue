@@ -1,6 +1,6 @@
 <template>
     <div style="position:relative;" ref="totalWrapper" >
-        <div  :class="{boxShadowNone:hiddenShadow}" class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+        <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow}" class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
                 <colgroup>
                     <col style="width: 60px">
@@ -68,7 +68,7 @@
                     <thead class="x-table-head" v-if="!columns[0].width">
                     <tr>
                         <th v-if="checkBoxOn">
-                            <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                            <input @change="onChangeAllItems" type="checkbox" ref="mainInput">
                         </th>
                         <th v-for="column in headerColumns"
                             :key="column.field">
@@ -245,9 +245,6 @@
                 hiddenShadow:true
             }
         },
-        // created(){
-        //     this.checkFixed()
-        // },
         mounted(){
             this.setColumns()
             this.checkFixed()
@@ -267,23 +264,25 @@
         watch:{
             selectedItems(){
                 let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
-                if(this.columns[0].width){
+                if(this.fixedLeft.length>0){
                     this.$refs.fixedInput.indeterminate = selectedStatus==='half'
                     this.$refs.fixedInput.checked = selectedStatus==='All'
                 }else{
-                    this.$refs.input.indeterminate = selectedStatus==='half'
-                    this.$refs.input.checked = selectedStatus==='All'
+                    this.$refs.fixedMainInput.indeterminate = selectedStatus==='half'
+                    this.$refs.fixedMainInput.checked = selectedStatus==='All'
                 }
             }
         },
         methods:{
             tableAddEventListener(){
+                if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
                     if(!this.canIListen)return
                     this.scrollGradient('main',e,'handle')
                 })
             },
             tableRemoveEventListener(){
+                if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 this.$refs.tableMainWrapper.removeEventListener('scroll',(e)=>{
                     if(!this.canIListen)return
                     this.scrollGradient('main',e,'handle')
@@ -294,13 +293,16 @@
                 this.$refs.tableMainWrapper.style.width = this.maxWidth +'px'
             },
             setHeaderToTop(){
-                let height = getComputedStyle(this.$refs.tableFixedHeaderWrapper).height
-                this.$refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
-                this.$refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
-                if(this.$refs.tableFixedHeaderWrapper){
-                    this.$refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
-                    this.$refs.tableFixedHeaderWrapper.style.top = '-'+height
+                let [height,refs] = [getComputedStyle(this.$refs.tableFixedHeaderWrapper).height,this.$refs]
+                refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
+                if(refs.tableFixedLeftHeaderWrapper){
+                    refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
                 }
+                if(refs.tableFixedHeaderWrapper){
+                    refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
+                    refs.tableFixedHeaderWrapper.style.top = '-'+height
+                }
+                refs.totalWrapper.style.top = height
             },
             checkFixed(){
                 this.columns.forEach((item,index)=>{
@@ -339,7 +341,6 @@
                     this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper'])
                 }
                 this.setTableWidth(refs,Width)
-                refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
             },
             setColumnFixedWidth(refs,Width,tableWrapperWidth,name){
                 let maxWidth = tableWrapperWidth+'px'
@@ -411,6 +412,7 @@
                 }
             },
             scrollGradient(part,e,scrollType){
+                if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 let x ={
                     left:[`tableLeftWrapper`,`tableMainWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
