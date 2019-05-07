@@ -108,6 +108,7 @@
                   @mouseenter="WrapperHover"
                   @mouseleave="WrapperHover"
                   :class="{boxShadowNone:hiddenShadow}"
+                   v-if="fixedLeft.length>0"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                     <colgroup>
@@ -139,6 +140,7 @@
                   @mouseenter="WrapperHover"
                   @mouseleave="WrapperHover"
                   :class="{boxShadowNone:hiddenShadow}"
+                  v-if="fixedRight.length>0"
             >
                 <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
                     <colgroup>
@@ -226,7 +228,7 @@
         computed:{
             fixedWrapperHeight(){
                 if(this.maxWidth){
-                    return `${this.maxHeight-14}`
+                    return `${this.maxHeight-15}`
                 }else{
                     return `${this.maxHeight}`
                 }
@@ -252,7 +254,9 @@
             this.setBodyData()
             this.$nextTick(()=>{
                 this.setHeaderToTop()
-                this.setFixedWidth()
+                if(this.fixedLeft.length>0||this.fixedRight.length>0){
+                    this.setFixedWidth()
+                }
                 this.setMainWidth()
             })
             this.tableAddEventListener()
@@ -273,18 +277,6 @@
             }
         },
         methods:{
-            setMainWidth(){
-                this.$refs.table.style.width = getComputedStyle(this.$refs.table).width
-                this.$refs.tableMainWrapper.style.width = this.maxWidth +'px'
-            },
-            setHeaderToTop(){
-                let height = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
-                console.log(height)
-                this.$refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
-                this.$refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
-                this.$refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
-                this.$refs.tableFixedHeaderWrapper.style.top = '-'+height
-            },
             tableAddEventListener(){
                 this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
                     if(!this.canIListen)return
@@ -296,6 +288,19 @@
                     if(!this.canIListen)return
                     this.scrollGradient('main',e,'handle')
                 })
+            },
+            setMainWidth(){
+                this.$refs.table.style.width = getComputedStyle(this.$refs.table).width
+                this.$refs.tableMainWrapper.style.width = this.maxWidth +'px'
+            },
+            setHeaderToTop(){
+                let height = getComputedStyle(this.$refs.tableFixedHeaderWrapper).height
+                this.$refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
+                this.$refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
+                if(this.$refs.tableFixedHeaderWrapper){
+                    this.$refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
+                    this.$refs.tableFixedHeaderWrapper.style.top = '-'+height
+                }
             },
             checkFixed(){
                 this.columns.forEach((item,index)=>{
@@ -397,8 +402,13 @@
                     mouseleave:''
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
-                this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
-                this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
+                if(this.fixedLeft.length>0){
+                    this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
+
+                }
+                if(this.fixedRight.length>0){
+                    this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
+                }
             },
             scrollGradient(part,e,scrollType){
                 let x ={

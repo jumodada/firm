@@ -6,7 +6,7 @@
                  :selected-items.sync="selected"
                  :defaultSort="defaultSort"
                  :stripe="false"
-                 maxHeight="300"
+                 maxHeight="320"
                  max-width="700"
         >
         </x-table>
