@@ -29,7 +29,7 @@
         <div class="x-table-header-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
                 <colgroup>
-                    <col style="width: 60px">
+                    <col v-if="checkBoxOn" style="width: 60px">
                     <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                 </colgroup>
                 <thead class="x-table-head">
@@ -62,7 +62,7 @@
                         @mouseleave="leftWrapperHover"
                 >
                     <colgroup>
-                        <col style="width:60px">
+                        <col v-if="checkBoxOn" style="width:60px">
                         <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead class="x-table-head" v-if="!columns[0].width">
@@ -111,7 +111,7 @@
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                     <colgroup>
-                        <col style="width: 60px">
+                        <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody>
@@ -280,8 +280,7 @@
                 })
             },
             setFixedWidth(){
-                let {width} = getComputedStyle(this.$refs.table)
-                let [tableLeftWrapperWidth,leftArr,totalWidth] = [0,[],0]
+                let [tableLeftWrapperWidth,leftArr,totalWidth,refs] = [0,[],0,this.$refs]
                 this.fixedLeft.forEach((item,index)=>{
                     totalWidth += item.width
                     if(item.fixed==='left'){
@@ -289,13 +288,17 @@
                         leftArr.push(index)
                     }
                 })
-                tableLeftWrapperWidth += 60 //按钮固定的宽度
-                 this.$refs.tableLeft.style.width = totalWidth+ 60+leftArr.length +'px'
-                 this.$refs.tableLeftWrapper.style.width = tableLeftWrapperWidth+'px'
-                 this.$refs.tableFixedLeftHeader.style.width = totalWidth+60+leftArr.length +'px'
-                 this.$refs.tableFixedLeftHeaderWrapper.style.width = tableLeftWrapperWidth+'px'
-                 this.$refs.wrapper.style.width = totalWidth+60+leftArr.length +'px'
-                 this.$refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
+                let Width = this.checkBoxOn?totalWidth+ 60 +leftArr.length +'px':totalWidth +leftArr.length +'px'
+                this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
+                let maxWidth = tableLeftWrapperWidth+'px'
+                refs.tableLeft.style.width = Width
+                refs.tableLeftWrapper.style.width = maxWidth
+                refs.tableFixedLeftHeader.style.width = Width
+                refs.tableFixedLeftHeaderWrapper.style.width = maxWidth
+                refs.tableFixedHeader.style.width = Width
+                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)+1+'px'
+                refs.wrapper.style.width = Width
+                refs.totalWrapper.style.top = getComputedStyle(this.$refs.tableFixedLeftHeaderWrapper).height
 
             },
             setBodyData(){
@@ -433,7 +436,7 @@
         }
         td,th{
             color:lighten(#515a6e,13.5%);
-            text-align: left;
+            text-align: center;
             padding: 13px;
             border-bottom: 1px solid #efefef;
         }
