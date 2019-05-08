@@ -8,7 +8,3 @@ title: Table表格
 <br/>
 <table-default></table-default>
 
-
-<br/>
-<br/>
-<br/>

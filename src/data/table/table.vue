@@ -242,7 +242,7 @@
                 fixedLeft:[],
                 fixedRight:[],
                 canIListen:true,
-                hiddenShadow:true
+                hiddenShadow:true,
             }
         },
         mounted(){
@@ -418,16 +418,13 @@
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
                 }
                 let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
-                if(scrollLeft===0){
-                    this.hiddenShadow = true
-                }else{
-                    this.hiddenShadow = false
-                }
+                this.hiddenShadow = scrollLeft === 0 ? true : false;
                 if(scrollType==='handle'){
                     let scrollTop = this.$refs[x[part][0]].scrollTop
                     this.$refs[x[part][1]].scrollTop= scrollTop
                     this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 }else{
+                    this.scrollTop = document.documentElement.scrollTop
                     this.$refs[x[part][1]].scrollTop += e.deltaY
                     setTimeout(()=>{
                         this.repairScrollTop(x[part][0],x[part][1])
