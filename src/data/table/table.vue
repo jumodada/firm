@@ -418,18 +418,16 @@
                     left:[`tableLeftWrapper`,`tableMainWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
                 }
-                let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
+                let [scrollLeft,ref] = [this.$refs.tableMainWrapper.scrollLeft,this.$refs]
                 this.hiddenShadow = scrollLeft === 0 ? true : false;
                 if(scrollType==='handle'){
-                    let scrollTop = this.$refs[x[part][0]].scrollTop
-                    this.$refs[x[part][1]].scrollTop= scrollTop
-                    this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
+                    let scrollTop = ref[x[part][0]].scrollTop
+                    ref[x[part][1]].scrollTop= scrollTop
+                    ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 }else{
-                    this.$refs[x[part][1]].scrollTop += e.deltaY
-                    this.$refs[x[part][0]].scrollTop += e.deltaY
-                   this.$nextTick(()=>{
-                       this.repairScrollTop(x[part][0],x[part][1])
-                   })
+                     ref[x[part][1]].scrollTop += e.deltaY
+                     ref[x[part][0]].scrollTop  += e.deltaY
+                     this.repairScrollTop(x[part][0],x[part][1])
                 }
             },
             repairScrollTop(part1,part2){
