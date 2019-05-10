@@ -52,10 +52,9 @@
                 </thead>
             </table>
         </div>
-        <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow}" class="x-table-header-right" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
+        <div  v-if="fixedRight.length>0" :class="{boxShadowNone:hiddenShadow}" class="x-table-header-right" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
                 <colgroup>
-                    <col style="width: 60px">
                     <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
                 </colgroup>
                 <thead class="x-table-head">
@@ -280,10 +279,6 @@
                 this.setMainWidth()
             })
             this.tableAddEventListener()
-            setTimeout(()=>{
-                console.log(this.fixedRight)
-                console.log(this.headerColumns)
-            },100)
         },
         beforeDestroy(){
             this.tableRemoveEventListener()
@@ -325,6 +320,9 @@
                 if(refs.tableFixedLeftHeaderWrapper){
                     refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
                 }
+                if(refs.tableFixedRightHeaderWrapper){
+                    refs.tableFixedRightHeaderWrapper.style.top = '-'+height
+                }
                 if(refs.tableFixedHeaderWrapper){
                     refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
                     refs.tableFixedHeaderWrapper.style.top = '-'+height
@@ -345,33 +343,53 @@
                         columnsCopy.unshift(item)
                         this.headerColumns.splice(index,1)
                         this.headerColumns.push(item)
-                        this.fixedRight.push(item)
+                        this.fixedRight = columnsCopy
                     }
                 })
+                console.log(this.fixedRight)
+                console.log(this.fixedLeft)
             },
             setFixedWidth(){
                 let [tableLeftWrapperWidth,tableRightWrapperWidth,leftArr,rightArr,totalWidth,refs] = [0,0,[],[],0,this.$refs]
-                this.fixedLeft.forEach((item,index)=>{
+                this.headerColumns.forEach((item,index)=>{
                     totalWidth += item.width
                     if(item.fixed==='left'){
                         tableLeftWrapperWidth += item.width
                         leftArr.push(index)
-                    }else if(item.fixed==='right'){
+                    }
+                    if(item.fixed==='right'){
                         tableRightWrapperWidth += item.width
                         rightArr.push(index)
                     }
                 })
-                let Width = this.checkBoxOn?totalWidth+ 60 +leftArr.length +'px':totalWidth +leftArr.length +'px'
-                let rightWidth = totalWidth +rightArr.length +'px'
-                this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
+                  let Width
+                    if(this.checkFixed){
+                        if(leftArr.length>0){
+                            Width =totalWidth+ 60 +leftArr.length +'px'
+                        }
+                        if(rightArr.length>0){
+                            Width =totalWidth+ 60 +rightArr.length +'px'
+                        }
+                    }else{
+                        if(leftArr.length>0){
+                            Width = totalWidth +leftArr.length +'px'
+                        }
+                        if(rightArr.length>0){
+                            Width = totalWidth +rightArr.length +'px'
+                        }
+                    }
                 if(leftArr.length>0){
+                    this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
                     this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
-                }else if(rightArr.length>0){
+                }
+                if(rightArr.length>0){
+                    let rightWidth = totalWidth +rightArr.length +'px'
                     this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper'])
                 }
                 this.setTableWidth(refs,Width)
             },
             setColumnFixedWidth(refs,Width,tableWrapperWidth,name){
+                console.log(name[2])
                 let maxWidth = tableWrapperWidth+'px'
                 refs[name[0]].style.width = Width
                 refs[name[1]].style.width = maxWidth
@@ -584,11 +602,11 @@
             box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
             z-index: 4;
         }
-        &-header-left{
+        &-header-right{
             width: 100%;
             position: absolute;
             top: 0;
-            right: 0;
+            right:0;
             background-color: #f9f9f9;
             box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
             z-index: 4;

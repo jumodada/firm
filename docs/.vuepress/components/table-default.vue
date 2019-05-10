@@ -28,7 +28,7 @@
                     {text:'价格',field:'price',sortBy:true,width:200},
                     {text:'年份',field:'year',sortBy:true,width:200},
                     {text:'简介',field:'introduction',sortBy:true,width:300},
-                    {text:'作者',field:'author',sortBy:true,width:200,fixed:'left'},
+                    {text:'作者',field:'author',sortBy:true,width:200,fixed:'right'},
                 ],
                 columns2:[
                     {text:'名字',field:'name'},
