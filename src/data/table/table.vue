@@ -52,9 +52,32 @@
                 </thead>
             </table>
         </div>
+        <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow}" class="x-table-header-right" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
+            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
+                <colgroup>
+                    <col style="width: 60px">
+                    <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
+                </colgroup>
+                <thead class="x-table-head">
+                <tr>
+                    <th v-for="column in fixedRight" :key="column.field">
+                        <div class="x-table-th">
+                            {{column.text}}
+                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
         <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
             <!--           主体-->
-            <div :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
+            <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
                 <table
                         class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
                         @wheel="scrollGradient('main',$event)"
@@ -155,7 +178,7 @@
                         <td v-if="numberVisible">{{index+1}}</td>
                         <template v-for="column in fixedRight">
                             <td :key="column.field">
-                                <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
+                                <span :style="{visibility:column.fixed==='right'?'':'hidden'}">{{item[column.field]}}</span>
                             </td>
                         </template>
                     </tr>
@@ -257,6 +280,10 @@
                 this.setMainWidth()
             })
             this.tableAddEventListener()
+            setTimeout(()=>{
+                console.log(this.fixedRight)
+                console.log(this.headerColumns)
+            },100)
         },
         beforeDestroy(){
             this.tableRemoveEventListener()
@@ -306,16 +333,18 @@
             },
             checkFixed(){
                 this.columns.forEach((item,index)=>{
-                    if(item.fixed){
-                        let columnsCopy = JSON.parse(JSON.stringify(this.columns))
+                    let columnsCopy = JSON.parse(JSON.stringify(this.columns))
+                    if(item.fixed==='left'){
                         columnsCopy.splice(index,1)
                         columnsCopy.unshift(item)
                         this.headerColumns.splice(index,1)
                         this.headerColumns.unshift(item)
                         this.fixedLeft = columnsCopy
                     }else if(item.fixed==='right'){
-                        let columnsCopy = JSON.parse(JSON.stringify(this.columns))
-                        columnsCopy.splice(index,1).unshift(item)
+                        columnsCopy.splice(index,1)
+                        columnsCopy.unshift(item)
+                        this.headerColumns.splice(index,1)
+                        this.headerColumns.push(item)
                         this.fixedRight.push(item)
                     }
                 })
@@ -431,8 +460,11 @@
                 }
             },
             repairScrollTop(part1,part2){
-                let scrollTop = this.$refs[part1].scrollTop
-                this.$refs[part2].scrollTop= scrollTop
+                clearTimeout(this.timer)
+                this.timer = setTimeout(()=>{
+                    let scrollTop = this.$refs[part1].scrollTop
+                    this.$refs[part2].scrollTop= scrollTop
+                },32)
             },
             WrapperHover(e){
                 this.canIListen = e.type === 'mouseenter' ? false : true;
@@ -552,6 +584,15 @@
             box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
             z-index: 4;
         }
+        &-header-left{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
+            z-index: 4;
+        }
         &-left{
             position: absolute;
             z-index: 2;
@@ -564,14 +605,18 @@
                 display: none;
             }
         }
+        &-main{
+            display: inline-block;
+            position: relative;
+        }
         &-right{
             position: absolute;
             z-index: 2;
-            right: -1px;
+            left: -1px;
             top: 0;
             overflow: hidden;
             background-color: white;
-            box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
+            box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
             &::-webkit-scrollbar{
                 display: none;
             }
