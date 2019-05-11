@@ -1,31 +1,5 @@
 <template>
-    <div style="position:relative;" ref="totalWrapper" >
-        <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow}" class="x-table-header-left" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
-            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
-                <colgroup>
-                    <col style="width: 60px">
-                    <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
-                </colgroup>
-                <thead class="x-table-head">
-                <tr>
-                    <th v-if="checkBoxOn">
-                        <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
-                    </th>
-                    <th v-for="column in fixedLeft" :key="column.field">
-                        <div class="x-table-th">
-                            {{column.text}}
-                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
-                            <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
-                           </span>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
-        </div>
+    <div style="position:relative;" ref="totalWrapper">
         <div class="x-table-header-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
                 <colgroup>
@@ -52,7 +26,9 @@
                 </thead>
             </table>
         </div>
-        <div  v-if="fixedRight.length>0" :class="{boxShadowNone:hiddenShadow}" class="x-table-header-right" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
+        <div  v-if="fixedRight.length>0"
+              :class="{boxShadowNone:false}"
+              class="x-table-header-right" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
                 <colgroup>
                     <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
@@ -87,7 +63,7 @@
                         <col v-if="checkBoxOn" style="width:60px">
                         <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
                     </colgroup>
-                    <thead class="x-table-head" v-if="!columns[0].width">
+                    <thead class="x-table-head">
                     <tr>
                         <th v-if="checkBoxOn">
                             <input @change="onChangeAllItems" type="checkbox" ref="mainInput">
@@ -129,39 +105,86 @@
                   @wheel="scrollGradient('left',$event)"
                   @mouseenter="WrapperHover"
                   @mouseleave="WrapperHover"
-                  :class="{boxShadowNone:hiddenShadow}"
+                  :class="{boxShadowNone:hiddenLeftShadow}"
                    v-if="fixedLeft.length>0"
             >
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
-                    <colgroup>
-                        <col v-if="checkBoxOn" style="width: 60px">
-                        <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
-                    </colgroup>
-                    <tbody>
-                    <tr v-for="(item,index) in bodyData" :key="item.key"
-                        @mouseenter="hoverChangeMain(index,$event)"
-                        @mouseleave="hoverChangeMain(index,$event)"
-                        ref="trLeft"
-                    >
-                        <th v-if="checkBoxOn">
-                            <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                        </th>
-                        <td v-if="numberVisible">{{index+1}}</td>
-                        <template v-for="column in fixedLeft">
-                            <td :key="column.field">
-                                <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
-                            </td>
-                        </template>
-                    </tr>
-                    </tbody>
-                </table>
+                <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenLeftShadow}" class="x-table-left-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+                    <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
+                        <colgroup>
+                            <col style="width: 60px">
+                            <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                        </colgroup>
+                        <thead class="x-table-head">
+                        <tr>
+                            <th v-if="checkBoxOn">
+                                <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
+                            </th>
+                            <th v-for="column in fixedLeft" :key="column.field">
+                                <div class="x-table-th">
+                                    {{column.text}}
+                                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="x-table-left-body"  ref="tableLeftWrapperBody">
+                    <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
+                        <colgroup>
+                            <col v-if="checkBoxOn" style="width: 60px">
+                            <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th v-if="checkBoxOn">
+                                <input @change="onChangeAllItems" type="checkbox" ref="mainInput">
+                            </th>
+                            <th v-for="column in fixedLeft"
+                                :key="column.field">
+                                <div class="x-table-th">
+                                    {{column.text}}
+                                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in bodyData" :key="item.key"
+                            @mouseenter="hoverChangeMain(index,$event)"
+                            @mouseleave="hoverChangeMain(index,$event)"
+                            ref="trLeft"
+                        >
+                            <th v-if="checkBoxOn">
+                                <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                            </th>
+                            <td v-if="numberVisible">{{index+1}}</td>
+                            <template v-for="column in fixedLeft">
+                                <td :key="column.field">
+                                    <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
+                                </td>
+                            </template>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!--  右边固定  -->
             <div class="x-table-right" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
                   @wheel="scrollGradient('left',$event)"
                   @mouseenter="WrapperHover"
                   @mouseleave="WrapperHover"
-                  :class="{boxShadowNone:hiddenShadow}"
+                  :class="{boxShadowNone:false}"
                   v-if="fixedRight.length>0"
             >
                 <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
@@ -264,7 +287,7 @@
                 fixedLeft:[],
                 fixedRight:[],
                 canIListen:true,
-                hiddenShadow:true,
+                hiddenLeftShadow:true,
             }
         },
         mounted(){
@@ -311,23 +334,26 @@
                 })
             },
             setMainWidth(){
-                this.$refs.table.style.width = getComputedStyle(this.$refs.table).width
-                this.$refs.tableMainWrapper.style.width = this.maxWidth +'px'
+                let [width,$refs] = [getComputedStyle(this.$refs.table).width,this.$refs]
+                $refs.table.style.width = width
+                $refs.wrapper.style.width = this.maxWidth +'px'
+                $refs.tableMainWrapper.style.width = this.maxWidth +'px'
+                $refs.totalWrapper.style.width = this.maxWidth +'px'
             },
             setHeaderToTop(){
                 let [height,refs] = [getComputedStyle(this.$refs.tableFixedHeaderWrapper).height,this.$refs]
                 refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
                 if(refs.tableFixedLeftHeaderWrapper){
-                    refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
+                    // refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
                 }
                 if(refs.tableFixedRightHeaderWrapper){
-                    refs.tableFixedRightHeaderWrapper.style.top = '-'+height
+                    //refs.tableFixedRightHeaderWrapper.style.top = '-'+height
                 }
                 if(refs.tableFixedHeaderWrapper){
                     refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
-                    refs.tableFixedHeaderWrapper.style.top = '-'+height
+                   // refs.tableFixedHeaderWrapper.style.top = '-'+height
                 }
-                refs.totalWrapper.style.top = height
+                //refs.totalWrapper.style.top = height
             },
             checkFixed(){
                 this.columns.forEach((item,index)=>{
@@ -346,8 +372,6 @@
                         this.fixedRight = columnsCopy
                     }
                 })
-                console.log(this.fixedRight)
-                console.log(this.fixedLeft)
             },
             setFixedWidth(){
                 let [tableLeftWrapperWidth,tableRightWrapperWidth,leftArr,rightArr,totalWidth,refs] = [0,0,[],[],0,this.$refs]
@@ -379,6 +403,7 @@
                         }
                     }
                 if(leftArr.length>0){
+                    this.$refs.tableLeftWrapper.style.height = this.maxHeight+'px'
                     this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
                     this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
                 }
@@ -466,7 +491,7 @@
                     main:[`tableMainWrapper`,`tableLeftWrapper`]
                 }
                 let [scrollLeft,ref] = [this.$refs.tableMainWrapper.scrollLeft,this.$refs]
-                this.hiddenShadow = scrollLeft === 0 ? true : false;
+                this.hiddenLeftShadow = scrollLeft === 0 ? true : false;
                 if(scrollType==='handle'){
                     let scrollTop = ref[x[part][0]].scrollTop
                     ref[x[part][1]].scrollTop= scrollTop
@@ -503,6 +528,7 @@
         border-left: 1px solid white;
         margin: 0;
         padding: 0;
+        display: inline-block;
         &.borderHidden{
             border-bottom: none;
         }
@@ -593,34 +619,38 @@
                 }
             }
         }
-        &-header-left{
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: #f9f9f9;
-            box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
-            z-index: 4;
-        }
         &-header-right{
             width: 100%;
             position: absolute;
             top: 0;
-            right:0;
+            right: 14px;
             background-color: #f9f9f9;
-            box-shadow: 6px 2px 6px -4px rgba(0,0,0,0.15);
+            box-shadow: -6px 2px 6px -4px rgba(0,0,0,0.15);
             z-index: 4;
         }
         &-left{
             position: absolute;
-            z-index: 2;
+            z-index: 4;
             left: -1px;
             top: 0;
-            overflow: hidden;
-            background-color: white;
             box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
+            background-color: white;
             &::-webkit-scrollbar{
                 display: none;
+            }
+            &-header{
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #f9f9f9;
+                z-index: 4;
+            }
+            &-body{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 4;
             }
         }
         &-main{
@@ -630,11 +660,11 @@
         &-right{
             position: absolute;
             z-index: 2;
-            left: -1px;
+            right: 15px;
             top: 0;
             overflow: hidden;
             background-color: white;
-            box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
+            box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
             &::-webkit-scrollbar{
                 display: none;
             }
