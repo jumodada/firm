@@ -26,30 +26,6 @@
                 </thead>
             </table>
         </div>
-        <div  v-if="fixedRight.length>0"
-              :class="{boxShadowNone:false}"
-              class="x-table-header-right" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
-            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
-                <colgroup>
-                    <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
-                </colgroup>
-                <thead class="x-table-head">
-                <tr>
-                    <th v-for="column in fixedRight" :key="column.field">
-                        <div class="x-table-th">
-                            {{column.text}}
-                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
-                            <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
-                           </span>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
-        </div>
         <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
             <!--           主体-->
             <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
@@ -180,32 +156,73 @@
                 </div>
             </div>
             <!--  右边固定  -->
-            <div class="x-table-right" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
-                  @wheel="scrollGradient('left',$event)"
-                  @mouseenter="WrapperHover"
-                  @mouseleave="WrapperHover"
-                  :class="{boxShadowNone:false}"
-                  v-if="fixedRight.length>0"
-            >
-                <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
-                    <colgroup>
-                        <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
-                    </colgroup>
-                    <tbody>
-                    <tr v-for="(item,index) in bodyData" :key="item.key"
-                        @mouseenter="hoverChangeMain(index,$event)"
-                        @mouseleave="hoverChangeMain(index,$event)"
-                        ref="trRight"
-                    >
-                        <td v-if="numberVisible">{{index+1}}</td>
-                        <template v-for="column in fixedRight">
-                            <td :key="column.field">
-                                <span :style="{visibility:column.fixed==='right'?'':'hidden'}">{{item[column.field]}}</span>
-                            </td>
-                        </template>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="x-table-right">
+                <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
+                     @wheel="scrollGradient('left',$event)"
+                     @mouseenter="WrapperHover"
+                     @mouseleave="WrapperHover"
+                     :class="{boxShadowNone:false}"
+                     v-if="fixedRight.length>0"
+                >
+                    <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
+                        <colgroup>
+                            <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th v-for="column in fixedRight" :key="column.field">
+                                <div class="x-table-th">
+                                    {{column.text}}
+                                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in bodyData" :key="item.key"
+                            @mouseenter="hoverChangeMain(index,$event)"
+                            @mouseleave="hoverChangeMain(index,$event)"
+                            ref="trRight"
+                        >
+                            <td v-if="numberVisible">{{index+1}}</td>
+                            <template v-for="column in fixedRight">
+                                <td :key="column.field">
+                                    <span :style="{visibility:column.fixed==='right'?'':'hidden'}">{{item[column.field]}}</span>
+                                </td>
+                            </template>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div  v-if="fixedRight.length>0"
+                      :class="{boxShadowNone:false}"
+                      class="x-table-right-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
+                    <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
+                        <colgroup>
+                            <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th v-for="column in fixedRight" :key="column.field">
+                                <div class="x-table-th">
+                                    {{column.text}}
+                                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <x-icon @click="sortUp(column.field)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                            <x-icon @click="sortDown(column.field)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                           </span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
             <loading v-if="loading" class="x-table-loading"></loading>
         </div>
@@ -339,6 +356,7 @@
                 $refs.wrapper.style.width = this.maxWidth +'px'
                 $refs.tableMainWrapper.style.width = this.maxWidth +'px'
                 $refs.totalWrapper.style.width = this.maxWidth +'px'
+                $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
             setHeaderToTop(){
                 let [height,refs] = [getComputedStyle(this.$refs.tableFixedHeaderWrapper).height,this.$refs]
@@ -619,15 +637,6 @@
                 }
             }
         }
-        &-header-right{
-            width: 100%;
-            position: absolute;
-            top: 0;
-            right: 14px;
-            background-color: #f9f9f9;
-            box-shadow: -6px 2px 6px -4px rgba(0,0,0,0.15);
-            z-index: 4;
-        }
         &-left{
            &-body{
                position: absolute;
@@ -653,15 +662,24 @@
             position: relative;
         }
         &-right{
-            position: absolute;
-            z-index: 2;
-            right: 15px;
-            top: 0;
-            overflow: hidden;
-            background-color: white;
-            box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
-            &::-webkit-scrollbar{
-                display: none;
+            &-body{
+                position: absolute;
+                z-index: 4;
+                right: 15px;
+                top: 0;
+                overflow: hidden;
+                background-color: white;
+                box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+            }
+            &-header{
+                position: absolute;
+                top: 0;
+                right: 15px;
+                background-color: #f9f9f9;
+                z-index: 4;
             }
         }
     }
