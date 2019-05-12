@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/table/table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/table/table.vue" afterDir="false" />
     </list>
@@ -23,30 +24,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+            <state relative-caret-position="500">
+              <caret line="433" column="62" selection-start-line="433" selection-start-column="62" selection-end-line="433" selection-end-column="62" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#table#0;n#div#0;n#div#3;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#thead#0;n#table#0;n#div#0;n#div#3;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#thead#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#23961#24086#0" />
-                <element signature="e#24104#24178#0" />
-                <element signature="e#24195#24390#0" />
-                <element signature="e#24401#24549#0" />
-                <element signature="e#24563#24721#0" />
-                <element signature="e#24732#24821#0" />
-                <element signature="e#24834#25222#0" />
-                <element signature="e#25240#25548#0" />
+                <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -55,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="30" column="80" selection-start-line="30" selection-start-column="80" selection-end-line="30" selection-end-column="80" />
+            <state relative-caret-position="236">
+              <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -84,12 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tableMainWrapper</find>
-      <find>headerColumns</find>
-      <find>setcolumn</find>
-      <find>setFixedWidth</find>
-      <find>setMainWidth</find>
-      <find>setHeaderToTop</find>
       <find>6</find>
       <find>WrapperHover</find>
       <find>hoverChangeMain</find>
@@ -108,12 +86,18 @@
       <find>13</find>
       <find>15</find>
       <find>boxShadowNone</find>
-      <find>hiddenShadow</find>
       <find>x-table-head</find>
       <find>x-table-left</find>
-      <find>tableLeftWrapper</find>
       <find>tableLeftWrapperBody</find>
       <find>totalWrapper</find>
+      <find>scrollGradient</find>
+      <find>hiddenLeftShadow</find>
+      <find>hiddenShadow</find>
+      <find>console.log</find>
+      <find>tableRightWrapper</find>
+      <find>tableFixedRightHeaderWrapper</find>
+      <find>tableLeftWrapper</find>
+      <find>tableFixedLeftHeader</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -439,12 +423,13 @@
       <workItem from="1557277840313" duration="8110000" />
       <workItem from="1557363892502" duration="11516000" />
       <workItem from="1557395436950" duration="466000" />
-      <workItem from="1557546457317" duration="12547000" />
+      <workItem from="1557546457317" duration="12639000" />
+      <workItem from="1557664043810" duration="6759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="868945000" />
+    <option name="totallyTimeSpent" value="875796000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,7 +449,7 @@
       <window_info id="Structure" order="2" sideWeight="0.5008157" side_tool="true" weight="0.18181819" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32923833" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283767" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -851,37 +836,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="30" column="80" selection-start-line="30" selection-start-column="80" selection-end-line="30" selection-end-column="80" />
+        <state relative-caret-position="236">
+          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+        <state relative-caret-position="500">
+          <caret line="433" column="62" selection-start-line="433" selection-start-column="62" selection-end-line="433" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#table#0;n#div#0;n#div#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#thead#0;n#table#0;n#div#0;n#div#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#thead#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#23961#24086#0" />
-            <element signature="e#24104#24178#0" />
-            <element signature="e#24195#24390#0" />
-            <element signature="e#24401#24549#0" />
-            <element signature="e#24563#24721#0" />
-            <element signature="e#24732#24821#0" />
-            <element signature="e#24834#25222#0" />
-            <element signature="e#25240#25548#0" />
+            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>

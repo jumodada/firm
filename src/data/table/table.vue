@@ -82,7 +82,7 @@
                        @wheel="scrollGradient('left',$event)"
                        @mouseenter="WrapperHover"
                        @mouseleave="WrapperHover"
-                       :class="{boxShadowNone:hiddenLeftShadow}"
+                       :class="{boxShadowNone:hiddenShadow.left}"
                        v-if="fixedLeft.length>0"
                 >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
@@ -128,7 +128,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenLeftShadow}" class="x-table-left-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+                <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow.left}" class="x-table-left-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
                         <colgroup>
                             <col style="width: 60px">
@@ -158,10 +158,10 @@
             <!--  右边固定  -->
             <div class="x-table-right">
                 <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
-                     @wheel="scrollGradient('left',$event)"
+                     @wheel="scrollGradient('right',$event)"
                      @mouseenter="WrapperHover"
                      @mouseleave="WrapperHover"
-                     :class="{boxShadowNone:false}"
+                     :class="{boxShadowNone:hiddenShadow.right}"
                      v-if="fixedRight.length>0"
                 >
                     <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
@@ -304,7 +304,10 @@
                 fixedLeft:[],
                 fixedRight:[],
                 canIListen:true,
-                hiddenLeftShadow:true,
+                hiddenShadow:{
+                    left:true,
+                    right:true
+                }
             }
         },
         mounted(){
@@ -359,19 +362,11 @@
                 $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
             setHeaderToTop(){
-                let [height,refs] = [getComputedStyle(this.$refs.tableFixedHeaderWrapper).height,this.$refs]
-                refs.tableFixedHeader.width = getComputedStyle(this.$refs.tableFixedHeader).width
-                if(refs.tableFixedLeftHeaderWrapper){
-                    // refs.tableFixedLeftHeaderWrapper.style.top = '-'+height
-                }
-                if(refs.tableFixedRightHeaderWrapper){
-                    //refs.tableFixedRightHeaderWrapper.style.top = '-'+height
-                }
+                let refs = this.$refs
+                refs.tableFixedHeader.width = getComputedStyle(refs.tableFixedHeader).width
                 if(refs.tableFixedHeaderWrapper){
                     refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
-                   // refs.tableFixedHeaderWrapper.style.top = '-'+height
                 }
-                //refs.totalWrapper.style.top = height
             },
             checkFixed(){
                 this.columns.forEach((item,index)=>{
@@ -432,12 +427,15 @@
                 this.setTableWidth(refs,Width)
             },
             setColumnFixedWidth(refs,Width,tableWrapperWidth,name){
-                console.log(name[2])
                 let maxWidth = tableWrapperWidth+'px'
                 refs[name[0]].style.width = Width
                 refs[name[1]].style.width = maxWidth
                 refs[name[2]].style.width = Width
-                refs[name[3]].style.width = maxWidth
+                if(this.maxHeight&&refs[name[0]]==='tableRight'){
+                    refs[name[3]].style.width = parseInt(maxWidth) +15+'px'
+                }else{
+                    refs[name[3]].style.width = maxWidth
+                }
             },
             setTableWidth(refs,Width){
                 refs.tableFixedHeader.style.width = Width
@@ -502,29 +500,47 @@
                 }
             },
             scrollGradient(part,e,scrollType){
-
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                     let x ={
-                    left:[`tableLeftWrapper`,`tableMainWrapper`],
-                    main:[`tableMainWrapper`,`tableLeftWrapper`]
+                    left:[`tableLeftWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
+                    main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
+                    right:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
                 }
-                let [scrollLeft,ref] = [this.$refs.tableMainWrapper.scrollLeft,this.$refs]
-                this.hiddenLeftShadow = scrollLeft === 0 ? true : false;
+                let ref = this.$refs
                 if(scrollType==='handle'){
                     let scrollTop = ref[x[part][0]].scrollTop
-                    ref[x[part][1]].scrollTop= scrollTop
+                    let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
+                    if(this.fixedLeft.length>0){
+                        ref[x[part][1]].scrollTop= scrollTop
+                        this.hiddenShadow.left = scrollLeft === 0 ? true : false;
+                    }
+                    if(this.fixedRight.length>0){
+                        let {width} = ref.table.style
+                        ref[x[part][2]].scrollTop= scrollTop
+                        this.hiddenShadow.right = parseInt(width)+15===scrollLeft+parseInt(this.maxWidth) ? true : false;
+                    }
                     ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 }else{
-                     ref[x[part][1]].scrollTop += e.deltaY
+                    if(this.fixedLeft.length>0){
+                        ref[x[part][1]].scrollTop += e.deltaY
+                    }
+                    if(this.fixedRight.length>0){
+                        ref[x[part][2]].scrollTop += e.deltaY
+                    }
                      ref[x[part][0]].scrollTop  += e.deltaY
-                     this.repairScrollTop(x[part][0],x[part][1])
+                     this.repairScrollTop(x[part][0],x[part][1],x[part][2])
                 }
             },
-            repairScrollTop(part1,part2){
+            repairScrollTop(part1,part2,part3){
                 clearTimeout(this.timer)
                 this.timer = setTimeout(()=>{
                     let scrollTop = this.$refs[part1].scrollTop
-                    this.$refs[part2].scrollTop= scrollTop
+                    if(this.fixedLeft.length>0){
+                        this.$refs[part2].scrollTop= scrollTop
+                    }
+                    if(this.fixedRight.length>0){
+                        this.$refs[part3].scrollTop= scrollTop
+                    }
                 },32)
             },
             WrapperHover(e){
@@ -677,7 +693,7 @@
             &-header{
                 position: absolute;
                 top: 0;
-                right: 15px;
+                right: 0;
                 background-color: #f9f9f9;
                 z-index: 4;
             }

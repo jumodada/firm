@@ -24,7 +24,7 @@
             return {
                 currentPage:1,
                 columns1:[
-                    {text:'名字',field:'name',sortBy:true,width:200},
+                    {text:'名字',field:'name',sortBy:true,width:200,fixed:'left'},
                     {text:'价格',field:'price',sortBy:true,width:200},
                     {text:'年份',field:'year',sortBy:true,width:200},
                     {text:'简介',field:'introduction',sortBy:true,width:300},
