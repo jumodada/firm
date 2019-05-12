@@ -59,7 +59,7 @@
                     </tr>
                     </thead>
                     <tbody ref="tBodyMain">
-                    <tr v-for="(item,index) in bodyData" :key="item.key"
+                    <tr v-for="(item,index) in bodyData" :key="index"
                         @mouseenter="hoverChangeMain(index,$event)"
                         @mouseleave="hoverChangeMain(index,$event)"
                         ref="trMain">
@@ -110,7 +110,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(item,index) in bodyData" :key="item.key"
+                        <tr v-for="(item,index) in bodyData" :key="index"
                             @mouseenter="hoverChangeMain(index,$event)"
                             @mouseleave="hoverChangeMain(index,$event)"
                             ref="trLeft"
@@ -184,7 +184,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(item,index) in bodyData" :key="item.key"
+                        <tr v-for="(item,index) in bodyData" :key="index"
                             @mouseenter="hoverChangeMain(index,$event)"
                             @mouseleave="hoverChangeMain(index,$event)"
                             ref="trRight"
@@ -306,7 +306,7 @@
                 canIListen:true,
                 hiddenShadow:{
                     left:true,
-                    right:true
+                    right:false
                 }
             }
         },

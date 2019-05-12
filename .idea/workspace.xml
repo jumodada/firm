@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/table/table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/table/table.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,13 +22,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="506" column="83" selection-start-line="506" selection-start-column="83" selection-end-line="506" selection-end-column="83" />
+            <state relative-caret-position="422">
+              <caret line="307" column="29" selection-start-line="307" selection-start-column="29" selection-end-line="307" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hoverChangeMain</find>
       <find>tableFixedLeftHeaderWrapper</find>
       <find>tableAddEventListener</find>
       <find>selectedItems</find>
@@ -75,7 +73,6 @@
       <find>watch</find>
       <find>xxx</find>
       <find>wheel</find>
-      <find>hover</find>
       <find>wrapper</find>
       <find>setmain</find>
       <find>14px</find>
@@ -97,6 +94,8 @@
       <find>tableFixedLeftHeader</find>
       <find>&amp;&amp;</find>
       <find>conso</find>
+      <find>hover</find>
+      <find>trLeft</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -423,12 +422,12 @@
       <workItem from="1557363892502" duration="11516000" />
       <workItem from="1557395436950" duration="466000" />
       <workItem from="1557546457317" duration="12639000" />
-      <workItem from="1557664043810" duration="8097000" />
+      <workItem from="1557664043810" duration="9378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="877134000" />
+    <option name="totallyTimeSpent" value="878415000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -842,13 +841,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="506" column="83" selection-start-line="506" selection-start-column="83" selection-end-line="506" selection-end-column="83" />
+        <state relative-caret-position="422">
+          <caret line="307" column="29" selection-start-line="307" selection-start-column="29" selection-end-line="307" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
