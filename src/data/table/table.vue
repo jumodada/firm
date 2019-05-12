@@ -431,7 +431,6 @@
                 refs[name[0]].style.width = Width
                 refs[name[1]].style.width = maxWidth
                 refs[name[2]].style.width = Width
-                console.log(refs[name[0]])
                 if(this.maxHeight&&name[0]==='tableRight'){
                     refs[name[3]].style.width = parseInt(maxWidth) +15+'px'
                 }else{
@@ -503,9 +502,9 @@
             scrollGradient(part,e,scrollType){
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                     let x ={
-                    left:[`tableLeftWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
+                    left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
-                    right:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
+                    right:[`tableRightWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
                 }
                 let ref = this.$refs
                 if(scrollType==='handle'){
