@@ -431,7 +431,8 @@
                 refs[name[0]].style.width = Width
                 refs[name[1]].style.width = maxWidth
                 refs[name[2]].style.width = Width
-                if(this.maxHeight&&refs[name[0]]==='tableRight'){
+                console.log(refs[name[0]])
+                if(this.maxHeight&&name[0]==='tableRight'){
                     refs[name[3]].style.width = parseInt(maxWidth) +15+'px'
                 }else{
                     refs[name[3]].style.width = maxWidth
