@@ -510,6 +510,7 @@
 <style lang="scss" scoped>
     *{
         transition: .3s all ease;
+        -webkit-font-smoothing: antialiased;
     }
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
@@ -604,6 +605,10 @@
             &::-webkit-scrollbar{
                 display: none;
             }
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
             table{
                 thead{
                     background-color: #f9f9f9;
@@ -621,6 +626,10 @@
                 &::-webkit-scrollbar{
                     display: none;
                 }
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                overflow: -moz-scrollbars-none;
             }
             &-header{
                 position: absolute;
@@ -646,6 +655,10 @@
                 &::-webkit-scrollbar{
                     display: none;
                 }
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                overflow: -moz-scrollbars-none;
             }
             &-header{
                 position: absolute;
