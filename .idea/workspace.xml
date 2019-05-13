@@ -22,15 +22,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="342" column="76" selection-start-line="342" selection-start-column="76" selection-end-line="342" selection-end-column="76" />
+            <state relative-caret-position="141">
+              <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,19 +84,19 @@
       <find>hiddenShadow</find>
       <find>console.log</find>
       <find>tableFixedRightHeaderWrapper</find>
-      <find>tableLeftWrapper</find>
       <find>tableFixedLeftHeader</find>
       <find>&amp;&amp;</find>
       <find>conso</find>
       <find>hover</find>
       <find>trLeft</find>
       <find>scroll</find>
-      <find>tableMainWrapper</find>
       <find>wheel</find>
       <find>canIListen</find>
       <find>WrapperHover</find>
-      <find>tableRightWrapper</find>
+      <find>tableLeftWrapper</find>
       <find>scrollGradient</find>
+      <find>tableRightWrapper</find>
+      <find>tableMainWrapper</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -424,12 +423,12 @@
       <workItem from="1557395436950" duration="466000" />
       <workItem from="1557546457317" duration="12639000" />
       <workItem from="1557664043810" duration="9521000" />
-      <workItem from="1557709093953" duration="5492000" />
+      <workItem from="1557709093953" duration="9760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="884050000" />
+    <option name="totallyTimeSpent" value="888318000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -457,10 +456,10 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32923833" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32961586" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5017618" side_tool="true" weight="0.54545456" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5024665" side_tool="true" weight="0.3482032" />
       <window_info anchor="bottom" id="Thumbnails" order="10" weight="0.32923833" />
       <window_info anchor="bottom" id="Quokka" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4982382" weight="0.3482032" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49753347" weight="0.3482032" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -843,15 +842,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="342" column="76" selection-start-line="342" selection-start-column="76" selection-end-line="342" selection-end-column="76" />
+        <state relative-caret-position="141">
+          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

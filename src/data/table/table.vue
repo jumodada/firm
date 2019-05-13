@@ -28,7 +28,10 @@
         </div>
         <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
             <!--           主体-->
-            <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
+            <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
+                 ref="tableMainWrapper"
+                 @scroll="scrollGradient('main')"
+            >
                 <table
                         class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
                 >
@@ -75,7 +78,9 @@
             </div>
             <!--  左边固定  -->
             <div class="x-table-left">
-                <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
+                <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
+                       ref="tableLeftWrapper"
+                       @scroll="scrollGradient('left')"
                        :class="{boxShadowNone:hiddenShadow.left}"
                        v-if="fixedLeft.length>0"
                 >
@@ -151,7 +156,9 @@
             </div>
             <!--  右边固定  -->
             <div class="x-table-right">
-                <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
+                <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
+                     ref="tableRightWrapper"
+                     @scroll="scrollGradient('right')"
                      :class="{boxShadowNone:hiddenShadow.right}"
                      v-if="fixedRight.length>0"
                 >
@@ -310,11 +317,10 @@
                     this.setFixedWidth()
                 }
                 this.setMainWidth()
-                this.tableAddEventListener()
             })
         },
         beforeDestroy(){
-            this.tableRemoveEventListener()
+
         },
         watch:{
             selectedItems(){
@@ -329,38 +335,6 @@
             }
         },
         methods:{
-            tableAddEventListener(){
-                if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
-                this.$refs.tableMainWrapper.addEventListener('scroll',()=>{
-                    this.scrollGradient('main')
-                })
-               if(this.fixedLeft.length>0){
-                   this.$refs.tableLeftWrapper.addEventListener('scroll',()=>{
-                       this.scrollGradient('left')
-                   })
-               }
-                if(this.fixedRight.length>0){
-                    this.$refs.tableRightWrapper.addEventListener('scroll',()=>{
-                        this.scrollGradient('right')
-                    })
-                }
-            },
-            tableRemoveEventListener(){
-                if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
-                this.$refs.tableMainWrapper.removeEventListener('scroll',(e)=>{
-                    this.scrollGradient('main')
-                })
-                if(this.fixedLeft.length>0){
-                    this.$refs.tableLeftWrapper.removeEventListener('scroll',(e)=>{
-                        this.scrollGradient('left')
-                    })
-                }
-                if(this.fixedRight.length>0){
-                    this.$refs.tableRightWrapper.removeEventListener('scroll',(e)=>{
-                        this.scrollGradient('right')
-                    })
-                }
-            },
             setMainWidth(){
                 let [width,$refs] = [getComputedStyle(this.$refs.table).width,this.$refs]
                 $refs.table.style.width = width
@@ -508,31 +482,29 @@
                 }
             },
             scrollGradient(part){
+                console.log(part)
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
-                    let x ={
+                    let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
                     right:[`tableRightWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
-                }
+                    }
                 let ref = this.$refs
-                let scrollTop = ref[x[part][0]].scrollTop
-                let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
-                if(scrollLeft>0){
+                let [scrollTop,scrollLeft] = [ref[x[part][0]].scrollTop,this.$refs.tableMainWrapper.scrollLeft]
                     if(this.fixedLeft.length>0){
-                        this.hiddenShadow.left = scrollLeft < 4 ? true : false;
+                        this.hiddenShadow.left = scrollLeft === 0 ? true : false;
                     }
                     if(this.fixedRight.length>0){
                         let {width} = ref.table.style
                         this.hiddenShadow.right = parseInt(width)+15===scrollLeft+parseInt(this.maxWidth) ? true : false;
                     }
                     ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-                }else{
-                    if(this.fixedLeft.length>0){
-                        ref[x[part][1]].scrollTop = scrollTop
-                    }
-                    if(this.fixedRight.length>0){
-                        ref[x[part][2]].scrollTop = scrollTop
-                    }
+
+                if(this.fixedLeft.length>0){
+                     ref[x[part][1]].scrollTop = scrollTop
+                }
+                if(this.fixedRight.length>0){
+                     ref[x[part][2]].scrollTop = scrollTop
                 }
             }
         }
