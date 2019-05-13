@@ -22,15 +22,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="503" column="17" selection-start-line="503" selection-start-column="17" selection-end-line="503" selection-end-column="17" />
+            <state relative-caret-position="431">
+              <caret line="309" column="18" lean-forward="true" selection-start-line="309" selection-start-column="18" selection-end-line="309" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -38,6 +40,21 @@
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#13702#13759#0" expanded="true" />
+                <element signature="e#13952#15157#0" />
+                <element signature="e#16218#16814#0" />
+                <element signature="e#18435#20426#0" />
+                <element signature="e#20494#20950#0" />
+                <element signature="e#20989#21201#0" />
+                <element signature="e#21228#21313#0" />
+                <element signature="e#21339#21432#0" />
+                <element signature="e#21462#21564#0" />
+                <element signature="e#21602#22181#0" />
+                <element signature="e#22214#22354#0" />
+                <element signature="e#22394#22894#0" />
+                <element signature="e#22921#22986#0" />
+                <element signature="e#23015#23081#0" />
+                <element signature="e#23119#23643#0" />
+                <element signature="e#25089#25121#0" />
               </folding>
             </state>
           </provider>
@@ -75,11 +92,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setmain</find>
-      <find>14px</find>
       <find>14</find>
       <find>13</find>
-      <find>15</find>
       <find>boxShadowNone</find>
       <find>x-table-head</find>
       <find>x-table-left</find>
@@ -101,10 +115,13 @@
       <find>tableRightWrapper</find>
       <find>tableMainWrapper</find>
       <find>@scroll</find>
-      <find>scrollGradient</find>
       <find>xxx</find>
-      <find>scroll</find>
       <find>header-main</find>
+      <find>scroll</find>
+      <find>scrollGradient</find>
+      <find>@sc</find>
+      <find>hoverToggleArea</find>
+      <find>15</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -431,12 +448,12 @@
       <workItem from="1557395436950" duration="466000" />
       <workItem from="1557546457317" duration="12639000" />
       <workItem from="1557664043810" duration="9521000" />
-      <workItem from="1557709093953" duration="14771000" />
+      <workItem from="1557709093953" duration="19217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="893329000" />
+    <option name="totallyTimeSpent" value="897775000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -796,13 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="137" column="28" lean-forward="true" selection-start-line="137" selection-start-column="28" selection-end-line="137" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -848,17 +858,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exhibition/popover.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="178" column="31" lean-forward="true" selection-start-line="178" selection-start-column="31" selection-end-line="178" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="503" column="17" selection-start-line="503" selection-start-column="17" selection-end-line="503" selection-end-column="17" />
+        <state relative-caret-position="431">
+          <caret line="309" column="18" lean-forward="true" selection-start-line="309" selection-start-column="18" selection-end-line="309" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -866,6 +885,21 @@
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#13702#13759#0" expanded="true" />
+            <element signature="e#13952#15157#0" />
+            <element signature="e#16218#16814#0" />
+            <element signature="e#18435#20426#0" />
+            <element signature="e#20494#20950#0" />
+            <element signature="e#20989#21201#0" />
+            <element signature="e#21228#21313#0" />
+            <element signature="e#21339#21432#0" />
+            <element signature="e#21462#21564#0" />
+            <element signature="e#21602#22181#0" />
+            <element signature="e#22214#22354#0" />
+            <element signature="e#22394#22894#0" />
+            <element signature="e#22921#22986#0" />
+            <element signature="e#23015#23081#0" />
+            <element signature="e#23119#23643#0" />
+            <element signature="e#25089#25121#0" />
           </folding>
         </state>
       </provider>

@@ -31,6 +31,7 @@
             <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
                  ref="tableMainWrapper"
                  @scroll="scrollGradient('main')"
+                 @mouseenter="hoverToggleArea"
             >
                 <table
                         class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
@@ -81,6 +82,7 @@
                 <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                        ref="tableLeftWrapper"
                        @scroll="scrollGradient('left')"
+                       @mouseenter="hoverToggleArea"
                        :class="{boxShadowNone:hiddenShadow.left}"
                        v-if="fixedLeft.length>0"
                 >
@@ -159,6 +161,7 @@
                 <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                      ref="tableRightWrapper"
                      @scroll="scrollGradient('right')"
+                     @mouseenter="hoverToggleArea"
                      :class="{boxShadowNone:hiddenShadow.right}"
                      v-if="fixedRight.length>0"
                 >
@@ -288,7 +291,7 @@
         computed:{
             fixedWrapperHeight(){
                 if(this.maxWidth){
-                    return `${this.maxHeight-15}`
+                    return `${this.maxHeight-16}`
                 }else{
                     return `${this.maxHeight}`
                 }
@@ -304,7 +307,8 @@
                 hiddenShadow:{
                     left:true,
                     right:false
-                }
+                },
+                whereAreYouHover:''
             }
         },
         mounted(){
@@ -479,6 +483,7 @@
                 }
             },
             scrollGradient(part){
+                if(part!==this.whereAreYouHover)return
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
@@ -497,11 +502,32 @@
                 ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 if(this.fixedLeft.length>0){
                     ref[x[part][1]].scrollTop = scrollTop
-
                 }
                 if(this.fixedRight.length>0){
                     ref[x[part][2]].scrollTop = scrollTop
                 }
+                clearTimeout(this.timer)
+                this.timer = setTimeout(()=> {
+                    this.repairScrollTop(x[part][0], x[part][1], x[part][2])
+                },91)
+            },
+            repairScrollTop(part1,part2,part3){
+                    let scrollTop = this.$refs[part1].scrollTop
+                    if(this.fixedLeft.length>0){
+                        this.$refs[part2].scrollTop= scrollTop
+                    }
+                    if(this.fixedRight.length>0){
+                        this.$refs[part3].scrollTop= scrollTop
+                    }
+            },
+            hoverToggleArea(e){
+               if(e.target.className.indexOf('left')>-1){
+                   this.whereAreYouHover = 'left'
+               }else if(e.target.className.indexOf('right')>-1){
+                   this.whereAreYouHover = 'right'
+               }else if(e.target.className.indexOf('main')>-1){
+                   this.whereAreYouHover = 'main'
+               }
             }
         }
     }
