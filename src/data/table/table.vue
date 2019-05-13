@@ -31,9 +31,6 @@
             <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableMainWrapper">
                 <table
                         class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
-                        @wheel="scrollGradient('main',$event)"
-                        @mouseenter="WrapperHover"
-                        @mouseleave="WrapperHover"
                 >
                     <colgroup>
                         <col v-if="checkBoxOn" style="width:60px">
@@ -79,9 +76,6 @@
             <!--  左边固定  -->
             <div class="x-table-left">
                 <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableLeftWrapper"
-                       @wheel="scrollGradient('left',$event)"
-                       @mouseenter="WrapperHover"
-                       @mouseleave="WrapperHover"
                        :class="{boxShadowNone:hiddenShadow.left}"
                        v-if="fixedLeft.length>0"
                 >
@@ -158,9 +152,6 @@
             <!--  右边固定  -->
             <div class="x-table-right">
                 <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}" ref="tableRightWrapper"
-                     @wheel="scrollGradient('right',$event)"
-                     @mouseenter="WrapperHover"
-                     @mouseleave="WrapperHover"
                      :class="{boxShadowNone:hiddenShadow.right}"
                      v-if="fixedRight.length>0"
                 >
@@ -303,7 +294,6 @@
                 headerColumns: {},
                 fixedLeft:[],
                 fixedRight:[],
-                canIListen:true,
                 hiddenShadow:{
                     left:true,
                     right:false
@@ -320,8 +310,8 @@
                     this.setFixedWidth()
                 }
                 this.setMainWidth()
+                this.tableAddEventListener()
             })
-            this.tableAddEventListener()
         },
         beforeDestroy(){
             this.tableRemoveEventListener()
@@ -342,16 +332,34 @@
             tableAddEventListener(){
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
-                    if(!this.canIListen)return
-                    this.scrollGradient('main',e,'handle')
+                    this.scrollGradient('main',e)
                 })
+               if(this.fixedLeft.length>0){
+                   this.$refs.tableLeftWrapper.addEventListener('scroll',(e)=>{
+                       this.scrollGradient('left',e)
+                   })
+               }
+                if(this.fixedRight.length>0){
+                    this.$refs.tableRightWrapper.addEventListener('scroll',(e)=>{
+                        this.scrollGradient('right',e)
+                    })
+                }
             },
             tableRemoveEventListener(){
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 this.$refs.tableMainWrapper.removeEventListener('scroll',(e)=>{
-                    if(!this.canIListen)return
                     this.scrollGradient('main',e,'handle')
                 })
+                if(this.fixedLeft.length>0){
+                    this.$refs.tableLeftWrapper.removeEventListener('scroll',(e)=>{
+                        this.scrollGradient('left',e)
+                    })
+                }
+                if(this.fixedRight.length>0){
+                    this.$refs.tableRightWrapper.removeEventListener('scroll',(e)=>{
+                        this.scrollGradient('right',e)
+                    })
+                }
             },
             setMainWidth(){
                 let [width,$refs] = [getComputedStyle(this.$refs.table).width,this.$refs]
@@ -507,8 +515,8 @@
                     right:[`tableRightWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
                 }
                 let ref = this.$refs
+                let scrollTop = ref[x[part][0]].scrollTop
                 if(scrollType==='handle'){
-                    let scrollTop = ref[x[part][0]].scrollTop
                     let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
                     if(this.fixedLeft.length>0){
                         ref[x[part][1]].scrollTop= scrollTop
@@ -522,29 +530,12 @@
                     ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 }else{
                     if(this.fixedLeft.length>0){
-                        ref[x[part][1]].scrollTop += e.deltaY
+                        ref[x[part][1]].scrollTop = scrollTop
                     }
                     if(this.fixedRight.length>0){
-                        ref[x[part][2]].scrollTop += e.deltaY
+                        ref[x[part][2]].scrollTop = scrollTop
                     }
-                     ref[x[part][0]].scrollTop  += e.deltaY
-                     this.repairScrollTop(x[part][0],x[part][1],x[part][2])
                 }
-            },
-            repairScrollTop(part1,part2,part3){
-                clearTimeout(this.timer)
-                this.timer = setTimeout(()=>{
-                    let scrollTop = this.$refs[part1].scrollTop
-                    if(this.fixedLeft.length>0){
-                        this.$refs[part2].scrollTop= scrollTop
-                    }
-                    if(this.fixedRight.length>0){
-                        this.$refs[part3].scrollTop= scrollTop
-                    }
-                },32)
-            },
-            WrapperHover(e){
-                this.canIListen = e.type === 'mouseenter' ? false : true;
             }
         }
     }
