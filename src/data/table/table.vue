@@ -331,33 +331,33 @@
         methods:{
             tableAddEventListener(){
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
-                this.$refs.tableMainWrapper.addEventListener('scroll',(e)=>{
-                    this.scrollGradient('main',e)
+                this.$refs.tableMainWrapper.addEventListener('scroll',()=>{
+                    this.scrollGradient('main')
                 })
                if(this.fixedLeft.length>0){
-                   this.$refs.tableLeftWrapper.addEventListener('scroll',(e)=>{
-                       this.scrollGradient('left',e)
+                   this.$refs.tableLeftWrapper.addEventListener('scroll',()=>{
+                       this.scrollGradient('left')
                    })
                }
                 if(this.fixedRight.length>0){
-                    this.$refs.tableRightWrapper.addEventListener('scroll',(e)=>{
-                        this.scrollGradient('right',e)
+                    this.$refs.tableRightWrapper.addEventListener('scroll',()=>{
+                        this.scrollGradient('right')
                     })
                 }
             },
             tableRemoveEventListener(){
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 this.$refs.tableMainWrapper.removeEventListener('scroll',(e)=>{
-                    this.scrollGradient('main',e,'handle')
+                    this.scrollGradient('main')
                 })
                 if(this.fixedLeft.length>0){
                     this.$refs.tableLeftWrapper.removeEventListener('scroll',(e)=>{
-                        this.scrollGradient('left',e)
+                        this.scrollGradient('left')
                     })
                 }
                 if(this.fixedRight.length>0){
                     this.$refs.tableRightWrapper.removeEventListener('scroll',(e)=>{
-                        this.scrollGradient('right',e)
+                        this.scrollGradient('right')
                     })
                 }
             },
@@ -507,7 +507,7 @@
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
-            scrollGradient(part,e,scrollType){
+            scrollGradient(part){
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                     let x ={
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
@@ -516,15 +516,13 @@
                 }
                 let ref = this.$refs
                 let scrollTop = ref[x[part][0]].scrollTop
-                if(scrollType==='handle'){
-                    let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
+                let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
+                if(scrollLeft>0){
                     if(this.fixedLeft.length>0){
-                        ref[x[part][1]].scrollTop= scrollTop
-                        this.hiddenShadow.left = scrollLeft === 0 ? true : false;
+                        this.hiddenShadow.left = scrollLeft < 4 ? true : false;
                     }
                     if(this.fixedRight.length>0){
                         let {width} = ref.table.style
-                        ref[x[part][2]].scrollTop= scrollTop
                         this.hiddenShadow.right = parseInt(width)+15===scrollLeft+parseInt(this.maxWidth) ? true : false;
                     }
                     ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
