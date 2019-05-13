@@ -35,7 +35,7 @@
                     {text:'价格',field:'price'}
                 ],
                 data:[
-                    {key:1,name:'JavaScript',price:80,year:12,introduction:'               ',author:'鲁迅'},
+                    {key:1,name:'JavaScript',price:80,year:12,introduction:'   fgfgfhh ',author:'鲁迅'},
                     {key:2,name:'C语言教程',price:100,year:2,introduction:'     sadasd             ',author:'周树人'},
                     {key:3,name:'Java编程思想',price:60,year:31,introduction:'     dds               ',author:'迅哥'},
                     {key:4,name:'Python从入门到精通',price:50,year:43,introduction:'    fgfg             ',author:'索子'},

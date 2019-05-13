@@ -320,7 +320,6 @@
             })
         },
         beforeDestroy(){
-
         },
         watch:{
             selectedItems(){
@@ -381,22 +380,22 @@
                         rightArr.push(index)
                     }
                 })
-                  let Width
-                    if(this.checkFixed){
-                        if(leftArr.length>0){
-                            Width =totalWidth+ 60 +leftArr.length +'px'
-                        }
-                        if(rightArr.length>0){
-                            Width =totalWidth+ 60 +rightArr.length +'px'
-                        }
-                    }else{
-                        if(leftArr.length>0){
-                            Width = totalWidth +leftArr.length +'px'
-                        }
-                        if(rightArr.length>0){
-                            Width = totalWidth +rightArr.length +'px'
-                        }
+                let Width
+                if(this.checkFixed){
+                    if(leftArr.length>0){
+                        Width =totalWidth+ 60 +leftArr.length +'px'
                     }
+                    if(rightArr.length>0){
+                        Width =totalWidth+ 60 +rightArr.length +'px'
+                    }
+                }else{
+                    if(leftArr.length>0){
+                        Width = totalWidth +leftArr.length +'px'
+                    }
+                    if(rightArr.length>0){
+                        Width = totalWidth +rightArr.length +'px'
+                    }
+                }
                 if(leftArr.length>0){
                     this.$refs.tableLeftWrapper.style.height = this.maxHeight+'px'
                     this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
@@ -426,7 +425,6 @@
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
-
             },
             setColumns(){
                 this.headerColumns = JSON.parse(JSON.stringify(this.columns))
@@ -475,36 +473,34 @@
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
                 if(this.fixedLeft.length>0){
                     this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
-
                 }
                 if(this.fixedRight.length>0){
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
             scrollGradient(part){
-                console.log(part)
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
-                    let x = {
+                let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
                     right:[`tableRightWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
-                    }
+                }
                 let ref = this.$refs
                 let [scrollTop,scrollLeft] = [ref[x[part][0]].scrollTop,this.$refs.tableMainWrapper.scrollLeft]
-                    if(this.fixedLeft.length>0){
-                        this.hiddenShadow.left = scrollLeft === 0 ? true : false;
-                    }
-                    if(this.fixedRight.length>0){
-                        let {width} = ref.table.style
-                        this.hiddenShadow.right = parseInt(width)+15===scrollLeft+parseInt(this.maxWidth) ? true : false;
-                    }
-                    ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-
                 if(this.fixedLeft.length>0){
-                     ref[x[part][1]].scrollTop = scrollTop
+                    this.hiddenShadow.left = scrollLeft === 0 ? true : false;
                 }
                 if(this.fixedRight.length>0){
-                     ref[x[part][2]].scrollTop = scrollTop
+                    let {width} = ref.table.style
+                    this.hiddenShadow.right = parseInt(width)+15===scrollLeft+parseInt(this.maxWidth) ? true : false;
+                }
+                ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
+                if(this.fixedLeft.length>0){
+                    ref[x[part][1]].scrollTop = scrollTop
+
+                }
+                if(this.fixedRight.length>0){
+                    ref[x[part][2]].scrollTop = scrollTop
                 }
             }
         }
@@ -615,25 +611,25 @@
             }
         }
         &-left{
-           &-body{
-               position: absolute;
-               z-index: 4;
-               left: -1px;
-               top: 0;
-               box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
-               background-color: white;
-               &::-webkit-scrollbar{
-                   display: none;
-               }
-           }
-             &-header{
-               position: absolute;
-               top: 0;
-               left: -1px;
-               background-color: #f9f9f9;
-               z-index: 4;
-           }
-       }
+            &-body{
+                position: absolute;
+                z-index: 4;
+                left: -1px;
+                top: 0;
+                box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
+                background-color: white;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+            }
+            &-header{
+                position: absolute;
+                top: 0;
+                left: -1px;
+                background-color: #f9f9f9;
+                z-index: 4;
+            }
+        }
         &-main{
             display: inline-block;
             position: relative;
