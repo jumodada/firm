@@ -7,7 +7,7 @@
                  :defaultSort="defaultSort"
                  :stripe="false"
                  maxHeight="308"
-                 max-width="700"
+                 max-width="900"
         >
         </x-table>
     </div>
@@ -23,12 +23,13 @@
         data(){
             return {
                 currentPage:1,
+
                 columns1:[
-                    {text:'名字',field:'name',sortBy:true,width:200},
-                    {text:'价格',field:'price',sortBy:true,width:200},
-                    {text:'年份',field:'year',sortBy:true,width:200,fixed:'right'},
-                    {text:'简介',field:'introduction',sortBy:true,width:300,fixed:'left'},
-                    {text:'作者',field:'author',sortBy:true,width:200},
+                    {text:'名字',field:'name',sortBy:true,width:200,fixed:'left'},
+                    {text:'价格',field:'price',sortBy:true,width:200,fixed:'right'},
+                    {text:'年份',field:'year',sortBy:true,width:200},
+                    {text:'简介',field:'introduction',sortBy:true,width:300},
+                    {text:'作者',field:'author',sortBy:true,width:200,fixed:'left'},
                 ],
                 columns2:[
                     {text:'名字',field:'name'},

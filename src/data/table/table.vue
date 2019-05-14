@@ -212,12 +212,12 @@
                             <th v-for="column in fixedRight" :key="column.field">
                                 <div class="x-table-th">
                                     {{column.text}}
-                                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
+                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
-                           </span>
+                            </span>
                                 </div>
                             </th>
                         </tr>
