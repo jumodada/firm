@@ -4,7 +4,7 @@
             <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
                 <colgroup>
                     <col v-if="checkBoxOn" style="width: 60px">
-                    <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+                    <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                 </colgroup>
                 <thead class="x-table-head">
                 <tr>
@@ -27,7 +27,7 @@
             </table>
         </div>
         <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
-            <!--           主体-->
+            <!--  主体-->
             <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
                  ref="tableMainWrapper"
                  @scroll="scrollGradient('main')"
@@ -38,7 +38,7 @@
                 >
                     <colgroup>
                         <col v-if="checkBoxOn" style="width:60px">
-                        <col v-for="column in headerColumns" :key="column.field" :style="{width:`${column.width}px`}">
+                        <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead class="x-table-head">
                     <tr>
@@ -133,7 +133,7 @@
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
                         <colgroup>
                             <col style="width: 60px">
-                            <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                            <col v-for="(column,index) in fixedLeft" :key="index" :style="{width:`${column.width}px`}">
                         </colgroup>
                         <thead>
                         <tr>
@@ -167,7 +167,7 @@
                 >
                     <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
                         <colgroup>
-                            <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
+                            <col v-for="(column,index) in fixedRight" :key="index" :style="{width:`${column.width}px`}">
                         </colgroup>
                         <thead>
                         <tr>
@@ -205,7 +205,7 @@
                       class="x-table-right-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
                         <colgroup>
-                            <col v-for="column in fixedRight" :key="column.field" :style="{width:`${column.width}px`}">
+                            <col v-for="(column,index) in fixedRight" :key="index" :style="{width:`${column.width}px`}">
                         </colgroup>
                         <thead>
                         <tr>
@@ -313,7 +313,7 @@
         },
         mounted(){
             this.setColumns()
-            this.checkFixed()
+             this.checkFixed()
             this.setBodyData()
             this.$nextTick(()=>{
                 this.setHeaderToTop()
@@ -359,15 +359,13 @@
                     if(item.fixed==='left'){
                         columnsCopy.splice(index,1)
                         columnsCopy.unshift(item)
-                        this.headerColumns.splice(index,1)
-                        this.headerColumns.unshift(item)
                         this.fixedLeft = columnsCopy
+                        this.headerColumns = columnsCopy
                     }else if(item.fixed==='right'){
                         columnsCopy.splice(index,1)
                         columnsCopy.unshift(item)
-                        this.headerColumns.splice(index,1)
-                        this.headerColumns.push(item)
                         this.fixedRight = columnsCopy
+                        this.headerColumns = columnsCopy
                     }
                 })
             },
