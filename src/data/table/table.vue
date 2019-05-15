@@ -171,7 +171,7 @@
                         </colgroup>
                         <thead>
                         <tr>
-                            <th v-for="column in fixedRight" :key="column.field">
+                            <th v-for="(column,index) in fixedRight" :key="index">
                                 <div class="x-table-th">
                                     {{column.text}}
                                     <span class="x-table-th-icon" v-if="column.sortBy=== true">
@@ -291,7 +291,7 @@
         computed:{
             fixedWrapperHeight(){
                 if(this.maxWidth){
-                    return `${this.maxHeight-16}`
+                    return `${this.maxHeight-15}`
                 }else{
                     return `${this.maxHeight}`
                 }
@@ -322,8 +322,6 @@
                 }
                 this.setMainWidth()
             })
-        },
-        beforeDestroy(){
         },
         watch:{
             selectedItems(){
@@ -507,7 +505,7 @@
                 clearTimeout(this.timer)
                 this.timer = setTimeout(()=> {
                     this.repairScrollTop(x[part][0], x[part][1], x[part][2])
-                },91)
+                },99)
             },
             repairScrollTop(part1,part2,part3){
                     let scrollTop = this.$refs[part1].scrollTop

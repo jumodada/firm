@@ -161,9 +161,14 @@
             background-color: white;
             overflow-x: hidden;
             overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
             &::-webkit-scrollbar{
               display: none;
             }
+
             &.size-big{
                 height: 210px;
                 padding:0.23em 0.45em;
