@@ -1,64 +1,46 @@
 <template>
-    <div style="position:relative;" ref="totalWrapper">
-        <div class="x-table-header-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}" ref="tableFixedHeaderWrapper">
-            <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
-                <colgroup>
-                    <col v-if="checkBoxOn" style="width: 60px">
-                    <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
-                </colgroup>
-                <thead class="x-table-head">
-                <tr>
-                    <th v-if="checkBoxOn">
-                        <input @change="onChangeAllItems" type="checkbox" ref="fixedMainInput">
-                    </th>
-                    <th v-for="column in headerColumns" :key="column.field">
-                        <div class="x-table-th">
-                            {{column.text}}
-                            <span class="x-table-th-icon" v-if="column.sortBy=== true">
+    <div style="position:relative;overflow: hidden" ref="totalWrapper">
+        <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
+            <!--  主体-->
+            <div class="x-table-main"
+            >
+                <div class="x-table-main-header" ref="tableFixedHeaderWrapper">
+                    <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
+                        <colgroup>
+                            <col v-if="checkBoxOn" style="width: 60px">
+                            <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
+                        </colgroup>
+                        <thead class="x-table-head">
+                        <tr>
+                            <th v-if="checkBoxOn">
+                                <input @change="onChangeAllItems" type="checkbox" ref="fixedMainInput">
+                            </th>
+                            <th v-for="column in headerColumns" :key="column.field">
+                                <div class="x-table-th">
+                                    {{column.text}}
+                                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
                            </span>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
-            <!--  主体-->
-            <div class="x-table-main" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
-                 ref="tableMainWrapper"
-                 @scroll="scrollGradient('main')"
-                 @mouseenter="hoverToggleArea"
-            >
-                <table
-                        class="x-table" :class="{bordered,compact,stripe:stripe}" ref="table"
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="x-table-main-body"
+                     :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
+                     @scroll="scrollGradient('main')"
+                     @mouseenter="hoverToggleArea"
+                     ref="tableMainWrapper"
                 >
+                    <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
                     <colgroup>
                         <col v-if="checkBoxOn" style="width:60px">
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
-                    <thead class="x-table-head">
-                    <tr>
-                        <th v-if="checkBoxOn">
-                            <input @change="onChangeAllItems" type="checkbox" ref="mainInput">
-                        </th>
-                        <th v-for="column in headerColumns"
-                            :key="column.field">
-                            <div class="x-table-th">
-                                {{column.text}}
-                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
-                            <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
-                           </span>
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
                     <tbody ref="tBodyMain">
                     <tr v-for="(item,index) in bodyData" :key="index"
                         @mouseenter="hoverChangeMain(index,$event)"
@@ -76,9 +58,10 @@
                     </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
-            <!--  左边固定  -->
-            <div class="x-table-left">
+<!--              左边固定-->
+            <div class="x-table-left" ref="left">
                 <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                        ref="tableLeftWrapper"
                        @scroll="scrollGradient('left')"
@@ -157,7 +140,7 @@
                 </div>
             </div>
             <!--  右边固定  -->
-            <div class="x-table-right">
+            <div class="x-table-right" ref="right">
                 <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                      ref="tableRightWrapper"
                      @scroll="scrollGradient('right')"
@@ -337,10 +320,11 @@
         },
         methods:{
             setMainWidth(){
-                let [width,$refs] = [getComputedStyle(this.$refs.table).width,this.$refs]
-                $refs.table.style.width = width
+                let [width,$refs] = [getComputedStyle(this.$refs.tableMain).width,this.$refs]
+                $refs.tableMain.style.width = width
                 $refs.wrapper.style.width = this.maxWidth +'px'
                 $refs.tableMainWrapper.style.width = this.maxWidth +'px'
+                $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+15+'px'
                 $refs.totalWrapper.style.width = this.maxWidth +'px'
                 $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
@@ -366,6 +350,7 @@
                         this.headerColumns = columnsCopy
                     }
                 })
+                console.log(this.headerColumns)
             },
             setFixedWidth(){
                 let [tableLeftWrapperWidth,tableRightWrapperWidth,leftArr,rightArr,totalWidth,refs] = [0,0,[],[],0,this.$refs]
@@ -399,11 +384,11 @@
                 if(leftArr.length>0){
                     this.$refs.tableLeftWrapper.style.height = this.maxHeight+'px'
                     this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
-                    this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
+                    this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper','left'])
                 }
                 if(rightArr.length>0){
                     let rightWidth = totalWidth +rightArr.length +'px'
-                    this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper'])
+                    this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper','right'])
                 }
                 this.setTableWidth(refs,Width)
             },
@@ -412,6 +397,8 @@
                 refs[name[0]].style.width = Width
                 refs[name[1]].style.width = maxWidth
                 refs[name[2]].style.width = Width
+                refs[name[4]].style.width = maxWidth
+                refs[name[4]].style.height = getComputedStyle(refs[name[1]]).height
                 if(this.maxHeight&&name[0]==='tableRight'){
                     refs[name[3]].style.width = parseInt(maxWidth) +15+'px'
                 }else{
@@ -484,28 +471,24 @@
                 let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
-                    right:[`tableRightWrapper`,`tableMainWrapper`,`tableLeftWrapper`],
+                    right:[`tableRightWrapper`,`tableLeftWrapper`,`tableMainWrapper`],
                 }
                 let ref = this.$refs
                 let [scrollTop,scrollLeft] = [ref[x[part][0]].scrollTop,this.$refs.tableMainWrapper.scrollLeft]
                 if(this.fixedLeft.length>0){
                     this.hiddenShadow.left = scrollLeft === 0 ? true : false;
-                }
-                if(this.fixedRight.length>0){
-                    let {width} = ref.table.style
-                    this.hiddenShadow.right = parseInt(width)+15===scrollLeft+parseInt(this.maxWidth) ? true : false;
-                }
-                ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-                if(this.fixedLeft.length>0){
                     ref[x[part][1]].scrollTop = scrollTop
                 }
                 if(this.fixedRight.length>0){
+                    let {width} = ref.tableMain.style
+                    this.hiddenShadow.right = parseInt(width)+5<=scrollLeft+parseInt(this.maxWidth) ? true : false;
                     ref[x[part][2]].scrollTop = scrollTop
                 }
+                ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                 clearTimeout(this.timer)
                 this.timer = setTimeout(()=> {
                     this.repairScrollTop(x[part][0], x[part][1], x[part][2])
-                },99)
+                },101)
             },
             repairScrollTop(part1,part2,part3){
                     let scrollTop = this.$refs[part1].scrollTop
@@ -618,26 +601,40 @@
             background-color: rgba(255,255,255,.6);
             z-index: 2;
         }
-        &-header-main{
-            width: 100%;
-            position: absolute;
-            top: 0;
-            background-color: #f9f9f9;
-            z-index: 3;
-            &::-webkit-scrollbar{
-                display: none;
-            }
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            overflow: -moz-scrollbars-none;
-            table{
-                thead{
-                    background-color: #f9f9f9;
+        &-main{
+            &-header{
+                width: 100%;
+                background-color: #f9f9f9;
+                overflow: auto;
+                z-index: 3;
+                &::-webkit-scrollbar{
+                    display: none;
                 }
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                overflow: -moz-scrollbars-none;
+                table{
+                    thead{
+                        background-color: #f9f9f9;
+                    }
+                }
+            }
+            &-body{
+                border-bottom: 1px solid #efefef;
             }
         }
         &-left{
+            position: absolute;
+            left: 0;
+            top: 0;
+            &-header{
+                position: absolute;
+                top: 0;
+                left: -1px;
+                background-color: #f9f9f9;
+                z-index: 4;
+            }
             &-body{
                 position: absolute;
                 z-index: 4;
@@ -653,23 +650,19 @@
                 -ms-overflow-style: none;
                 overflow: -moz-scrollbars-none;
             }
-            &-header{
-                position: absolute;
-                top: 0;
-                left: -1px;
-                background-color: #f9f9f9;
-                z-index: 4;
-            }
         }
         &-main{
             display: inline-block;
             position: relative;
         }
         &-right{
+            position: absolute;
+            top: 0;
+            right: 15px;
             &-body{
                 position: absolute;
                 z-index: 4;
-                right: 15px;
+                right: 0;
                 top: 0;
                 overflow: hidden;
                 background-color: white;
@@ -685,7 +678,7 @@
             &-header{
                 position: absolute;
                 top: 0;
-                right: 0;
+                right: -15px;
                 background-color: #f9f9f9;
                 z-index: 4;
             }
