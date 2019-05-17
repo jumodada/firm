@@ -336,21 +336,23 @@
                 }
             },
             checkFixed(){
-                this.columns.forEach((item,index)=>{
-                    let columnsCopy = JSON.parse(JSON.stringify(this.columns))
-                    if(item.fixed==='left'){
-                        columnsCopy.splice(index,1)
-                        columnsCopy.unshift(item)
-                        this.fixedLeft = columnsCopy
-                        this.headerColumns = columnsCopy
-                    }else if(item.fixed==='right'){
-                        columnsCopy.splice(index,1)
-                        columnsCopy.unshift(item)
-                        this.fixedRight = columnsCopy
-                        this.headerColumns = columnsCopy
-                    }
+                let [left,right,main] = [[],[],[]]
+                this.columns.forEach(item=>{
+                   if(item.fixed==='left'){
+                        left.push(item)
+                   }else if(item.fixed==='right'){
+                       right.push(item)
+                   }else {
+                       main.push(item)
+                   }
                 })
-                console.log(this.headerColumns)
+                if(left.length>0){
+                    this.fixedLeft = left.concat(main)
+                }
+                if(right.length>0){
+                    this.fixedRight = right.concat(main,left)
+                }
+                this.headerColumns = left.concat(main,right)
             },
             setFixedWidth(){
                 let [tableLeftWrapperWidth,tableRightWrapperWidth,leftArr,rightArr,totalWidth,refs] = [0,0,[],[],0,this.$refs]
