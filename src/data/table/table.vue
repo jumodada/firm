@@ -320,8 +320,19 @@
         },
         methods:{
             setMainWidth(){
-                let [width,$refs] = [getComputedStyle(this.$refs.tableMain).width,this.$refs]
-                $refs.tableMain.style.width = width
+                let [$refs,width] = [this.$refs,0]
+                if(this.headerColumns[0].width){
+                    this.headerColumns.forEach(item=>{
+                        width+=item.width
+                    })
+                }else{
+                    width = parseInt(getComputedStyle(this.$refs.tableMain).width)
+                }
+                if(this.checkBoxOn&&this.headerColumns[0].width){
+                    width+=60
+                }
+                console.log(width)
+                $refs.tableMain.style.width = width +'px'
                 $refs.wrapper.style.width = this.maxWidth +'px'
                 $refs.tableMainWrapper.style.width = this.maxWidth +'px'
                 $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+15+'px'
@@ -347,7 +358,7 @@
                    }
                 })
                 if(left.length>0){
-                    this.fixedLeft = left.concat(main)
+                    this.fixedLeft = left.concat(main,right)
                 }
                 if(right.length>0){
                     this.fixedRight = right.concat(main,left)
@@ -409,7 +420,7 @@
             },
             setTableWidth(refs,Width){
                 refs.tableFixedHeader.style.width = Width
-                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)+1+'px'
+                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)+'px'
                 refs.wrapper.style.width = Width
             },
             setBodyData(){
