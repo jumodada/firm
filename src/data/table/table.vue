@@ -1,6 +1,8 @@
 <template>
     <div style="position:relative;overflow: hidden" ref="totalWrapper">
-        <div class="x-table-wrapper" ref="wrapper" :class="{borderHidden:columns[0].width}">
+        <div class="x-table-wrapper" ref="wrapper"
+             :class="{borderHidden:columns[0].width}"
+        >
             <!--  主体-->
             <div class="x-table-main"
             >
@@ -33,7 +35,8 @@
                 <div class="x-table-main-body"
                      :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
                      @scroll="scrollGradient('main')"
-                     @mouseenter="hoverToggleArea"
+                     @wheel="wheelChange($event,'main')"
+                     @mouseenter="whereAreYouHover='main'"
                      ref="tableMainWrapper"
                 >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
@@ -65,7 +68,7 @@
                 <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                        ref="tableLeftWrapper"
                        @scroll="scrollGradient('left')"
-                       @mouseenter="hoverToggleArea"
+                       @wheel="wheelChange($event,'left')"
                        :class="{boxShadowNone:hiddenShadow.left}"
                        v-if="fixedLeft.length>0"
                 >
@@ -144,7 +147,7 @@
                 <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                      ref="tableRightWrapper"
                      @scroll="scrollGradient('right')"
-                     @mouseenter="hoverToggleArea"
+                     @wheel="wheelChange($event,'right')"
                      :class="{boxShadowNone:hiddenShadow.right}"
                      v-if="fixedRight.length>0"
                 >
@@ -331,7 +334,6 @@
                 if(this.checkBoxOn&&this.headerColumns[0].width){
                     width+=60
                 }
-                console.log(width)
                 $refs.tableMain.style.width = width +'px'
                 $refs.wrapper.style.width = this.maxWidth +'px'
                 $refs.tableMainWrapper.style.width = this.maxWidth +'px'
@@ -478,6 +480,11 @@
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
+            wheelChange(e,part){
+                if(e.path[5].classList[0].indexOf(part)>-1||e.target.classList[0].indexOf(part)>-1){
+                    this.whereAreYouHover = part
+                }
+            },
             scrollGradient(part){
                 if(part!==this.whereAreYouHover)return
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
@@ -498,28 +505,6 @@
                     ref[x[part][2]].scrollTop = scrollTop
                 }
                 ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-                clearTimeout(this.timer)
-                this.timer = setTimeout(()=> {
-                    this.repairScrollTop(x[part][0], x[part][1], x[part][2])
-                },101)
-            },
-            repairScrollTop(part1,part2,part3){
-                    let scrollTop = this.$refs[part1].scrollTop
-                    if(this.fixedLeft.length>0){
-                        this.$refs[part2].scrollTop= scrollTop
-                    }
-                    if(this.fixedRight.length>0){
-                        this.$refs[part3].scrollTop= scrollTop
-                    }
-            },
-            hoverToggleArea(e){
-               if(e.target.className.indexOf('left')>-1){
-                   this.whereAreYouHover = 'left'
-               }else if(e.target.className.indexOf('right')>-1){
-                   this.whereAreYouHover = 'right'
-               }else if(e.target.className.indexOf('main')>-1){
-                   this.whereAreYouHover = 'main'
-               }
             }
         }
     }
