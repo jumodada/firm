@@ -1,8 +1,5 @@
 <template>
-    <div style="position:relative;overflow: hidden" ref="totalWrapper">
-        <div class="x-table-wrapper" ref="wrapper"
-             :class="{borderHidden:columns[0].width}"
-        >
+        <div class="x-table-wrapper" :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden" ref="totalWrapper">
             <!--  主体-->
             <div class="x-table-main"
             >
@@ -213,7 +210,6 @@
             </div>
             <loading v-if="loading" class="x-table-loading"></loading>
         </div>
-    </div>
 </template>
 
 <script>
@@ -335,18 +331,18 @@
                     width+=60
                 }
                 $refs.tableMain.style.width = width +'px'
-                $refs.wrapper.style.width = this.maxWidth +'px'
                 $refs.tableMainWrapper.style.width = this.maxWidth +'px'
-                $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+15+'px'
+                if(this.maxHeight){
+                    $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
+                }else{
+                    $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
+                }
                 $refs.totalWrapper.style.width = this.maxWidth +'px'
                 $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
             setHeaderToTop(){
                 let refs = this.$refs
                 refs.tableFixedHeader.width = getComputedStyle(refs.tableFixedHeader).width
-                if(refs.tableFixedHeaderWrapper){
-                    refs.tableFixedHeaderWrapper.style.width = this.maxWidth+'px'
-                }
             },
             checkFixed(){
                 let [left,right,main] = [[],[],[]]
@@ -422,8 +418,7 @@
             },
             setTableWidth(refs,Width){
                 refs.tableFixedHeader.style.width = Width
-                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)+'px'
-                refs.wrapper.style.width = Width
+                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)-15+'px'
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
@@ -487,6 +482,7 @@
             },
             scrollGradient(part){
                 if(part!==this.whereAreYouHover)return
+                console.log(part)
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
