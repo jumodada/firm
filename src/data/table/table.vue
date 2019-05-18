@@ -281,16 +281,20 @@
         },
         methods:{
                 getScrollBarWidth(){
-                    const scrollDiv = document.createElement('div')
-                    scrollDiv.style.height='50px'
-                    scrollDiv.style.overflow='scroll'
-                    scrollDiv.style.position='absolute'
-                    scrollDiv.style.top='-9999px'
-                    scrollDiv.style.width='-50px'
-                         document.body.appendChild(scrollDiv)
-                         let scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
-                         this.scrollBarWidth = scrollbarWidth
-                         document.body.removeChild(scrollDiv)
+                        const scrollBar = document.createElement('div')
+                        let style = {
+                            height:'50px',
+                            overflow:'scroll',
+                            position:'absolute',
+                            top:'-9999px',
+                            width:'50px'
+                        }
+                         Object.keys(style).forEach(item=>{
+                            scrollBar.style[item]=style[item]
+                         })
+                         document.body.appendChild(scrollBar)
+                        this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
+                         document.body.removeChild(scrollBar)
 
                 },
             setMainWidth(){
@@ -369,6 +373,7 @@
                 }
                 if(leftArr.length>0){
                     this.$refs.tableLeftWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)-this.scrollBarWidth+'px'
+                    console.log(this.scrollBarWidth)
                     this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
                     this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
                 }
@@ -456,7 +461,7 @@
                     right:[`tableRightWrapper`,`tableLeftWrapper`,`tableMainWrapper`]
                 }
                 let ref = this.$refs
-                let [scrollTop,scrollLeft] = [ref[x[part][0]].scrollTop,this.$refs.tableMainWrapper.scrollLeft]
+                let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
                 if(part==='main'){
                     ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                     let {width} = ref.tableMain.style
@@ -464,6 +469,7 @@
                     this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
                 }
                 if(this.oldScrollTop===scrollTop)return
+                let scrollTop = ref[x[part][0]].scrollTop
                 this.oldScrollTop = scrollTop
                 if(this.fixedLeft.length>0){
                     ref[x[part][1]].scrollTop = scrollTop
