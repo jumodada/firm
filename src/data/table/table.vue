@@ -4,7 +4,10 @@
             <!--  主体-->
             <div class="x-table-main"
             >
-                <div class="x-table-main-header" ref="tableFixedHeaderWrapper">
+                <div class="x-table-main-header"
+                     ref="tableFixedHeaderWrapper"
+                     @scroll="scrollLeftGradient"
+                >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
                         <colgroup>
                             <col v-if="checkBoxOn" style="width: 60px">
@@ -33,8 +36,6 @@
                 <div class="x-table-main-body"
                      :style="{overflow:'auto'}"
                      @scroll="scrollGradient('main')"
-                     v-mousewheel="wheelChange"
-                     @mouseenter="whereAreYouHover='main'"
                      ref="tableMainWrapper"
                 >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
@@ -94,7 +95,6 @@
                 <div   class="x-table-left-body" :style="{overflow:'hidden',overflowY:'auto'}"
                        ref="tableLeftWrapper"
                        @scroll="scrollGradient('left')"
-                       v-mousewheel="wheelChange"
                        v-if="fixedLeft.length>0"
                 >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
@@ -153,7 +153,6 @@
                 <div class="x-table-right-body" :style="{overflow:'hidden',overflowY:'auto'}"
                      ref="tableRightWrapper"
                      @scroll="scrollGradient('right')"
-                     v-mousewheel="wheelChange"
                      v-if="fixedRight.length>0"
                 >
                     <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
@@ -182,14 +181,10 @@
 </template>
 
 <script>
-    import mousewheel from '../../directives/mousewheel'
     import loading from '../../currency/dynamic icon/loading'
     import Icon from '../../currency/icon'
     export default {
         name: "x-table",
-        directives:{
-            mousewheel
-        },
         components:{
             'x-icon': Icon,
             loading: loading
@@ -255,7 +250,8 @@
                     left:true,
                     right:false
                 },
-                whereAreYouHover:''
+               oldScrollTop:0,
+               oldScrollLeft:0,
             }
         },
         mounted(){
@@ -265,6 +261,7 @@
             this.$nextTick(()=>{
                 this.setHeaderToTop()
                 if(this.fixedLeft.length>0||this.fixedRight.length>0){
+                    this.getScrollBarWidth()
                     this.setFixedWidth()
                 }
                 this.setMainWidth()
@@ -283,6 +280,19 @@
             }
         },
         methods:{
+                getScrollBarWidth(){
+                    const scrollDiv = document.createElement('div')
+                    scrollDiv.style.height='50px'
+                    scrollDiv.style.overflow='scroll'
+                    scrollDiv.style.position='absolute'
+                    scrollDiv.style.top='-9999px'
+                    scrollDiv.style.width='-50px'
+                         document.body.appendChild(scrollDiv)
+                         let scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
+                         this.scrollBarWidth = scrollbarWidth
+                         document.body.removeChild(scrollDiv)
+
+                },
             setMainWidth(){
                 let [$refs,width] = [this.$refs,0]
                 if(this.headerColumns[0].width){
@@ -358,12 +368,12 @@
                     }
                 }
                 if(leftArr.length>0){
-                    this.$refs.tableLeftWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)+'px'
+                    this.$refs.tableLeftWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)-this.scrollBarWidth+'px'
                     this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
                     this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
                 }
                 if(rightArr.length>0){
-                    this.$refs.tableRightWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)+'px'
+                    this.$refs.tableRightWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)-this.scrollBarWidth+'px'
                     let rightWidth = totalWidth +rightArr.length +'px'
                     this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper'])
                 }
@@ -439,36 +449,33 @@
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
-            wheelChange(e,target){
-                if(target.elm.className.indexOf('left')>-1){
-                    this.whereAreYouHover = 'left'
-                }else if(target.elm.className.indexOf('right')>-1){
-                    this.whereAreYouHover = 'right'
-                }else{
-                    this.whereAreYouHover = 'main'
-                }
-            },
             scrollGradient(part){
-                console.log(this.whereAreYouHover,part)
-                if(part!==this.whereAreYouHover)return
-                if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
                     main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
-                    right:[`tableRightWrapper`,`tableLeftWrapper`,`tableMainWrapper`],
+                    right:[`tableRightWrapper`,`tableLeftWrapper`,`tableMainWrapper`]
                 }
                 let ref = this.$refs
                 let [scrollTop,scrollLeft] = [ref[x[part][0]].scrollTop,this.$refs.tableMainWrapper.scrollLeft]
-                if(this.fixedLeft.length>0){
+                if(part==='main'){
+                    ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
+                    let {width} = ref.tableMain.style
                     this.hiddenShadow.left = scrollLeft === 0 ? true : false;
+                    this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
+                }
+                if(this.oldScrollTop===scrollTop)return
+                this.oldScrollTop = scrollTop
+                if(this.fixedLeft.length>0){
                     ref[x[part][1]].scrollTop = scrollTop
                 }
                 if(this.fixedRight.length>0){
-                    let {width} = ref.tableMain.style
-                    this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false;
                     ref[x[part][2]].scrollTop = scrollTop
                 }
-                ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
+            },
+            scrollLeftGradient(){
+                let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
+                if(this.oldScrollLeft===scrollLeft)return
+                this.$refs.tableMainWrapper.scrollLeft = scrollLeft
             }
         }
     }
@@ -479,6 +486,7 @@
         transition: .3s all ease;
         -webkit-font-smoothing: antialiased;
     }
+
     .x-table-wrapper{
         -webkit-font-smoothing: antialiased;
         position: relative;
