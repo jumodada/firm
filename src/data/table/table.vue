@@ -468,15 +468,18 @@
                     this.hiddenShadow.left = scrollLeft === 0 ? true : false;
                     this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
                 }
-                if(this.oldScrollTop===scrollTop)return
                 let scrollTop = ref[x[part][0]].scrollTop
-                this.oldScrollTop = scrollTop
-                if(this.fixedLeft.length>0){
-                    ref[x[part][1]].scrollTop = scrollTop
-                }
-                if(this.fixedRight.length>0){
-                    ref[x[part][2]].scrollTop = scrollTop
-                }
+                if(this.oldScrollTop===scrollTop)return
+               this.$nextTick(()=>{
+                   this.oldScrollTop = scrollTop
+                   if(this.fixedLeft.length>0){
+                       ref[x[part][1]].scrollTop = scrollTop
+                   }
+                   if(this.fixedRight.length>0){
+                       ref[x[part][2]].scrollTop = scrollTop
+                   }
+                   console.log(scrollTop)
+               })
             },
             scrollLeftGradient(){
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft

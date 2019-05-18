@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/table/table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/table/table.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,12 +23,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="291" column="25" selection-start-line="291" selection-start-column="25" selection-end-line="291" selection-end-column="25" />
+            <state relative-caret-position="515">
+              <caret line="266" column="35" selection-start-line="266" selection-start-column="35" selection-end-line="266" selection-end-column="35" />
               <folding>
+                <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="e#10444#10501#0" expanded="true" />
@@ -40,15 +41,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/unit/button.spec.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/unit/col.test.js">
+        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="351">
+              <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -58,15 +54,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="44" column="53" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -453,12 +440,12 @@
       <workItem from="1558080904170" duration="2549000" />
       <workItem from="1558085517228" duration="4632000" />
       <workItem from="1558099698628" duration="1273000" />
-      <workItem from="1558142285811" duration="19194000" />
+      <workItem from="1558142285811" duration="20705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="975280000" />
+    <option name="totallyTimeSpent" value="976791000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -850,6 +837,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/unit/button.spec.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -860,28 +854,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="44" column="53" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
+        <state relative-caret-position="351">
+          <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="291" column="25" selection-start-line="291" selection-start-column="25" selection-end-line="291" selection-end-column="25" />
+        <state relative-caret-position="515">
+          <caret line="266" column="35" selection-start-line="266" selection-start-column="35" selection-end-line="266" selection-end-column="35" />
           <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" />
             <element signature="e#10444#10501#0" expanded="true" />
