@@ -1,5 +1,6 @@
 <template>
-        <div class="x-table-wrapper" :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden" ref="totalWrapper">
+        <div class="x-table-wrapper"
+             :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden" ref="totalWrapper">
             <!--  主体-->
             <div class="x-table-main"
             >
@@ -32,7 +33,7 @@
                 <div class="x-table-main-body"
                      :style="{maxHeight:`${maxHeight+'px'}`,overflow:'auto'}"
                      @scroll="scrollGradient('main')"
-                     @wheel="wheelChange($event,'main')"
+                     v-mousewheel="wheelChange"
                      @mouseenter="whereAreYouHover='main'"
                      ref="tableMainWrapper"
                 >
@@ -65,7 +66,7 @@
                 <div   class="x-table-left-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                        ref="tableLeftWrapper"
                        @scroll="scrollGradient('left')"
-                       @wheel="wheelChange($event,'left')"
+                       v-mousewheel="wheelChange"
                        :class="{boxShadowNone:hiddenShadow.left}"
                        v-if="fixedLeft.length>0"
                 >
@@ -144,7 +145,7 @@
                 <div class="x-table-right-body" :style="{maxHeight:`${fixedWrapperHeight+'px'}`,overflow:'hidden',overflowY:'auto'}"
                      ref="tableRightWrapper"
                      @scroll="scrollGradient('right')"
-                     @wheel="wheelChange($event,'right')"
+                     v-mousewheel="wheelChange"
                      :class="{boxShadowNone:hiddenShadow.right}"
                      v-if="fixedRight.length>0"
                 >
@@ -213,10 +214,14 @@
 </template>
 
 <script>
+    import mousewheel from '../../directives/mousewheel'
     import loading from '../../currency/dynamic icon/loading'
     import Icon from '../../currency/icon'
     export default {
         name: "x-table",
+        directives:{
+            mousewheel
+        },
         components:{
             'x-icon': Icon,
             loading: loading
@@ -272,11 +277,7 @@
         },
         computed:{
             fixedWrapperHeight(){
-                if(this.maxWidth){
-                    return `${this.maxHeight-15}`
-                }else{
-                    return `${this.maxHeight}`
-                }
+                return `${this.maxHeight}`
             }
         },
         data(){
@@ -475,14 +476,18 @@
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
-            wheelChange(e,part){
-                if(e.path[5].classList[0].indexOf(part)>-1||e.target.classList[0].indexOf(part)>-1){
-                    this.whereAreYouHover = part
+            wheelChange(e,target){
+                if(target.elm.className.indexOf('left')>-1){
+                    this.whereAreYouHover = 'left'
+                }else if(target.elm.className.indexOf('right')>-1){
+                    this.whereAreYouHover = 'right'
+                }else{
+                    this.whereAreYouHover = 'main'
                 }
             },
             scrollGradient(part){
+                console.log(this.whereAreYouHover,part)
                 if(part!==this.whereAreYouHover)return
-                console.log(part)
                 if(this.fixedLeft.length===0&&this.fixedRight.length===0)return
                 let x = {
                     left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
@@ -596,10 +601,14 @@
             z-index: 2;
         }
         &-main{
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
             &-header{
                 width: 100%;
                 background-color: #f9f9f9;
-                overflow: auto;
+                overflow: scroll;
                 z-index: 3;
                 &::-webkit-scrollbar{
                     display: none;
@@ -630,6 +639,7 @@
                 z-index: 4;
             }
             &-body{
+                overflow: hidden;
                 position: absolute;
                 z-index: 4;
                 left: -1px;
@@ -652,7 +662,7 @@
         &-right{
             position: absolute;
             top: 0;
-            right: 15px;
+            right: 0;
             &-body{
                 position: absolute;
                 z-index: 4;
@@ -661,13 +671,6 @@
                 overflow: hidden;
                 background-color: white;
                 box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
-                &::-webkit-scrollbar{
-                    display: none;
-                }
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                overflow: -moz-scrollbars-none;
             }
             &-header{
                 position: absolute;
