@@ -35,7 +35,7 @@
                 </div>
                 <div class="x-table-main-body"
                      :style="{overflow:'auto'}"
-                     @scroll="scrollGradient('main')"
+                     @scroll.passive="scrollGradient('main','tableMainWrapper')"
                      ref="tableMainWrapper"
                 >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
@@ -94,7 +94,7 @@
                 </div>
                 <div   class="x-table-left-body" :style="{overflow:'hidden',overflowY:'auto'}"
                        ref="tableLeftWrapper"
-                       @scroll="scrollGradient('left')"
+                       @scroll.passive="scrollGradient('left','tableLeftWrapper')"
                        v-if="fixedLeft.length>0"
                 >
                     <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
@@ -152,7 +152,7 @@
                 </div>
                 <div class="x-table-right-body" :style="{overflow:'hidden',overflowY:'auto'}"
                      ref="tableRightWrapper"
-                     @scroll="scrollGradient('right')"
+                     @scroll.passive="scrollGradient('right','tableRightWrapper')"
                      v-if="fixedRight.length>0"
                 >
                     <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
@@ -373,7 +373,6 @@
                 }
                 if(leftArr.length>0){
                     this.$refs.tableLeftWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)-this.scrollBarWidth+'px'
-                    console.log(this.scrollBarWidth)
                     this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
                     this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
                 }
@@ -454,32 +453,29 @@
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
-            scrollGradient(part){
-                let x = {
-                    left:[`tableLeftWrapper`,`tableMainWrapper`,`tableRightWrapper`],
-                    main:[`tableMainWrapper`,`tableLeftWrapper`,`tableRightWrapper`],
-                    right:[`tableRightWrapper`,`tableLeftWrapper`,`tableMainWrapper`]
-                }
-                let ref = this.$refs
-                let scrollLeft = this.$refs.tableMainWrapper.scrollLeft
-                if(part==='main'){
-                    ref.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-                    let {width} = ref.tableMain.style
-                    this.hiddenShadow.left = scrollLeft === 0 ? true : false;
-                    this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
-                }
-                let scrollTop = ref[x[part][0]].scrollTop
-                if(this.oldScrollTop===scrollTop)return
-               this.$nextTick(()=>{
-                   this.oldScrollTop = scrollTop
-                   if(this.fixedLeft.length>0){
-                       ref[x[part][1]].scrollTop = scrollTop
-                   }
-                   if(this.fixedRight.length>0){
-                       ref[x[part][2]].scrollTop = scrollTop
-                   }
-                   console.log(scrollTop)
-               })
+            scrollGradient(part,targetName){
+                    let ref = this.$refs
+                    let [scrollTop,scrollLeft] = [ref[targetName].scrollTop,ref.tableMainWrapper.scrollLeft]
+                    if(scrollLeft!==this.oldScrollLeft){
+                        let {width} = ref.tableMain.style
+                        this.hiddenShadow.left = scrollLeft === 0 ? true : false;
+                        this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
+                        this.oldScrollLeft = scrollLeft
+                        return
+                    }
+                    if(this.oldScrollTop===scrollTop)return
+                    this.oldScrollTop = scrollTop
+                    let x = {
+                        left:[`tableMainWrapper`,`tableRightWrapper`],
+                        main:[`tableLeftWrapper`,`tableRightWrapper`],
+                        right:[`tableLeftWrapper`,`tableMainWrapper`]
+                    }
+                    if(this.fixedLeft.length>0||part){
+                        ref[x[part][0]].scrollTop = scrollTop
+                    }
+                    if(this.fixedRight.length>0){
+                        ref[x[part][1]].scrollTop = scrollTop
+                    }
             },
             scrollLeftGradient(){
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
@@ -494,6 +490,7 @@
     *{
         transition: .3s all ease;
         -webkit-font-smoothing: antialiased;
+        -webkit-overflow-scrolling:touch;
     }
 
     .x-table-wrapper{
@@ -651,5 +648,8 @@
     }
     .boxShadowNone{
         box-shadow: none !important;
+    }
+    .stopScroll{
+        pointer-events:none!important;
     }
 </style>
