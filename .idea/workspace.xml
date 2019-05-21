@@ -23,24 +23,36 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="481" column="17" selection-start-line="481" selection-start-column="17" selection-end-line="481" selection-end-column="17" />
+            <state relative-caret-position="222">
+              <caret line="640" column="19" lean-forward="true" selection-start-line="640" selection-start-column="19" selection-end-line="640" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#10100#10157#0" expanded="true" />
-                <element signature="e#10305#11510#0" />
-                <element signature="e#11729#11811#0" />
-                <element signature="e#13634#14784#0" />
-                <element signature="e#18026#18478#0" />
-                <element signature="e#25981#26361#0" />
+                <element signature="e#25208#25760#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="249" column="17" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
+              <folding>
+                <element signature="n#div#0;n#template#0;n#!!top" />
+                <element signature="n#table-body#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="e#7101#7469#0" />
+                <element signature="e#7513#19518#0" />
               </folding>
             </state>
           </provider>
@@ -49,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+            <state relative-caret-position="844">
+              <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -58,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+            <state relative-caret-position="150">
+              <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -78,10 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tableMain</find>
-      <find>hoverToggleArea</find>
-      <find>repairScrollTop</find>
-      <find>tableFixedHeader</find>
       <find>tableFixedHeaderWrapper</find>
       <find>wrapper</find>
       <find>tableMainWrapper</find>
@@ -108,6 +116,10 @@
       <find>scrollLeftGradient</find>
       <find>index</find>
       <find>@scr</find>
+      <find>bodyWrapper</find>
+      <find>handleFixedMousewheel</find>
+      <find>auto</find>
+      <find>scrolltop</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -435,12 +447,15 @@
       <workItem from="1558099698628" duration="1273000" />
       <workItem from="1558142285811" duration="20797000" />
       <workItem from="1558231235139" duration="4172000" />
-      <workItem from="1558313972725" duration="16885000" />
+      <workItem from="1558313972725" duration="17100000" />
+      <workItem from="1558400420203" duration="315000" />
+      <workItem from="1558402340347" duration="7000" />
+      <workItem from="1558402373488" duration="3934000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="997940000" />
+    <option name="totallyTimeSpent" value="1002411000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -481,14 +496,37 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue</url>
+          <line>82</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/data/table/table.vue</url>
+          <line>494</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue</url>
+          <line>214</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue</url>
+          <line>215</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/layout/header.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/layout/layout.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -823,13 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -837,33 +868,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        <state relative-caret-position="844">
+          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="249" column="17" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
+          <folding>
+            <element signature="n#div#0;n#template#0;n#!!top" />
+            <element signature="n#table-body#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#7101#7469#0" />
+            <element signature="e#7513#19518#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="481" column="17" selection-start-line="481" selection-start-column="17" selection-end-line="481" selection-end-column="17" />
+        <state relative-caret-position="222">
+          <caret line="640" column="19" lean-forward="true" selection-start-line="640" selection-start-column="19" selection-end-line="640" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#10100#10157#0" expanded="true" />
-            <element signature="e#10305#11510#0" />
-            <element signature="e#11729#11811#0" />
-            <element signature="e#13634#14784#0" />
-            <element signature="e#18026#18478#0" />
-            <element signature="e#25981#26361#0" />
+            <element signature="e#25208#25760#0" />
           </folding>
         </state>
       </provider>

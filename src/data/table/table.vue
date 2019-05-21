@@ -35,7 +35,7 @@
                 </table>
             </div>
             <div class="x-table-main-body"
-                 :style="{overflow:'auto'}"
+                 :style="{overflow:'scroll'}"
                  @scroll.passive="scrollGradient('main','tableMainWrapper')"
                  ref="tableMainWrapper"
             >
@@ -93,7 +93,7 @@
                     </thead>
                 </table>
             </div>
-            <div   class="x-table-left-body" :style="{overflow:'hidden',overflowY:'auto'}"
+            <div   class="x-table-left-body" :style="{overflow:'hidden',overflowY:'scroll'}"
                    ref="tableLeftWrapper"
                    @scroll.passive="scrollGradient('left','tableLeftWrapper')"
                    v-if="fixedLeft.length>0"
@@ -151,7 +151,7 @@
                     </thead>
                 </table>
             </div>
-            <div class="x-table-right-body" :style="{overflow:'hidden',overflowY:'auto'}"
+            <div class="x-table-right-body" :style="{overflow:'hidden',overflowY:'scroll'}"
                  ref="tableRightWrapper"
                  @scroll.passive="scrollGradient('right','tableRightWrapper')"
                  v-if="fixedRight.length>0"
@@ -480,6 +480,7 @@
                 if(this.fixedRight.length>0){
                     ref[x[part][1]].scrollTop = scrollTop
                 }
+
             },
             scrollLeftGradient(){
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
@@ -516,7 +517,7 @@
         border-collapse: collapse;
         border-spacing: 0;
         border-bottom: 1px solid #efefef;
-        overflow: auto;
+        overflow: scroll;
         &.bordered{
             border:1px solid #efefef;
             td,th{
@@ -584,7 +585,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            overflow: hidden;
+            will-change: transform;
             &-header{
                 width: 100%;
                 background-color: #f9f9f9;
@@ -604,6 +605,7 @@
                 }
             }
             &-body{
+                will-change: transform;
                 border-bottom: 1px solid #efefef;
             }
         }
@@ -611,13 +613,14 @@
             position: absolute;
             left: 0;
             top: 0;
+            will-change: transform;
             box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
             &-header{
                 background-color: #f9f9f9;
                 z-index: 4;
             }
             &-body{
-                overflow: hidden;
+                will-change: transform;
                 z-index: 4;
                 background-color: white;
                 &::-webkit-scrollbar{
@@ -638,9 +641,10 @@
             top: 0;
             right: 0;
             box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
+            will-change: transform;
             &-body{
+                will-change: transform;
                 z-index: 4;
-                overflow: hidden;
                 background-color: white;
             }
             &-header{
