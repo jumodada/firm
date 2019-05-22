@@ -391,14 +391,16 @@
                 refs[name[1]].style.width = maxWidth
                 refs[name[2]].style.width = Width
                 if(this.maxHeight&&name[0]==='tableRight'){
-                    refs[name[3]].style.width = parseInt(maxWidth)+'px'
+                    refs[name[3]].style.width = parseInt(maxWidth)+this.scrollBarWidth+'px'
+                    this.$refs.right.style.width = parseInt(maxWidth)+'px'
+                    this.$refs.right.style.right = this.scrollBarWidth+'px'
                 }else{
                     refs[name[3]].style.width = maxWidth
                 }
             },
             setTableWidth(refs,Width){
                 refs.tableFixedHeader.style.width = Width
-                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)+'px'
+                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)-this.scrollBarWidth+'px'
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
@@ -638,6 +640,13 @@
             box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
             will-change: transform;
             &-body{
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                overflow: -moz-scrollbars-none;
                 will-change: transform;
                 z-index: 4;
                 background-color: white;
