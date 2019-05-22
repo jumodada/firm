@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41b2ee27-3227-40f7-9905-b7562a825b91" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/table/scroll-synchro.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/table/table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/table/table.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directives/mousewheel.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -20,14 +23,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="640" column="19" lean-forward="true" selection-start-line="640" selection-start-column="19" selection-end-line="640" selection-end-column="19" />
+            <state relative-caret-position="-15">
+              <caret line="469" column="26" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -35,43 +38,46 @@
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#25208#25760#0" />
+                <element signature="e#10068#10125#0" expanded="true" />
+                <element signature="e#10348#10416#0" />
+                <element signature="e#10432#11637#0" />
+                <element signature="e#12462#13058#0" />
+                <element signature="e#13761#14911#0" />
+                <element signature="e#14941#15086#0" />
+                <element signature="e#15112#15801#0" />
+                <element signature="e#15830#18085#0" />
+                <element signature="e#18153#18605#0" />
+                <element signature="e#18644#18805#0" />
+                <element signature="e#18832#18917#0" />
+                <element signature="e#18943#19036#0" />
+                <element signature="e#19066#19168#0" />
+                <element signature="e#19206#19785#0" />
+                <element signature="e#19818#19958#0" />
+                <element signature="e#19998#20498#0" />
+                <element signature="e#20525#20590#0" />
+                <element signature="e#20619#20685#0" />
+                <element signature="e#20723#21247#0" />
+                <element signature="n#style#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue">
+        <entry file="file://$PROJECT_DIR$/src/data/table/scroll-synchro.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="249" column="17" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
-              <folding>
-                <element signature="n#div#0;n#template#0;n#!!top" />
-                <element signature="n#table-body#0;n#div#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#7101#7469#0" />
-                <element signature="e#7513#19518#0" />
-              </folding>
+            <state relative-caret-position="552">
+              <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="844">
-              <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+            <state relative-caret-position="319">
+              <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -90,14 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tableFixedHeaderWrapper</find>
-      <find>wrapper</find>
-      <find>tableMainWrapper</find>
-      <find>bind</find>
-      <find>15px</find>
-      <find>maxH</find>
-      <find>fixedWrapperHeight</find>
-      <find>tableRight</find>
       <find>this.maxHeight</find>
       <find>tableRightWrapper</find>
       <find>right</find>
@@ -107,19 +105,27 @@
       <find>1px</find>
       <find>scroll</find>
       <find>@scroll</find>
-      <find>xxx</find>
       <find>wheelChange</find>
       <find>hoverChangeMain</find>
       <find>tableLeftWrapper</find>
       <find>targetName</find>
-      <find>scrollGradient</find>
-      <find>scrollLeftGradient</find>
       <find>index</find>
       <find>@scr</find>
       <find>bodyWrapper</find>
-      <find>handleFixedMousewheel</find>
       <find>auto</find>
       <find>scrolltop</find>
+      <find>handleBodyScro</find>
+      <find>handleFixedMousewheel</find>
+      <find>handleBodyScroll</find>
+      <find>distance</find>
+      <find>scrollLeftGradient</find>
+      <find>xxx</find>
+      <find>@scroll</find>
+      <find>part</find>
+      <find>scrollGradient</find>
+      <find>mouserwheel</find>
+      <find>mousewheel</find>
+      <find>name</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,9 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-group2.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-group.vue" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-default.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/menu-back1.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/input-readonly.vue" />
         <option value="$PROJECT_DIR$/docs/.vuepress/components/input-error.vue" />
@@ -175,10 +178,13 @@
         <option value="$PROJECT_DIR$/src/tickling/plugin.js" />
         <option value="$PROJECT_DIR$/src/form data/cascader-item.vue" />
         <option value="$PROJECT_DIR$/docs/components/table/README.md" />
-        <option value="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" />
-        <option value="$PROJECT_DIR$/src/directives/mousewheel.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/../iview-2.0/src/components/table/table.vue" />
+        <option value="$PROJECT_DIR$/src/data/table/scroll synchro.js" />
+        <option value="$PROJECT_DIR$/src/directives/mousewheel.js" />
         <option value="$PROJECT_DIR$/src/data/table/table.vue" />
+        <option value="$PROJECT_DIR$/src/data/table/scroll-synchro.js" />
+        <option value="$PROJECT_DIR$/docs/.vuepress/components/table-default.vue" />
       </list>
     </option>
   </component>
@@ -192,7 +198,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -226,12 +231,6 @@
             <path>
               <item name="vueXin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="directives" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="vueXin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="tests" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -250,6 +249,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -257,6 +257,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="refoc&#9;ACTION&#9;ReformatCode&#10;refco&#9;ACTION&#9;ReformatCode&#10;refcode&#9;ACTION&#9;ReformatCode&#10;refc&#9;ACTION&#9;ReformatCode&#10;sort&#9;ACTION&#9;linessorter.sort" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -450,12 +451,15 @@
       <workItem from="1558313972725" duration="17100000" />
       <workItem from="1558400420203" duration="315000" />
       <workItem from="1558402340347" duration="7000" />
-      <workItem from="1558402373488" duration="3934000" />
+      <workItem from="1558402373488" duration="4765000" />
+      <workItem from="1558419898516" duration="7000" />
+      <workItem from="1558419973970" duration="19053000" />
+      <workItem from="1558486941635" duration="12434000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1002411000" />
+    <option name="totallyTimeSpent" value="1034736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -470,7 +474,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49814126" visible="true" weight="0.1726568" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49814126" visible="true" weight="0.1726568" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.5008157" side_tool="true" weight="0.18181819" />
       <window_info id="Favorites" order="3" sideWeight="0.5018587" side_tool="true" weight="0.1726568" />
@@ -502,45 +506,12 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue</url>
           <line>82</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/data/table/table.vue</url>
-          <line>494</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue</url>
-          <line>214</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue</url>
-          <line>215</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/layout/layout.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/dist/404.html" />
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-size.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#1284#1339#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/button-show.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -868,40 +839,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
+    <entry file="file://$PROJECT_DIR$/../../project/blog dist/src/store/modules/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
+        <state relative-caret-position="-819" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../element-dev/packages/table/src/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="249" column="17" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
+        <state relative-caret-position="126">
+          <caret line="396" column="38" lean-forward="true" selection-start-line="396" selection-start-column="38" selection-end-line="396" selection-end-column="38" />
           <folding>
             <element signature="n#div#0;n#template#0;n#!!top" />
             <element signature="n#table-body#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#6426#6480#0" expanded="true" />
             <element signature="e#7101#7469#0" />
-            <element signature="e#7513#19518#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../iview-2.0/src/components/table/table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="678" column="30" selection-start-line="678" selection-start-column="30" selection-end-line="678" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/table/table.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="640" column="19" lean-forward="true" selection-start-line="640" selection-start-column="19" selection-end-line="640" selection-end-column="19" />
+        <state relative-caret-position="-15">
+          <caret line="469" column="26" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -909,10 +878,49 @@
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#x-icon#1;n#span#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#25208#25760#0" />
+            <element signature="e#10068#10125#0" expanded="true" />
+            <element signature="e#10348#10416#0" />
+            <element signature="e#10432#11637#0" />
+            <element signature="e#12462#13058#0" />
+            <element signature="e#13761#14911#0" />
+            <element signature="e#14941#15086#0" />
+            <element signature="e#15112#15801#0" />
+            <element signature="e#15830#18085#0" />
+            <element signature="e#18153#18605#0" />
+            <element signature="e#18644#18805#0" />
+            <element signature="e#18832#18917#0" />
+            <element signature="e#18943#19036#0" />
+            <element signature="e#19066#19168#0" />
+            <element signature="e#19206#19785#0" />
+            <element signature="e#19818#19958#0" />
+            <element signature="e#19998#20498#0" />
+            <element signature="e#20525#20590#0" />
+            <element signature="e#20619#20685#0" />
+            <element signature="e#20723#21247#0" />
+            <element signature="n#style#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/directives/mousewheel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="46" lean-forward="true" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/table/scroll-synchro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.vuepress/components/table-default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
         </state>
       </provider>
     </entry>

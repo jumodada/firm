@@ -49,6 +49,11 @@
                     {key:12,name:'webpack从入门到入土',price:150,year:18,introduction:'     dfd               ',author:'宴之敖者'},
                     {key:13,name:'程序员的养生之道',price:190,year:83,introduction:'     dfd               ',author:'丰之余'},
                     {key:14,name:'图解HTTP',price:32,year:34,introduction:'     dfd               ',author:'迅哥儿'},
+                    {key:15,name:'c++d',price:40,year:45,introduction:'     dfd               ',author:'尤刚'},
+                    {key:16,name:'d',price:10,year:2,introduction:'     dfd               ',author:'俟堂'},
+                    {key:17,name:'c',price:150,year:18,introduction:'     dfd               ',author:'宴之敖者'},
+                    {key:18,name:'b',price:190,year:83,introduction:'     dfd               ',author:'丰之余'},
+                    {key:19,name:'a',price:32,year:34,introduction:'     dfd               ',author:'迅哥儿'},
 
                 ],
                 selected:[],

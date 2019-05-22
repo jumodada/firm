@@ -1,4 +1,3 @@
-
 <template>
     <div class="x-table-wrapper"
          :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden" ref="totalWrapper">
@@ -36,7 +35,7 @@
             </div>
             <div class="x-table-main-body"
                  :style="{overflow:'scroll'}"
-                 @scroll.passive="scrollGradient('main','tableMainWrapper')"
+                 @scroll.passive="scrollGradient"
                  ref="tableMainWrapper"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
@@ -95,7 +94,7 @@
             </div>
             <div   class="x-table-left-body" :style="{overflow:'hidden',overflowY:'scroll'}"
                    ref="tableLeftWrapper"
-                   @scroll.passive="scrollGradient('left','tableLeftWrapper')"
+                   v-xScroll
                    v-if="fixedLeft.length>0"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
@@ -153,7 +152,7 @@
             </div>
             <div class="x-table-right-body" :style="{overflow:'hidden',overflowY:'scroll'}"
                  ref="tableRightWrapper"
-                 @scroll.passive="scrollGradient('right','tableRightWrapper')"
+                 v-xScroll
                  v-if="fixedRight.length>0"
             >
                 <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
@@ -184,11 +183,11 @@
 <script>
     import loading from '../../currency/dynamic icon/loading'
     import Icon from '../../currency/icon'
-    import mouserwheel from '../../directives/mousewheel'
+    import xScroll from './scroll-synchro'
     export default {
         name: "x-table",
         directives:{
-            mouserwheel
+            xScroll
         },
         components:{
             'x-icon': Icon,
@@ -254,7 +253,6 @@
                     left:true,
                     right:false
                 },
-                oldScrollTop:0,
                 oldScrollLeft:0,
             }
         },
@@ -274,12 +272,13 @@
         watch:{
             selectedItems(){
                 let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
+                let {fixedInput,fixedMainInput} = this.$refs
                 if(this.fixedLeft.length>0){
-                    this.$refs.fixedInput.indeterminate = selectedStatus==='half'
-                    this.$refs.fixedInput.checked = selectedStatus==='All'
+                    fixedInput.indeterminate = selectedStatus==='half'
+                    fixedInput.checked = selectedStatus==='All'
                 }else{
-                    this.$refs.fixedMainInput.indeterminate = selectedStatus==='half'
-                    this.$refs.fixedMainInput.checked = selectedStatus==='All'
+                    fixedMainInput.indeterminate = selectedStatus==='half'
+                    fixedMainInput.checked = selectedStatus==='All'
                 }
             }
         },
@@ -456,38 +455,34 @@
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
-            scrollGradient(part,targetName){
-                let ref = this.$refs
-                let [scrollTop,scrollLeft] = [ref[targetName].scrollTop,ref.tableMainWrapper.scrollLeft]
-                if(scrollLeft!==this.oldScrollLeft){
+            scrollGradient(){
+                const ref = this.$refs
+                const {tableLeftWrapper,tableRightWrapper} = ref
+                let {scrollTop,scrollLeft} = ref.tableMainWrapper
+                if(scrollLeft!==xScroll.data.currentScrollLeft){
                     let {width} = ref.tableMain.style
                     this.hiddenShadow.left = scrollLeft === 0 ? true : false;
                     this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
                     this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-                    this.oldScrollLeft = scrollLeft
+                    xScroll.data.currentScrollLeft= scrollLeft
                     return
                 }
-                if(this.oldScrollTop===scrollTop)return
-                this.oldScrollTop = scrollTop
-                let x = {
-                    left:[`tableMainWrapper`,`tableRightWrapper`],
-                    main:[`tableLeftWrapper`,`tableRightWrapper`],
-                    right:[`tableLeftWrapper`,`tableMainWrapper`]
-                }
-                if(this.fixedLeft.length>0||part){
-                    ref[x[part][0]].scrollTop = scrollTop
-                }
-                if(this.fixedRight.length>0){
-                    ref[x[part][1]].scrollTop = scrollTop
-                }
-
+                if(xScroll.data.currentScrollTop===scrollTop)return
+                xScroll.data.currentScrollTop=scrollTop
+                window.requestAnimationFrame(()=>{
+                   if(this.fixedLeft.length>0){
+                       tableLeftWrapper.scrollTop = scrollTop
+                   }
+                   if(this.fixedRight.length>0){
+                       tableRightWrapper.scrollTop = scrollTop
+                   }
+               })
             },
             scrollLeftGradient(){
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
                 if(this.oldScrollLeft===scrollLeft)return
                 this.$refs.tableMainWrapper.scrollLeft = scrollLeft
             },
-
         }
     }
 </script>
