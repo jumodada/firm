@@ -471,14 +471,18 @@
                 }
                 if(xScroll.data.currentScrollTop===scrollTop)return
                 xScroll.data.currentScrollTop=scrollTop
+                this.$refs.tableMain.classList.remove('debug')
                 window.requestAnimationFrame(()=>{
-                   if(this.fixedLeft.length>0){
-                       tableLeftWrapper.scrollTop = scrollTop
-                   }
-                   if(this.fixedRight.length>0){
-                       tableRightWrapper.scrollTop = scrollTop
-                   }
-               })
+                    if(this.fixedLeft.length>0){
+                        tableLeftWrapper.scrollTop = scrollTop
+                    }
+                    if(this.fixedRight.length>0){
+                        tableRightWrapper.scrollTop = scrollTop
+                    }
+                    window.requestAnimationFrame(()=>{
+                        this.$refs.tableMain.classList.add('debug')
+                    })
+                })
             },
             scrollLeftGradient(){
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
@@ -579,10 +583,7 @@
             z-index: 2;
         }
         &-main{
-            position: absolute;
-            left: 0;
-            top: 0;
-            will-change: transform;
+            display: inline-block;
             &-header{
                 width: 100%;
                 background-color: #f9f9f9;
@@ -593,7 +594,6 @@
                 }
                 -ms-overflow-style: none;
                 scrollbar-width: none;
-                -ms-overflow-style: none;
                 overflow: -moz-scrollbars-none;
                 table{
                     thead{
@@ -602,7 +602,6 @@
                 }
             }
             &-body{
-                will-change: transform;
                 border-bottom: 1px solid #efefef;
             }
         }
@@ -625,13 +624,8 @@
                 }
                 -ms-overflow-style: none;
                 scrollbar-width: none;
-                -ms-overflow-style: none;
                 overflow: -moz-scrollbars-none;
             }
-        }
-        &-main{
-            display: inline-block;
-            position: relative;
         }
         &-right{
             position: absolute;
@@ -645,9 +639,7 @@
                 }
                 -ms-overflow-style: none;
                 scrollbar-width: none;
-                -ms-overflow-style: none;
                 overflow: -moz-scrollbars-none;
-                will-change: transform;
                 z-index: 4;
                 background-color: white;
             }
@@ -662,5 +654,8 @@
     }
     .stopScroll{
         pointer-events:none!important;
+    }
+    .debug{
+        transform: translateZ(0);
     }
 </style>
