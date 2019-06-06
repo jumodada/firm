@@ -42,7 +42,7 @@
             }
         &.checked{
             &:after{
-                left: 32px;
+                left: 31px;
             }
         }
     }
