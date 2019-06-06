@@ -1,4 +1,8 @@
-node_modules/
-.cache/
-dist/
-.idea/
+node_modules
+.cache
+.DS_Store
+.idea
+.vscode
+package-lock.json
+dist
+docs/dist
