@@ -24,6 +24,7 @@ module.exports = {
                     '/components/menu/',
                     '/components/pagination/',
                     '/components/table/',
+                    '/components/switch/',
                 ]
             },
         ]
