@@ -1,8 +1,12 @@
 node_modules
-.cache
 .DS_Store
+npm-debug.log
+lib
 .idea
-.vscode
-package-lock.json
+coverage
+waiter.config.js
+yarn.lock
+karma.conf.js
 dist
-docs/dist
+.Ds_Store
+docs/
