@@ -6,7 +6,6 @@ lib
 coverage
 waiter.config.js
 yarn.lock
-karma.conf.js
 dist
-.Ds_Store
+.Ds_Store/
 docs/
