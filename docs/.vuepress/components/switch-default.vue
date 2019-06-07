@@ -1,7 +1,12 @@
 <template>
     <div>
         <x-switch>
-
+            <span slot="open">
+            开
+            </span>
+            <span  slot="close">
+                关
+            </span>
         </x-switch>
     </div>
 </template>
