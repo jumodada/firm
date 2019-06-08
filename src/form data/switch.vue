@@ -59,11 +59,12 @@
             position: absolute;
             left: 7px;
             top: 0;
+            opacity: 1;
         }
         &-close{
             position: absolute;
             left: 24px;
-            top:0
+            top:0;
         }
             &::after{
                 content: "";
@@ -91,13 +92,13 @@
             width: 60px;
             font-size: 15px;
             border-radius: 22px;
-            &-open{
-                left: 8px;
-                top: 0;
+            .switch-open{
+                left: 10px;
+                top: 1px;
             }
-            &-close{
-                left: 27px;
-                top:0
+            .switch-close{
+                left: 30px;
+                top:1px;
             }
             &::after{
                 width: 23px;
@@ -109,6 +110,29 @@
                 }
             }
        }
+        &.small{
+            height: 17px;
+            width: 42px;
+            font-size: 13px;
+            border-radius: 18px;
+            .switch-open{
+                left: 7px;
+                top: -1px;
+            }
+            .switch-close{
+                left: 20px;
+                top:-1px;
+            }
+            &::after{
+                width: 15px;
+                height: 15px;
+            }
+            &.checked{
+                &:after{
+                    left: 26px;
+                }
+            }
+        }
 
     }
 </style>
