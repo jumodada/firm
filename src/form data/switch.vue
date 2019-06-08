@@ -1,5 +1,5 @@
 <template>
-    <div class="switch" :class="{checked:toggle,openStatus:toggle}" ref="switch" @click="switchChecked">
+    <div class="switch" :style="{backgroundColor:toggle?activeColor:inactiveColor}" :class="{checked:toggle,openStatus:toggle,[size]:true}" ref="switch" @click="switchChecked">
         <div class="switch-open" v-if="toggle">
             <slot name="open"></slot>
         </div>
@@ -13,16 +13,28 @@
     export default {
         name: "x-switch",
         props:{
-
+            activeColor:{
+                type:String,
+            },
+            inactiveColor:{
+                type:String
+            },
+            size:{
+                validator(val){
+                    return ['big','medium','small'].indexOf(val)>-1
+                }
+            }
         },
         data(){
           return {
-              toggle:false
+              toggle:false,
           }
         },
         methods:{
-            switchChecked(){
-                this.toggle =!this.toggle
+            switchChecked(event){
+                event.preventDefault()
+                this.toggle = !this.toggle
+                this.$emit('on-change',this.toggle)
             }
         }
     }
@@ -57,7 +69,7 @@
                 content: "";
                 width: 18px;
                 height: 18px;
-                border-radius: 18px;
+                border-radius: 100%;
                 background-color: #fff;
                 position: absolute;
                 left: 1px;
@@ -74,5 +86,29 @@
             background-color: #2d8cf0;
             color: white;
         }
+        &.big{
+            height: 25px;
+            width: 60px;
+            font-size: 15px;
+            border-radius: 22px;
+            &-open{
+                left: 8px;
+                top: 0;
+            }
+            &-close{
+                left: 27px;
+                top:0
+            }
+            &::after{
+                width: 23px;
+                height: 23px;
+            }
+            &.checked{
+                &:after{
+                    left: 36px;
+                }
+            }
+       }
+
     }
 </style>

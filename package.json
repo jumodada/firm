@@ -1,0 +1,48 @@
+{
+  "name": "my-wheel-0-1",
+  "version": "0.0.5",
+  "description": "这是一个UI框架",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test": "vue-cli-service test:unit",
+    "p": "yarn run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/vueXin.git master:gh-pages;",
+    "dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "cao": "vuepress eject"
+  },
+  "dependencies": {
+    "highlight.js": "^9.15.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "markdown-loader": "^5.0.0",
+    "marked": "^0.6.1",
+    "text-loader": "^0.0.1",
+    "vue": "^2.6.6"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-unit-mocha": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "chai": "^4.1.2",
+    "karma-chrome-launcher": "^2.2.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "sinon": "^7.2.7",
+    "sinon-chai": "^3.3.0",
+    "vue-template-compiler": "^2.5.21",
+    "vuepress": "^0.14.9"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

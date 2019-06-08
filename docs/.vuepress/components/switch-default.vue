@@ -1,6 +1,6 @@
 <template>
     <div>
-        <x-switch>
+        <x-switch @on-change="xxx" active-color="#f39812" inactive-color="#08af31" size="big">
             <span slot="open">
             开
             </span>
@@ -20,6 +20,9 @@
         },
 
         methods:{
+            xxx(e){
+                console.log(e)
+            }
         }
     }
 </script>
