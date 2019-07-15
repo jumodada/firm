@@ -55,6 +55,7 @@
                         <template v-for="column in headerColumns">
                             <td :key="column.field">
                                 <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
+                                <slot :name="column.slot" :column="item" :index="index"></slot>
                             </td>
                         </template>
                     </tr>
