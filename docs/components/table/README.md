@@ -8,3 +8,15 @@ title: Table表格
 <br/>
 <table-default></table-default>
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+## 合并单元格
+
+<br/>
+<table-merge></table-merge>

@@ -34,7 +34,7 @@
                 </table>
             </div>
             <div class="x-table-main-body"
-                 :style="{overflow:'scroll'}"
+                 :style="{overflow:'auto'}"
                  @scroll.passive="scrollGradient"
                  ref="tableMainWrapper"
             >
@@ -265,6 +265,8 @@
                 if(this.fixedLeft.length>0||this.fixedRight.length>0){
                     this.getScrollBarWidth()
                     this.setFixedWidth()
+                }else{
+                    this.setHeaderWidth()
                 }
                 this.setMainWidth()
             })
@@ -299,6 +301,14 @@
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
             },
+            setHeaderWidth(){
+                let width = this.columns.reduce((accumulate,current)=>accumulate+current.width
+                ,0)
+                if(this.checkBoxOn){
+                    width +=60
+                }
+                this.$refs.tableFixedHeaderWrapper.style.width = width+'px'
+            },
             setMainWidth(){
                 let [$refs,width] = [this.$refs,0]
                 if(this.headerColumns[0].width){
@@ -315,9 +325,10 @@
                 $refs.tableMainWrapper.style.width = this.maxWidth +'px'
                 if(this.maxHeight){
                     $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
-                }else{
-                    $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
                 }
+                // else{
+                //     $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
+                // }
                 $refs.totalWrapper.style.width = this.maxWidth +'px'
                 $refs.totalWrapper.style.height = this.maxHeight +'px'
             },

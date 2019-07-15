@@ -104,7 +104,7 @@
             this.$refs.trigger.addEventListener('mouseleave',this.mouseleaveFn)
         },
         beforeDestroy(){
-            this.remvoeListener()
+            this.removeListener()
             this.$refs.popoverWrapper && this.$refs.popoverWrapper.remove()
         },
         methods:{
@@ -198,7 +198,7 @@
                     }
                 }
                 this.popoverVisible =false
-                this.remvoeListener()
+                this.removeListener()
             },
             addListener(){
                 this.fn = e=>{
@@ -208,7 +208,7 @@
                 }
                 document.addEventListener('click',this.fn)
             },
-            remvoeListener(){
+            removeListener(){
                 document.removeEventListener('click',this.fn)
                 document.removeEventListener('mouseenter',this.mouseenterFn)
                 document.removeEventListener('mouseleave',this.mouseleaveFn)
