@@ -44,18 +44,18 @@
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody ref="tBodyMain">
-                    <tr v-for="(item,index) in bodyData" :key="index"
-                        @mouseenter="hoverChangeMain(index,$event)"
-                        @mouseleave="hoverChangeMain(index,$event)"
+                    <tr v-for="(item,rowIndex) in bodyData" :key="rowIndex"
+                        @mouseenter="hoverChangeMain(rowIndex,$event)"
+                        @mouseleave="hoverChangeMain(rowIndex,$event)"
                         ref="trMain">
                         <td v-if="checkBoxOn">
-                            <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
+                            <input :checked="inSelected(item)" @change="changeItem(item,rowIndex,$event)" type="checkbox">
                         </td>
-                        <td v-if="numberVisible">{{index+1}}</td>
-                        <template v-for="column in headerColumns">
-                            <td :key="column.field">
+                        <td v-if="numberVisible">{{rowIndex+1}}</td>
+                        <template v-for="(column,colIndex) in headerColumns">
+                            <td :key="column.field" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan" :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
                                 <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
-                                <slot :name="column.slot" :column="item" :index="index"></slot>
+                                <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
                             </td>
                         </template>
                     </tr>
@@ -242,6 +242,7 @@
                 default:()=>[]
             },
             defaultSort:Object,
+            spanMethod:Function
         },
         data(){
             return {
@@ -255,6 +256,7 @@
                     right:false
                 },
                 oldScrollLeft:0,
+                cell:[]
             }
         },
         mounted(){
@@ -271,6 +273,9 @@
                 }
                 this.setMainWidth()
             })
+            if(this.spanMethod){
+                this.runSpanMethod()
+            }
         },
         watch:{
             selectedItems(){
@@ -500,6 +505,30 @@
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
                 if(this.oldScrollLeft===scrollLeft)return
                 this.$refs.tableMainWrapper.scrollLeft = scrollLeft
+            },
+            runSpanMethod(){
+                this.headerColumns.forEach((col,colIndex)=>{
+                    this.bodyData.forEach((row,rowIndex)=>{
+                        let obj = this.spanMethod(row,colIndex,rowIndex)||{}
+                        if(!obj.rowspan){
+                            obj.rowspan = 1
+                        }else if(obj.rowspan>1){
+                            let i = 1
+                           while(i<obj.rowspan){
+                               delete this.bodyData[rowIndex+i][col.field]
+                               i++
+                           }
+                           console.log(this.bodyData)
+                        }
+                        if(!obj.colspan){
+                            obj.colspan = 1
+                        }
+                        if(!this.cell[colIndex]){
+                            this.cell[colIndex] = []
+                        }
+                        this.cell[colIndex][rowIndex] = obj
+                    })
+                })
             },
         }
     }
