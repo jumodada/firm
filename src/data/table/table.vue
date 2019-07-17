@@ -530,10 +530,15 @@
                                 delete this.headersCollection[rowIndex+i][colIndex]
                                i++
                            }
-                           console.log(this.headersCollection)
                         }
                         if(!obj.colspan){
                             obj.colspan = 1
+                        }else if(obj.colspan>1){
+                            let i = 1
+                            while(i<obj.colspan){
+                                delete this.headersCollection[rowIndex][colIndex+i]
+                                i++
+                            }
                         }
                         if(!this.cell[colIndex]){
                             this.cell[colIndex] = []
