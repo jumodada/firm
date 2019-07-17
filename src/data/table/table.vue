@@ -52,7 +52,7 @@
                             <input :checked="inSelected(item)" @change="changeItem(item,rowIndex,$event)" type="checkbox">
                         </td>
                         <td v-if="numberVisible">{{rowIndex+1}}</td>
-                        <template v-for="(column,colIndex) in headerColumns">
+                        <template v-for="(column,colIndex) in headersCollection[rowIndex] || headerColumns">
                             <td :key="column.field" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan" :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
                                 <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
                                 <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
@@ -185,6 +185,8 @@
     import loading from '../../currency/dynamic icon/loading'
     import Icon from '../../currency/icon'
     import xScroll from './scroll-synchro'
+    import {recurrenceOnceDeepCopy} from "../../utils/data-processing"
+
     export default {
         name: "x-table",
         directives:{
@@ -256,7 +258,8 @@
                     right:false
                 },
                 oldScrollLeft:0,
-                cell:[]
+                cell:[],
+                headersCollection:[]
             }
         },
         mounted(){
@@ -273,6 +276,7 @@
                 }
                 this.setMainWidth()
             })
+            this.setHeadersCollection()
             if(this.spanMethod){
                 this.runSpanMethod()
             }
@@ -425,6 +429,14 @@
             setColumns(){
                 this.headerColumns = JSON.parse(JSON.stringify(this.columns))
             },
+            setHeadersCollection(){
+                let i=0
+                while(i<this.bodyData.length){
+                    this.headersCollection[i] = recurrenceOnceDeepCopy(this.headerColumns)
+                    i++
+                }
+                console.log(this.headersCollection)
+            },
             inSelected(item){
                 return this.selectedItems.filter(child=>child.key===item.key).length>0
             },
@@ -515,10 +527,10 @@
                         }else if(obj.rowspan>1){
                             let i = 1
                            while(i<obj.rowspan){
-                               delete this.bodyData[rowIndex+i][col.field]
+                                delete this.headersCollection[rowIndex+i][colIndex]
                                i++
                            }
-                           console.log(this.bodyData)
+                           console.log(this.headersCollection)
                         }
                         if(!obj.colspan){
                             obj.colspan = 1
@@ -529,6 +541,7 @@
                         this.cell[colIndex][rowIndex] = obj
                     })
                 })
+                console.log(this.cell)
             },
         }
     }
