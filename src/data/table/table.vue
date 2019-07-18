@@ -323,12 +323,13 @@
                 }
             },
             initComputeStyle(){
-                this.setHeaderToTop()
+                let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
+                this.setHeaderToTop(tableWidth)
                 if(this.fixedLeft.length>0||this.fixedRight.length>0){
                     this.getScrollBarWidth()
                     this.setFixedWidth()
                 }
-                this.setMainWidth()
+                this.setMainWidth(tableWidth)
             },
             getScrollBarWidth(){
                 const scrollBar = document.createElement('div')
@@ -346,18 +347,19 @@
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
             },
-            setMainWidth(){
+            setMainWidth(tableWidth){
                 let [$refs,width] = [this.$refs,0]
                 if(this.headerColumns[0].width){
                     this.headerColumns.forEach(item=>{
                         width+=item.width
                     })
                 }else{
-                    width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
+                    width = tableWidth
                 }
                 if(this.checkBoxOn&&this.headerColumns[0].width){
                     width+=60
                 }
+
                 $refs.tableMain.style.width = width +'px'
                 if(this.maxHeight){
                     $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
@@ -365,9 +367,8 @@
                 this.setColGroup()
                 $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
-            setHeaderToTop(){
-                let refs = this.$refs
-                refs.tableFixedHeader.style.width = getComputedStyle(refs.tableFixedHeaderWrapper).width
+            setHeaderToTop(tableWidth){
+                this.$refs.tableFixedHeader.style.width = tableWidth
             },
             checkFixed(){
                 let [left,right,main] = [[],[],[]]
@@ -633,7 +634,6 @@
             border-bottom: 1px solid #efefef;
             overflow: hidden;
             white-space: nowrap;
-            user-select: none;
             text-overflow: ellipsis;
             .td-div{
                 box-sizing: border-box;
