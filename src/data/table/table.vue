@@ -1,6 +1,6 @@
 <template>
     <div class="x-table-wrapper"
-         :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden" ref="totalWrapper">
+         :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden;" ref="totalWrapper">
         <!--  主体-->
         <div class="x-table-main"
         >
@@ -8,8 +8,8 @@
                  ref="tableFixedHeaderWrapper"
                  @scroll.passive="scrollLeftGradient"
             >
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedHeader">
-                    <colgroup>
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableFixedHeader">
+                    <colgroup ref="headerColGroup">
                         <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
@@ -18,8 +18,9 @@
                         <th v-if="checkBoxOn">
                             <input @change="onChangeAllItems" type="checkbox" ref="fixedMainInput">
                         </th>
-                        <th v-for="column in headerColumns" :key="column.field">
-                            <div class="x-table-th">
+                        <th v-for="column in headerColumns " :key="column.field">
+
+                            <div class="x-table-th td-div">
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
@@ -39,7 +40,7 @@
                  ref="tableMainWrapper"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
-                    <colgroup>
+                    <colgroup ref="bodyColGroup">
                         <col v-if="checkBoxOn" style="width:60px">
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
@@ -54,8 +55,10 @@
                         <td v-if="numberVisible">{{rowIndex+1}}</td>
                         <template v-for="(column,colIndex) in headersCollection[rowIndex] || headerColumns">
                             <td :key="column.field" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan" :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
-                                <span :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</span>
-                                <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
+                                <div  class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</div>
+                                <div  class="td-div">
+                                    <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
+                                </div>
                             </td>
                         </template>
                     </tr>
@@ -113,7 +116,7 @@
                             <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
                         </th>
                         <td v-if="numberVisible">{{index+1}}</td>
-                        <template v-for="column in fixedLeft">
+                        <template v-for="column in fixedLeft" class="td-div">
                             <td :key="column.field">
                                 <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
                             </td>
@@ -259,22 +262,16 @@
                 },
                 oldScrollLeft:0,
                 cell:[],
-                headersCollection:[]
+                headersCollection:[],
             }
         },
         mounted(){
+           this.windowReSize()
             this.setColumns()
             this.checkFixed()
             this.setBodyData()
             this.$nextTick(()=>{
-                this.setHeaderToTop()
-                if(this.fixedLeft.length>0||this.fixedRight.length>0){
-                    this.getScrollBarWidth()
-                    this.setFixedWidth()
-                }else{
-                    this.setHeaderWidth()
-                }
-                this.setMainWidth()
+               this.initComputeStyle()
             })
             this.setHeadersCollection()
             if(this.spanMethod){
@@ -282,6 +279,18 @@
             }
         },
         watch:{
+            data(){
+                this.setColumns()
+                this.checkFixed()
+                this.setBodyData()
+                this.$nextTick(()=>{
+                    this.initComputeStyle()
+                })
+                this.setHeadersCollection()
+                if(this.spanMethod){
+                    this.runSpanMethod()
+                }
+            },
             selectedItems(){
                 let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
                 let {fixedInput,fixedMainInput} = this.$refs
@@ -295,6 +304,32 @@
             }
         },
         methods:{
+            setColGroup(){
+                let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
+                let averageWidth = parseInt(width/this.headerColumns.length)
+                this.headerColumns.forEach((item,index)=>{
+                    if(!item.width){
+                        this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
+                        this.$refs.bodyColGroup.children[index].style.width = averageWidth + 'px'
+                    }
+                })
+            },
+            windowReSize(){
+                window.onresize = ()=>{
+                    clearTimeout(this.timer)
+                    this.timer = setTimeout(()=>{
+                        this.initComputeStyle()
+                    },101)
+                }
+            },
+            initComputeStyle(){
+                this.setHeaderToTop()
+                if(this.fixedLeft.length>0||this.fixedRight.length>0){
+                    this.getScrollBarWidth()
+                    this.setFixedWidth()
+                }
+                this.setMainWidth()
+            },
             getScrollBarWidth(){
                 const scrollBar = document.createElement('div')
                 let style = {
@@ -311,14 +346,6 @@
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
             },
-            setHeaderWidth(){
-                let width = this.columns.reduce((accumulate,current)=>accumulate+current.width
-                ,0)
-                if(this.checkBoxOn){
-                    width +=60
-                }
-                this.$refs.tableFixedHeaderWrapper.style.width = width+'px'
-            },
             setMainWidth(){
                 let [$refs,width] = [this.$refs,0]
                 if(this.headerColumns[0].width){
@@ -326,25 +353,21 @@
                         width+=item.width
                     })
                 }else{
-                    width = parseInt(getComputedStyle(this.$refs.tableMain).width)
+                    width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
                 }
                 if(this.checkBoxOn&&this.headerColumns[0].width){
                     width+=60
                 }
                 $refs.tableMain.style.width = width +'px'
-                $refs.tableMainWrapper.style.width = this.maxWidth +'px'
                 if(this.maxHeight){
                     $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
                 }
-                // else{
-                //     $refs.tableMainWrapper.style.height = parseInt(getComputedStyle($refs.tableMainWrapper).height)-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
-                // }
-                $refs.totalWrapper.style.width = this.maxWidth +'px'
+                this.setColGroup()
                 $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
             setHeaderToTop(){
                 let refs = this.$refs
-                refs.tableFixedHeader.width = getComputedStyle(refs.tableFixedHeader).width
+                refs.tableFixedHeader.style.width = getComputedStyle(refs.tableFixedHeaderWrapper).width
             },
             checkFixed(){
                 let [left,right,main] = [[],[],[]]
@@ -421,7 +444,6 @@
             },
             setTableWidth(refs,Width){
                 refs.tableFixedHeader.style.width = Width
-                refs.tableFixedHeaderWrapper.style.width = parseInt(this.maxWidth)-this.scrollBarWidth+'px'
             },
             setBodyData(){
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
@@ -435,7 +457,6 @@
                     this.headersCollection[i] = recurrenceOnceDeepCopy(this.headerColumns)
                     i++
                 }
-                console.log(this.headersCollection)
             },
             inSelected(item){
                 return this.selectedItems.filter(child=>child.key===item.key).length>0
@@ -546,9 +567,8 @@
                         this.cell[colIndex][rowIndex] = obj
                     })
                 })
-                console.log(this.cell)
             },
-        }
+        },
     }
 </script>
 
@@ -558,6 +578,7 @@
         -webkit-font-smoothing: antialiased;
     }
     .x-table-wrapper{
+        width: 100%;
         -webkit-font-smoothing: antialiased;
         position: relative;
         overflow: hidden;
@@ -571,8 +592,9 @@
         }
     }
     .x-table{
+
         transition: .3s all;
-        min-width: 100%;
+        width: 100%;
         color:#515a6e;
         border-collapse: collapse;
         border-spacing: 0;
@@ -607,8 +629,22 @@
         td,th{
             color:lighten(#515a6e,13.5%);
             text-align: center;
-            padding: 13px;
+            padding: 13px 0;
             border-bottom: 1px solid #efefef;
+            overflow: hidden;
+            white-space: nowrap;
+            user-select: none;
+            text-overflow: ellipsis;
+            .td-div{
+                box-sizing: border-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+                word-break: break-all;
+                word-wrap: normal;
+                vertical-align: middle;
+
+            }
         }
         tr{
             &:hover{
@@ -642,6 +678,7 @@
             z-index: 2;
         }
         &-main{
+            width: 100%;
             display: inline-block;
             &-header{
                 width: 100%;
