@@ -8,14 +8,14 @@ const data={
 const wheel =  function fixedWheel(e,target,scrollArea){
     const currentScrollTop = target.scrollTop
     if(e.deltaY< 0&& currentScrollTop === 0|| e.deltaY> 0 && target.scrollHeight - target.clientHeight === currentScrollTop){
-        event.preventDefault()
+        e.preventDefault()
         return
     }
     if (e.deltaY< 0 && currentScrollTop !== 0) {
-        event.preventDefault()
+        e.preventDefault()
     }
     if (e.deltaY> 0 && target.scrollHeight - target.clientHeight > currentScrollTop) {
-        event.preventDefault()
+        e.preventDefault()
     }
     scrollArea.scrollTop += e.deltaY
 }

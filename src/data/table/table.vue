@@ -294,13 +294,10 @@
             selectedItems(){
                 let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
                 let {fixedInput,fixedMainInput} = this.$refs
-                if(this.fixedLeft.length>0){
-                    fixedInput.indeterminate = selectedStatus==='half'
-                    fixedInput.checked = selectedStatus==='All'
-                }else{
-                    fixedMainInput.indeterminate = selectedStatus==='half'
-                    fixedMainInput.checked = selectedStatus==='All'
-                }
+                let element
+                element = this.fixedLeft.length > 0 ? fixedInput : fixedMainInput
+                element['indeterminate'] = selectedStatus==='half'
+                element['checked'] = selectedStatus==='All'
             }
         },
         methods:{
@@ -309,8 +306,9 @@
                 let averageWidth = parseInt(width/this.headerColumns.length)
                 this.headerColumns.forEach((item,index)=>{
                     if(!item.width){
-                        this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
-                        this.$refs.bodyColGroup.children[index].style.width = averageWidth + 'px'
+                        ['headerColGroup','bodyColGroup'].forEach(item=>{
+                            this.$refs[item].children[index].style.width = averageWidth + 'px'
+                        })
                     }
                 })
             },
@@ -319,7 +317,7 @@
                     clearTimeout(this.timer)
                     this.timer = setTimeout(()=>{
                         this.initComputeStyle()
-                    },101)
+                    },103)
                 }
             },
             initComputeStyle(){
@@ -432,13 +430,12 @@
             },
             setColumnFixedWidth(refs,Width,tableWrapperWidth,name){
                 let maxWidth = tableWrapperWidth+'px'
-                refs[name[0]].style.width = Width
+                refs[name[0]].style.width = refs[name[2]].style.width = Width
                 refs[name[1]].style.width = maxWidth
-                refs[name[2]].style.width = Width
                 if(this.maxHeight&&name[0]==='tableRight'){
                     refs[name[3]].style.width = parseInt(maxWidth)+this.scrollBarWidth+'px'
-                    this.$refs.right.style.width = parseInt(maxWidth)+'px'
-                    this.$refs.right.style.right = this.scrollBarWidth+'px'
+                    refs.right.style.width = parseInt(maxWidth)+'px'
+                    refs.right.style.right = this.scrollBarWidth+'px'
                 }else{
                     refs[name[3]].style.width = maxWidth
                 }
@@ -621,16 +618,10 @@
                 }
             }
         }
-        th{
-            -webkit-user-select:none;
-            -moz-user-select:none;
-            -ms-user-select:none;
-            user-select:none;
-        }
         td,th{
             color:lighten(#515a6e,13.5%);
             text-align: center;
-            padding: 13px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #efefef;
             overflow: hidden;
             white-space: nowrap;
@@ -645,6 +636,12 @@
                 vertical-align: middle;
 
             }
+        }
+        th{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
         }
         tr{
             &:hover{
