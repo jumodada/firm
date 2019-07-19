@@ -4,7 +4,7 @@ title: Table表格
 
 # Table表格
 
-##  尚未完成 
+##  固定行列 
 <br/>
 <table-default></table-default>
 

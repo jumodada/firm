@@ -45,6 +45,9 @@
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody ref="tBodyMain">
+                    <tr v-if="data.length===0">
+                        <td :colspan="headerColumns.length">暂无数据</td>
+                    </tr>
                     <tr v-for="(item,rowIndex) in bodyData" :key="rowIndex"
                         @mouseenter="hoverChangeMain(rowIndex,$event)"
                         @mouseleave="hoverChangeMain(rowIndex,$event)"
@@ -580,7 +583,6 @@
         -webkit-font-smoothing: antialiased;
         position: relative;
         overflow: hidden;
-        border-bottom: 1px solid #efefef;
         border-left: 1px solid white;
         margin: 0;
         padding: 0;
