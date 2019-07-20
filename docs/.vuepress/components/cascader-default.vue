@@ -22,9 +22,9 @@
 </template>
 
 <script>
-    import collapse from '../../../src/Exhibition/collapse'
-    import collapseItem from '../../../src/Exhibition/collapse-item'
-    import Cascader from '../../../src/form data/cascader'
+    import collapse from '../../../src/components/Exhibition/collapse'
+    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Cascader from '../../../src/components/form data/cascader'
     import marked from 'marked'
 
     export default {

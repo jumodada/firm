@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import '../svg.js'
+    import '../../svg.js'
     export default {
         name: "x-icon",
         props:{

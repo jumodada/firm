@@ -36,11 +36,11 @@
     </div>
 </template>
 <script>
-   import pagination from '../../../src/data/pagination'
-    import plugin from '../../../src/tickling/plugin.js'
-    import Button from '../../../src/currency/button'
-    import collapse from '../../../src/Exhibition/collapse'
-    import collapseItem from '../../../src/Exhibition/collapse-item'
+   import pagination from '../../../src/components/data/pagination'
+    import plugin from '../../../src/components/tickling/plugin.js'
+    import Button from '../../../src/components/currency/button'
+    import collapse from '../../../src/components/Exhibition/collapse'
+    import collapseItem from '../../../src/components/Exhibition/collapse-item'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'

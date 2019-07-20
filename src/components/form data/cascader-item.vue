@@ -149,7 +149,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../global";
+    @import "../../global";
 
     .cascader-item{
         display: flex;

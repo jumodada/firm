@@ -183,7 +183,9 @@
                 </table>
             </div>
         </div>
-        <loading v-if="loading" class="x-table-loading"></loading>
+        <transition name="fade">
+            <loading v-if="loading" class="x-table-loading"></loading>
+        </transition>
     </div>
 </template>
 
@@ -191,8 +193,8 @@
     import loading from '../../currency/dynamic icon/loading'
     import Icon from '../../currency/icon'
     import xScroll from './scroll-synchro'
-    import {recurrenceOnceDeepCopy} from "../../utils/data-processing"
-
+    import {recurrenceOnceDeepCopy} from "../../../utils/data-processing"
+    import elementResizeDetectorMaker from 'element-resize-detector'
     export default {
         name: "x-table",
         directives:{
@@ -266,20 +268,28 @@
                 oldScrollLeft:0,
                 cell:[],
                 headersCollection:[],
+                tableWidth:0
             }
         },
         mounted(){
-           this.windowReSize()
+            this.listenToReSize()
             this.setColumns()
             this.checkFixed()
             this.setBodyData()
             this.$nextTick(()=>{
-               this.initComputeStyle()
+                this.fixedWidthComputed()
+               this.tableResize()
+                this.setFixed()
+                this.setMainHeight()
             })
             this.setHeadersCollection()
             if(this.spanMethod){
                 this.runSpanMethod()
             }
+        },
+        beforeDestroy () {
+            window.removeEventListener('resize',this.listenToWindowResize)
+            this.observer.removeListener(this.$el, this.tableResize);
         },
         watch:{
             data(){
@@ -287,7 +297,7 @@
                 this.checkFixed()
                 this.setBodyData()
                 this.$nextTick(()=>{
-                    this.initComputeStyle()
+                    this.tableResize()
                 })
                 this.setHeadersCollection()
                 if(this.spanMethod){
@@ -315,21 +325,26 @@
                     }
                 })
             },
-            windowReSize(){
-                window.onresize = ()=>{
-                    clearTimeout(this.timer)
-                    this.timer = setTimeout(()=>{
-                        this.initComputeStyle()
-                    },103)
-                }
+            listenToReSize(){
+                window.addEventListener('resize',this.listenToWindowResize)
+                this.observer = elementResizeDetectorMaker();
+                this.observer.listenTo(this.$el, this.tableResize)
             },
-            initComputeStyle(){
-                let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
-                this.setHeaderToTop(tableWidth)
+            listenToWindowResize(){
+                clearTimeout(this.timer)
+                this.timer = setTimeout(()=>{
+                    this.tableResize()
+                },150)
+            },
+            setFixed(){
                 if(this.fixedLeft.length>0||this.fixedRight.length>0){
                     this.getScrollBarWidth()
                     this.setFixedWidth()
                 }
+            },
+            tableResize(){
+                let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
+                this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
             },
             getScrollBarWidth(){
@@ -348,25 +363,31 @@
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
             },
+            fixedWidthComputed(){
+                this.headerColumns.forEach(item=>{
+                    this.tableWidth+=item.width
+                })
+            },
+            setMainHeight(){
+                let $refs = this.$refs
+                if(this.maxHeight){
+                    $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
+                }
+                $refs.totalWrapper.style.height = this.maxHeight +'px'
+            },
             setMainWidth(tableWidth){
                 let [$refs,width] = [this.$refs,0]
-                if(this.headerColumns[0].width){
-                    this.headerColumns.forEach(item=>{
-                        width+=item.width
-                    })
+                if(!this.tableWidth||this.tableWidth===0){
+                    width=tableWidth
                 }else{
-                    width = tableWidth
+                    width = this.tableWidth
                 }
                 if(this.checkBoxOn&&this.headerColumns[0].width){
                     width+=60
                 }
 
                 $refs.tableMain.style.width = width +'px'
-                if(this.maxHeight){
-                    $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
-                }
                 this.setColGroup()
-                $refs.totalWrapper.style.height = this.maxHeight +'px'
             },
             setHeaderToTop(tableWidth){
                 this.$refs.tableFixedHeader.style.width = tableWidth
@@ -574,183 +595,5 @@
 </script>
 
 <style lang="scss" scoped>
-    *{
-        transition: .3s all ease;
-        -webkit-font-smoothing: antialiased;
-    }
-    .x-table-wrapper{
-        width: 100%;
-        -webkit-font-smoothing: antialiased;
-        position: relative;
-        overflow: hidden;
-        border-left: 1px solid white;
-        margin: 0;
-        padding: 0;
-        display: inline-block;
-        &.borderHidden{
-            border-bottom: none;
-        }
-    }
-    .x-table{
-
-        transition: .3s all;
-        width: 100%;
-        color:#515a6e;
-        border-collapse: collapse;
-        border-spacing: 0;
-        border-bottom: 1px solid #efefef;
-        overflow: scroll;
-        &.bordered{
-            border:1px solid #efefef;
-            td,th{
-                border: 1px solid #efefef;
-            }
-        }
-        &.compact{
-            td,th{
-                padding: 6px;
-            }
-        }
-        &.stripe{
-            tbody {
-                >tr{
-                    &:nth-child(odd){
-                        background-color: #FCF9F9;
-                    }
-                }
-            }
-        }
-        td,th{
-            color:lighten(#515a6e,13.5%);
-            text-align: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #efefef;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            .td-div{
-                box-sizing: border-box;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: normal;
-                word-break: break-all;
-                word-wrap: normal;
-                vertical-align: middle;
-
-            }
-        }
-        th{
-            -webkit-user-select:none;
-            -moz-user-select:none;
-            -ms-user-select:none;
-            user-select:none;
-        }
-        tr{
-            &:hover{
-                background-color: #FCF9F9;
-            }
-        }
-        &-th{
-            display: inline-flex;
-            align-items: center;
-            &-icon{
-                fill: #666666;
-                margin-left: .15em;
-                display: inline-flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 1em;
-                height: 1em;
-                cursor: pointer;
-            }
-        }
-        &-loading{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(255,255,255,.6);
-            z-index: 2;
-        }
-        &-main{
-            width: 100%;
-            display: inline-block;
-            &-header{
-                width: 100%;
-                background-color: #f9f9f9;
-                overflow: scroll;
-                z-index: 3;
-                &::-webkit-scrollbar{
-                    display: none;
-                }
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-                overflow: -moz-scrollbars-none;
-                table{
-                    thead{
-                        background-color: #f9f9f9;
-                    }
-                }
-            }
-            &-body{
-                border-bottom: 1px solid #efefef;
-            }
-        }
-        &-left{
-            position: absolute;
-            left: 0;
-            top: 0;
-            will-change: transform;
-            box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
-            &-header{
-                background-color: #f9f9f9;
-                z-index: 4;
-            }
-            &-body{
-                will-change: transform;
-                z-index: 4;
-                background-color: white;
-                &::-webkit-scrollbar{
-                    display: none;
-                }
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-                overflow: -moz-scrollbars-none;
-            }
-        }
-        &-right{
-            position: absolute;
-            top: 0;
-            right: 0;
-            box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
-            will-change: transform;
-            &-body{
-                &::-webkit-scrollbar{
-                    display: none;
-                }
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-                overflow: -moz-scrollbars-none;
-                z-index: 4;
-                background-color: white;
-            }
-            &-header{
-                z-index: 4;
-                background-color: #f9f9f9;
-            }
-        }
-    }
-    .boxShadowNone{
-        box-shadow: none !important;
-    }
-    .stopScroll{
-        pointer-events:none!important;
-    }
-    .debug{
-        transform: translateZ(0);
-    }
+   @import "../../../styles/table";
 </style>

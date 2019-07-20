@@ -25,7 +25,7 @@
 <script>
 
 
-    import Icon from '../../src/currency/icon'
+    import Icon from '../currency/icon'
     export default {
         name: "x-menu-item",
         inject:['root'],

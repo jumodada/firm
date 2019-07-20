@@ -45,10 +45,10 @@
 </template>
 
 <script>
-    import popover from '../../../src/Exhibition/popover'
-    import collapse from '../../../src/Exhibition/collapse'
-    import collapseItem from '../../../src/Exhibition/collapse-item'
-    import Button from '../../../src/currency/button'
+    import popover from '../../../src/components/Exhibition/popover'
+    import collapse from '../../../src/components/Exhibition/collapse'
+    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Button from '../../../src/components/currency/button'
     import marked from 'marked'
 
 

@@ -57,7 +57,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../global";
+    @import "../../global";
 
       .wrapper{
           font-size: $font-size;

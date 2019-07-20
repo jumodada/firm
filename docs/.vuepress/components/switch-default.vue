@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Switch from '../../../src/form data/switch'
+    import Switch from '../../../src/components/form data/switch'
     export default {
         name: "table-default",
         components:{

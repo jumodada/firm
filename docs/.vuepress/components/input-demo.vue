@@ -24,9 +24,9 @@
 </template>
 
 <script>
-    import collapse from '../../../src/Exhibition/collapse'
-    import collapseItem from '../../../src/Exhibition/collapse-item'
-    import Input from '../../../src/form data/input'
+    import collapse from '../../../src/components/Exhibition/collapse'
+    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Input from '../../../src/components/form data/input'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'

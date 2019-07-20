@@ -13,6 +13,7 @@
     "cao": "vuepress eject"
   },
   "dependencies": {
+    "element-resize-detector": "^1.1.15",
     "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",

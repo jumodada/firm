@@ -41,12 +41,12 @@
   </div>
 </template>
 <script>
-    import Carousel from './Exhibition/carousel'
-    import carouselItem from './Exhibition/carousel-item'
-    import plugin from './tickling/plugin.js'
-    import Button from './currency/button'
-    import collapse from './Exhibition/collapse'
-    import collapseItem from './Exhibition/collapse-item'
+    import Carousel from './components/Exhibition/carousel'
+    import carouselItem from './components/Exhibition/carousel-item'
+    import plugin from './components/tickling/plugin.js'
+    import Button from './components/currency/button'
+    import collapse from './components/Exhibition/collapse'
+    import collapseItem from './components/Exhibition/collapse-item'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'

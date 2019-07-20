@@ -24,9 +24,9 @@
 </template>
 
 <script>
-    import collapse from '../../../src/Exhibition/collapse'
-    import collapseItem from '../../../src/Exhibition/collapse-item'
-    import Cascader from '../../../src/form data/cascader'
+    import collapse from '../../../src/components/Exhibition/collapse'
+    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Cascader from '../../../src/components/form data/cascader'
     import address from '../../../tests/fixtures/address.js'
     import marked from 'marked'
     function ajax(parent_id = 0){

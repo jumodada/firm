@@ -4,7 +4,7 @@ title: Table表格
 
 # Table表格
 
-##  固定行列 
+##  固定行列/排序
 <br/>
 <table-default></table-default>
 

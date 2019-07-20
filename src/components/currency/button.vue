@@ -174,7 +174,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../global";
+    @import "../../global";
     @keyframes loop {
         to {
             top: -8px;

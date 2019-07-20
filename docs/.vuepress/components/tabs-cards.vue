@@ -27,11 +27,11 @@
 
 <script>
 
-    import collapse from '../../../src/Exhibition/collapse'
-    import collapseItem from '../../../src/Exhibition/collapse-item'
-    import Button from '../../../src/currency/button'
-    import Tabs from '../../../src/Exhibition/tabs'
-    import TabsItem from '../../../src/Exhibition/tabs-item'
+    import collapse from '../../../src/components/Exhibition/collapse'
+    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Button from '../../../src/components/currency/button'
+    import Tabs from '../../../src/components/Exhibition/tabs'
+    import TabsItem from '../../../src/components/Exhibition/tabs-item'
 
 
     export default {
