@@ -134,7 +134,7 @@
 </template>
 
 <script>
-    import popover from '../../../src/components/Exhibition/popover'
+    import popover from '../../../src/components/Exhibition/popover/popover'
     import collapse from '../../../src/components/Exhibition/collapse'
     import collapseItem from '../../../src/components/Exhibition/collapse-item'
     import Button from '../../../src/components/currency/button'

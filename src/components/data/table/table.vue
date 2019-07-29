@@ -24,9 +24,11 @@
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
+                                    name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
+                                    style="margin-top: 2px" name="desc"></x-icon>
                            </span>
                             </div>
                         </th>
@@ -53,13 +55,17 @@
                         @mouseleave="hoverChangeMain(rowIndex,$event)"
                         ref="trMain">
                         <td v-if="checkBoxOn">
-                            <input :checked="inSelected(item)" @change="changeItem(item,rowIndex,$event)" type="checkbox">
+                            <input :checked="inSelected(item)" @change="changeItem(item,rowIndex,$event)"
+                                   type="checkbox">
                         </td>
                         <td v-if="numberVisible">{{rowIndex+1}}</td>
                         <template v-for="(column,colIndex) in headersCollection[rowIndex] || headerColumns">
-                            <td :key="column.field" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan" :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
-                                <div  class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">{{item[column.field]}}</div>
-                                <div  class="td-div">
+                            <td :key="column.field" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan"
+                                :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
+                                <div class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">
+                                    {{item[column.field]}}
+                                </div>
+                                <div class="td-div">
                                     <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
                                 </div>
                             </td>
@@ -73,8 +79,10 @@
         <div class="x-table-left"
              :class="{boxShadowNone:hiddenShadow.left}"
              ref="left">
-            <div  v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow.left}" class="x-table-left-header" :style="{overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width" ref="tableFixedLeftHeader">
+            <div v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow.left}" class="x-table-left-header"
+                 :style="{overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width"
+                       ref="tableFixedLeftHeader">
                     <colgroup>
                         <col style="width: 60px">
                         <col v-for="(column,index) in fixedLeft" :key="index" :style="{width:`${column.width}px`}">
@@ -89,9 +97,11 @@
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
+                                    name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
+                                    style="margin-top: 2px" name="desc"></x-icon>
                            </span>
                             </div>
                         </th>
@@ -99,10 +109,10 @@
                     </thead>
                 </table>
             </div>
-            <div   class="x-table-left-body" :style="{overflow:'hidden',overflowY:'scroll'}"
-                   ref="tableLeftWrapper"
-                   v-xScroll
-                   v-if="fixedLeft.length>0"
+            <div class="x-table-left-body" :style="{overflow:'hidden',overflowY:'scroll'}"
+                 ref="tableLeftWrapper"
+                 v-xScroll
+                 v-if="fixedLeft.length>0"
             >
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                     <colgroup>
@@ -133,10 +143,12 @@
         <div class="x-table-right"
              :class="{boxShadowNone:hiddenShadow.right}"
              ref="right">
-            <div  v-if="fixedRight.length>0"
-                  :class="{boxShadowNone:false}"
-                  class="x-table-right-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}" ref="tableFixedRightHeaderWrapper">
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0" ref="tableFixedRightHeader">
+            <div v-if="fixedRight.length>0"
+                 :class="{boxShadowNone:false}"
+                 class="x-table-right-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}"
+                 ref="tableFixedRightHeaderWrapper">
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0"
+                       ref="tableFixedRightHeader">
                     <colgroup>
                         <col v-for="(column,index) in fixedRight" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
@@ -147,9 +159,11 @@
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
                             <x-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}" name="asc"></x-icon>
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
+                                    name="asc"></x-icon>
                             <x-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}" style="margin-top: 2px" name="desc"></x-icon>
+                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
+                                    style="margin-top: 2px" name="desc"></x-icon>
                             </span>
                             </div>
                         </th>
@@ -162,7 +176,7 @@
                  v-xScroll
                  v-if="fixedRight.length>0"
             >
-                <table  class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
+                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
                     <colgroup>
                         <col v-for="(column,index) in fixedRight" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
@@ -195,395 +209,396 @@
     import xScroll from './scroll-synchro'
     import {recurrenceOnceDeepCopy} from "../../../utils/data-processing"
     import elementResizeDetectorMaker from 'element-resize-detector'
+
     export default {
         name: "x-table",
-        directives:{
+        directives: {
             xScroll
         },
-        components:{
+        components: {
             'x-icon': Icon,
             loading: loading
         },
-        props:{
-            stripe:{
-                type:Boolean,
+        props: {
+            stripe: {
+                type: Boolean,
                 default: true
             },
-            maxHeight:{
-                type:[Number,String]
+            maxHeight: {
+                type: [Number, String]
             },
-            maxWidth:{
-                type:[Number,String]
+            maxWidth: {
+                type: [Number, String]
             },
-            compact:{
-                type:Boolean,
+            compact: {
+                type: Boolean,
                 default: false
             },
-            bordered:{
-                type:Boolean,
-                default:false
+            bordered: {
+                type: Boolean,
+                default: false
             },
-            columns:{
-                type:Array,
-                required:true
+            columns: {
+                type: Array,
+                required: true
             },
-            data:{
+            data: {
                 type: Array,
                 required: true,
-                validator(item){
-                    if(item.id)return false
+                validator(item) {
+                    if (item.id) return false
                     return true
                 }
             },
-            loading:{
-                type:Boolean,
-                default:false
+            loading: {
+                type: Boolean,
+                default: false
             },
-            numberVisible:{
-                type:Boolean,
-                default:false
+            numberVisible: {
+                type: Boolean,
+                default: false
             },
-            checkBoxOn:{
-                type:Boolean,
-                default:false
+            checkBoxOn: {
+                type: Boolean,
+                default: false
             },
-            selectedItems:{
-                type:Array,
-                default:()=>[]
+            selectedItems: {
+                type: Array,
+                default: () => []
             },
-            defaultSort:Object,
-            spanMethod:Function
+            defaultSort: Object,
+            spanMethod: Function
         },
-        data(){
+        data() {
             return {
-                order:{},
-                bodyData:{},
+                order: {},
+                bodyData: {},
                 headerColumns: {},
-                fixedLeft:[],
-                fixedRight:[],
-                hiddenShadow:{
-                    left:true,
-                    right:false
+                fixedLeft: [],
+                fixedRight: [],
+                hiddenShadow: {
+                    left: true,
+                    right: false
                 },
-                oldScrollLeft:0,
-                cell:[],
-                headersCollection:[],
-                tableWidth:0
+                oldScrollLeft: 0,
+                cell: [],
+                headersCollection: [],
+                tableWidth: 0
             }
         },
-        mounted(){
+        mounted() {
             this.listenToReSize()
             this.setColumns()
             this.checkFixed()
             this.setBodyData()
-            this.$nextTick(()=>{
+            this.$nextTick(() => {
                 this.fixedWidthComputed()
-               this.tableResize()
+                this.tableResize()
                 this.setFixed()
                 this.setMainHeight()
             })
             this.setHeadersCollection()
-            if(this.spanMethod){
+            if (this.spanMethod) {
                 this.runSpanMethod()
             }
         },
-        beforeDestroy () {
-            window.removeEventListener('resize',this.listenToWindowResize)
+        beforeDestroy() {
+            window.removeEventListener('resize', this.listenToWindowResize)
             this.observer.removeListener(this.$el, this.tableResize);
         },
-        watch:{
-            data(){
+        watch: {
+            data() {
                 this.setColumns()
                 this.checkFixed()
                 this.setBodyData()
-                this.$nextTick(()=>{
+                this.$nextTick(() => {
                     this.tableResize()
                 })
                 this.setHeadersCollection()
-                if(this.spanMethod){
+                if (this.spanMethod) {
                     this.runSpanMethod()
                 }
             },
-            selectedItems(){
-                let selectedStatus = this.selectedItems.length===this.bodyData.length?'All':this.selectedItems.length>0?'half':'none'
-                let {fixedInput,fixedMainInput} = this.$refs
+            selectedItems() {
+                let selectedStatus = this.selectedItems.length === this.bodyData.length ? 'All' : this.selectedItems.length > 0 ? 'half' : 'none'
+                let {fixedInput, fixedMainInput} = this.$refs
                 let element
                 element = this.fixedLeft.length > 0 ? fixedInput : fixedMainInput
-                element['indeterminate'] = selectedStatus==='half'
-                element['checked'] = selectedStatus==='All'
+                element['indeterminate'] = selectedStatus === 'half'
+                element['checked'] = selectedStatus === 'All'
             }
         },
-        methods:{
-            setColGroup(){
+        methods: {
+            setColGroup() {
                 let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
-                let averageWidth = parseInt(width/this.headerColumns.length)
-                this.headerColumns.forEach((item,index)=>{
-                    if(!item.width){
-                        ['headerColGroup','bodyColGroup'].forEach(item=>{
+                let averageWidth = parseInt(width / this.headerColumns.length)
+                this.headerColumns.forEach((item, index) => {
+                    if (!item.width) {
+                        ['headerColGroup', 'bodyColGroup'].forEach(item => {
                             this.$refs[item].children[index].style.width = averageWidth + 'px'
                         })
                     }
                 })
             },
-            listenToReSize(){
-                window.addEventListener('resize',this.listenToWindowResize)
+            listenToReSize() {
+                window.addEventListener('resize', this.listenToWindowResize)
                 this.observer = elementResizeDetectorMaker();
                 this.observer.listenTo(this.$el, this.tableResize)
             },
-            listenToWindowResize(){
+            listenToWindowResize() {
                 clearTimeout(this.timer)
-                this.timer = setTimeout(()=>{
+                this.timer = setTimeout(() => {
                     this.tableResize()
-                },150)
+                }, 150)
             },
-            setFixed(){
-                if(this.fixedLeft.length>0||this.fixedRight.length>0){
+            setFixed() {
+                if (this.fixedLeft.length > 0 || this.fixedRight.length > 0) {
                     this.getScrollBarWidth()
                     this.setFixedWidth()
                 }
             },
-            tableResize(){
+            tableResize() {
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
             },
-            getScrollBarWidth(){
+            getScrollBarWidth() {
                 const scrollBar = document.createElement('div')
                 let style = {
-                    height:'50px',
-                    overflow:'scroll',
-                    position:'absolute',
-                    top:'-9999px',
-                    width:'50px'
+                    height: '50px',
+                    overflow: 'scroll',
+                    position: 'absolute',
+                    top: '-9999px',
+                    width: '50px'
                 }
-                Object.keys(style).forEach(item=>{
-                    scrollBar.style[item]=style[item]
+                Object.keys(style).forEach(item => {
+                    scrollBar.style[item] = style[item]
                 })
                 document.body.appendChild(scrollBar)
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
             },
-            fixedWidthComputed(){
-                this.headerColumns.forEach(item=>{
-                    this.tableWidth+=item.width
+            fixedWidthComputed() {
+                this.headerColumns.forEach(item => {
+                    this.tableWidth += item.width
                 })
             },
-            setMainHeight(){
+            setMainHeight() {
                 let $refs = this.$refs
-                if(this.maxHeight){
-                    $refs.tableMainWrapper.style.height = this.maxHeight-parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height)+'px'
+                if (this.maxHeight) {
+                    $refs.tableMainWrapper.style.height = this.maxHeight - parseInt(getComputedStyle($refs.tableFixedHeaderWrapper).height) + 'px'
                 }
-                $refs.totalWrapper.style.height = this.maxHeight +'px'
+                $refs.totalWrapper.style.height = this.maxHeight + 'px'
             },
-            setMainWidth(tableWidth){
-                let [$refs,width] = [this.$refs,0]
-                if(!this.tableWidth||this.tableWidth===0){
-                    width=tableWidth
-                }else{
+            setMainWidth(tableWidth) {
+                let [$refs, width] = [this.$refs, 0]
+                if (!this.tableWidth || this.tableWidth === 0) {
+                    width = tableWidth
+                } else {
                     width = this.tableWidth
                 }
-                if(this.checkBoxOn&&this.headerColumns[0].width){
-                    width+=60
+                if (this.checkBoxOn && this.headerColumns[0].width) {
+                    width += 60
                 }
 
-                $refs.tableMain.style.width = width +'px'
+                $refs.tableMain.style.width = width + 'px'
                 this.setColGroup()
             },
-            setHeaderToTop(tableWidth){
+            setHeaderToTop(tableWidth) {
                 this.$refs.tableFixedHeader.style.width = tableWidth
             },
-            checkFixed(){
-                let [left,right,main] = [[],[],[]]
-                this.columns.forEach(item=>{
-                    if(item.fixed==='left'){
+            checkFixed() {
+                let [left, right, main] = [[], [], []]
+                this.columns.forEach(item => {
+                    if (item.fixed === 'left') {
                         left.push(item)
-                    }else if(item.fixed==='right'){
+                    } else if (item.fixed === 'right') {
                         right.push(item)
-                    }else {
+                    } else {
                         main.push(item)
                     }
                 })
-                if(left.length>0){
-                    this.fixedLeft = left.concat(main,right)
+                if (left.length > 0) {
+                    this.fixedLeft = left.concat(main, right)
                 }
-                if(right.length>0){
-                    this.fixedRight = right.concat(main,left)
+                if (right.length > 0) {
+                    this.fixedRight = right.concat(main, left)
                 }
-                this.headerColumns = left.concat(main,right)
+                this.headerColumns = left.concat(main, right)
             },
-            setFixedWidth(){
-                let [tableLeftWrapperWidth,tableRightWrapperWidth,leftArr,rightArr,totalWidth,refs] = [0,0,[],[],0,this.$refs]
-                this.headerColumns.forEach((item,index)=>{
+            setFixedWidth() {
+                let [tableLeftWrapperWidth, tableRightWrapperWidth, leftArr, rightArr, totalWidth, refs] = [0, 0, [], [], 0, this.$refs]
+                this.headerColumns.forEach((item, index) => {
                     totalWidth += item.width
-                    if(item.fixed==='left'){
+                    if (item.fixed === 'left') {
                         tableLeftWrapperWidth += item.width
                         leftArr.push(index)
                     }
-                    if(item.fixed==='right'){
+                    if (item.fixed === 'right') {
                         tableRightWrapperWidth += item.width
                         rightArr.push(index)
                     }
                 })
                 let Width
-                if(this.checkFixed){
-                    if(leftArr.length>0){
-                        Width =totalWidth+ 60 +leftArr.length +'px'
+                if (this.checkFixed) {
+                    if (leftArr.length > 0) {
+                        Width = totalWidth + 60 + leftArr.length + 'px'
                     }
-                    if(rightArr.length>0){
-                        Width =totalWidth+ 60 +rightArr.length +'px'
+                    if (rightArr.length > 0) {
+                        Width = totalWidth + 60 + rightArr.length + 'px'
                     }
-                }else{
-                    if(leftArr.length>0){
-                        Width = totalWidth +leftArr.length +'px'
+                } else {
+                    if (leftArr.length > 0) {
+                        Width = totalWidth + leftArr.length + 'px'
                     }
-                    if(rightArr.length>0){
-                        Width = totalWidth +rightArr.length +'px'
+                    if (rightArr.length > 0) {
+                        Width = totalWidth + rightArr.length + 'px'
                     }
                 }
-                if(leftArr.length>0){
-                    this.$refs.tableLeftWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)-this.scrollBarWidth+'px'
-                    this.checkBoxOn?tableLeftWrapperWidth += 60:tableLeftWrapperWidth  //按钮固定的宽度
-                    this.setColumnFixedWidth(refs,Width,tableLeftWrapperWidth,['tableLeft','tableLeftWrapper','tableFixedLeftHeader','tableFixedLeftHeaderWrapper'])
+                if (leftArr.length > 0) {
+                    this.$refs.tableLeftWrapper.style.height = this.maxHeight - parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height) - this.scrollBarWidth + 'px'
+                    this.checkBoxOn ? tableLeftWrapperWidth += 60 : tableLeftWrapperWidth  //按钮固定的宽度
+                    this.setColumnFixedWidth(refs, Width, tableLeftWrapperWidth, ['tableLeft', 'tableLeftWrapper', 'tableFixedLeftHeader', 'tableFixedLeftHeaderWrapper'])
                 }
-                if(rightArr.length>0){
-                    this.$refs.tableRightWrapper.style.height = this.maxHeight-parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height)-this.scrollBarWidth+'px'
-                    let rightWidth = totalWidth +rightArr.length +'px'
-                    this.setColumnFixedWidth(refs,rightWidth,tableRightWrapperWidth,['tableRight','tableRightWrapper','tableFixedRightHeader','tableFixedRightHeaderWrapper'])
+                if (rightArr.length > 0) {
+                    this.$refs.tableRightWrapper.style.height = this.maxHeight - parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height) - this.scrollBarWidth + 'px'
+                    let rightWidth = totalWidth + rightArr.length + 'px'
+                    this.setColumnFixedWidth(refs, rightWidth, tableRightWrapperWidth, ['tableRight', 'tableRightWrapper', 'tableFixedRightHeader', 'tableFixedRightHeaderWrapper'])
                 }
-                this.setTableWidth(refs,Width)
+                this.setTableWidth(refs, Width)
             },
-            setColumnFixedWidth(refs,Width,tableWrapperWidth,name){
-                let maxWidth = tableWrapperWidth+'px'
+            setColumnFixedWidth(refs, Width, tableWrapperWidth, name) {
+                let maxWidth = tableWrapperWidth + 'px'
                 refs[name[0]].style.width = refs[name[2]].style.width = Width
                 refs[name[1]].style.width = maxWidth
-                if(this.maxHeight&&name[0]==='tableRight'){
-                    refs[name[3]].style.width = parseInt(maxWidth)+this.scrollBarWidth+'px'
-                    refs.right.style.width = parseInt(maxWidth)+'px'
-                    refs.right.style.right = this.scrollBarWidth+'px'
-                }else{
+                if (this.maxHeight && name[0] === 'tableRight') {
+                    refs[name[3]].style.width = parseInt(maxWidth) + this.scrollBarWidth + 'px'
+                    refs.right.style.width = parseInt(maxWidth) + 'px'
+                    refs.right.style.right = this.scrollBarWidth + 'px'
+                } else {
                     refs[name[3]].style.width = maxWidth
                 }
             },
-            setTableWidth(refs,Width){
+            setTableWidth(refs, Width) {
                 refs.tableFixedHeader.style.width = Width
             },
-            setBodyData(){
+            setBodyData() {
                 this.bodyData = JSON.parse(JSON.stringify(this.data))
             },
-            setColumns(){
+            setColumns() {
                 this.headerColumns = JSON.parse(JSON.stringify(this.columns))
             },
-            setHeadersCollection(){
-                let i=0
-                while(i<this.bodyData.length){
+            setHeadersCollection() {
+                let i = 0
+                while (i < this.bodyData.length) {
                     this.headersCollection[i] = recurrenceOnceDeepCopy(this.headerColumns)
                     i++
                 }
             },
-            inSelected(item){
-                return this.selectedItems.filter(child=>child.key===item.key).length>0
+            inSelected(item) {
+                return this.selectedItems.filter(child => child.key === item.key).length > 0
             },
-            changeItem(item,index,e){
+            changeItem(item, index, e) {
                 let selected = e.target.checked
                 let clone = JSON.parse(JSON.stringify(this.selectedItems))
-                if(selected){
+                if (selected) {
                     clone.push(item)
-                }else{
+                } else {
                     let itemIndex
-                    clone.forEach((child,index)=>{
-                        if(child.key===item.key){
+                    clone.forEach((child, index) => {
+                        if (child.key === item.key) {
                             itemIndex = index
                         }
                     })
-                    clone.splice(itemIndex,1)
+                    clone.splice(itemIndex, 1)
                 }
-                this.$emit('update:selectedItems',clone)
+                this.$emit('update:selectedItems', clone)
             },
-            onChangeAllItems(e){
+            onChangeAllItems(e) {
                 let selected = e.target.checked
-                this.$emit('update:selectedItems',selected?this.bodyData:[])
+                this.$emit('update:selectedItems', selected ? this.bodyData : [])
             },
-            clickSort(field,direction){
+            clickSort(field, direction) {
                 this.order.state = this.order.state === true || this.order.name !== field ? direction : (this.order.state = this.order.state === direction ? true : direction);
                 this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) => {
-                    return  a[field] < b[field]?direction === 'ascending' ? -1 : 1:direction === 'ascending' ? 1 : -1
+                    return a[field] < b[field] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1
                 }) : JSON.parse(JSON.stringify(this.data));
                 this.order.name = field
             },
-            sortUp(field){
-                this.clickSort(field,'ascending')
+            sortUp(field) {
+                this.clickSort(field, 'ascending')
             },
-            sortDown(field){
-                this.clickSort(field,'descending')
+            sortDown(field) {
+                this.clickSort(field, 'descending')
             },
-            hoverChangeMain(index,e){
+            hoverChangeMain(index, e) {
                 let typeName = {
-                    mouseenter:'#FCF9F9',
-                    mouseleave:''
+                    mouseenter: '#FCF9F9',
+                    mouseleave: ''
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
-                if(this.fixedLeft.length>0){
+                if (this.fixedLeft.length > 0) {
                     this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
                 }
-                if(this.fixedRight.length>0){
+                if (this.fixedRight.length > 0) {
                     this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
                 }
             },
-            scrollGradient(){
+            scrollGradient() {
                 const ref = this.$refs
-                const {tableLeftWrapper,tableRightWrapper} = ref
-                let {scrollTop,scrollLeft} = ref.tableMainWrapper
-                if(scrollLeft!==xScroll.data.currentScrollLeft){
+                const {tableLeftWrapper, tableRightWrapper} = ref
+                let {scrollTop, scrollLeft} = ref.tableMainWrapper
+                if (scrollLeft !== xScroll.data.currentScrollLeft) {
                     let {width} = ref.tableMain.style
                     this.hiddenShadow.left = scrollLeft === 0 ? true : false;
-                    this.hiddenShadow.right = parseInt(width)<=scrollLeft+parseInt(this.maxWidth) ? true : false
+                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.maxWidth) ? true : false
                     this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
-                    xScroll.data.currentScrollLeft= scrollLeft
+                    xScroll.data.currentScrollLeft = scrollLeft
                     return
                 }
-                if(xScroll.data.currentScrollTop===scrollTop)return
-                xScroll.data.currentScrollTop=scrollTop
+                if (xScroll.data.currentScrollTop === scrollTop) return
+                xScroll.data.currentScrollTop = scrollTop
                 this.$refs.tableMain.classList.remove('debug')
-                window.requestAnimationFrame(()=>{
-                    if(this.fixedLeft.length>0){
+                window.requestAnimationFrame(() => {
+                    if (this.fixedLeft.length > 0) {
                         tableLeftWrapper.scrollTop = scrollTop
                     }
-                    if(this.fixedRight.length>0){
+                    if (this.fixedRight.length > 0) {
                         tableRightWrapper.scrollTop = scrollTop
                     }
-                    window.requestAnimationFrame(()=>{
+                    window.requestAnimationFrame(() => {
                         this.$refs.tableMain.classList.add('debug')
                     })
                 })
             },
-            scrollLeftGradient(){
+            scrollLeftGradient() {
                 let scrollLeft = this.$refs.tableFixedHeaderWrapper.scrollLeft
-                if(this.oldScrollLeft===scrollLeft)return
+                if (this.oldScrollLeft === scrollLeft) return
                 this.$refs.tableMainWrapper.scrollLeft = scrollLeft
             },
-            runSpanMethod(){
-                this.headerColumns.forEach((col,colIndex)=>{
-                    this.bodyData.forEach((row,rowIndex)=>{
-                        let obj = this.spanMethod(row,colIndex,rowIndex)||{}
-                        if(!obj.rowspan){
+            runSpanMethod() {
+                this.headerColumns.forEach((col, colIndex) => {
+                    this.bodyData.forEach((row, rowIndex) => {
+                        let obj = this.spanMethod(row, colIndex, rowIndex) || {}
+                        if (!obj.rowspan) {
                             obj.rowspan = 1
-                        }else if(obj.rowspan>1){
+                        } else if (obj.rowspan > 1) {
                             let i = 1
-                           while(i<obj.rowspan){
-                                delete this.headersCollection[rowIndex+i][colIndex]
-                               i++
-                           }
-                        }
-                        if(!obj.colspan){
-                            obj.colspan = 1
-                        }else if(obj.colspan>1){
-                            let i = 1
-                            while(i<obj.colspan){
-                                delete this.headersCollection[rowIndex][colIndex+i]
+                            while (i < obj.rowspan) {
+                                delete this.headersCollection[rowIndex + i][colIndex]
                                 i++
                             }
                         }
-                        if(!this.cell[colIndex]){
+                        if (!obj.colspan) {
+                            obj.colspan = 1
+                        } else if (obj.colspan > 1) {
+                            let i = 1
+                            while (i < obj.colspan) {
+                                delete this.headersCollection[rowIndex][colIndex + i]
+                                i++
+                            }
+                        }
+                        if (!this.cell[colIndex]) {
                             this.cell[colIndex] = []
                         }
                         this.cell[colIndex][rowIndex] = obj
@@ -595,5 +610,5 @@
 </script>
 
 <style lang="scss" scoped>
-   @import "../../../styles/table";
+    @import "../../../styles/table";
 </style>
