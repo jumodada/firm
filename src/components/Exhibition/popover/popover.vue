@@ -179,10 +179,12 @@
             },
 
             isConWrapper(e) {    //判断点击的地方是否在contentWrapper里面
-                return e.path.some(child => child === this.$refs.contentWrapper)
+                let path = e.path || e.composedPath()
+                return path.some(child => child === this.$refs.contentWrapper)
             },
             isPopover(e) {    //判断点击的地方是否在contentPopover里面
-                return e.path.some(child => child === this.$refs.popover)
+                let path = e.path || e.composedPath()
+                return path.some(child => child === this.$refs.popover)
             },
             hoverOutAndClose() {
                 clearTimeout(this.timer)
