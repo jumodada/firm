@@ -10,15 +10,19 @@
     "p": "yarn run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/vueXin.git master:gh-pages;",
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "cao": "vuepress eject"
+    "vuepress": "vuepress eject",
+    "server": "node docs/server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "element-resize-detector": "^1.1.15",
+    "express": "^4.17.1",
     "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "markdown-loader": "^5.0.0",
     "marked": "^0.6.1",
+    "multer": "^1.4.2",
     "text-loader": "^0.0.1",
     "vue": "^2.6.6"
   },

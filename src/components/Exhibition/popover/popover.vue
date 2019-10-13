@@ -45,23 +45,17 @@
             position: {
                 type: String,
                 default: 'top',
-                validator(val) {
-                    return ['top', 'topLeft', 'topRight', 'bottomLeft', 'bottom', 'bottomRight', 'leftTop', 'left', 'leftBottom', 'rightTop', 'right', 'rightBottom'].indexOf(val) > -1
-                }
+                validator:(val) =>['top', 'topLeft', 'topRight', 'bottomLeft', 'bottom', 'bottomRight', 'leftTop', 'left', 'leftBottom', 'rightTop', 'right', 'rightBottom'].indexOf(val) > -1
             },
             trigger: {
                 type: String,
                 default: 'click',
-                validator(val) {
-                    return ['click', 'hover', 'focus'].indexOf(val) > -1
-                }
+                validator:(val)=>['click', 'hover', 'focus'].indexOf(val) > -1
             },
             theme: {
                 type: String,
                 default: 'blackBorder',
-                validator(val) {
-                    return ['blackBorder', 'whiteBg'].indexOf(val) > -1
-                }
+                validator:(val)=>['blackBorder', 'whiteBg'].indexOf(val) > -1
             },
         },
         computed: {
