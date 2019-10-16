@@ -54,12 +54,12 @@
 </template>
 
 <script>
-    import Menu from '../../../src/components/Navigation/menu'
-    import MenuItem from '../../../src/components/Navigation/menu-item'
-    import subMenu from '../../../src/components/Navigation/sub-menu'
-    import MenuItemGroup from '../../../src/components/Navigation/menu-item-group'
-    import collapse from '../../../src/components/Exhibition/collapse'
-    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Menu from '../../../components/Navigation/menu'
+    import MenuItem from '../../../components/Navigation/menu-item'
+    import subMenu from '../../../components/Navigation/sub-menu'
+    import MenuItemGroup from '../../../components/Navigation/menu-item-group'
+    import collapse from '../../../components/Exhibition/collapse/collapse'
+    import collapseItem from '../../../components/Exhibition/collapse/collapse-item'
     import marked from 'marked'
 
     export default {

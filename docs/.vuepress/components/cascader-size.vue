@@ -36,11 +36,11 @@
 </template>
 
 <script>
-    import ButtonGroup from '../../../src/components/currency/button-group'
-    import Button from '../../../src/components/currency/button'
-    import collapse from '../../../src/components/Exhibition/collapse'
-    import collapseItem from '../../../src/components/Exhibition/collapse-item'
-    import Cascader from '../../../src/components/form data/cascader'
+    import ButtonGroup from '../../../components/currency/button-group/src/button-group'
+    import Button from '../../../components/currency/button'
+    import collapse from '../../../components/Exhibition/collapse/collapse'
+    import collapseItem from '../../../components/Exhibition/collapse/collapse-item'
+    import Cascader from '../../../components/form data/cascader'
     import address from '../../../tests/fixtures/address.js'
     import marked from 'marked'
 

@@ -130,10 +130,10 @@
 </template>
 
 <script>
-    import popover from '../../../src/components/Exhibition/popover/popover'
-    import collapse from '../../../src/components/Exhibition/collapse'
-    import collapseItem from '../../../src/components/Exhibition/collapse-item'
-    import Button from '../../../src/components/currency/button'
+    import popover from '../../../components/Exhibition/popover/src/popover'
+    import collapse from '../../../components/Exhibition/collapse/collapse'
+    import collapseItem from '../../../components/Exhibition/collapse/collapse-item'
+    import Button from '../../../components/currency/button'
     import marked from 'marked'
 
     export default {

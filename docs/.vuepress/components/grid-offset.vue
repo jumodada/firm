@@ -37,10 +37,10 @@
 </template>
 
 <script>
-    import Row from '../../../src/components/layout/row'
-    import Col from '../../../src/components/layout/col'
-    import collapse from '../../../src/components/Exhibition/collapse'
-    import collapseItem from '../../../src/components/Exhibition/collapse-item'
+    import Row from '../../../components/layout/row'
+    import Col from '../../../components/layout/col'
+    import collapse from '../../../components/Exhibition/collapse/collapse'
+    import collapseItem from '../../../components/Exhibition/collapse/collapse-item'
     import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-dark.css'
     import marked from 'marked'

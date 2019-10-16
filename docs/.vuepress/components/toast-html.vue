@@ -26,10 +26,10 @@
 
 <script>
     import Vue from 'vue'
-    import collapse from '../../../src/components/Exhibition/collapse'
-    import collapseItem from '../../../src/components/Exhibition/collapse-item'
-    import plugin from '../../../src/components/tickling/plugin.js'
-    import Button from '../../../src/components/currency/button'
+    import collapse from '../../../components/Exhibition/collapse/collapse'
+    import collapseItem from '../../../components/Exhibition/collapse/collapse-item'
+    import plugin from '../../../components/tickling/plugin.js'
+    import Button from '../../../components/currency/button'
     import marked from 'marked'
 
     Vue.use(plugin)
