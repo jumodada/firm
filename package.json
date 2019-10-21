@@ -1,13 +1,17 @@
 {
-  "name": "my-wheel-0-1",
-  "version": "0.0.5",
-  "description": "这是一个UI框架",
+  "name": "vue-xin",
+  "version": "1.0.0",
+  "description": "A UI Library",
   "private": true,
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test": "vue-cli-service test:unit",
-    "dev": "vuepress dev docs"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jumodada/vueXin.git"
   },
   "dependencies": {
     "element-resize-detector": "^1.1.15",
@@ -42,5 +46,11 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "author": "jumodada",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jumodada/vueXin/issues"
+  },
+  "homepage": "https://github.com/jumodada/vueXin#readme"
 }
