@@ -7,16 +7,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
-    "p": "yarn run docs:build;cd docs/.vuepress/dist;git init;git add -A;git commit -m 'deploy';git push -f git@github.com:jumodada/vueXin.git master:gh-pages;",
-    "dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "vuepress": "vuepress eject",
-    "server": "node docs/server.js"
+    "dev": "vuepress dev docs"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "element-resize-detector": "^1.1.15",
-    "express": "^4.17.1",
     "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
@@ -37,8 +31,7 @@
     "sass-loader": "^7.1.0",
     "sinon": "^7.2.7",
     "sinon-chai": "^3.3.0",
-    "vue-template-compiler": "^2.5.21",
-    "vuepress": "^0.14.9"
+    "vue-template-compiler": "^2.5.21"
   },
   "postcss": {
     "plugins": {
