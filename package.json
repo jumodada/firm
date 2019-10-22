@@ -22,7 +22,9 @@
     "marked": "^0.6.1",
     "multer": "^1.4.2",
     "text-loader": "^0.0.1",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",

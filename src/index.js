@@ -1,8 +1,18 @@
-import Vue from "vue";
-import App from "./App.vue";
-
-Vue.config.productionTip = false;
-
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+// import Button from '../components/currency/button'
+//
+// const components = [
+//  Button
+// ]
+//
+// const install = function(Vue, opts = {}) {
+//   components.forEach(component => Vue.component(component.name, component))
+// }
+//
+// if (typeof window !== 'undefined' && window.Vue) install(window.Vue)
+//
+// export default {
+//   version: '0.0.1',
+//   install,
+//   Button,
+// }
+document.write('hello')
