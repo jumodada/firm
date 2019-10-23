@@ -7,13 +7,15 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jumodada/vueXin.git"
   },
   "dependencies": {
+    "css-loader": "^3.2.0",
     "element-resize-detector": "^1.1.15",
     "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
@@ -23,21 +25,26 @@
     "multer": "^1.4.2",
     "text-loader": "^0.0.1",
     "vue": "^2.6.6",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-unit-mocha": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-loader": "^8.0.6",
     "chai": "^4.1.2",
     "karma-chrome-launcher": "^2.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "sinon": "^7.2.7",
     "sinon-chai": "^3.3.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.6.10"
   },
   "postcss": {
     "plugins": {

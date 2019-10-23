@@ -15,4 +15,9 @@
 //   install,
 //   Button,
 // }
-document.write('hello')
+
+
+const hello = ()=>{
+    document.write('hello')
+}
+hello()
