@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const webpackConfig = {
     mode: process.env.NODE_ENV,
-    entry:'./Examples/index.js',
+    entry:'./Demo/index.js',
     output:{
         filename:'[name].[hash].js',
         path:pathJoin(__dirname,'./dist')
@@ -54,7 +54,7 @@ const webpackConfig = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: './Examples/index.html',
+            template: './Demo/index.html',
             filename: './index.html',
         }),
         new ProgressBarPlugin(),
