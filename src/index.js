@@ -1,11 +1,13 @@
 import Button from '../components/currency/button'
+import Icon from '../components/currency/icon'
 
 const components = [
- Button
+    Button,
+    Icon
 ]
 
-const install = function(Vue) {
-  components.forEach(component => Vue.component(component.name, component))
+const install = function (Vue) {
+    components.forEach(component => Vue.component(component.name, component))
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -13,8 +15,9 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.0.1',
-  install,
-  Button,
+    version: '0.0.1',
+    install,
+    Button,
+    Icon
 }
 

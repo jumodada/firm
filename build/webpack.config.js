@@ -49,6 +49,10 @@ const webpackConfig = {
                     'sass-loader'
                 ]
             },
+            {
+                test: /\.svg/,
+                use: ['file-loader']
+            }
         ]
     },
     plugins: [

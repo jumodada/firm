@@ -1,14 +1,15 @@
 <template>
     <div id="app">
-      <x-button type="primary">start</x-button>
+        <Header></Header>
     </div>
 </template>
 
 <script>
+    import Header from './components/Header'
     export default {
         name: "app",
-        mounted() {
-            console.log('loading.....')
+        components:{
+            Header
         }
     }
 </script>
