@@ -60,6 +60,7 @@ const webpackConfig = {
         new HtmlWebpackPlugin({
             template: './Demo/index.html',
             filename: './index.html',
+            favicon: './Demo/assets/icon/favicon.ico'
         }),
         new ProgressBarPlugin(),
         new VueLoaderPlugin(),
