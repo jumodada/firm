@@ -5,17 +5,8 @@ import routes from './router'
 Vue.use(Router)
 const router = new Router({
     routes,
-    mode: 'history'
+    mode: 'hash'
 })
 
-
-router.beforeEach((to, from, next) => {
-   // todo startLoadingBar
-})
-
-router.afterEach(to => {
-    //todo endLoadingBar
-    window.scrollTo(0, 0)
-})
 
 export default router

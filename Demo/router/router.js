@@ -1,18 +1,16 @@
-import Main from '../components/main'
+import Main from '../components/main.vue'
 
 
 export default [
     {
         path: '/',
         name: 'home',
-        redirect: '/home',
         component: Main,
         meta: {
             notCache: true
         },
         children: []
     },
-
     {
         path: '/500',
         name: 'error_500',

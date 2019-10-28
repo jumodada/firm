@@ -46,10 +46,9 @@
             right: 60px;
             display: inline-flex;
             align-items: center;
-
             &-item {
-                margin-left: 10px;
-                margin-right: 10px;
+                margin-left: 15px;
+                margin-right: 15px;
                 color: white;
                 cursor: pointer;
                 text-decoration: none;

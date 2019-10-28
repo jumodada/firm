@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <Header></Header>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -10,6 +11,8 @@
         name: "app",
         components:{
             Header
+        },
+        mounted() {
         }
     }
 </script>
