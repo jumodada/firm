@@ -21,6 +21,7 @@
     }
     *{
         box-sizing: border-box;
+        font-family: helvetica neue,Helvetica,Arial,sans-serif;;
     }
     #app{
         width: 100%;
