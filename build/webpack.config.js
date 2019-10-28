@@ -84,6 +84,7 @@ const webpackConfig = {
 if (isProd) {
     webpackConfig.externals = {
         vue: 'Vue',
+        'vue-router': 'VueRouter',
     }
 
     webpackConfig.optimization.splitChunks = {

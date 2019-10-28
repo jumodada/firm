@@ -1,10 +1,10 @@
-import Main from '@/components/main'
+import Main from '../components/main'
 
 
 export default [
     {
         path: '/',
-        name: '_home',
+        name: 'home',
         redirect: '/home',
         component: Main,
         meta: {
@@ -19,7 +19,7 @@ export default [
         meta: {
             hideInMenu: true
         },
-        component: () => import('@/view/error-page/500.vue')
+        component: () => import('../view/error-page/500.vue')
     },
     {
         path: '*',
@@ -27,6 +27,6 @@ export default [
         meta: {
             hideInMenu: true
         },
-        component: () => import('@/view/error-page/404.vue')
+        component: () => import('../view/error-page/404.vue')
     }
 ]

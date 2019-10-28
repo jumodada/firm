@@ -1,16 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import routes from './routers'
-import store from '@/store'
-import iView from 'view-design'
-import { setToken, getToken, canTurnTo } from '@/libs/util'
-import config from '@/config'
-const { homeName } = config
+import routes from './router'
 
 Vue.use(Router)
 const router = new Router({
     routes,
-    mode: 'hash'
+    mode: 'history'
 })
 
 
@@ -19,7 +14,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(to => {
-    iView.LoadingBar.finish()
+    //todo endLoadingBar
     window.scrollTo(0, 0)
 })
 

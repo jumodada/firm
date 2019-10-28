@@ -4,7 +4,7 @@
             <x-icon color="white" font-size="70" name="symbol"></x-icon>
         </div>
         <div class="header-nav">
-            <router-link class="header-nav-item" :to="'/'" v-for="item in routerItems">
+            <router-link class="header-nav-item" :to="'/'" v-for="(item,index) in routerItems" :key="index">
                 {{item}}
             </router-link>
         </div>
