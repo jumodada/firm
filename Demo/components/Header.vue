@@ -29,8 +29,6 @@
 
     .header {
         background-color: $brand1-1;
-        position: fixed;
-        top: 0;
         z-index: 9999;
         width: 100%;
         padding: 0 19px;

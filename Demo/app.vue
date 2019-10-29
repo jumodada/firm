@@ -21,6 +21,7 @@
     body{
         margin: 0;
         padding: 0;
+        background-color: #313639;
     }
     *{
         box-sizing: border-box;
@@ -28,7 +29,8 @@
     }
     #app{
         width: 100%;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 </style>
