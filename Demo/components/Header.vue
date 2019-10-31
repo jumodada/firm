@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header-brand">
-            <x-icon color="white" font-size="70" name="symbol"></x-icon>
+            <x-icon color="white" font-size="30" name="f"></x-icon>
         </div>
         <div class="header-nav">
             <x-icon color="white" name="left"></x-icon>
@@ -31,10 +31,14 @@
         background-color: $brand1-1;
         z-index: 9999;
         width: 100%;
-        padding: 0 19px;
+        padding:19px;
         display: flex;
         align-items: center;
-
+        cursor: not-allowed;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
         &-brand {
             cursor: pointer;
         }
