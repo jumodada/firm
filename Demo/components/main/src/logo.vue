@@ -53,6 +53,7 @@
 </template>
 
 <script>
+    import animationInit from "../../../utils/animation-init";
     import anime from 'animejs/lib/anime.es'
     export default {
         name: "logo",
@@ -62,7 +63,7 @@
         },
         methods: {
             addToLogo() {
-                let target = this.init('logo')
+                let target = animationInit('logo',this)
                     .add({
                         targets: '.bounced',
                         transformOrigin: ['50% 100% 0px', '50% 100% 0px'],
@@ -242,7 +243,7 @@
                 target.play()
             },
             addToDot() {
-                let target = this.init('dot')
+                let target = animationInit('dot',this)
                 target.add({
                     targets: '.dot',
 
@@ -295,17 +296,6 @@
                 }, 2000)
                 target.play()
             },
-            init(name) {
-                let logoAnimationEl = this.$refs[name]
-                this.animeSet(logoAnimationEl, 0)
-                return anime.timeline({
-                    autoplay: false,
-                    easing: 'easeOutSine'
-                })
-            },
-            animeSet(el) {
-                anime.set(el, {scale: 1})
-            }
         }
     }
 </script>
