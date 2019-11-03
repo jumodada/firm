@@ -1,4 +1,4 @@
-import Main from '../components/main.vue'
+import Main from '../components/main/main.vue'
 
 
 export default [

@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header-brand">
-            <x-icon color="white" font-size="30" name="f"></x-icon>
+            <x-icon color="white" font-size="30" name="F"></x-icon>
         </div>
         <div class="header-nav">
             <x-icon color="white" name="left"></x-icon>
@@ -34,27 +34,27 @@
         padding:19px;
         display: flex;
         align-items: center;
-        cursor: not-allowed;
         -webkit-user-select:none;
         -moz-user-select:none;
         -ms-user-select:none;
         user-select:none;
         &-brand {
             cursor: pointer;
+            float: left;
         }
 
         &-nav {
-            position: absolute;
-            right: 60px;
+            width: 100%;
             display: inline-flex;
             align-items: center;
+            justify-content: flex-end;
+            text-align: end;
             &-item {
                 margin-left: 15px;
                 margin-right: 15px;
                 color: white;
                 cursor: pointer;
                 text-decoration: none;
-
                 &::after {
                     position: absolute;
                     display: block;
