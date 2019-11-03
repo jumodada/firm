@@ -8,7 +8,7 @@
 <script>
     import logo from './src/logo'
     import {elementShowAddActive} from "../../utils/lazy-active"
-    import card from './src/card'
+    import card from './src/card/card'
     export default {
         name: "Main",
         components:{
