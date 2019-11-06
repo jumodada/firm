@@ -12,7 +12,7 @@
                 组件
             </div>
             <div class="card-group-item-content-main">
-                安装既用，快速开发
+                安装即用，快速开发
             </div>
             <div class="card-group-item-content-more">
                 更多
@@ -32,7 +32,7 @@
         },
         methods: {
             componentsInit() {
-                this.compass = anime({
+                 anime({
                     targets: '.stroke path',
                     strokeDashoffset: [anime.setDashoffset, 0],
                     easing: 'easeInOutSine',
