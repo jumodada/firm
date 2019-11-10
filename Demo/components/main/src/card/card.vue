@@ -1,7 +1,6 @@
 <template>
     <div class="firm-main-card">
-        <div class="parting"></div>
-        <span class="mark"></span>
+        <span class="firm-mark"></span>
         <div :class="{active:isActive}" class="description" ref="description">
             一个基于Vue2.0的PC端组件库
         </div>
@@ -17,6 +16,7 @@
     import cardComponent from './card-components'
     import cardCompass from './card-compass'
     import cardConcat from './card-concat'
+
     export default {
         name: "card",
         components:{
@@ -48,28 +48,22 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        .parting {
-            width: 100%;
-            height: 30px;
-
-            &::after {
-                content: '';
-                display: block;
-                position: relative;
-                margin: 0;
-                padding-bottom: 3%;
-                background-color: $brand1-1;
-                border-radius: 0 100% 50% 50% / 0% 0% 100% 100%;
-                background-size: cover;
-                z-index: 100;
-            }
-        }
         .card-group {
             display: flex;
             justify-content: center;
             margin-top: 50px;
 
         }
+    }
+    .firm-mark{
+        width: 30px;
+        height: 10px;
+        border-radius: 7px;
+        background-color: #27AE60;
+        background-image: linear-gradient(120deg,#27AE60 0%,#FAC958 50%,#E74C3C 100%);
+        background-image: -webkit-linear-gradient(120deg,#27AE60 0%,#FAC958 50%,#E74C3C 100%);
+        background-image: -moz-linear-gradient(120deg,#27AE60 0%,#FAC958 50%,#E74C3C 100%);
+        background-image: -o-linear-gradient(120deg,#27AE60 0%,#FAC958 50%,#E74C3C 100%);
     }
     .active {
         opacity: 1;
