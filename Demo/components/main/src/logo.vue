@@ -46,15 +46,14 @@
             </div>
             <div class="dot" ref="dot"></div>
         </div>
-        <div class="liner-enter">
-
-        </div>
+        <x-button class="firm-enter-button">快速开始</x-button>
     </div>
 </template>
 
 <script>
     import animationInit from "../../../utils/animation-init";
     import anime from 'animejs/lib/anime.es'
+
     export default {
         name: "logo",
         mounted() {
@@ -63,7 +62,7 @@
         },
         methods: {
             addToLogo() {
-                let target = animationInit('logo',this)
+                let target = animationInit('logo', this)
                     .add({
                         targets: '.bounced',
                         transformOrigin: ['50% 100% 0px', '50% 100% 0px'],
@@ -243,7 +242,7 @@
                 target.play()
             },
             addToDot() {
-                let target = animationInit('dot',this)
+                let target = animationInit('dot', this)
                 target.add({
                     targets: '.dot',
 
@@ -303,17 +302,33 @@
 <style scoped lang="scss">
     @import "../../../assets/styles/color-select";
 
+
+    .firm-enter-button {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        width: 140px;
+        font-size: 18px !important;
+        height: 50px !important;
+        transform: translateX(-50%);
+        color: white;
+        background-color: #ea9518;
+        border-color: #ea9518;
+    }
+
     .dot {
         width: 20px;
         height: 20px;
         background-color: white;
         border-radius: 50%;
     }
+
     .firm-wrapper {
+        position: relative;
         display: flex;
         align-items: center;
         flex-direction: column;
-        height: calc(100vh - 150px);
+        height: calc(100vh - 50px);
         background-color: #313639;
     }
 

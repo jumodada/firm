@@ -12,6 +12,20 @@ export default [
         children: []
     },
     {
+        path: '/components',
+        name: 'components',
+        meta: {
+            notCache: true
+        },
+        children: [
+            {
+                path:`start`,
+                name:'快速开始',
+                component: () => import('../view/components/start')
+            }
+        ]
+    },
+    {
         path: '/500',
         name: 'error_500',
         meta: {

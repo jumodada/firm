@@ -3,7 +3,6 @@
         <logo></logo>
         <card></card>
         <div class="divide-line">
-
         </div>
     </div>
 </template>
