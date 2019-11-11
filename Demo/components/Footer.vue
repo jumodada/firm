@@ -1,28 +1,36 @@
 <template>
     <div style="height: 300px" class="firm-footer">
         <div class="firm-footer-link">
-            <div class="firm-footer-link-about">
-                <span>关于</span>
-                <span>组件库</span>
+            <div class="firm-footer-link-to">
+                <span>前往</span>
+                <span>首页</span>
+                <span>安装</span>
+                <span>开始使用</span>
                 <span>github</span>
-                <span>联系邮箱</span>
             </div>
             <div class="firm-footer-link-dependence">
                 <span>官网依赖</span>
-                <span>Vue-router</span>
-                <span>animeJs</span>
-                <span>highlightJs</span>
+                <span> <a target="_blank" href="https://github.com/vuejs/vue-router">Vue-router</a></span>
+                <span> <a target="_blank" href="https://github.com/juliangarnier/anime">animeJs</a></span>
+                <span> <a target="_blank" href="https://github.com/hongyangAndroid/Highlight">highlightJs</a></span>
+                <span> <a target="_blank" href="https://github.com/markedjs/marked">marked</a></span>
             </div>
-            <div class="firm-footer-link-components">
-                <span>更多 =></span>
+            <div class="firm-footer-link-about">
+                <span>关于</span>
+                <span> <a target="_blank" href="https://github.com/jumodada/firm">github</a></span>
+                <span> <a target="_blank" href="https://github.com/juliangarnier/anime">联系邮箱</a></span>
+                <span> <a target="_blank" href="https://github.com/markedjs/marked">API设计</a></span>
+            </div>
+            <div class="firm-footer-link-more">
+                <span>更多</span>
+                <span  class="nav-react">
+                    <x-icon style="margin-right: 10px" font-size="30px" name="React"></x-icon>
+                    React</span>
+<!--                <span class="nav-svg">-->
+<!--                    <x-icon color="#cccccc" style="margin-right: 10px" font-size="30px" name="svg"></x-icon>-->
+<!--                    SVG</span>-->
             </div>
         </div>
-        <div  class="nav-react">
-            <x-icon style="margin-right: 10px" font-size="30px" name="React"></x-icon>
-             React</div>
-        <div class="nav-svg">
-            <x-icon color="#cccccc" style="margin-right: 10px" font-size="30px" name="svg"></x-icon>
-            SVG</div>
     </div>
 </template>
 
@@ -42,27 +50,47 @@
     align-items: center;
     position: relative;
     &-link{
-        position: absolute;
-        left: 50px;
-        top: 46px;
         display: flex;
         text-align: center;
-        &-about,&-dependence,&-components{
+        &-to,&-about,&-dependence,&-more{
             display: flex;
-            margin-left: 45px;
-            margin-right: 45px;
+            margin-left: 60px;
+            margin-right: 60px;
             flex-direction: column;
             span{
+                font-size: 13px;
+                a{
+                    text-decoration: none;
+                    color: #a4a4a4;
+                    transition: .25s color ease;
+                    &:hover{
+                        color: #eec24e;
+                    }
+                }
+                color: #a4a4a4;
                 margin-top: 15px;
-                color: #919191;
+                cursor: pointer;
+                &:hover{
+                    color: #eec24e;
+                }
+                &:first-child{
+                    font-size: 18px;
+                    cursor: text;
+                }
             }
 
         }
         &-about{
             span{
                 &:first-child{
+                    color: #27AE60;
+                }
+            }
+        }
+        &-to{
+            span{
+                &:first-child{
                     color: #08AEEA;
-                    font-size: 18px;
                 }
             }
         }
@@ -70,11 +98,10 @@
             span{
                 &:first-child{
                     color: #fdcb63;
-                    font-size: 18px;
                 }
             }
         }
-        &-components{
+        &-more{
             span{
                 &:first-child{
                     color: #ab37cb;
@@ -85,24 +112,21 @@
     }
 }
     .nav-react,.nav-svg{
+        margin-top: 21px !important;
         padding: 9px;
         font-size: 23px;
         text-align: center;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        position: absolute;
-        left: 80%;
+        color: white !important;
         transition: all .35s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.35s cubic-bezier(0.215, 0.61, 0.355, 1);
-        transform: translateX(calc(-50% - 100px));
         &:hover{
-            transform: translateX(calc(-50% - 100px)) scale(1.03);
+            transform:scale(1.03);
         }
 
     }
     .nav-react{
-        top: 50px;
         width: 300px;
         height: 100px;
         cursor: pointer;
@@ -114,7 +138,6 @@
         border-radius: 10px;
     }
     .nav-svg{
-        top: 200px;
         width: 300px;
         height: 100px;
         background-color: #F4D03F;

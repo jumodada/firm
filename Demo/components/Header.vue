@@ -49,6 +49,7 @@
             align-items: center;
             justify-content: flex-end;
             text-align: end;
+            margin-right: 50px;
             &-item {
                 margin-left: 15px;
                 margin-right: 15px;
