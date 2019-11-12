@@ -1,4 +1,6 @@
 import Main from '../components/main/main.vue'
+import Component from '../components/component'
+
 
 
 export default [
@@ -14,6 +16,7 @@ export default [
     {
         path: '/components',
         name: 'components',
+        component: Component,
         meta: {
             notCache: true
         },

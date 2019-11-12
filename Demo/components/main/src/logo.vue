@@ -305,6 +305,7 @@
 
     .firm-enter-button {
         position: absolute;
+        cursor: pointer;
         top: 70%;
         left: 50%;
         width: 140px;

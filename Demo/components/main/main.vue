@@ -2,8 +2,7 @@
     <div class="firm-main">
         <logo></logo>
         <card></card>
-        <div class="divide-line">
-        </div>
+        <div class="divide-line"></div>
     </div>
 </template>
 
