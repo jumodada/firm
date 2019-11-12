@@ -3,6 +3,7 @@
         <logo></logo>
         <card></card>
         <div class="divide-line"></div>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -10,12 +11,13 @@
     import logo from './src/logo'
     import {elementShowAddActive} from "../../utils/lazy-active"
     import card from './src/card/card'
-
+    import Footer from '../Footer'
     export default {
         name: "Main",
         components: {
             logo,
-            card
+            card,
+            Footer
         },
         mounted() {
             elementShowAddActive(this)

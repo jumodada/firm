@@ -36,7 +36,7 @@
 <style scoped lang="scss">
     @import "../../../../assets/styles/color-select";
     .description {
-        color: $brand1-2;
+        color: $brand2-1;
         margin-top: 30px;
         font-size: 30px;
         opacity: 0;
