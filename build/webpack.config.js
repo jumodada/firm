@@ -16,7 +16,10 @@ const webpackConfig = {
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
-        modules: ['node_modules']
+        modules: ['node_modules'],
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
     },
     devServer: {
         host: '0.0.0.0',
@@ -30,6 +33,7 @@ const webpackConfig = {
     stats: {
         children: false
     },
+
     module: {
         rules: [
             {
@@ -63,7 +67,8 @@ const webpackConfig = {
                     loader: 'html-loader'
                 }, {
                     loader: 'markdown-loader',
-                }]
+                }
+                ]
             }
         ]
     },

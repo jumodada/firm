@@ -1,7 +1,7 @@
 <template>
     <div class="firm-components-page">
         <slider></slider>
-        123
+       <router-view></router-view>
     </div>
 </template>
 

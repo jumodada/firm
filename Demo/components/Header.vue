@@ -1,18 +1,18 @@
 <template>
     <div class="header" :class="{other:!atHome}">
         <div class="header-brand">
-            <x-icon color="white" font-size="30" name="F"></x-icon>
+            <x-icon :color="fColor" font-size="30" name="F"></x-icon>
         </div>
         <div class="header-nav">
-            <x-icon color="white" name="left"></x-icon>
+            <x-icon :color="fColor" name="left"></x-icon>
             <router-link class="header-nav-item" :to="`/${item.value}`" v-for="(item,index) in routerItems"
                          :key="index">
                 {{item.name}}
             </router-link>
-            <x-icon color="white" name="right"></x-icon>
+            <x-icon :color="fColor" name="right"></x-icon>
         </div>
         <div :class="{'header-angle':atHome}">
-            <x-icon color="white"
+            <x-icon :color="fColor"
                     font-size="35px"
                     :class="atHome?'header-angle-icon-home':'header-angle-icon-other'" name="github1"></x-icon>
         </div>
@@ -22,6 +22,11 @@
 <script>
     export default {
         name: "Header",
+        computed:{
+            fColor(){
+                return this.atHome?'white':'#ffb311'
+            }
+        },
         data() {
             return {
                 routerItems: [
@@ -29,7 +34,7 @@
                     {name: '组件', value: 'components'},
                     {name: '指南', value: ''},
                 ],
-                atHome:true
+                atHome: true
             }
         },
         mounted() {
@@ -40,8 +45,8 @@
                 this.atHome = this.$route.name === 'home'
             }
         },
-        watch:{
-            '$route'(){
+        watch: {
+            '$route'() {
                 this.isHome()
             }
         }
@@ -50,6 +55,8 @@
 
 <style scoped lang="scss">
     @import "../assets/styles/color-select";
+    @import "../assets/styles/shadow-select";
+
     .header {
         position: relative;
         background-color: $brand1-1;
@@ -57,11 +64,13 @@
         width: 100%;
         padding: 19px;
         display: flex;
+        transition: 0.36s color ease;
         align-items: center;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+
         &-brand {
             cursor: pointer;
             float: left;
@@ -81,6 +90,7 @@
                 color: white;
                 cursor: pointer;
                 text-decoration: none;
+                transition: color .38s ease;
 
                 &::after {
                     position: absolute;
@@ -124,17 +134,47 @@
                     transform: rotate(56deg) scale(1.05);
                 }
             }
-            &-icon-other{
+
+            &-icon-other {
                 cursor: pointer;
                 transition: .25s all ease;
+
                 &:hover {
                     transform: rotate(6deg) scale(1.05);
                 }
             }
         }
     }
-    .other{
-        padding-top: 13px;
-        padding-bottom: 13px;
+
+    .other {
+        color: $text1-orange;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        box-shadow: $shadow-down-white;
+
+        .header-nav {
+            margin-right: 85px;
+            transform: translateY(1px);
+            &-item {
+                color: $text1-orange;
+                &::after {
+                    position: absolute;
+                    display: block;
+                    content: '';
+                    width: 33px;
+                    height: 2px;
+                    background-color: white;
+                    transition: all .2s;
+                    opacity: 0;
+                }
+
+                &:hover {
+                    &::after {
+                        transform: translateY(2px);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
     }
 </style>
