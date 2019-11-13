@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {join:pathJoin} = require('path')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -12,7 +12,7 @@ const webpackConfig = {
     entry:'./Demo/index.js',
     output:{
         filename:'[name].[hash].js',
-        path:pathJoin(__dirname,'./dist')
+        path:path.join(__dirname,'./dist')
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -61,15 +61,31 @@ const webpackConfig = {
                 test: /\.svg/,
                 use: ['file-loader']
             },
+            // {
+            //     test: /\.md$/,
+            //     use: [{
+            //         loader: 'html-loader'
+            //     }, {
+            //         loader: 'markdown-loader',
+            //     }
+            //     ]
+            // }
             {
                 test: /\.md$/,
-                use: [{
-                    loader: 'html-loader'
-                }, {
-                    loader: 'markdown-loader',
-                }
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            compilerOptions: {
+                                preserveWhitespace: false
+                            }
+                        }
+                    },
+                    {
+                        loader: path.resolve(__dirname, './md-loader/index.js')
+                    }
                 ]
-            }
+            },
         ]
     },
     plugins: [

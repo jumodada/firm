@@ -1,6 +1,11 @@
 <template>
     <div class="firm-slider">
-
+        <div class="firm-slider-ul">
+            <div class="firm-slider-ul-name">指南</div>
+            <router-link :to="item.name" class="firm-slider-li" v-for="item in compass">
+            {{item.meta.name}}
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -8,8 +13,25 @@
     import routes from '../../router'
     export default {
         name: "slide",
+        data(){
+          return {
+              compass:[],
+              components:[]
+          }
+        },
         mounted() {
-            console.log(routes)
+            this.assort()
+        },
+        methods:{
+            assort(){
+                routes.options.routes[1].children.forEach(child=>{
+                    if(child.meta.type==='compass'){
+                        this.compass.push(child)
+                    }else if(child.meta.type==='component'){
+                        this.components.push(child)
+                    }
+                })
+            }
         }
     }
 </script>
@@ -22,5 +44,9 @@
         height: calc(100vh - 70px);
         box-shadow: $shadow-right-black;
         background-color: $brand1-3;
+        &-ul{
+            color: $text1-grey;
+
+        }
     }
 </style>

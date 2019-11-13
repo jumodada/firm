@@ -23,12 +23,12 @@ export default [
         children: [
             {
                 path: '/install',
-                name: 'index.vue',
+                name: 'install',
                 meta: {
                     name: '安装',
                     type: 'compass'
                 },
-                component: () => import('../view/components/install')
+                component: () => import('../view/components/install/index.md')
             },
             {
                 path: '/start',
