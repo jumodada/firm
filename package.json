@@ -50,7 +50,6 @@
     "node-sass": "^4.9.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "sass-loader": "^7.1.0",
-    "showdown": "^1.9.1",
     "sinon": "^7.2.7",
     "sinon-chai": "^3.3.0",
     "style-loader": "^1.0.0",
