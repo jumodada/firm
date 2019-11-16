@@ -1,5 +1,5 @@
 import Main from '../components/main/main.vue'
-import Component from '../components/component'
+import Content from '../components/content'
 
 
 export default [
@@ -16,7 +16,7 @@ export default [
     {
         path: '/components',
         name: 'components',
-        component: Component,
+        component: Content,
         meta: {
             notCache: true
         },
@@ -44,7 +44,7 @@ export default [
                 name: 'button',
                 meta: {
                     name: '按钮',
-                    type: 'component'
+                    type: 'content.vue'
                 },
                 component: () => import('../view/components/Button')
             },
@@ -53,7 +53,7 @@ export default [
                 name: 'Layout',
                 meta: {
                     name: '布局',
-                    type: 'component'
+                    type: 'content.vue'
                 },
                 component: () => import('../view/components/Layout')
             }

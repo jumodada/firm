@@ -27,7 +27,7 @@
                 routes.options.routes[1].children.forEach(child=>{
                     if(child.meta.type==='compass'){
                         this.compass.push(child)
-                    }else if(child.meta.type==='component'){
+                    }else if(child.meta.type==='content.vue'){
                         this.components.push(child)
                     }
                 })

@@ -45,6 +45,8 @@
     "karma-chrome-launcher": "^2.2.0",
     "markdown-it": "^10.0.0",
     "markdown-it-anchor": "^5.2.5",
+    "markdown-it-chain": "^1.3.0",
+    "markdown-it-container": "^2.0.0",
     "markdown-it-emoji": "^1.4.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.9.0",
@@ -53,6 +55,7 @@
     "sinon": "^7.2.7",
     "sinon-chai": "^3.3.0",
     "style-loader": "^1.0.0",
+    "transliteration": "^2.1.7",
     "vue-router": "3.0.6",
     "vue-template-compiler": "^2.6.10"
   },

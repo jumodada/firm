@@ -1,7 +1,7 @@
 import XButton from './src/button'
 
 XButton.install = function(Vue) {
-    Vue.component(XButton.name, XButton)
+    Vue.content(XButton.name, XButton)
 }
 
 export default XButton
