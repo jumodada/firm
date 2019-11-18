@@ -2,7 +2,7 @@
     <div class="firm-slider">
         <div class="firm-slider-ul">
             <div class="firm-slider-ul-name">指南</div>
-            <router-link :to="item.name" class="firm-slider-li" v-for="item in compass">
+            <router-link :to="item.path" class="firm-slider-li" v-for="item in compass">
             {{item.meta.name}}
             </router-link>
         </div>

@@ -17,12 +17,9 @@ export default [
         path: '/components',
         name: 'components',
         component: Content,
-        meta: {
-            notCache: true
-        },
         children: [
             {
-                path: '/install',
+                path: '/components/install',
                 name: 'install',
                 meta: {
                     name: '安装',
@@ -31,7 +28,7 @@ export default [
                 component: () => import('../view/components/install/index.md')
             },
             {
-                path: '/start',
+                path: '/components/start',
                 name: 'start',
                 meta: {
                     name: '快速开始',
@@ -40,20 +37,20 @@ export default [
                 component: () => import('../view/components/start')
             },
             {
-                path: '/button',
+                path: '/components/Button',
                 name: 'button',
                 meta: {
                     name: '按钮',
-                    type: 'content.vue'
+                    type: 'button'
                 },
                 component: () => import('../view/components/Button')
             },
             {
-                path: '/Layout',
+                path: '/components/Layout',
                 name: 'Layout',
                 meta: {
                     name: '布局',
-                    type: 'content.vue'
+                    type: 'button'
                 },
                 component: () => import('../view/components/Layout')
             }

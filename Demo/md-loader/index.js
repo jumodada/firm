@@ -41,7 +41,7 @@ module.exports = function(source) {
     if (componentsString) {
         pageScript = `<script>
       export default {
-        name: 'component',
+        name: 'component-exhibition',
         components: {
           ${componentsString}
         }
