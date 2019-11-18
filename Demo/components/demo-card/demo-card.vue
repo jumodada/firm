@@ -21,16 +21,17 @@
                 transform: translateY(7px);
             }
             &-icon{
-                transition: .32s transform ease;
-            }
-            .icon-reverse{
-                transform: rotate(180deg);
+                transition: .23s transform ease;
             }
             &-down{
-                transition: .4s all;
+                transition: .23s all ease-in-out;
                 width: 100%;
-                min-height: 50px;
-
+            }
+        }
+        .icon-reverse{
+            transform: rotate(180deg);
+            &:hover{
+                transform: rotate(180deg) translateY(7px) !important;
             }
         }
     }
@@ -50,16 +51,10 @@
                <slot></slot>
            </div>
        </transition>
-        <div class="demo-card-drop" @click="dropDownShow=!dropDownShow">
-            <x-icon :class="{'icon-reverse':dropDownShow}" class="demo-card-drop-icon"
+        <div :class="{'icon-reverse':dropDownShow}" class="demo-card-drop" @click="dropDownShow=!dropDownShow">
+            <x-icon class="demo-card-drop-icon"
                     name="xia" color="#B1B1B1"></x-icon>
         </div>
-        <x-collapse>
-            <x-collapse-item title="反馈 Feedback" name="2">
-                <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-                <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-            </x-collapse-item>
-        </x-collapse>
     </div>
 </template>
 
@@ -73,27 +68,24 @@
         },
         methods:{
             beforeEnter(el) {
-                el.style.overflow = 'hidden'
-                el.style.transition = '.4s all'
-                el.transition = '.4s all'
                 el.style.height = 0
+                el.style.paddingTop = 0
+                el.style.paddingBottom = 0
             },
-            enter(el,done) {
-                setTimeout(() => {
-                    el.style.height = ''
-                    done()
-                }, 30)
-            },
-            leave(el,done) {
-                setTimeout(() => {
-                    el.style.height = ''
-                    el.style.overflow = 'hidden'
-                    done()
-                }, 30)
+            enter(el) {
+                if (el.scrollHeight !== 0) {
+                    el.style.height = el.scrollHeight + 'px'
+                }
+                el.style.overflow = 'hidden'
             },
             beforeLeave(el) {
+                el.style.height = el.scrollHeight + 'px'
+                el.style.overflow = 'hidden'
+            },
+            leave(el) {
                 el.style.height = 0
-                el.style.overflow = ''
+                el.style.paddingTop = 0
+                el.style.paddingBottom = 0
             },
         }
     }

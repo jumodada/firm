@@ -22,7 +22,7 @@
               default:false
           },
             selected:{
-              type: Array
+              type: Array,
             },
             exhibition:{
                 type:Boolean,
