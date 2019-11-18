@@ -221,7 +221,6 @@
                    this.$nextTick(()=>{
                       let height= el.children[0].children[0].clientHeight
                        el.style.height = height+ 'px'
-
                    })
             },
             beforeLeave(el) {

@@ -1,9 +1,11 @@
 import Button from '../components/currency/button'
 import Icon from '../components/currency/icon'
+import Collapse from '../components/Exhibition/collapse'
 
 const components = [
     Button,
-    Icon
+    Icon,
+    Collapse
 ]
 
 const install = function (Vue) {

@@ -3,19 +3,22 @@
         display: flex;
         width: 100%;
         &-content{
-            padding: 20px;
+            padding: 20px 20px 20px 36px;
             width: 100%;
             color:#313639;
-            h2{
+            h2,h3,h4,h5{
                 text-align: left;
+                &:hover{
+                  a{
+                      opacity: 1;
+                  }
+                }
             }
+
             a{
                 text-decoration: none;
                 color:#ffb311;
                 opacity: 0;
-                &:hover{
-                    opacity: 1;
-                }
             }
         }
     }

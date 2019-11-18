@@ -131,7 +131,7 @@
                 el.style.left = '0'
             },
             theFirstItem(){
-                return this.$parent.$options.name === 'x-menu' ? true : false;
+                return this.$parent.$options.name === 'x-menu'
             },
             changeXianColor(color){
                 if(this.disabled)return
@@ -171,7 +171,6 @@
     }
     .extend-enter, .extend-leave-to {
         width:0;
-
     }
       .xian{
           transition: .3s all ease;
