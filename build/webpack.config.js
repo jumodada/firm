@@ -82,7 +82,7 @@ const webpackConfig = {
                         }
                     },
                     {
-                        loader: path.resolve(__dirname, './md-loader/index.js')
+                        loader: path.resolve(__dirname, '../Demo/md-loader/index.js')
                     }
                 ]
             },

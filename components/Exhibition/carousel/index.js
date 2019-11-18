@@ -1,7 +1,7 @@
 import XCarousel from './src/carousel'
 
 XCarousel.install = function(Vue) {
-    Vue.content(XCarousel.name, XCarousel)
+    Vue.component(XCarousel.name, XCarousel)
 }
 
 export default XCarousel
