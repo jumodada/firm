@@ -1,6 +1,6 @@
 ## 按钮 
 
-:::demo 使用`type`给Button添加固定类型
+:::demo 使用`type`、`plain`、`circle`、`round`给Button添加固定类型
 ```html
 <f-row>
 <f-button>默认按钮</f-button> 

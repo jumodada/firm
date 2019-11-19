@@ -355,8 +355,8 @@
         &.type-error {
             color: white;
 
-            background-color: #f56c6c;
-            border-color: #f56c6c;
+            background-color: $button-error;
+            border-color: $button-error;
 
             &:active {
                 opacity: 1;
@@ -368,18 +368,18 @@
 
         &.type-warn {
             color: white;
-            background-color: #e6a23c;
-            border-color: #e6a23c;
+            background-color: $button-warn;
+            border-color: $button-warn;
 
             &:hover {
-                border-color: #e6a23c;
+                border-color: #ffb311;
             }
         }
 
         &.type-info {
             color: white;
-            background-color: #bfbfbf;
-            border-color: #bfbfbf;
+            background-color: $button-info;
+            border-color: $button-info;
 
             &:hover {
                 border-color: #909399;
@@ -388,89 +388,89 @@
 
         &.type-success {
             color: white;
-            background-color: #67c23a;
-            border-color: #67c23a;
+            background-color: $button-success;
+            border-color: $button-success;
 
             &:hover {
                 opacity: 1;
-                border-color: #67c23a;
+                border-color: $button-success;
             }
         }
 
         &.type-primary {
             color: white;
-            background-color: #409EFF;
-            border-color: #409EFF;
+            background-color: $button-primary;
+            border-color: $button-primary;
 
             &:hover {
                 opacity: 1;
-                border-color: #409EFF;
+                border-color: $button-primary;
             }
         }
 
         &.type-success.plain {
-            color: #67c23a;
+            color: $button-success;
             background-color: #f0f9eb;
-            border-color: #67c23a;
+            border-color: $button-success;
 
             &:hover {
                 opacity: 1;
                 color: white;
-                background-color: #67c23a;
-                border-color: #67c23a;
+                background-color: $button-success;
+                border-color: $button-success;
             }
         }
 
         &.type-primary.plain {
-            color: #409EFF;
+            color: $button-primary;
             background-color: #ecf5ff;
-            border-color: #409EFF;
+            border-color: $button-primary;
 
             &:hover {
                 opacity: 1;
                 color: white;
-                background-color: #409EFF;
-                border-color: #409EFF;
+                background-color: $button-primary;
+                border-color: $button-primary;
             }
 
         }
 
         &.type-info.plain {
-            color: #909399;
+            color: $button-info;
             background-color: #f4f4f5;
-            border-color: #909399;
+            border-color: $button-info;
 
             &:hover {
                 opacity: 1;
                 color: white;
-                background-color: #909399;
-                border-color: #909399;
+                background-color: $button-info;
+                border-color: $button-info;
             }
         }
 
         &.type-warn.plain {
-            color: #e6a23c;
+            color: $button-warn;
             background-color: #fdf6ec;
-            border-color: #e6a23c;
+            border-color: $button-warn;
 
             &:hover {
                 opacity: 1;
                 color: white;
-                background-color: #e6a23c;
-                border-color: #e6a23c;
+                background-color: $button-warn;
+                border-color: $button-warn;
             }
         }
 
         &.type-error.plain {
-            color: #f56c6c;
+            color: $button-error;
             background-color: #fef0f0;
-            border-color: #f56c6c;
+            border-color: $button-error;
 
             &:hover {
                 opacity: 1;
                 color: white;
-                background-color: #f56c6c;
-                border-color: #f56c6c;
+                background-color: $button-error;
+                border-color: $button-error;
             }
 
             &:active {
@@ -482,7 +482,7 @@
         }
 
         &.danger:hover {
-            border: 6px solid #f56c6c;
+            border: 6px solid $button-error;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
@@ -510,23 +510,23 @@
             }
 
             &.type-primary:hover {
-                background-color: #409EFF;
+                background-color: $button-primary;
             }
 
             &.type-success:hover {
-                background-color: #67c23a;
+                background-color: $button-success;
             }
 
             &.type-warn:hover {
-                background-color: #e6a23c;
+                background-color: $button-warn;
             }
 
             &.type-error:hover {
-                background-color: #f56c6c;
+                background-color: $button-error;
             }
 
             &.type-info:hover {
-                background-color: #bfbfbf;
+                background-color: $button-info;
             }
         }
 

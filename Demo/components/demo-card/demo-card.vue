@@ -38,6 +38,15 @@
         .demo-card-description{
             padding: 10px 10px 10px 20px;
             color: #57410b;
+            code{
+                color: #57410b;
+                background-color: #ffecd9;
+                margin: 0 4px;
+                display: inline-block;
+                padding: 2px 5px;
+                font-size: 15px;
+                border-radius: 4px;
+            }
         }
         .icon-reverse{
             transform: rotate(180deg);
