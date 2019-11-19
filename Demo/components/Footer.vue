@@ -24,10 +24,10 @@
             <div class="firm-footer-link-more">
                 <span>更多</span>
                 <span  class="nav-react">
-                    <x-icon style="margin-right: 10px" font-size="30px" name="React"></x-icon>
+                    <f-icon style="margin-right: 10px" font-size="30px" name="React"></f-icon>
                     React</span>
 <!--                <span class="nav-svg">-->
-<!--                    <x-icon color="#cccccc" style="margin-right: 10px" font-size="30px" name="svg"></x-icon>-->
+<!--                    <f-icon color="#cccccc" style="margin-right: 10px" font-size="30px" name="svg"></f-icon>-->
 <!--                    SVG</span>-->
             </div>
         </div>

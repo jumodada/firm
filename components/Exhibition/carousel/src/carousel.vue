@@ -6,10 +6,10 @@
         <div class="x-carousel-window">
             <div class="x-carousel-wrapper" :class="{[card]:card}">
                  <span @click="lowSpeed(selectedIndex,'back')">
-                 <x-icon  name="left" class="x-icon x-icon-left" color="#f49303">后退</x-icon>
+                 <f-icon  name="left" class="f-icon f-icon-left" color="#f49303">后退</f-icon>
                  </span>
                 <span @click="lowSpeed(selectedIndex,'go')" class="x-carousel-icon-right">
-                <x-icon  name="right" class="x-icon x-icon-right" color="#f49303">前进</x-icon>
+                <f-icon  name="right" class="f-icon f-icon-right" color="#f49303">前进</f-icon>
                  </span>
                     <slot></slot>
             </div>
@@ -60,7 +60,7 @@
         },
         components:{
             'x-carousel-item':CarouselItem,
-            'x-icon':Icon
+            'f-icon':Icon
         },
         mounted(){
             this.lastSelected = this.selected
@@ -225,7 +225,7 @@
 
 <style scoped lang="scss">
     .x-carousel{
-        .x-icon{
+        .f-icon{
             width: 3em;
             height: 3em;
             opacity: 0;
@@ -238,11 +238,11 @@
             }
         }
         &:hover{
-            .x-icon-right{
+            .f-icon-right{
                 opacity: 1;
                 transform: translateY(-50%) translateX(-100%);
             }
-            .x-icon-left{
+            .f-icon-left{
                 opacity: 1;
                 transform: translateY(-50%) translateX(0);
             }
@@ -256,13 +256,13 @@
             -moz-user-select:none;
             -ms-user-select:none;
             user-select:none;
-            .x-icon-left{
+            .f-icon-left{
                 position: absolute;
                 top: 50%;
                 opacity: 0;
                 transform: translateY(-50%) translateX(-100%);
             }
-            .x-icon-right{
+            .f-icon-right{
                 position: absolute;
                 top: 50%;
                 left: 100%;

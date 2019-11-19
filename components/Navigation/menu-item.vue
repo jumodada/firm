@@ -6,7 +6,7 @@
          @mouseenter="addHoverColor"
          @mouseleave="removeHoverColor"
          :class="{active:selected,vertical,disabled}" @click="onClick">
-        <x-icon   :color="!selected?textColor:activeColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></x-icon>
+        <f-icon   :color="!selected?textColor:activeColor" :name="iconName"  style=" margin-right: 6px;color: #515a6e;" v-if="iconName"></f-icon>
         <slot></slot>
     </div>
    <transition
@@ -52,7 +52,7 @@
             }
         },
         components:{
-          'x-icon':Icon
+          'f-icon':Icon
         },
         data(){
             return {

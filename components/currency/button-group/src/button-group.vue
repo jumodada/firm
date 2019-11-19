@@ -1,5 +1,5 @@
 <template>
-     <div class="x-button-group">
+     <div class="f-button-group">
          <slot></slot>
      </div>
 </template>
@@ -9,8 +9,8 @@
         name: "button-group",
         mounted(){
            this.$children.forEach(child=>{
-                if(child.$options.name !== 'x-button'){
-                    console.error('x-button-group的子元素应该全是x-button')
+                if(child.$options.name !== 'f-button'){
+                    console.error('f-button-group的子元素应该全是f-button')
                 }
             })
         }
@@ -18,12 +18,12 @@
 </script>
 
 <style scoped lang="scss">
- .x-button-group{
+ .f-button-group{
     display: inline-flex;
     vertical-align: center;
     @import "../../../../src/global";
 
-     /deep/ .x-button{
+     /deep/ .f-button{
 
          &:not(:first-child){
              margin-left: -1px;

@@ -3,9 +3,12 @@
         display: flex;
         width: 100%;
         &-content{
-            padding: 20px 20px 20px 36px;
+            padding: 20px 20px 20px 80px;
             width: 100%;
             color:#313639;
+            height: calc(100vh - 70px);
+            overflow-x: hidden;
+            overflow-y: auto;
             h2,h3,h4,h5{
                 text-align: left;
                 &:hover{

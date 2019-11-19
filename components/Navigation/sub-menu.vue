@@ -9,11 +9,11 @@
           :class="{active}"
           ref="title"
     >
-        <x-icon  :color="!active?textColor:activeColor" :name="iconName" v-if="iconName" class="title-icon" ></x-icon>
+        <f-icon  :color="!active?textColor:activeColor" :name="iconName" v-if="iconName" class="title-icon" ></f-icon>
         <slot name="title"></slot>
-        <x-icon  v-if="notStandFirst" name="arrow" :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
-        <x-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"
-                 :color="isActive" style="width: .6em;margin-left:5px;"></x-icon>
+        <f-icon  v-if="notStandFirst" name="arrow" :color="isActive" style="width: .6em;margin-left:5px;"></f-icon>
+        <f-icon  v-if="!notStandFirst" name="xia"  class="firstIcon" :class="{firstIconactive:iconActive}"
+                 :color="isActive" style="width: .6em;margin-left:5px;"></f-icon>
     </span>
         <transition  @before-enter="beforeEnter"
                      @enter="enter"
@@ -85,7 +85,7 @@
             }
         },
         components:{
-          'x-icon':Icon
+          'f-icon':Icon
         },
         methods:{
             tellChilcVertical(){

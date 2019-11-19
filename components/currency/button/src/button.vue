@@ -1,6 +1,6 @@
 <template>
 
-    <button class="x-button"
+    <button class="f-button"
             :class="[[`icon-${position}`],
              typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle,circleStyle]
             "
@@ -12,12 +12,12 @@
             @blur="blurIt"
     >
 
-        <x-icon :name="icon"
+        <f-icon :name="icon"
                 :color="color"
                 :style="disabledStyle"
                 v-if="icon || loading" :class="{loading:loading}">
-        </x-icon>
-        <div class="x-button-content"
+        </f-icon>
+        <div class="f-button-content"
              :style="disabledStyle"
         >
             <slot>
@@ -33,9 +33,9 @@
     import Icon from '../../icon/src/icon.vue'
 
     export default {
-        name: 'x-button',
+        name: 'f-button',
         components: {
-            'x-icon': Icon
+            'f-icon': Icon
         },
         methods: {
             onClick() {
@@ -244,7 +244,7 @@
     }
 
 
-    .x-button {
+    .f-button {
         font-size: $font-size;
         padding: 0.1em 1em;
         height: $height;
@@ -312,24 +312,24 @@
             outline: none;
         }
 
-        > .x-button-content {
+        > .f-button-content {
             order: 2;
         }
 
-        > .x-icon {
+        > .f-icon {
             order: 1;
             margin-left: 0;
             margin-right: 0.3em;
         }
 
         &.icon-right {
-            > .x-icon {
+            > .f-icon {
                 order: 2;
                 margin-right: 0;
                 margin-left: 0.3em;
             }
 
-            > .x-button-content {
+            > .f-button-content {
                 order: 1;
             }
         }
@@ -507,7 +507,7 @@
             padding: 10px;
             font-size: 16px;
 
-            .x-icon {
+            .f-icon {
                 margin-left: 0;
                 margin-right: 0;
             }

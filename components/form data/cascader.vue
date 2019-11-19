@@ -6,18 +6,18 @@
             <div class="trigger-text">{{selectedArray}}</div>
               <span class="icon-span" @click="clealAll">
                    <transition name="fade" mode="out-in">
-                   <x-icon name="xia" color="#dbdbdb" class="trigger-x-icon-xia"
+                   <f-icon name="xia" color="#dbdbdb" class="trigger-f-icon-xia"
                            :class="[{rotate:popoverVisible}]"
                            v-if="IconToggle"
                            key="xia"
 
                    >
 
-                   </x-icon>
-                    <x-icon name="wrong" color="#dbdbdb" class="trigger-x-icon-wrong"
+                   </f-icon>
+                    <f-icon name="wrong" color="#dbdbdb" class="trigger-f-icon-wrong"
                             key="wrong"
                             v-if="!IconToggle">
-                    </x-icon>
+                    </f-icon>
                 </transition>
               </span>
         </div>
@@ -53,7 +53,7 @@
         name: 'x-',
         components: {
             xCascaderItems,
-            'x-icon':Icon
+            'f-icon':Icon
         },
         props: {
             source: {
@@ -317,11 +317,11 @@
                 display:flex;
                 justify-content: center;
                 align-items: center;
-                .trigger-x-icon-xia{
+                .trigger-f-icon-xia{
                     display: inline-flex;
                     transition: all .3s ease;
                 }
-                .trigger-x-icon-wrong{
+                .trigger-f-icon-wrong{
                     display: inline-flex;
                 }
                 .rotate{

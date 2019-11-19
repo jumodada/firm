@@ -1,20 +1,20 @@
 <template>
-    <div class="header" :class="{other:!atHome}">
+    <div class="header" :class="{other:!atHome,'components-page':!atHome}">
         <div class="header-brand">
-            <x-icon :color="fColor" font-size="30" name="F"></x-icon>
+            <f-icon :color="fColor" font-size="30" name="F"></f-icon>
         </div>
         <div class="header-nav">
-            <x-icon :color="fColor" name="left"></x-icon>
+            <f-icon :color="fColor" name="left"></f-icon>
             <router-link class="header-nav-item" :to="`/${item.value}`" v-for="(item,index) in routerItems"
                          :key="index">
                 {{item.name}}
             </router-link>
-            <x-icon :color="fColor" name="right"></x-icon>
+            <f-icon :color="fColor" name="right"></f-icon>
         </div>
         <div :class="{'header-angle':atHome}">
-            <x-icon :color="fColor"
+            <f-icon :color="fColor"
                     font-size="35px"
-                    :class="atHome?'header-angle-icon-home':'header-angle-icon-other'" name="github1"></x-icon>
+                    :class="atHome?'header-angle-icon-home':'header-angle-icon-other'" name="github1"></f-icon>
         </div>
     </div>
 </template>
@@ -59,7 +59,7 @@
 
     .header {
         position: relative;
-        background-color: $brand1-1;
+        background-color: $header-dark-2;
         z-index: 9999;
         width: 100%;
         padding: 19px;
@@ -70,7 +70,6 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-
         &-brand {
             cursor: pointer;
             float: left;
@@ -176,5 +175,8 @@
                 }
             }
         }
+    }
+    .components-page{
+        background-color: $header-dark-1;
     }
 </style>

@@ -4,9 +4,9 @@
          @click="changeCurrentPage(currentPage-1)"
          :class="{disabled:currentPage===1}">
 
-        <x-icon class="x-pagination-li-icon" name="left" color="#707070">
+        <f-icon class="x-pagination-li-icon" name="left" color="#707070">
 
-        </x-icon>
+        </f-icon>
     </div>
             <ul class="x-pagination-ul">
                 <li
@@ -19,15 +19,15 @@
                     <span v-if="(typeof page==='number')">{{page}}</span>
                     <transition name="fade" mode="out-in">
                         <Dots key="dynamic" v-if="page==='...'&&index===activeIcon" class="x-pagination-li-icon"></Dots>
-                        <x-icon  key="static" class="x-pagination-li-icon" color="#8a8a8a" v-if="page==='...'&&index!==activeIcon" name="more"></x-icon>
+                        <f-icon  key="static" class="x-pagination-li-icon" color="#8a8a8a" v-if="page==='...'&&index!==activeIcon" name="more"></f-icon>
                     </transition>
                 </li>
             </ul>
     <div class="x-pagination-button"
          @click="changeCurrentPage(currentPage+1)"
          :class="{disabled:currentPage===totalPage}" style="margin-left: 5px">
-        <x-icon  class="x-pagination-li-icon" name="right" color="#707070">
-        </x-icon>
+        <f-icon  class="x-pagination-li-icon" name="right" color="#707070">
+        </f-icon>
     </div>
 </div>
 </template>
@@ -39,7 +39,7 @@
     export default {
         name: "x-pagination",
         components:{
-          'x-icon':Icon,
+          'f-icon':Icon,
             Dots
         },
         props:{

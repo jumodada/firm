@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
     .demo-card-wrapper {
         width: 60vw;
         margin-left: 21px;
@@ -8,6 +8,12 @@
         border-radius: 5px;
         .demo-card-source {
             padding: 33px 23px;
+            button{
+                margin-right: 10px;
+            }
+            .row{
+                margin-top: 15px;
+            }
         }
         .demo-card-drop{
             height: 40px;
@@ -26,7 +32,12 @@
             &-down{
                 transition: .23s all ease-in-out;
                 width: 100%;
+                padding: 10px;
             }
+        }
+        .demo-card-description{
+            padding: 10px 10px 10px 20px;
+            color: #57410b;
         }
         .icon-reverse{
             transform: rotate(180deg);
@@ -43,17 +54,20 @@
         <div class="demo-card-source">
             <slot name="source"></slot>
         </div>
+        <div class="demo-card-description">
+            <slot></slot>
+        </div>
        <transition @before-enter="beforeEnter"
                    @enter="enter"
                    @before-leave="beforeLeave"
                    @leave="leave">
            <div class="demo-card-drop-down" v-show="dropDownShow">
-               <slot></slot>
+               <slot name="highlight"></slot>
            </div>
        </transition>
         <div :class="{'icon-reverse':dropDownShow}" class="demo-card-drop" @click="dropDownShow=!dropDownShow">
-            <x-icon class="demo-card-drop-icon"
-                    name="xia" color="#B1B1B1"></x-icon>
+            <f-icon class="demo-card-drop-icon"
+                    name="xia" color="#B1B1B1"></f-icon>
         </div>
     </div>
 </template>

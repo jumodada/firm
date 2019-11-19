@@ -2,7 +2,7 @@
 
 <div class="collapse-item" ref="item">
 <div class="collapse-item-title" @click="onClick" v-if="!exhibition">
-    <x-icon name="arrow" class="arrow" ref="arrow" :class="{rotate:open}"></x-icon>
+    <f-icon name="arrow" class="arrow" ref="arrow" :class="{rotate:open}"></f-icon>
     {{title}}
 </div>
 
@@ -20,13 +20,13 @@
     </transition>
     <div class="collapse-item-header" @click="onClick"  v-if="exhibition">
     <div class="header-description">
-        <x-icon style="width: 1em;
+        <f-icon style="width: 1em;
                  height: 1em;
                  fill: #efecec"
                 name="xia"
-                class="x-icon" ref="xia"
+                class="f-icon" ref="xia"
                 :class="{xRotate:open}">
-        </x-icon> <div class="header-title" v-if="!title2 || !open">{{title}} </div><div class="header-title" v-else>{{title2}} </div>
+        </f-icon> <div class="header-title" v-if="!title2 || !open">{{title}} </div><div class="header-title" v-else>{{title2}} </div>
     </div>
 
     </div>
@@ -50,7 +50,7 @@
         },
 
         components:{
-            'x-icon':Icon
+            'f-icon':Icon
         },
         inject:['eventBus'],
         props:{
@@ -160,7 +160,7 @@
                     transition: .3s all ease-in-out;
                     font-family: Avenir;
                 }
-                .x-icon{
+                .f-icon{
                     transition: .3s all ease-in-out;
                     transform: rotate(0deg);
                 }
@@ -183,7 +183,7 @@
                         color: #999999;
                         transition: .3s all ease-in-out;
                     }
-                    >.x-icon{
+                    >.f-icon{
                         transition: .2s;
                         fill:#0ab1ef !important;
                     }

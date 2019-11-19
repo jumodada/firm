@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: "x-row",
+        name: "f-row",
         props:{
             flex:{
                 type:[Number,String]

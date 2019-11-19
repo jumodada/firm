@@ -46,7 +46,7 @@
             </div>
             <div class="dot" ref="dot"></div>
         </div>
-        <x-button class="firm-enter-button">快速开始</x-button>
+        <f-button class="firm-enter-button">快速开始</f-button>
     </div>
 </template>
 

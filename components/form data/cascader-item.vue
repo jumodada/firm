@@ -11,7 +11,7 @@
                  :class="{activeItem:activeItem(item),disabled:item.disabled}"
             >
                 {{item.name}}
-                <x-icon  class="x-icon"  :loading="iconLoading(item)" :name="theIcon(item) || !item.isLeaf&&'right'"  v-if="item.children || dynamic" color="#e6e6e6"></x-icon>
+                <f-icon  class="f-icon"  :loading="iconLoading(item)" :name="theIcon(item) || !item.isLeaf&&'right'"  v-if="item.children || dynamic" color="#e6e6e6"></f-icon>
             </div>
         </div>
         <transition
@@ -142,7 +142,7 @@
             }
         },
         components:{
-            'x-icon':Icon
+            'f-icon':Icon
         }
     }
 </script>
@@ -189,7 +189,7 @@
                     pointer-events: none;
                     opacity: 0.3;
                 }
-                .x-icon{
+                .f-icon{
                     margin-left:auto;
                 }
                 &:hover{

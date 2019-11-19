@@ -18,7 +18,7 @@
   "dependencies": {
     "css-loader": "^3.2.0",
     "element-resize-detector": "^1.1.15",
-    "highlight.js": "^9.15.6",
+    "highlight.js": "^9.16.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "markdown-loader": "^5.1.0",

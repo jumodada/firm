@@ -41,16 +41,16 @@ export default [
                 name: 'button',
                 meta: {
                     name: '按钮',
-                    type: 'button'
+                    type: 'component'
                 },
-                component: () => import('../view/components/Button')
+                component: () => import('../view/components/Button/index.md')
             },
             {
                 path: '/components/Layout',
                 name: 'Layout',
                 meta: {
                     name: '布局',
-                    type: 'button'
+                    type: 'component'
                 },
                 component: () => import('../view/components/Layout')
             }

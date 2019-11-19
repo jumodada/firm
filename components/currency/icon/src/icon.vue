@@ -1,5 +1,5 @@
 <template>
-    <svg class="x-icon" @click="$emit('click',$event)" :style="{fill:`${color}`,fontSize: fontWidth}" :class="{loading:loading}">
+    <svg class="f-icon" @click="$emit('click',$event)" :style="{fill:`${color}`,fontSize: fontWidth}" :class="{loading:loading}">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
@@ -9,7 +9,7 @@
     import {isString,isNumber} from "../../../../src/utils/type-of"
 
     export default {
-        name: "x-icon",
+        name: "f-icon",
         props: {
             name,
             fontSize:{
@@ -44,7 +44,7 @@
         }
     }
 
-    .x-icon {
+    .f-icon {
         width: 1em;
         height: 1em;
 

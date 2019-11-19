@@ -23,7 +23,7 @@
             </div>
             <div class="card-group-item-content-more">
                 更多
-                <x-icon color="white" name="right"></x-icon>
+                <f-icon color="white" name="right"></f-icon>
             </div>
         </div>
     </div>

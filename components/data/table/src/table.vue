@@ -23,12 +23,12 @@
                             <div class="x-table-th td-div">
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon @click="sortUp(column.field)"
+                            <f-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
-                                    name="asc"></x-icon>
-                            <x-icon @click="sortDown(column.field)"
+                                    name="asc"></f-icon>
+                            <f-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
-                                    style="margin-top: 2px" name="desc"></x-icon>
+                                    style="margin-top: 2px" name="desc"></f-icon>
                            </span>
                             </div>
                         </th>
@@ -96,12 +96,12 @@
                             <div class="x-table-th">
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon @click="sortUp(column.field)"
+                            <f-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
-                                    name="asc"></x-icon>
-                            <x-icon @click="sortDown(column.field)"
+                                    name="asc"></f-icon>
+                            <f-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
-                                    style="margin-top: 2px" name="desc"></x-icon>
+                                    style="margin-top: 2px" name="desc"></f-icon>
                            </span>
                             </div>
                         </th>
@@ -158,12 +158,12 @@
                             <div class="x-table-th">
                                 {{column.text}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <x-icon @click="sortUp(column.field)"
+                            <f-icon @click="sortUp(column.field)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
-                                    name="asc"></x-icon>
-                            <x-icon @click="sortDown(column.field)"
+                                    name="asc"></f-icon>
+                            <f-icon @click="sortDown(column.field)"
                                     :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
-                                    style="margin-top: 2px" name="desc"></x-icon>
+                                    style="margin-top: 2px" name="desc"></f-icon>
                             </span>
                             </div>
                         </th>
@@ -216,7 +216,7 @@
             xScroll
         },
         components: {
-            'x-icon': Icon,
+            'f-icon': Icon,
             loading: loading
         },
         props: {
