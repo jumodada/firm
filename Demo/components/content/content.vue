@@ -9,6 +9,9 @@
             height: calc(100vh - 70px);
             overflow-x: hidden;
             overflow-y: auto;
+            h1{
+                margin-left: 21px;
+            }
             h2,h3,h4,h5{
                 text-align: left;
                 &:hover{

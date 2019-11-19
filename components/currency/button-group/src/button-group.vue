@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "button-group",
+        name: "f-button-group",
         mounted(){
            this.$children.forEach(child=>{
                 if(child.$options.name !== 'f-button'){

@@ -13,7 +13,7 @@
 .hljs-selector-class,
 .hljs-regexp,
 .hljs-deletion {
-  color: #e8a211;
+  color: #d99211;
 }
 
 /* Orange */
@@ -32,13 +32,12 @@
 .hljs-attribute {
   color: #aa5d00;
 }
-
 /* Green */
 .hljs-string,
 .hljs-symbol,
 .hljs-bullet,
 .hljs-addition {
-  color: #802419;
+  color: #38ad2f;
 }
 
 /* Blue */
@@ -52,7 +51,9 @@
 .hljs-selector-tag {
   color: #44a11a;
 }
-
+.hljs-attr{
+  color: #b028e3;
+}
 .hljs {
   display: block;
   overflow-x: auto;

@@ -11,6 +11,11 @@
             button{
                 margin-right: 10px;
             }
+            .f-button-group{
+                button{
+                    margin-right: 0;
+                }
+            }
             .row{
                 margin-top: 15px;
             }

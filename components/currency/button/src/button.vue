@@ -118,11 +118,13 @@
             },
             type: {
                 type: String,
-                validator(val) {
-                    return ['primary', 'success', 'warn', 'error', 'info'].indexOf(val) > -1
-                },
+                validator:(val)=>['primary', 'success', 'warn', 'error', 'info'].indexOf(val) > -1
             },
             plain: {
+                type: Boolean,
+                default: false
+            },
+            dashed:{
                 type: Boolean,
                 default: false
             },
@@ -162,10 +164,6 @@
                 validator(value) {
                     return !(value !== 'left' && value !== 'right');
                 }
-            },
-            dashed: {
-                type: Boolean,
-                default: false
             },
             circle: {
                 type: Boolean,
@@ -247,7 +245,6 @@
     .f-button {
         font-size: $font-size;
         padding: 10px 20px;
-        height: $height;
         border-radius: $border-radius;
         border: 1px solid $border-color;
         background: $button-bg;
@@ -255,7 +252,7 @@
         justify-content: center;
         align-items: center;
         transition: all .2s;
-
+        cursor: pointer;
         &:focus {
             border-color: #F1C40F;
         }
@@ -274,25 +271,25 @@
 
         &.size-big {
             font-size: 15px;
-            padding: 0 23px;
+            padding: 10px 23px;
             border-radius: 5px;
         }
 
         &.size-medium {
             font-size: 14px;
-            padding: 0 18px;
+            padding: 8px 18px;
             border-radius: 4px;
         }
 
         &.size-small {
             font-size: 13px;
-            padding: 0 16px;
+            padding: 6px 15px;
             border-radius: 3px;
         }
 
         &.size-mini {
             font-size: 12px;
-            padding: 0 14px;
+            padding: 4px 12px;
             border-radius: 3px;
         }
 
