@@ -17,12 +17,12 @@
                 :style="disabledStyle"
                 v-if="icon || loading" :class="{loading:loading}">
         </f-icon>
-        <div class="f-button-content"
+        <span class="f-button-content"
              :style="disabledStyle"
         >
             <slot>
             </slot>
-        </div>
+        </span>
         <div class="cloakLeft" v-if="disabled"></div>
         <div class="cloakRight" v-if="disabled"></div>
     </button>
@@ -246,7 +246,7 @@
 
     .f-button {
         font-size: $font-size;
-        padding: 0.1em 1em;
+        padding: 10px 20px;
         height: $height;
         border-radius: $border-radius;
         border: 1px solid $border-color;
@@ -274,29 +274,25 @@
 
         &.size-big {
             font-size: 16px;
-            height: 45px;
-            padding: 0 1.5em;
+            padding: 0 23px;
             border-radius: 5px;
         }
 
         &.size-medium {
             font-size: 15px;
-            height: 38px;
-            padding: 0 1em;
+            padding: 0 18px;
             border-radius: 4px;
         }
 
         &.size-small {
             font-size: 10px;
-            height: 30px;
-            padding: 0 0.8em;
+            padding: 0 16px;
             border-radius: 3px;
         }
 
         &.size-mini {
             font-size: 7px;
-            height: 26px;
-            padding: 0 0.6em;
+            padding: 0 14px;
             border-radius: 3px;
         }
 
@@ -314,6 +310,7 @@
 
         > .f-button-content {
             order: 2;
+            white-space: nowrap;
         }
 
         > .f-icon {
