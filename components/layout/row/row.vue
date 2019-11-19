@@ -44,17 +44,12 @@
         }
     }
 
-
-    // var div =  document.createElement('div')     created
-    // var childDiv = document.createElement('div')
-    // div.appendChild(childDiv)
-    // document.body.appendChild(div)               mounted
-
 </script>
 
 <style scoped lang="scss">
 .row{
     display: flex;
+    flex-wrap: wrap;
     &-left{
         justify-content: flex-start;
     }
