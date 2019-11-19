@@ -1,19 +1,19 @@
 <template>
-<transition name="fade">
-    <div class="slider" v-if="!hide">
-        <slot></slot>
-        <button @click="hide=!hide">隐藏</button>
-    </div>
-</transition>
+    <transition name="fade">
+        <div class="slider" v-if="!hide">
+            <slot></slot>
+            <button @click="hide=!hide">隐藏</button>
+        </div>
+    </transition>
 </template>
 
 <script>
 
     export default {
-        name: "x-slider",
-        data(){
+        name: "f-slider",
+        data() {
             return {
-                hide:false
+                hide: false
             }
         },
 
@@ -21,11 +21,12 @@
 </script>
 
 <style scoped lang="scss">
-            .slider{
+    .slider {
 
-            }
-            .fade-enter-active, .fade-leave-active {
-                transition: all .5s;
-            }
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: all .5s;
+    }
 
 </style>
