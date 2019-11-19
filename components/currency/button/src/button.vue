@@ -273,25 +273,25 @@
         }
 
         &.size-big {
-            font-size: 16px;
+            font-size: 15px;
             padding: 0 23px;
             border-radius: 5px;
         }
 
         &.size-medium {
-            font-size: 15px;
+            font-size: 14px;
             padding: 0 18px;
             border-radius: 4px;
         }
 
         &.size-small {
-            font-size: 10px;
+            font-size: 13px;
             padding: 0 16px;
             border-radius: 3px;
         }
 
         &.size-mini {
-            font-size: 7px;
+            font-size: 12px;
             padding: 0 14px;
             border-radius: 3px;
         }
