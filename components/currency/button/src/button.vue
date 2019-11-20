@@ -4,7 +4,7 @@
             :class="[[`icon-${position}`],
              typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle,circleStyle]
             "
-            :disabled="disabled"
+            :disabled="disabled||loading"
             ref="button"
             :style="roundStyle"
             @click="onClick"
@@ -12,7 +12,7 @@
             @blur="blurIt"
     >
 
-        <f-icon :name="icon"
+        <f-icon :name="loading?'loading':icon"
                 :color="color"
                 :style="disabledStyle"
                 v-if="icon || loading" :class="{loading:loading}">
@@ -23,8 +23,6 @@
             <slot>
             </slot>
         </span>
-        <div class="cloakLeft" v-if="disabled"></div>
-        <div class="cloakRight" v-if="disabled"></div>
     </button>
 
 </template>
@@ -41,11 +39,6 @@
             onClick() {
                 this.$emit('click')
                 this.dangerAnimation()
-                if (this.loading) {
-
-                } else {
-
-                }
             },
             dangerAnimation() {
                 let arr = this.$refs.button.classList
@@ -64,9 +57,7 @@
         },
         computed: {
             disabledStyle() {
-                if (this.disabled) {
-                    return 'fill:#ccc; pointer-events: none;'
-                }
+                if (this.disabled)return 'pointer-events: none;'
             },
             typeStyle() {
                 if (!this.type) return

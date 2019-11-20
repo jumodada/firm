@@ -70,18 +70,24 @@ export default {
 :::
 
 
-## 加载中
+## 加载与禁用
 :::demo 
 ```html
 <f-row>
-<f-button >Size</f-button>
+<f-button type="success" icon="github1" @click="sendMsg"  :loading="buttonLoading">发送</f-button>
+<f-button type="success" icon="download" circle  disabled></f-button>
 </f-row>
 
 <script>
 export default {
     data(){
         return {
-            buttonSize:'big'
+            buttonLoading:false
+        }
+    },
+    methods:{
+        sendMsg(){
+            this.buttonLoading = true
         }
     }
 }
