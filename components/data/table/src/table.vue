@@ -211,7 +211,7 @@
     import elementResizeDetectorMaker from 'element-resize-detector'
 
     export default {
-        name: "x-table",
+        name: "f-table",
         directives: {
             xScroll
         },

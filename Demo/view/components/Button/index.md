@@ -31,7 +31,11 @@
 ```html
 <f-row>
 <f-button icon="left" type="primary">left</f-button>    
-<f-button icon="right" type="primary" position="right">right</f-button>    
+<f-button icon="right" type="primary" position="right">right</f-button>
+<f-button-group>
+<f-button icon="left">left</f-button>    
+<f-button icon="right" position="right">right</f-button>
+</f-button-group>    
 </f-row>
 
 ```
@@ -71,10 +75,15 @@ export default {
 
 
 ## 加载与禁用
-:::demo 
+:::demo 添加`loading`和`disabled`分别使Button进入**loading**和**disabled**状态。
 ```html
 <f-row>
-<f-button type="success" icon="github1" @click="sendMsg"  :loading="buttonLoading">发送</f-button>
+<f-button type="success" icon="youxiang" @click="sendMsg"  :loading="buttonLoading">发送</f-button>
+<f-button type="success" circle loading></f-button>
+</f-row>
+
+<f-row>
+<f-button type="success"  disabled>禁用</f-button>
 <f-button type="success" icon="download" circle  disabled></f-button>
 </f-row>
 

@@ -6,31 +6,29 @@
                     <div class="anime-logo">
                         <div class="anime-logo-signs">
                             <div class="logo-letter letter-f">
-                                <svg class="bounced" stroke="#fafaf1" stroke-width="24" viewBox="0 0 1024 1024"
-                                     width="200" height="240">
+                                <svg class="bounced" stroke="#fafaf1" viewBox="0 0 1024 1024"
+                                     width="20vw" height="25vw">
                                     <path d="M194.947049 1024V0h634.105902v173.310211H401.660746v242.444651h427.392205v173.094704H401.660746v435.150434H194.947049z"
                                           p-id="2837"></path>
                                 </svg>
                             </div>
                             <div class="logo-letter i" style="transform: translateX(-20px)">
-                                <svg class="bouncedI" stroke="#fafaf1" stroke-width="24" viewBox="0 0 1024 1024"
-                                     width="200" height="240">
+                                <svg class="bouncedI" stroke="#fafaf1" viewBox="0 0 1024 1024"
+                                     width="20vw" height="24vw">
                                     <path d="M339.184561 981.185892l0-902.556067 299.217802 0 0 902.556067L339.184561 981.185892z"
                                           p-id="1539"></path>
                                 </svg>
                             </div>
                             <div class="logo-letter letter-r" style="transform: translateX(-31px)">
-                                <svg class="bouncedR" stroke="#fafaf1" stroke-width="24" viewBox="0 0 1024 1024"
-                                     width="200" height="240" fill="none"
-                                     fill-rule="evenodd">
+                                <svg class="bouncedR" stroke="#fafaf1" viewBox="0 0 1024 1024"
+                                     width="21vw" height="23vw" fill="none">
                                     <path d="M184.1946875 921.7559375V116.2934375h341.85375c86.634375 0 147.5128125 7.02375 187.3171875 21.0721875s70.2440625 39.8053125 93.6590625 77.26875 35.1215625 79.6096875 35.1215625 126.43875c0 60.8784375-18.73125 110.0484375-53.85375 149.85375s-88.9753125 63.219375-159.219375 74.926875c35.1215625 21.073125 63.219375 42.14625 86.634375 67.903125s53.85375 67.90125 91.3171875 131.1215625c28.096875 44.4871875 49.17 77.26875 60.8775 98.3409375 7.0246875 14.049375 35.1225 32.780625 84.2925 58.5375H711.0246875L593.9515625 746.1453125c-42.14625-63.219375-70.2440625-103.0246875-86.634375-119.415s-32.780625-28.096875-49.1709375-32.7796875-44.488125-9.365625-81.9515625-9.365625h-32.7796875v337.17H184.19375z m163.903125-463.6096875h119.4140625c77.26875 0 126.4396875-2.3409375 145.171875-9.365625s35.1215625-18.73125 44.4871875-35.1225 16.3903125-35.1215625 16.3903125-60.8775c0-28.096875-7.0246875-49.1709375-21.073125-65.56125s-35.1225-28.096875-60.8784375-30.43875c-14.0484375-2.341875-51.511875-2.341875-119.415-2.341875H345.7559375v203.7075z"
-                                          p-id="2240">
-                                    </path>
+                                          p-id="754"></path>
                                 </svg>
                             </div>
                             <div class="logo-letter letter-m">
                                 <svg class="bouncedM" stroke="#c34ccc" stroke-width="30" viewBox="0 0 1024 1024"
-                                     width="200" height="240">
+                                     width="21vw" height="22vw">
                                     <path d="M687.20223618 184.37585068L512 359.573452l-175.20223618-175.19760132H116.4921875v655.24829864h233.88261795V528.70866013l145.20544052 145.20389556 16.41820908 16.35486604 0.18693924-0.1884842 0.03398894 0.032444 161.40581132-161.40581131V839.62260437H907.5078125V184.37585068H687.20223618zM861.15924072 793.27557754h-141.1854744V416.81084824L511.99845505 624.78615952 304.02623367 416.81393814v376.4616394H162.84075928V230.72442246h154.75942612L512 425.1196022 706.3998146 230.72442246H861.15924072v562.55115508z"
                                           p-id="1396" fill="#fafaf1"></path>
                                 </svg>
@@ -247,35 +245,25 @@
                     targets: '.dot',
 
                     translateY: [
-                        {
-                            value: [-150, -200],
-                            duration: 500,
-                            endDelay: 20,
-                            easing: 'easeInOutSine'
-                        },
-                        {
-                            value: [-200, -360],
-                            duration: 500,
-                            endDelay: 20,
-                            easing: 'easeInOutSine'
-                        },
-                        {value: [-360, -100], duration: 300, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
-                        {value: [-100, -300], duration: 260, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
-                        {value: [-300, -100], duration: 400, easing: 'cubicBezier(0.225, 1, 0.7, 0.980)'},
-                        {value: [-100, -230], duration: 350, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
-                        {value: [-230, -100], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
-                        {value: [-100, -120], duration: 400, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
-                        {value: [-120, -100], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: ['-30vh', '-40vh'], duration: 500, endDelay: 20, easing: 'easeInOutSine'},
+                        {value: ['-40vh', '-72vh'], duration: 500, endDelay: 20, easing: 'easeInOutSine'},
+                        {value: ['-72vh', '-20vh'], duration: 300, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: ['-20vh', '-60vh'], duration: 260, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
+                        {value: ['-60vh', '-20vh'], duration: 400, easing: 'cubicBezier(0.225, 1, 0.7, 0.980)'},
+                        {value: ['-20vh', '-46vh'], duration: 350, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
+                        {value: ['-46vh', '-20vh'], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: ['-20vh', '-24vh'], duration: 400, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
+                        {value: ['-24vh', '-20vh'], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
                     ],
                     translateX: [
-                        {value: -400, duration: 300, endDelay: 30, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
-                        {value: -250, duration: 300, easing: 'easeInQuad'},
-                        {value: -200, duration: 300, easing: 'easeOutQuad'},
-                        {value: -100, duration: 300, easing: 'easeOutQuad'},
-                        {value: 0, duration: 600, easing: 'easeOutQuad'},
-                        {value: 100, duration: 600, easing: 'easeOutQuad'},
-                        {value: 200, duration: 600, easing: 'easeOutQuad'},
-                        {value: 300, duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'}
+                        {value: '-30vw', duration: 300, endDelay: 30, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: '-20vw', duration: 300, easing: 'easeInQuad'},
+                        {value: '-14vw', duration: 300, easing: 'easeOutQuad'},
+                        {value: '-10vw', duration: 300, easing: 'easeOutQuad'},
+                        {value: '0vw', duration: 600, easing: 'easeOutQuad'},
+                        {value: '10vw', duration: 600, easing: 'easeOutQuad'},
+                        {value: '20vw', duration: 600, easing: 'easeOutQuad'},
+                        {value: '25vw', duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'}
                     ],
                     scaleX: [
                         {value: [.25, .85], duration: 190, easing: 'easeOutQuad'},
@@ -338,7 +326,7 @@
         display: inline-flex;
         align-items: center;
         flex-direction: column;
-        margin-top: 20vh;
+        margin-top: 26vh;
         width: 60vw;
         background-color: #313639;
     }
@@ -354,7 +342,7 @@
         align-items: center;
         position: absolute;
         top: 50%;
-        left: 50%;
+        left: calc(50% - 10.9vw);
         width: 1000px;
         height: 240px;
         margin: -120px 0 0 -451px;
@@ -390,8 +378,8 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        width: 1000px;
-        height: 120px;
+        width:60vw;
+        height: 7.3vw;
 
         &-signs {
             overflow: visible;
@@ -408,7 +396,6 @@
     .logo-letter {
         display: flex;
         align-items: flex-end;
-        overflow: hidden;
         height: 100%;
     }
 

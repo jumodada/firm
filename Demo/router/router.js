@@ -17,6 +17,7 @@ export default [
         path: '/components',
         name: 'components',
         component: Content,
+        redirect:'/components/install',
         children: [
             {
                 path: '/components/install',
@@ -52,7 +53,16 @@ export default [
                     name: '布局',
                     type: 'component'
                 },
-                component: () => import('../view/components/Layout')
+                component: () => import('../view/components/Layout/index.md')
+            },
+            {
+                path: '/components/Table',
+                name: 'Table',
+                meta: {
+                    name: '表格',
+                    type: 'component'
+                },
+                component: () => import('../view/components/Table/index.md')
             }
         ]
     },

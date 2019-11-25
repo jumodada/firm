@@ -12,6 +12,7 @@
     import {elementShowAddActive} from "../../utils/lazy-active"
     import card from './src/card/card'
     import Footer from '../Footer'
+
     export default {
         name: "Main",
         components: {
@@ -38,11 +39,11 @@
     }
 
     .divide-line {
-        &::after{
+        &::after {
             content: '';
             display: block;
             position: relative;
-            border-radius: 0 100% 47% 53% / 0% 0% 100% 100% ;
+            border-radius: 0 100% 47% 53% / 0% 0% 100% 100%;
             background-size: cover;
             background-color: #313639;
             height: 80px;

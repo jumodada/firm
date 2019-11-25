@@ -1,7 +1,9 @@
 <template>
     <div class="header" :class="{other:!atHome,'components-page':!atHome}">
         <div class="header-brand">
-            <f-icon :color="fColor" font-size="30" name="F"></f-icon>
+            <router-link :to="'/'">
+                <f-icon :color="fColor" font-size="30" name="F"></f-icon>
+            </router-link>
         </div>
         <div class="header-nav">
             <f-icon :color="fColor" name="left"></f-icon>

@@ -13,7 +13,7 @@
     .card-group-item:first-child .card-group-item-title {
       background-color: #228743; }
   .card-group-item:not(:first-child) {
-    margin-left: 3rem; }
+    margin-left: 8vw; }
   .card-group-item:nth-child(2) {
     background-color: #fac958; }
     .card-group-item:nth-child(2) .card-group-item-title {
