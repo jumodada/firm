@@ -18,16 +18,16 @@
                         <th v-if="checkBoxOn">
                             <input @change="onChangeAllItems" type="checkbox" ref="fixedMainInput">
                         </th>
-                        <th v-for="column in headerColumns " :key="column.field">
+                        <th v-for="column in headerColumns " :key="column.key">
 
                             <div class="x-table-th td-div">
-                                {{column.text}}
+                                {{column.title}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <f-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
+                            <f-icon @click="sortUp(column.key)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     name="asc"></f-icon>
-                            <f-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
+                            <f-icon @click="sortDown(column.key)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     style="margin-top: 2px" name="desc"></f-icon>
                            </span>
                             </div>
@@ -60,10 +60,10 @@
                         </td>
                         <td v-if="numberVisible">{{rowIndex+1}}</td>
                         <template v-for="(column,colIndex) in headersCollection[rowIndex] || headerColumns">
-                            <td :key="column.field" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan"
+                            <td :key="column.key" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan"
                                 :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
                                 <div class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">
-                                    {{item[column.field]}}
+                                    {{item[column.key]}}
                                 </div>
                                 <div class="td-div">
                                     <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
@@ -79,12 +79,15 @@
         <div class="x-table-left"
              :class="{boxShadowNone:hiddenShadow.left}"
              ref="left">
-            <div v-if="fixedLeft.length>0" :class="{boxShadowNone:hiddenShadow.left}" class="x-table-left-header"
-                 :style="{overflow:'hidden'}" ref="tableFixedLeftHeaderWrapper">
+            <div v-if="fixedLeft.length>0"
+                 :class="{boxShadowNone:hiddenShadow.left}"
+                 class="x-table-left-header"
+                 :style="{overflow:'hidden'}"
+                 ref="tableFixedLeftHeaderWrapper">
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width"
                        ref="tableFixedLeftHeader">
                     <colgroup>
-                        <col style="width: 60px">
+                        <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="(column,index) in fixedLeft" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead>
@@ -92,15 +95,15 @@
                         <th v-if="checkBoxOn">
                             <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
                         </th>
-                        <th v-for="column in fixedLeft" :key="column.field">
+                        <th v-for="column in fixedLeft" :key="column.key">
                             <div class="x-table-th">
-                                {{column.text}}
+                                {{column.title}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <f-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
+                            <f-icon @click="sortUp(column.key)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     name="asc"></f-icon>
-                            <f-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
+                            <f-icon @click="sortDown(column.key)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     style="margin-top: 2px" name="desc"></f-icon>
                            </span>
                             </div>
@@ -109,7 +112,8 @@
                     </thead>
                 </table>
             </div>
-            <div class="x-table-left-body" :style="{overflow:'hidden',overflowY:'scroll'}"
+            <div class="x-table-left-body"
+                 :style="{overflow:'hidden',overflowY:'scroll'}"
                  ref="tableLeftWrapper"
                  v-xScroll
                  v-if="fixedLeft.length>0"
@@ -117,7 +121,7 @@
                 <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
                     <colgroup>
                         <col v-if="checkBoxOn" style="width: 60px">
-                        <col v-for="column in fixedLeft" :key="column.field" :style="{width:`${column.width}px`}">
+                        <col v-for="column in fixedLeft" :key="column.key" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody>
                     <tr v-for="(item,index) in bodyData" :key="index"
@@ -130,8 +134,8 @@
                         </th>
                         <td v-if="numberVisible">{{index+1}}</td>
                         <template v-for="column in fixedLeft" class="td-div">
-                            <td :key="column.field">
-                                <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.field]}}</span>
+                            <td :key="column.key">
+                                <span :style="{visibility:column.fixed==='left'?'':'hidden'}">{{item[column.key]}}</span>
                             </td>
                         </template>
                     </tr>
@@ -154,15 +158,15 @@
                     </colgroup>
                     <thead>
                     <tr>
-                        <th v-for="column in fixedRight" :key="column.field">
+                        <th v-for="column in fixedRight" :key="column.key">
                             <div class="x-table-th">
-                                {{column.text}}
+                                {{column.title}}
                                 <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <f-icon @click="sortUp(column.field)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.field ? '109CCB' : '#666666'}"
+                            <f-icon @click="sortUp(column.key)"
+                                    :style="{fill:order.state=== 'ascending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     name="asc"></f-icon>
-                            <f-icon @click="sortDown(column.field)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.field ? '109CCB' : '#666666'}"
+                            <f-icon @click="sortDown(column.key)"
+                                    :style="{fill:order.state === 'descending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     style="margin-top: 2px" name="desc"></f-icon>
                             </span>
                             </div>
@@ -188,8 +192,8 @@
                     >
                         <td v-if="numberVisible">{{index+1}}</td>
                         <template v-for="column in fixedRight">
-                            <td :key="column.field">
-                                <span :style="{visibility:column.fixed==='right'?'':'hidden'}">{{item[column.field]}}</span>
+                            <td :key="column.key">
+                                <span :style="{visibility:column.fixed==='right'?'':'hidden'}">{{item[column.key]}}</span>
                             </td>
                         </template>
                     </tr>
@@ -315,9 +319,7 @@
                     this.tableResize()
                 })
                 this.setHeadersCollection()
-                if (this.spanMethod) {
-                    this.runSpanMethod()
-                }
+                if (this.spanMethod) this.runSpanMethod()
             },
             selectedItems() {
                 let selectedStatus = this.selectedItems.length === this.bodyData.length ? 'All' : this.selectedItems.length > 0 ? 'half' : 'none'
@@ -518,18 +520,18 @@
                 let selected = e.target.checked
                 this.$emit('update:selectedItems', selected ? this.bodyData : [])
             },
-            clickSort(field, direction) {
-                this.order.state = this.order.state === true || this.order.name !== field ? direction : (this.order.state = this.order.state === direction ? true : direction);
+            clickSort(key, direction) {
+                this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction);
                 this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) => {
-                    return a[field] < b[field] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1
+                    return a[key] < b[key] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1
                 }) : JSON.parse(JSON.stringify(this.data));
-                this.order.name = field
+                this.order.name = key
             },
-            sortUp(field) {
-                this.clickSort(field, 'ascending')
+            sortUp(key) {
+                this.clickSort(key, 'ascending')
             },
-            sortDown(field) {
-                this.clickSort(field, 'descending')
+            sortDown(key) {
+                this.clickSort(key, 'descending')
             },
             hoverChangeMain(index, e) {
                 let typeName = {
