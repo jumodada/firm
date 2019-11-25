@@ -13,8 +13,6 @@
         components: {
             Header,
         },
-        mounted() {
-        }
     }
 </script>
 

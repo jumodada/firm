@@ -10,7 +10,7 @@ Vue.use(X)
 Vue.component(demoCard.name, demoCard)
 
 
-router.afterEach(route => {
+router.afterEach(() => {
    Vue.nextTick(() => document.querySelectorAll('pre code').forEach(block=>highlightJs.highlightBlock(block)))
 })
 
