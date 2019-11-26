@@ -150,13 +150,26 @@
         },
         methods: {
             setColGroup() {
-                let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
+                let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader.$el).width)
                 let averageWidth = parseInt(width / this.headerColumns.length)
                 this.headerColumns.forEach((item, index) => {
                     if (!item.width) {
                         ['bodyColGroup'].forEach(item => this.$refs[item].children[index].style.width = averageWidth + 'px')
                     }
                 })
+            },
+            hoverChangeMain(index, e) {
+                let typeName = {
+                    mouseenter: '#FCF9F9',
+                    mouseleave: ''
+                }
+                this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
+                if (this.fixedLeft.length > 0) {
+                    this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
+                }
+                if (this.fixedRight.length > 0) {
+                    this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
+                }
             },
             listenToReSize() {
                 window.addEventListener('resize', this.listenToWindowResize)
@@ -172,7 +185,7 @@
             tableResize() {
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
-               // this.setMainWidth(tableWidth)
+                this.setMainWidth(tableWidth)
             },
             setMainWidth(tableWidth) {
                 let [$refs, width] = [this.$refs, 0]
@@ -186,7 +199,9 @@
                 this.setColGroup()
             },
             setHeaderToTop(tableWidth) {
-                //this.$refs.tableFixedHeader.$el.style.width = tableWidth
+                if(this.$refs.tableFixedHeader.$el.style){
+                    this.$refs.tableFixedHeader.$el.style.width = tableWidth
+                }
             },
             checkFixed() {
                 let [left, right, main] = [[], [], []]
