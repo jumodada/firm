@@ -32,9 +32,7 @@
             }
         },
         mounted(){
-            this.$nextTick(()=>{
-                this.setColGroup()
-            })
+            this.setColGroup()
         },
          methods:{
              setColGroup() {

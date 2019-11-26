@@ -129,8 +129,9 @@
             }
         },
         mounted() {
+            this.setColumns()
+            this.setBodyData()
             this.listenToReSize()
-
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.listenToWindowResize)
@@ -144,21 +145,11 @@
                 this.$nextTick(() => {
                     this.tableResize()
                 })
-                this.setHeadersCollection()
-                if (this.spanMethod) this.runSpanMethod()
-            },
-            selectedItems() {
-                let selectedStatus = this.selectedItems.length === this.bodyData.length ? 'All' : this.selectedItems.length > 0 ? 'half' : 'none'
-                let {fixedInput, fixedMainInput} = this.$refs
-                let element
-                element = this.fixedLeft.length > 0 ? fixedInput : fixedMainInput
-                element['indeterminate'] = selectedStatus === 'half'
-                element['checked'] = selectedStatus === 'All'
+               // this.setHeadersCollection()
             }
         },
         methods: {
             setColGroup() {
-
                 let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
                 let averageWidth = parseInt(width / this.headerColumns.length)
                 this.headerColumns.forEach((item, index) => {
@@ -181,7 +172,7 @@
             tableResize() {
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
-                this.setMainWidth(tableWidth)
+               // this.setMainWidth(tableWidth)
             },
             setMainWidth(tableWidth) {
                 let [$refs, width] = [this.$refs, 0]
@@ -195,7 +186,7 @@
                 this.setColGroup()
             },
             setHeaderToTop(tableWidth) {
-                this.$refs.tableFixedHeader.style.width = tableWidth
+                //this.$refs.tableFixedHeader.$el.style.width = tableWidth
             },
             checkFixed() {
                 let [left, right, main] = [[], [], []]
