@@ -16,13 +16,16 @@ export default {
     data(){
         return {
             columns:[
-                {title:'名字',key:'name'}
+                {title:'名字',key:'name'},
+                {title:'年龄',key:'year'},
+                {title:'性别',key:'sex'},
+                {title:'天梯分数',key:'score'}
             ],
             data:[
-                {key:1,name:'夏克明'},
-                {key:2,name:'夏克明'},
-                {key:3,name:'夏克明'},
-                {key:4,name:'夏克明'},
+                {name:'伍声',year:21,sex:'男',score:2009},
+                {name:'Pis',year:23,sex:'男',score:2100},
+                {name:'蛛丝马迹',year:22,sex:'男',score:2001},
+                {name:'阿川',year:24,sex:'男',score:1967},
                 ]
         }
     }

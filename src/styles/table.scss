@@ -36,15 +36,10 @@
       border: 1px solid #efefef;
     }
   }
-  &.compact{
-    td,th{
-      padding: 6px;
-    }
-  }
   &.stripe{
     tbody {
       >tr{
-        &:nth-child(odd){
+        &:nth-child(even){
           background-color: #FCF9F9;
         }
       }

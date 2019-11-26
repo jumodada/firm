@@ -8,16 +8,12 @@
                  ref="tableFixedHeaderWrapper"
                  @scroll.passive="scrollLeftGradient"
             >
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableFixedHeader">
+                <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableFixedHeader">
                     <colgroup ref="headerColGroup">
-                        <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead class="x-table-head">
                     <tr>
-                        <th v-if="checkBoxOn">
-                            <input @change="onChangeAllItems" type="checkbox" ref="fixedMainInput">
-                        </th>
                         <th v-for="column in headerColumns " :key="column.key">
 
                             <div class="x-table-th td-div">
@@ -41,7 +37,7 @@
                  @scroll.passive="scrollGradient"
                  ref="tableMainWrapper"
             >
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableMain">
+                <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableMain">
                     <colgroup ref="bodyColGroup">
                         <col v-if="checkBoxOn" style="width:60px">
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
@@ -54,10 +50,6 @@
                         @mouseenter="hoverChangeMain(rowIndex,$event)"
                         @mouseleave="hoverChangeMain(rowIndex,$event)"
                         ref="trMain">
-                        <td v-if="checkBoxOn">
-                            <input :checked="inSelected(item)" @change="changeItem(item,rowIndex,$event)"
-                                   type="checkbox">
-                        </td>
                         <td v-if="numberVisible">{{rowIndex+1}}</td>
                         <template v-for="(column,colIndex) in headersCollection[rowIndex] || headerColumns">
                             <td :key="column.key" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan"
@@ -84,7 +76,7 @@
                  class="x-table-left-header"
                  :style="{overflow:'hidden'}"
                  ref="tableFixedLeftHeaderWrapper">
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="columns[0].width"
+                <table class="x-table" :class="{bordered,stripe:stripe}" v-if="columns[0].width"
                        ref="tableFixedLeftHeader">
                     <colgroup>
                         <col v-if="checkBoxOn" style="width: 60px">
@@ -92,9 +84,6 @@
                     </colgroup>
                     <thead>
                     <tr>
-                        <th v-if="checkBoxOn">
-                            <input @change="onChangeAllItems" type="checkbox" ref="fixedInput">
-                        </th>
                         <th v-for="column in fixedLeft" :key="column.key">
                             <div class="x-table-th">
                                 {{column.title}}
@@ -118,7 +107,7 @@
                  v-xScroll
                  v-if="fixedLeft.length>0"
             >
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableLeft">
+                <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableLeft">
                     <colgroup>
                         <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="column in fixedLeft" :key="column.key" :style="{width:`${column.width}px`}">
@@ -129,9 +118,6 @@
                         @mouseleave="hoverChangeMain(index,$event)"
                         ref="trLeft"
                     >
-                        <th v-if="checkBoxOn">
-                            <input :checked="inSelected(item)" @change="changeItem(item,index,$event)" type="checkbox">
-                        </th>
                         <td v-if="numberVisible">{{index+1}}</td>
                         <template v-for="column in fixedLeft" class="td-div">
                             <td :key="column.key">
@@ -151,7 +137,7 @@
                  :class="{boxShadowNone:false}"
                  class="x-table-right-header" :style="{maxHeight:`${maxHeight+'px'}`,overflow:'hidden'}"
                  ref="tableFixedRightHeaderWrapper">
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" v-if="fixedRight.length>0"
+                <table class="x-table" :class="{bordered,stripe:stripe}" v-if="fixedRight.length>0"
                        ref="tableFixedRightHeader">
                     <colgroup>
                         <col v-for="(column,index) in fixedRight" :key="index" :style="{width:`${column.width}px`}">
@@ -180,7 +166,7 @@
                  v-xScroll
                  v-if="fixedRight.length>0"
             >
-                <table class="x-table" :class="{bordered,compact,stripe:stripe}" ref="tableRight">
+                <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableRight">
                     <colgroup>
                         <col v-for="(column,index) in fixedRight" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
@@ -233,10 +219,6 @@
             },
             maxWidth: {
                 type: [Number, String]
-            },
-            compact: {
-                type: Boolean,
-                default: false
             },
             bordered: {
                 type: Boolean,
@@ -291,7 +273,6 @@
             }
         },
         mounted() {
-
             this.listenToReSize()
             this.setColumns()
             this.checkFixed()
@@ -492,29 +473,6 @@
                     i++
                 }
             },
-            inSelected(item) {
-                return this.selectedItems.filter(child => child.key === item.key).length > 0
-            },
-            changeItem(item, index, e) {
-                let selected = e.target.checked
-                let clone = JSON.parse(JSON.stringify(this.selectedItems))
-                if (selected) {
-                    clone.push(item)
-                } else {
-                    let itemIndex
-                    clone.forEach((child, index) => {
-                        if (child.key === item.key) {
-                            itemIndex = index
-                        }
-                    })
-                    clone.splice(itemIndex, 1)
-                }
-                this.$emit('update:selectedItems', clone)
-            },
-            onChangeAllItems(e) {
-                let selected = e.target.checked
-                this.$emit('update:selectedItems', selected ? this.bodyData : [])
-            },
             clickSort(key, direction) {
                 this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction);
                 this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) => {
@@ -547,8 +505,8 @@
                 let {scrollTop, scrollLeft} = ref.tableMainWrapper
                 if (scrollLeft !== xScroll.data.currentScrollLeft) {
                     let {width} = ref.tableMain.style
-                    this.hiddenShadow.left = scrollLeft === 0 ? true : false;
-                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.maxWidth) ? true : false
+                    this.hiddenShadow.left = scrollLeft === 0
+                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.maxWidth)
                     this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
                     xScroll.data.currentScrollLeft = scrollLeft
                     return
