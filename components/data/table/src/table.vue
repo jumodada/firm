@@ -211,7 +211,7 @@
     import loading from '../../../currency/dynamic icon/loading'
     import Icon from '../../../currency/icon/src/icon'
     import xScroll from './scroll-synchro'
-    import {recurrenceOnceDeepCopy} from "../../../../src/utils/common"
+    import {deepClone, recurrenceOnceDeepCopy} from "../../../../src/utils/common"
     import elementResizeDetectorMaker from 'element-resize-detector'
 
     export default {
@@ -291,6 +291,7 @@
             }
         },
         mounted() {
+
             this.listenToReSize()
             this.setColumns()
             this.checkFixed()
@@ -373,9 +374,7 @@
                     top: '-9999px',
                     width: '50px'
                 }
-                Object.keys(style).forEach(item => {
-                    scrollBar.style[item] = style[item]
-                })
+                Object.keys(style).forEach(item => scrollBar.style[item] = style[item])
                 document.body.appendChild(scrollBar)
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
@@ -420,12 +419,8 @@
                         main.push(item)
                     }
                 })
-                if (left.length > 0) {
-                    this.fixedLeft = left.concat(main, right)
-                }
-                if (right.length > 0) {
-                    this.fixedRight = right.concat(main, left)
-                }
+                if (left.length > 0) this.fixedLeft = left.concat(main, right)
+                if (right.length > 0) this.fixedRight = right.concat(main, left)
                 this.headerColumns = left.concat(main, right)
             },
             setFixedWidth() {
@@ -485,10 +480,10 @@
                 refs.tableFixedHeader.style.width = Width
             },
             setBodyData() {
-                this.bodyData = JSON.parse(JSON.stringify(this.data))
+                this.bodyData = deepClone(this.data)
             },
             setColumns() {
-                this.headerColumns = JSON.parse(JSON.stringify(this.columns))
+                this.headerColumns = deepClone(this.columns)
             },
             setHeadersCollection() {
                 let i = 0
