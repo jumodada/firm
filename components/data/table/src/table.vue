@@ -2,35 +2,13 @@
     <div class="x-table-wrapper"
          :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden;" ref="totalWrapper">
         <!--  主体-->
-        <div class="x-table-main"
-        >
+        <div class="x-table-main">
             <div class="x-table-main-header"
                  ref="tableFixedHeaderWrapper"
                  @scroll.passive="scrollLeftGradient"
             >
-                <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableFixedHeader">
-                    <colgroup ref="headerColGroup">
-                        <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
-                    </colgroup>
-                    <thead class="x-table-head">
-                    <tr>
-                        <th v-for="column in headerColumns " :key="column.key">
-
-                            <div class="x-table-th td-div">
-                                {{column.title}}
-                                <span class="x-table-th-icon" v-if="column.sortBy=== true">
-                            <f-icon @click="sortUp(column.key)"
-                                    :style="{fill:order.state=== 'ascending' && order.name===column.key ? '109CCB' : '#666666'}"
-                                    name="asc"></f-icon>
-                            <f-icon @click="sortDown(column.key)"
-                                    :style="{fill:order.state === 'descending' && order.name===column.key ? '109CCB' : '#666666'}"
-                                    style="margin-top: 2px" name="desc"></f-icon>
-                           </span>
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                </table>
+                <tableHeader :columns="headerColumns" class="x-table" :class="{bordered,stripe}" ref="tableFixedHeader">
+                </tableHeader>
             </div>
             <div class="x-table-main-body"
                  :style="{overflow:'auto'}"
@@ -39,7 +17,6 @@
             >
                 <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableMain">
                     <colgroup ref="bodyColGroup">
-                        <col v-if="checkBoxOn" style="width:60px">
                         <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody ref="tBodyMain">
@@ -79,7 +56,6 @@
                 <table class="x-table" :class="{bordered,stripe:stripe}" v-if="columns[0].width"
                        ref="tableFixedLeftHeader">
                     <colgroup>
-                        <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="(column,index) in fixedLeft" :key="index" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <thead>
@@ -109,7 +85,6 @@
             >
                 <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableLeft">
                     <colgroup>
-                        <col v-if="checkBoxOn" style="width: 60px">
                         <col v-for="column in fixedLeft" :key="column.key" :style="{width:`${column.width}px`}">
                     </colgroup>
                     <tbody>
@@ -199,7 +174,7 @@
     import xScroll from './scroll-synchro'
     import {deepClone, recurrenceOnceDeepCopy} from "../../../../src/utils/common"
     import elementResizeDetectorMaker from 'element-resize-detector'
-
+    import tableHeader from './table-header'
     export default {
         name: "f-table",
         directives: {
@@ -207,7 +182,8 @@
         },
         components: {
             'f-icon': Icon,
-            loading: loading
+            loading: loading,
+            tableHeader
         },
         props: {
             stripe: {
@@ -258,8 +234,8 @@
         data() {
             return {
                 order: {},
-                bodyData: {},
-                headerColumns: {},
+                bodyData: [],
+                headerColumns: [],
                 fixedLeft: [],
                 fixedRight: [],
                 hiddenShadow: {
@@ -278,10 +254,10 @@
             this.checkFixed()
             this.setBodyData()
             this.$nextTick(() => {
-                this.fixedWidthComputed()
-                this.tableResize()
-                this.setFixed()
-                this.setMainHeight()
+                // this.fixedWidthComputed()
+                // this.tableResize()
+                // this.setFixed()
+                // this.setMainHeight()
             })
             this.setHeadersCollection()
             if (this.spanMethod) {
@@ -314,13 +290,12 @@
         },
         methods: {
             setColGroup() {
+
                 let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader).width)
                 let averageWidth = parseInt(width / this.headerColumns.length)
                 this.headerColumns.forEach((item, index) => {
                     if (!item.width) {
-                        ['headerColGroup', 'bodyColGroup'].forEach(item => {
-                            this.$refs[item].children[index].style.width = averageWidth + 'px'
-                        })
+                        ['bodyColGroup'].forEach(item => this.$refs[item].children[index].style.width = averageWidth + 'px')
                     }
                 })
             },
@@ -379,9 +354,6 @@
                 } else {
                     width = this.tableWidth
                 }
-                if (this.checkBoxOn && this.headerColumns[0].width) {
-                    width += 60
-                }
 
                 $refs.tableMain.style.width = width + 'px'
                 this.setColGroup()
@@ -420,10 +392,10 @@
                 let Width
                 if (this.checkFixed) {
                     if (leftArr.length > 0) {
-                        Width = totalWidth + 60 + leftArr.length + 'px'
+                        Width = totalWidth + leftArr.length + 'px'
                     }
                     if (rightArr.length > 0) {
-                        Width = totalWidth + 60 + rightArr.length + 'px'
+                        Width = totalWidth + rightArr.length + 'px'
                     }
                 } else {
                     if (leftArr.length > 0) {
@@ -435,7 +407,6 @@
                 }
                 if (leftArr.length > 0) {
                     this.$refs.tableLeftWrapper.style.height = this.maxHeight - parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).height) - this.scrollBarWidth + 'px'
-                    this.checkBoxOn ? tableLeftWrapperWidth += 60 : tableLeftWrapperWidth  //按钮固定的宽度
                     this.setColumnFixedWidth(refs, Width, tableLeftWrapperWidth, ['tableLeft', 'tableLeftWrapper', 'tableFixedLeftHeader', 'tableFixedLeftHeaderWrapper'])
                 }
                 if (rightArr.length > 0) {

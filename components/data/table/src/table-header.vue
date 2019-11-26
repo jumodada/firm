@@ -1,11 +1,11 @@
 <template>
-    <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableFixedHeader">
+    <table v-if="columns&&columns.length>0" ref="header">
         <colgroup ref="headerColGroup">
-            <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
+            <col v-for="(column,index) in columns" :key="index" :style="{width:`${column.width}px`}">
         </colgroup>
         <thead class="x-table-head">
         <tr>
-            <th v-for="column in headerColumns " :key="column.key">
+            <th v-for="column in columns " :key="column.key">
                 <div class="x-table-th td-div">
                     {{column.title}}
                     <span class="x-table-th-icon" v-if="column.sortBy=== true">
@@ -27,8 +27,24 @@
     export default {
         name: "f-table-header",
         props:{
-
-        }
+            columns:{
+                type:Array,
+            }
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.setColGroup()
+            })
+        },
+         methods:{
+             setColGroup() {
+                 let width = parseInt(getComputedStyle(this.$refs.header).width)
+                 let averageWidth = parseInt(width / this.columns.length)
+                 this.columns.forEach((item, index) => {
+                     if (!item.width) this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
+                 })
+             },
+         }
     }
 </script>
 
