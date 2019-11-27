@@ -13,35 +13,10 @@
                  :style="{overflow:'auto'}"
                  ref="tableMainWrapper"
             >
-                <table class="x-table" :class="{bordered,stripe:stripe}" ref="tableMain">
-                    <colgroup ref="bodyColGroup">
-                        <col v-for="(column,index) in headerColumns" :key="index" :style="{width:`${column.width}px`}">
-                    </colgroup>
-                    <tbody ref="tBodyMain">
-                    <tr v-if="data.length===0">
-                        <td style="display: flex;align-items: center;justify-content: center" :colspan="headerColumns.length">
-                            <f-icon name="none" style="margin-right: 5px"></f-icon>暂无数据
-                        </td>
-                    </tr>
-                    <tr v-for="(item,rowIndex) in bodyData" :key="rowIndex"
-                        @mouseenter="hoverChangeMain(rowIndex,$event)"
-                        @mouseleave="hoverChangeMain(rowIndex,$event)"
-                        ref="trMain">
-                        <td v-if="numberVisible">{{rowIndex+1}}</td>
-                        <template v-for="(column,colIndex) in headersCollection[rowIndex] || headerColumns">
-                            <td :key="column.key" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan"
-                                :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
-                                <div class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">
-                                    {{item[column.key]}}
-                                </div>
-                                <div class="td-div">
-                                    <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
-                                </div>
-                            </td>
-                        </template>
-                    </tr>
-                    </tbody>
-                </table>
+                <tableBody
+                    :columns="headerColumns"
+                    :body-data="bodyData"
+                        class="x-table" :class="{bordered,stripe:stripe}" ref="tableMain"></tableBody>
             </div>
         </div>
         <transition name="fade">
@@ -57,6 +32,8 @@
     import {deepClone, recurrenceOnceDeepCopy} from "../../../../src/utils/common"
     import elementResizeDetectorMaker from 'element-resize-detector'
     import tableHeader from './table-header'
+    import tableBody from './table-body'
+
     export default {
         name: "f-table",
         directives: {
@@ -65,7 +42,8 @@
         components: {
             'f-icon': Icon,
             loading: loading,
-            tableHeader
+            tableHeader,
+            tableBody
         },
         props: {
             stripe: {
@@ -147,7 +125,7 @@
                 this.$nextTick(() => {
                     this.tableResize()
                 })
-               // this.setHeadersCollection()
+                // this.setHeadersCollection()
             }
         },
         methods: {
@@ -159,19 +137,6 @@
                         ['bodyColGroup'].forEach(item => this.$refs[item].children[index].style.width = averageWidth + 'px')
                     }
                 })
-            },
-            hoverChangeMain(index, e) {
-                let typeName = {
-                    mouseenter: '#FCF9F9',
-                    mouseleave: ''
-                }
-                this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
-                if (this.fixedLeft.length > 0) {
-                    this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
-                }
-                if (this.fixedRight.length > 0) {
-                    this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
-                }
             },
             listenToReSize() {
                 window.addEventListener('resize', this.listenToWindowResize)
@@ -185,7 +150,7 @@
                 }, 150)
             },
             tableResize() {
-                if(this.headerColumns.length===0)return
+                if (this.headerColumns.length === 0) return
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
@@ -202,7 +167,7 @@
                 this.setColGroup()
             },
             setHeaderToTop(tableWidth) {
-                if(this.$refs.tableFixedHeader.$el.style){
+                if (this.$refs.tableFixedHeader.$el.style) {
                     this.$refs.tableFixedHeader.$el.style.width = tableWidth
                 }
             },

@@ -22,13 +22,11 @@
   }
 }
 .x-table{
-
   transition: .3s all;
   width: 100%;
   color:#515a6e;
   border-collapse: collapse;
   border-spacing: 0;
-  border-bottom: 1px solid #efefef;
   overflow: scroll;
   &.bordered{
     border:1px solid #efefef;
@@ -61,7 +59,6 @@
       word-break: break-all;
       word-wrap: normal;
       vertical-align: middle;
-
     }
   }
   th{
@@ -122,7 +119,6 @@
       }
     }
     &-body{
-      border-bottom: 1px solid #efefef;
     }
   }
   &-left{
