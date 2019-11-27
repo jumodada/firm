@@ -29,6 +29,7 @@
         props:{
             columns:{
                 type:Array,
+                default:()=>[]
             }
         },
         mounted(){
@@ -38,6 +39,7 @@
         },
          methods:{
              setColGroup() {
+                 if(this.columns.length===0)return
                  let width = parseInt(getComputedStyle(this.$refs.header).width)
                  let averageWidth = parseInt(width / this.columns.length)
                  this.columns.forEach((item, index) => {

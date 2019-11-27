@@ -1,6 +1,6 @@
 <template>
     <div class="x-table-wrapper"
-         :class="{borderHidden:columns[0].width}" style="position:relative;overflow: hidden;" ref="totalWrapper">
+         style="position:relative;overflow: hidden;" ref="totalWrapper">
         <!--  主体-->
         <div class="x-table-main">
             <div class="x-table-main-header"
@@ -19,7 +19,9 @@
                     </colgroup>
                     <tbody ref="tBodyMain">
                     <tr v-if="data.length===0">
-                        <td :colspan="headerColumns.length">暂无数据</td>
+                        <td style="display: flex;align-items: center;justify-content: center" :colspan="headerColumns.length">
+                            <f-icon name="none" style="margin-right: 5px"></f-icon>暂无数据
+                        </td>
                     </tr>
                     <tr v-for="(item,rowIndex) in bodyData" :key="rowIndex"
                         @mouseenter="hoverChangeMain(rowIndex,$event)"
@@ -129,8 +131,8 @@
             }
         },
         mounted() {
-            this.setColumns()
-            this.setBodyData()
+            this.copyColumns()
+            this.copyBodyData()
             this.listenToReSize()
         },
         beforeDestroy() {
@@ -139,9 +141,9 @@
         },
         watch: {
             data() {
-                this.setColumns()
-                this.checkFixed()
-                this.setBodyData()
+                this.copyColumns()
+                //this.checkFixed()
+                this.copyBodyData()
                 this.$nextTick(() => {
                     this.tableResize()
                 })
@@ -183,6 +185,7 @@
                 }, 150)
             },
             tableResize() {
+                if(this.headerColumns.length===0)return
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
@@ -218,10 +221,10 @@
                 if (right.length > 0) this.fixedRight = right.concat(main, left)
                 this.headerColumns = left.concat(main, right)
             },
-            setBodyData() {
+            copyBodyData() {
                 this.bodyData = deepClone(this.data)
             },
-            setColumns() {
+            copyColumns() {
                 this.headerColumns = deepClone(this.columns)
             },
             setHeadersCollection() {
