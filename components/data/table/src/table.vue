@@ -6,7 +6,7 @@
             <div class="x-table-main-header"
                  ref="tableFixedHeaderWrapper"
             >
-                <tableHeader :columns="headerColumns" class="x-table" :class="{bordered,stripe}" ref="tableFixedHeader">
+                <tableHeader :columns="headerColumns" class="x-table" :class="[bordered,stripe,textAlign]" ref="tableFixedHeader">
                 </tableHeader>
             </div>
             <div class="x-table-main-body"
@@ -18,7 +18,7 @@
                         :body-data="bodyData"
                         class="x-table"
                         :numberVisible="numberVisible"
-                        :class="{bordered,stripe:stripe}"
+                        :class="[bordered,stripe,textAlign]"
                         ref="tableMain">
                 </tableBody>
             </div>
@@ -42,6 +42,11 @@
         name: "f-table",
         directives: {
             xScroll
+        },
+        computed:{
+            textAlign(){
+                return `align-${this.align}`
+            }
         },
         components: {
             'f-icon': Icon,
@@ -68,13 +73,15 @@
                 type: Array,
                 required: true
             },
+            align:{
+                type:String,
+                default:'left',
+                validator:(val)=>['left','right','center'].indexOf(val)>-1
+            },
             data: {
                 type: Array,
                 required: true,
-                validator(item) {
-                    if (item.id) return false
-                    return true
-                }
+                validator:(item)=>!item.id
             },
             loading: {
                 type: Boolean,
@@ -94,7 +101,6 @@
             },
             defaultSort: Object,
             spanMethod: Function,
-            
         },
         data() {
             return {

@@ -6,6 +6,7 @@
 ```html
 <f-row>
     <f-table 
+    align="center"
     :columns="columns"
      :data="data">
     </f-table>

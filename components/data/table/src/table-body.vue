@@ -6,7 +6,8 @@
         <tbody ref="tBodyMain">
         <tr v-if="bodyData.length===0">
             <td style="display: flex;align-items: center;justify-content: center" :colspan="columns.length">
-                <f-icon name="none" style="margin-right: 5px"></f-icon>暂无数据
+                <f-icon name="none" style="margin-right: 5px"></f-icon>
+                暂无数据
             </td>
         </tr>
         <tr v-for="(item,rowIndex) in bodyData" :key="rowIndex"
@@ -32,30 +33,30 @@
 <script>
     export default {
         name: "table-body",
-        props:{
-            columns:{
-                type:Array,
-                default:()=>[]
+        props: {
+            columns: {
+                type: Array,
+                default: () => []
             },
-            bodyData:{
-                type:Array,
-                default:()=>[]
+            bodyData: {
+                type: Array,
+                default: () => []
             },
-            numberVisible:{
-                type:Boolean,
-                default:false
+            numberVisible: {
+                type: Boolean,
+                default: false
             },
-            headersCollection:{
-                type:Array,
-                default:()=>[]
+            headersCollection: {
+                type: Array,
+                default: () => []
             }
         },
-        mounted(){
-          this.$nextTick(()=>{
-              this.setColGroup()
-          })
+        mounted() {
+            this.$nextTick(() => {
+                this.setColGroup()
+            })
         },
-        methods:{
+        methods: {
             hoverChangeMain(index, e) {
                 let typeName = {
                     mouseenter: '#FCF9F9',
@@ -68,7 +69,7 @@
                 let averageWidth = parseInt(width / this.columns.length)
                 this.columns.forEach((item, index) => {
                     if (!item.width) {
-                        ['bodyColGroup'].forEach(item => this.$refs[item].children[index].style.width = averageWidth + 'px')
+                        this.$refs.bodyColGroup.children[index].style.width = averageWidth + 'px'
                     }
                 })
             },
@@ -76,6 +77,6 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    @import "../../../../src/styles/table";
 </style>

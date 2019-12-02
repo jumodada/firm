@@ -61,6 +61,7 @@
       vertical-align: middle;
     }
   }
+
   th{
     -webkit-user-select:none;
     -moz-user-select:none;
@@ -163,6 +164,16 @@
       z-index: 4;
       background-color: #f9f9f9;
     }
+  }
+}
+.align-left{
+  td,th{
+    text-align: left;
+  }
+}
+.align-right{
+  td,th{
+    text-align: right;
   }
 }
 .boxShadowNone{
