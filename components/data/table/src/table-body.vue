@@ -4,7 +4,7 @@
             <col v-for="(column,index) in columns" :key="index" :style="{width:`${column.width}px`}">
         </colgroup>
         <tbody ref="tBodyMain">
-        <tr v-if="data.length===0">
+        <tr v-if="bodyData.length===0">
             <td style="display: flex;align-items: center;justify-content: center" :colspan="columns.length">
                 <f-icon name="none" style="margin-right: 5px"></f-icon>暂无数据
             </td>
@@ -15,8 +15,7 @@
             ref="trMain">
             <td v-if="numberVisible">{{rowIndex+1}}</td>
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
-                <td :key="column.key" :colspan="cell[colIndex]&&cell[colIndex][rowIndex].colspan"
-                    :rowspan="cell[colIndex]&&cell[colIndex][rowIndex].rowspan">
+                <td :key="column.key">
                     <div class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">
                         {{item[column.key]}}
                     </div>
@@ -41,8 +40,20 @@
             bodyData:{
                 type:Array,
                 default:()=>[]
+            },
+            numberVisible:{
+                type:Boolean,
+                default:false
+            },
+            headersCollection:{
+                type:Array,
+                default:()=>[]
             }
-
+        },
+        mounted(){
+          this.$nextTick(()=>{
+              this.setColGroup()
+          })
         },
         methods:{
             hoverChangeMain(index, e) {
@@ -51,12 +62,15 @@
                     mouseleave: ''
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
-                if (this.fixedLeft.length > 0) {
-                    this.$refs.trLeft[index].style.backgroundColor = typeName[e.type]
-                }
-                if (this.fixedRight.length > 0) {
-                    this.$refs.trRight[index].style.backgroundColor = typeName[e.type]
-                }
+            },
+            setColGroup() {
+                let width = parseInt(getComputedStyle(this.$parent.$refs.tableFixedHeader.$el).width)
+                let averageWidth = parseInt(width / this.columns.length)
+                this.columns.forEach((item, index) => {
+                    if (!item.width) {
+                        ['bodyColGroup'].forEach(item => this.$refs[item].children[index].style.width = averageWidth + 'px')
+                    }
+                })
             },
         }
     }

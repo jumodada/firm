@@ -14,9 +14,13 @@
                  ref="tableMainWrapper"
             >
                 <tableBody
-                    :columns="headerColumns"
-                    :body-data="bodyData"
-                        class="x-table" :class="{bordered,stripe:stripe}" ref="tableMain"></tableBody>
+                        :columns="headerColumns"
+                        :body-data="bodyData"
+                        class="x-table"
+                        :numberVisible="numberVisible"
+                        :class="{bordered,stripe:stripe}"
+                        ref="tableMain">
+                </tableBody>
             </div>
         </div>
         <transition name="fade">
@@ -89,7 +93,8 @@
                 default: () => []
             },
             defaultSort: Object,
-            spanMethod: Function
+            spanMethod: Function,
+            
         },
         data() {
             return {
@@ -103,7 +108,6 @@
                     right: false
                 },
                 oldScrollLeft: 0,
-                cell: [],
                 headersCollection: [],
                 tableWidth: 0
             }
@@ -125,19 +129,10 @@
                 this.$nextTick(() => {
                     this.tableResize()
                 })
-                // this.setHeadersCollection()
+                 this.setHeadersCollection()
             }
         },
         methods: {
-            setColGroup() {
-                let width = parseInt(getComputedStyle(this.$refs.tableFixedHeader.$el).width)
-                let averageWidth = parseInt(width / this.headerColumns.length)
-                this.headerColumns.forEach((item, index) => {
-                    if (!item.width) {
-                        ['bodyColGroup'].forEach(item => this.$refs[item].children[index].style.width = averageWidth + 'px')
-                    }
-                })
-            },
             listenToReSize() {
                 window.addEventListener('resize', this.listenToWindowResize)
                 this.observer = elementResizeDetectorMaker()
@@ -162,9 +157,7 @@
                 } else {
                     width = this.tableWidth
                 }
-
-                $refs.tableMain.style.width = width + 'px'
-                this.setColGroup()
+                $refs.tableMain.$el.style.width = width + 'px'
             },
             setHeaderToTop(tableWidth) {
                 if (this.$refs.tableFixedHeader.$el.style) {
