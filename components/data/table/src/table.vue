@@ -6,7 +6,11 @@
             <div class="x-table-main-header"
                  ref="tableFixedHeaderWrapper"
             >
-                <tableHeader :columns="headerColumns" class="x-table" :class="[bordered,stripe,textAlign]" ref="tableFixedHeader">
+                <tableHeader
+                        :columns="headerColumns"
+                        class="x-table"
+                        :class="[bordered,stripe,textAlign]"
+                        ref="tableFixedHeader">
                 </tableHeader>
             </div>
             <div class="x-table-main-body"
@@ -43,8 +47,8 @@
         directives: {
             xScroll
         },
-        computed:{
-            textAlign(){
+        computed: {
+            textAlign() {
                 return `align-${this.align}`
             }
         },
@@ -73,15 +77,15 @@
                 type: Array,
                 required: true
             },
-            align:{
-                type:String,
-                default:'left',
-                validator:(val)=>['left','right','center'].indexOf(val)>-1
+            align: {
+                type: String,
+                default: 'left',
+                validator: (val) => ['left', 'right', 'center'].indexOf(val) > -1
             },
             data: {
                 type: Array,
                 required: true,
-                validator:(item)=>!item.id
+                validator: (item) => !item.id
             },
             loading: {
                 type: Boolean,
@@ -120,8 +124,10 @@
         },
         mounted() {
             this.copyColumns()
+            this.checkFixed()
             this.copyBodyData()
             this.listenToReSize()
+            this.setHeadersCollection()
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.listenToWindowResize)
@@ -135,7 +141,7 @@
                 this.$nextTick(() => {
                     this.tableResize()
                 })
-                 this.setHeadersCollection()
+                this.setHeadersCollection()
             }
         },
         methods: {
@@ -146,9 +152,7 @@
             },
             listenToWindowResize() {
                 clearTimeout(this.timer)
-                this.timer = setTimeout(() => {
-                    this.tableResize()
-                }, 150)
+                this.timer = setTimeout(() =>this.tableResize(), 150)
             },
             tableResize() {
                 if (this.headerColumns.length === 0) return
@@ -171,19 +175,15 @@
                 }
             },
             checkFixed() {
-                let [left, right, main] = [[], [], []]
-                this.columns.forEach(item => {
-                    if (item.fixed === 'left') {
-                        left.push(item)
-                    } else if (item.fixed === 'right') {
-                        right.push(item)
-                    } else {
-                        main.push(item)
-                    }
-                })
-                if (left.length > 0) this.fixedLeft = left.concat(main, right)
-                if (right.length > 0) this.fixedRight = right.concat(main, left)
-                this.headerColumns = left.concat(main, right)
+                let fixed = {
+                    left: [],
+                    right:[],
+                    main:[]
+                }
+                this.columns.forEach(item => fixed[item.fixed||'main'].push(item))
+                if (fixed.left.length > 0) this.fixedLeft = fixed.left.concat(fixed.main, fixed.right)
+                if (fixed.right.length > 0) this.fixedRight = fixed.right.concat(fixed.main, fixed.left)
+                this.headerColumns = fixed.left.concat(fixed.main, fixed.right)
             },
             copyBodyData() {
                 this.bodyData = deepClone(this.data)
@@ -197,6 +197,7 @@
                     this.headersCollection[i] = recurrenceOnceDeepCopy(this.headerColumns)
                     i++
                 }
+                console.log(this.headersCollection)
             },
             clickSort(key, direction) {
                 this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction);
