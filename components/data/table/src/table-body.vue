@@ -17,12 +17,10 @@
             <td v-if="numberVisible">{{rowIndex+1}}</td>
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
                 <td :key="column.key">
-                    <div class="td-div" :style="{visibility:column.fixed==='left'?'hidden':''}">
-                        {{item[column.key]}}
-                    </div>
-                    <div class="td-div">
-                        <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
-                    </div>
+                    <Cell :item="item"
+                          :column="column"
+                          :rowIndex="rowIndex"
+                    ></Cell>
                 </td>
             </template>
         </tr>
@@ -31,8 +29,13 @@
 </template>
 
 <script>
+    import Cell from './table-cell'
+
     export default {
         name: "table-body",
+        components: {
+            Cell
+        },
         props: {
             columns: {
                 type: Array,
@@ -65,7 +68,7 @@
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
             },
             setColGroup() {
-                if(this.columns.length===0)return
+                if (this.columns.length === 0) return
                 let width = parseInt(getComputedStyle(this.$parent.$refs.tableFixedHeader.$el).width)
                 let averageWidth = parseInt(width / this.columns.length)
                 this.columns.forEach((item, index) => {
@@ -78,6 +81,3 @@
     }
 </script>
 
-<style scoped lang="scss">
-    @import "../../../../src/styles/table";
-</style>

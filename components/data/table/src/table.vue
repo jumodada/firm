@@ -1,26 +1,26 @@
 <template>
-    <div class="x-table-wrapper"
+    <div class="f-table-wrapper"
          style="position:relative;overflow: hidden;" ref="totalWrapper">
         <!--  主体-->
-        <div class="x-table-main">
-            <div class="x-table-main-header"
+        <div class="f-table-main">
+            <div class="f-table-main-header"
                  ref="tableFixedHeaderWrapper"
             >
                 <tableHeader
                         :columns="headerColumns"
-                        class="x-table"
+                        class="f-table"
                         :class="[bordered,stripe,textAlign]"
                         ref="tableFixedHeader">
                 </tableHeader>
             </div>
-            <div class="x-table-main-body"
+            <div class="f-table-main-body"
                  :style="{overflow:'auto'}"
                  ref="tableMainWrapper"
             >
                 <tableBody
                         :columns="headerColumns"
                         :body-data="bodyData"
-                        class="x-table"
+                        class="f-table"
                         :numberVisible="numberVisible"
                         :class="[bordered,stripe,textAlign]"
                         ref="tableMain">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <transition name="fade">
-            <loading v-if="loading" class="x-table-loading"></loading>
+            <loading v-if="loading" class="f-table-loading"></loading>
         </transition>
     </div>
 </template>
@@ -136,7 +136,7 @@
         watch: {
             data() {
                 this.copyColumns()
-                //this.checkFixed()
+                this.checkFixed()
                 this.copyBodyData()
                 this.$nextTick(() => {
                     this.tableResize()
@@ -159,6 +159,11 @@
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
+            },
+            isCheckBoxExists(){
+                this.headerColumns.forEach(column=>{
+
+                })
             },
             setMainWidth(tableWidth) {
                 let [$refs, width] = [this.$refs, 0]
@@ -197,13 +202,10 @@
                     this.headersCollection[i] = recurrenceOnceDeepCopy(this.headerColumns)
                     i++
                 }
-                console.log(this.headersCollection)
             },
             clickSort(key, direction) {
-                this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction);
-                this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) => {
-                    return a[key] < b[key] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1
-                }) : JSON.parse(JSON.stringify(this.data));
+                this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction)
+                this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) =>a[key] < b[key] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1) : JSON.parse(JSON.stringify(this.data))
                 this.order.name = key
             },
             sortUp(key) {
@@ -215,7 +217,3 @@
         },
     }
 </script>
-
-<style lang="scss" scoped>
-    @import "../../../../src/styles/table";
-</style>

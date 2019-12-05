@@ -1,0 +1,32 @@
+.f-checkbox {
+  position: relative;
+
+  &-input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &-virtual-checkbox {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    display: inline-block;
+    background-color: #2d8cf0;
+    &:after {
+      content: '';
+      display: table;
+      width: 4px;
+      height: 8px;
+      position: absolute;
+      top: 3px;
+      left: 7px;
+      border: 2px solid #fff;
+      border-top: 0;
+      border-left: 0;
+      transform: rotate(45deg) scale(1);
+    }
+  }
+}
+

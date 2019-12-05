@@ -1,14 +1,10 @@
-*{
-  transition: .3s all ease;
-  -webkit-font-smoothing: antialiased;
-}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
 }
 .fade-enter, .fade-leave-to  {
   opacity: 0 ;
 }
-.x-table-wrapper{
+.f-table-wrapper{
   width: 100%;
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -21,8 +17,9 @@
     border-bottom: none;
   }
 }
-.x-table{
-  transition: .3s all;
+.f-table{
+  transition: .3s all ease;
+  -webkit-font-smoothing: antialiased;
   width: 100%;
   color:#515a6e;
   border-collapse: collapse;
@@ -33,6 +30,15 @@
     td,th{
       border: 1px solid #efefef;
     }
+  }
+  &-cell{
+    padding-left: 12px;
+    padding-right: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
   }
   &.stripe{
     tbody {
