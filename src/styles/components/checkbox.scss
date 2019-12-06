@@ -7,17 +7,21 @@
     left: 0;
     top: 0;
   }
-
-  &-virtual-checkbox {
+  &-virtual-checkbox{
     width: 18px;
     height: 18px;
+    cursor: pointer;
+    border-radius: 4px;
     position: relative;
     display: inline-block;
-    background-color: #2d8cf0;
+    border: 1px solid #efefef;
+  }
+  &-virtual-checkbox-active {
+    background-color: $yellow;
     &:after {
       content: '';
       display: table;
-      width: 4px;
+      width: 3px;
       height: 8px;
       position: absolute;
       top: 3px;

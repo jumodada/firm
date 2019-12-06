@@ -51,5 +51,5 @@
 </script>
 
 <style scoped>
-    @import "../../../../src/styles/table.scss";
+    @import "../../../../src/styles/components/table.scss";
 </style>
