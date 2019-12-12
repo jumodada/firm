@@ -7,7 +7,12 @@
         <tr>
             <th v-for="column in columns " :key="column.key">
                 <div class="f-table-th td-div">
-                    {{column.title}}
+                  <template v-if="column.title">
+                      {{column.title}}
+                  </template>
+                    <template v-if="column.type==='selection'">
+                      <checkBox :value="checkBoxValue" @on-change="selectAll"></checkBox>
+                    </template>
                     <span class="f-table-th-icon" v-if="column.sortBy=== true">
                             <f-icon @click="sortUp(column.key)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.key ? '109CCB' : '#666666'}"
@@ -15,7 +20,7 @@
                             <f-icon @click="sortDown(column.key)"
                                     :style="{fill:order.state === 'descending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     style="margin-top: 2px" name="desc"></f-icon>
-                           </span>
+                    </span>
                 </div>
             </th>
         </tr>
@@ -24,13 +29,22 @@
 </template>
 
 <script>
+    import checkBox from '../../../currency/check-box'
     export default {
         name: "f-table-header",
+        components:{
+            checkBox
+        },
         props:{
             columns:{
                 type:Array,
                 default:()=>[]
             }
+        },
+        data(){
+          return {
+              checkBoxValue:false
+          }
         },
         mounted(){
             this.$nextTick(()=>{
@@ -46,6 +60,9 @@
                      if (!item.width) this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
                  })
              },
+             selectAll(val){
+                 console.log(val)
+             }
          }
     }
 </script>

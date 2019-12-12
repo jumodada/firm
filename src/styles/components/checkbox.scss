@@ -15,6 +15,7 @@
     position: relative;
     display: inline-block;
     border: 1px solid #efefef;
+    transition: .23s all ;
   }
   &-virtual-checkbox-active {
     background-color: #2d8cf0;
