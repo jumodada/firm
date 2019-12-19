@@ -7,7 +7,7 @@
             <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
         </template>
         <template v-if="column.type==='selection'">
-            <checkBox v-model="checkedValue"></checkBox>
+            <checkBox v-model="item._checked"></checkBox>
         </template>
     </div>
 </template>
@@ -23,10 +23,10 @@
             column:Object,
             item:Object,
             rowIndex:Number,
+            cellData:Object
         },
         data(){
             return {
-                checkedValue:false
             }
         },
         computed:{

@@ -20,6 +20,7 @@
                 <tableBody
                         :columns="headerColumns"
                         :body-data="bodyData"
+                        :attr="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
                         :class="[bordered,stripe,textAlign]"
@@ -119,7 +120,8 @@
                 },
                 oldScrollLeft: 0,
                 headersCollection: [],
-                tableWidth: 0
+                tableWidth: 0,
+                attr:this.setCellData()
             }
         },
         mounted() {
@@ -136,6 +138,7 @@
         watch: {
             data() {
                 this.copyColumns()
+                this.attr = this.setCellData()
                 this.checkFixed()
                 this.copyBodyData()
                 this.$nextTick(() => {
@@ -154,16 +157,25 @@
                 clearTimeout(this.timer)
                 this.timer = setTimeout(() =>this.tableResize(), 150)
             },
+            setCellData(){
+                let data = []
+                this.data.forEach((row, index) => {
+                    const newRow = deepClone(row)
+                    newRow._isHover = false
+                    if (newRow._checked) {
+                        newRow._isChecked = newRow._checked
+                    } else {
+                        newRow._isChecked = false
+                    }
+                    data[index] = newRow
+                });
+                return data
+            },
             tableResize() {
                 if (this.headerColumns.length === 0) return
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
-            },
-            isCheckBoxExists(){
-                this.headerColumns.forEach(column=>{
-
-                })
             },
             setMainWidth(tableWidth) {
                 let [$refs, width] = [this.$refs, 0]

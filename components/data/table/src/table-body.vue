@@ -41,6 +41,9 @@
                 type: Array,
                 default: () => []
             },
+            attr:{
+              type:Array
+            },
             bodyData: {
                 type: Array,
                 default: () => []

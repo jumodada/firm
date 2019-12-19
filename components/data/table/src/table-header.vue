@@ -11,7 +11,7 @@
                       {{column.title}}
                   </template>
                     <template v-if="column.type==='selection'">
-                      <checkBox :value="checkBoxValue" @on-change="selectAll"></checkBox>
+                      <checkBox :value="checkBoxValue" @input="selectAll"></checkBox>
                     </template>
                     <span class="f-table-th-icon" v-if="column.sortBy=== true">
                             <f-icon @click="sortUp(column.key)"
@@ -57,13 +57,19 @@
                  let width = parseInt(getComputedStyle(this.$refs.header).width)
                  let averageWidth = parseInt(width / this.columns.length)
                  this.columns.forEach((item, index) => {
-                     if (!item.width) this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
+                     if (!item.width) {
+                         this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
+                     }else{
+                         this.$refs.headerColGroup.children[index].style.width = item.width
+                     }
+
                  })
              },
              selectAll(val){
-                 console.log(val)
+                 this.checkBoxValue = val
+                 console.log(this)
              }
-         }
+         },
     }
 </script>
 
