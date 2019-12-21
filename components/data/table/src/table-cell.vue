@@ -7,7 +7,7 @@
             <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
         </template>
         <template v-if="column.type==='selection'">
-            <checkBox v-model="item._checked"></checkBox>
+            <checkBox :value="checked" @input="checkToggle"></checkBox>
         </template>
     </div>
 </template>
@@ -23,7 +23,10 @@
             column:Object,
             item:Object,
             rowIndex:Number,
-            cellData:Object
+            cellData:Object,
+            index:Number,
+            attr:Array,
+            checked:Boolean
         },
         data(){
             return {
@@ -37,6 +40,11 @@
                     }
                 ];
             },
+        },
+        methods:{
+            checkToggle(){
+                this.$parent.$parent.toggleSelect(this.index)
+            }
         }
     }
 </script>

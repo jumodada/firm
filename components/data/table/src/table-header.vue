@@ -39,7 +39,8 @@
             columns:{
                 type:Array,
                 default:()=>[]
-            }
+            },
+            attr:Array
         },
         data(){
           return {

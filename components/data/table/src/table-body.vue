@@ -18,6 +18,8 @@
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
                 <td :key="column.key">
                     <Cell :item="item"
+                          :index="rowIndex"
+                          :checked="checkToggle(rowIndex)"
                           :column="column"
                           :rowIndex="rowIndex"
                     ></Cell>
@@ -58,9 +60,7 @@
             }
         },
         mounted() {
-            this.$nextTick(() => {
-                this.setColGroup()
-            })
+            this.$nextTick(() => this.setColGroup())
         },
         methods: {
             hoverChangeMain(index, e) {
@@ -80,6 +80,9 @@
                     }
                 })
             },
+            checkToggle(index){
+                return this.attr[index]&&this.attr[index]._checked
+            }
         }
     }
 </script>

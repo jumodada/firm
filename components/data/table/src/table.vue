@@ -7,6 +7,7 @@
                  ref="tableFixedHeaderWrapper"
             >
                 <tableHeader
+                        :attr="attr"
                         :columns="headerColumns"
                         class="f-table"
                         :class="[bordered,stripe,textAlign]"
@@ -121,7 +122,7 @@
                 oldScrollLeft: 0,
                 headersCollection: [],
                 tableWidth: 0,
-                attr:this.setCellData()
+                attr:this.setAttr()
             }
         },
         mounted() {
@@ -138,12 +139,10 @@
         watch: {
             data() {
                 this.copyColumns()
-                this.attr = this.setCellData()
+                this.attr = this.setAttr()
                 this.checkFixed()
                 this.copyBodyData()
-                this.$nextTick(() => {
-                    this.tableResize()
-                })
+                this.$nextTick(() =>this.tableResize())
                 this.setHeadersCollection()
             }
         },
@@ -157,15 +156,13 @@
                 clearTimeout(this.timer)
                 this.timer = setTimeout(() =>this.tableResize(), 150)
             },
-            setCellData(){
+            setAttr(){
                 let data = []
                 this.data.forEach((row, index) => {
                     const newRow = deepClone(row)
                     newRow._isHover = false
-                    if (newRow._checked) {
-                        newRow._isChecked = newRow._checked
-                    } else {
-                        newRow._isChecked = false
+                    if (!newRow._checked) {
+                        newRow._checked = false
                     }
                     data[index] = newRow
                 });
@@ -225,6 +222,10 @@
             },
             sortDown(key) {
                 this.clickSort(key, 'descending')
+            },
+            toggleSelect(index) {
+               console.log(index)
+                this.attr[index]._checked = !this.attr[index]._checked
             },
         },
     }
