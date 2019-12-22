@@ -68,7 +68,7 @@
              },
              selectAll(val){
                  this.checkBoxValue = val
-                 console.log(this)
+                 this.$parent.attr.forEach(row=>row._checked = val)
              }
          },
     }
