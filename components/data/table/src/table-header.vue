@@ -7,11 +7,11 @@
         <tr>
             <th v-for="column in columns " :key="column.key">
                 <div class="f-table-th td-div">
-                  <template v-if="column.title">
-                      {{column.title}}
-                  </template>
+                    <template v-if="column.title">
+                        {{column.title}}
+                    </template>
                     <template v-if="column.type==='selection'">
-                      <checkBox :value="checkBoxValue" @input="selectAll"></checkBox>
+                        <checkBox :value="checkBoxValue" @input="selectAll"></checkBox>
                     </template>
                     <span class="f-table-th-icon" v-if="column.sortBy=== true">
                             <f-icon @click="sortUp(column.key)"
@@ -30,47 +30,54 @@
 
 <script>
     import checkBox from '../../../currency/check-box'
+
     export default {
         name: "f-table-header",
-        components:{
+        components: {
             checkBox
         },
-        props:{
-            columns:{
-                type:Array,
-                default:()=>[]
+        props: {
+            columns: {
+                type: Array,
+                default: () => []
             },
-            attr:Array
+            rowData:{
+                type: Array,
+                default: () => []
+            },
+            attr: Array
         },
-        data(){
-          return {
-              checkBoxValue:false
-          }
+        computed: {
+            checkBoxValue(){
+                let selection = this.$parent.getSelection()
+                console.log(selection.length === this.rowData.length)
+                return selection.length === this.rowData.length
+            }
         },
-        mounted(){
-            this.$nextTick(()=>{
+        mounted() {
+            this.$nextTick(() => {
                 this.setColGroup()
             })
         },
-         methods:{
-             setColGroup() {
-                 if(this.columns.length===0)return
-                 let width = parseInt(getComputedStyle(this.$refs.header).width)
-                 let averageWidth = parseInt(width / this.columns.length)
-                 this.columns.forEach((item, index) => {
-                     if (!item.width) {
-                         this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
-                     }else{
-                         this.$refs.headerColGroup.children[index].style.width = item.width
-                     }
+        methods: {
+            setColGroup() {
+                if (this.columns.length === 0) return
+                let width = parseInt(getComputedStyle(this.$refs.header).width)
+                let averageWidth = parseInt(width / this.columns.length)
+                this.columns.forEach((item, index) => {
+                    if (!item.width) {
+                        this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
+                    } else {
+                        this.$refs.headerColGroup.children[index].style.width = item.width
+                    }
 
-                 })
-             },
-             selectAll(val){
-                 this.checkBoxValue = val
-                 this.$parent.attr.forEach(row=>row._checked = val)
-             }
-         },
+                })
+            },
+            selectAll(val) {
+                this.$parent.attr.forEach(row => row._checked = val)
+                this.$parent.selectChange()
+            }
+        },
     }
 </script>
 

@@ -6,6 +6,7 @@
 ```html
 <f-row>
     <f-table 
+    @on-select-change="getSelect"
     align="center"
     :columns="columns"
      :data="data">
@@ -29,6 +30,11 @@ export default {
               {name:'蛛丝马迹',year:22,sex:'男',score:2001},
               {name:'阿川',year:24,sex:'男',score:1967},
             ]
+        }
+    },
+    methods:{
+        getSelect(val){
+            console.log(val)
         }
     }
 }

@@ -8,6 +8,7 @@
             >
                 <tableHeader
                         :attr="attr"
+                        :row-data="data"
                         :columns="headerColumns"
                         class="f-table"
                         :class="[bordered,stripe,textAlign]"
@@ -224,9 +225,18 @@
                 this.clickSort(key, 'descending')
             },
             toggleSelect(index) {
-               console.log(index)
                 this.attr[index]._checked = !this.attr[index]._checked
+                this.selectChange()
             },
+            selectChange(){
+                let selection = this.getSelection()
+                this.$emit('on-select-change',selection)
+            },
+            getSelection(){
+                let selection = []
+                this.attr.forEach(row=>{if(row._checked)selection.push(row)})
+                return selection
+            }
         },
     }
 </script>
