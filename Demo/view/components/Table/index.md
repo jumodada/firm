@@ -6,6 +6,7 @@
 ```html
 <f-row>
     <f-table 
+    bordered
     @on-select-change="getSelect"
     @on-select-cancel="selectCancel"
     align="center"
@@ -35,11 +36,11 @@ export default {
     },
     methods:{
         getSelect(val){
-            //console.log(val)
+            console.log(val)
         },
         selectCancel(val,cancel){
-              console.log(val)
-              console.log(cancel)
+              //console.log(val)
+              //console.log(cancel)
         }
     }
 }

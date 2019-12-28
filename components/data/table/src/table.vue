@@ -11,7 +11,7 @@
                         :row-data="data"
                         :columns="headerColumns"
                         class="f-table"
-                        :class="[bordered,stripe,textAlign]"
+                        :class="{bordered,stripe,textAlign}"
                         ref="tableFixedHeader">
                 </tableHeader>
             </div>
@@ -25,7 +25,7 @@
                         :attr="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
-                        :class="[bordered,stripe,textAlign]"
+                        :class="{bordered,stripe,textAlign}"
                         ref="tableMain">
                 </tableBody>
             </div>
