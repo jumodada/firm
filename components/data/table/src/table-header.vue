@@ -50,8 +50,11 @@
         computed: {
             checkBoxValue(){
                 let selection = this.$parent.getSelection()
-                console.log(selection.length === this.rowData.length)
-                return selection.length === this.rowData.length
+                let unDisabledSelectionLength = 0
+                this.attr.forEach(row=>{
+                    if(!row._disabled)unDisabledSelectionLength++
+                })
+                return selection.length === unDisabledSelectionLength
             }
         },
         mounted() {
@@ -65,16 +68,12 @@
                 let width = parseInt(getComputedStyle(this.$refs.header).width)
                 let averageWidth = parseInt(width / this.columns.length)
                 this.columns.forEach((item, index) => {
-                    if (!item.width) {
-                        this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
-                    } else {
-                        this.$refs.headerColGroup.children[index].style.width = item.width
-                    }
+                    this.$refs.headerColGroup.children[index].style.width = !item.width ? averageWidth + 'px' : item.width
 
                 })
             },
             selectAll(val) {
-                this.$parent.attr.forEach(row => row._checked = val)
+                this.$parent.attr.forEach(row => !row._disabled?row._checked = val:'')
                 this.$parent.selectChange()
             }
         },

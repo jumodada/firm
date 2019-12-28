@@ -123,7 +123,7 @@
                 oldScrollLeft: 0,
                 headersCollection: [],
                 tableWidth: 0,
-                attr:this.setAttr()
+                attr: this.setAttr()
             }
         },
         mounted() {
@@ -143,7 +143,7 @@
                 this.attr = this.setAttr()
                 this.checkFixed()
                 this.copyBodyData()
-                this.$nextTick(() =>this.tableResize())
+                this.$nextTick(() => this.tableResize())
                 this.setHeadersCollection()
             }
         },
@@ -155,16 +155,15 @@
             },
             listenToWindowResize() {
                 clearTimeout(this.timer)
-                this.timer = setTimeout(() =>this.tableResize(), 150)
+                this.timer = setTimeout(() => this.tableResize(), 150)
             },
-            setAttr(){
+            setAttr() {
                 let data = []
                 this.data.forEach((row, index) => {
                     const newRow = deepClone(row)
                     newRow._isHover = false
-                    if (!newRow._checked) {
-                        newRow._checked = false
-                    }
+                    if (!newRow._checked) newRow._checked = false
+                    if (!newRow._disabled) newRow._disabled = false
                     data[index] = newRow
                 });
                 return data
@@ -192,10 +191,10 @@
             checkFixed() {
                 let fixed = {
                     left: [],
-                    right:[],
-                    main:[]
+                    right: [],
+                    main: []
                 }
-                this.columns.forEach(item => fixed[item.fixed||'main'].push(item))
+                this.columns.forEach(item => fixed[item.fixed || 'main'].push(item))
                 if (fixed.left.length > 0) this.fixedLeft = fixed.left.concat(fixed.main, fixed.right)
                 if (fixed.right.length > 0) this.fixedRight = fixed.right.concat(fixed.main, fixed.left)
                 this.headerColumns = fixed.left.concat(fixed.main, fixed.right)
@@ -215,7 +214,7 @@
             },
             clickSort(key, direction) {
                 this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction)
-                this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) =>a[key] < b[key] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1) : JSON.parse(JSON.stringify(this.data))
+                this.bodyData = this.order.state !== true ? this.bodyData.sort((a, b) => a[key] < b[key] ? direction === 'ascending' ? -1 : 1 : direction === 'ascending' ? 1 : -1) : JSON.parse(JSON.stringify(this.data))
                 this.order.name = key
             },
             sortUp(key) {
@@ -225,16 +224,21 @@
                 this.clickSort(key, 'descending')
             },
             toggleSelect(index) {
-                this.attr[index]._checked = !this.attr[index]._checked
-                this.selectChange()
+                let val = !this.attr[index]._checked
+                this.attr[index]._checked = val
+                this.selectChange(val, index)
             },
-            selectChange(){
+            selectChange(val, index) {
                 let selection = this.getSelection()
-                this.$emit('on-select-change',selection)
+                this.$emit('on-select-change', selection)
+                if (typeof val === 'undefined') return
+                this.$emit(val ? 'on-select' : 'on-select-cancel', selection, JSON.parse(JSON.stringify(this.data[index])))
             },
-            getSelection(){
+            getSelection() {
                 let selection = []
-                this.attr.forEach(row=>{if(row._checked)selection.push(row)})
+                this.attr.forEach(row => {
+                    if (row._checked&&!row._disabled) selection.push(row)
+                })
                 return selection
             }
         },

@@ -44,7 +44,7 @@
     tbody {
       >tr{
         &:nth-child(even){
-          background-color: #FCF9F9;
+          background-color: rgba(255,250,239,0.8);
         }
       }
     }
@@ -76,8 +76,9 @@
     user-select:none;
   }
   tr{
+    transition: .3s background-color  ease-in-out;
     &:hover{
-      background-color: #FCF9F9;
+      background-color: #f7f7f7;
     }
   }
   &-th{
@@ -111,7 +112,7 @@
     display: inline-block;
     &-header{
       width: 100%;
-      background-color: #f9f9f9;
+      background-color: #f7f7f7;
       overflow: scroll;
       z-index: 3;
       &::-webkit-scrollbar{
@@ -122,7 +123,7 @@
       overflow: -moz-scrollbars-none;
       table{
         thead{
-          background-color: #f9f9f9;
+          background-color: #f7f7f7;
         }
       }
     }
@@ -136,7 +137,7 @@
     will-change: transform;
     box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
     &-header{
-      background-color: #f9f9f9;
+      background-color: #f7f7f7;
       z-index: 4;
     }
     &-body{
@@ -188,7 +189,4 @@
 }
 .stopScroll{
   pointer-events:none!important;
-}
-.debug{
-  transform: translateZ(0);
 }

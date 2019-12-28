@@ -33,5 +33,9 @@
       transform: rotate(45deg) scale(1);
     }
   }
+  .disabled{
+    background-color: #f6f6f6;
+    cursor: not-allowed;
+  }
 }
 

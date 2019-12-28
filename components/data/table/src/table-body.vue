@@ -21,6 +21,7 @@
                           :index="rowIndex"
                           :checked="checkToggle(rowIndex)"
                           :column="column"
+                          :disabled="isDisabled(rowIndex)"
                           :rowIndex="rowIndex"
                     ></Cell>
                 </td>
@@ -65,7 +66,7 @@
         methods: {
             hoverChangeMain(index, e) {
                 let typeName = {
-                    mouseenter: '#FCF9F9',
+                    mouseenter: '#fafafa',
                     mouseleave: ''
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
@@ -82,6 +83,9 @@
             },
             checkToggle(index){
                 return this.attr[index]&&this.attr[index]._checked
+            },
+            isDisabled(index){
+                return this.attr[index]&&this.attr[index]._disabled
             }
         }
     }
