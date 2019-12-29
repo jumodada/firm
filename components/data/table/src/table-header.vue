@@ -41,18 +41,18 @@
                 type: Array,
                 default: () => []
             },
-            rowData:{
+            rowData: {
                 type: Array,
                 default: () => []
             },
             attr: Array
         },
         computed: {
-            checkBoxValue(){
+            checkBoxValue() {
                 let selection = this.$parent.getSelection()
                 let unDisabledSelectionLength = 0
-                this.attr.forEach(row=>{
-                    if(!row._disabled)unDisabledSelectionLength++
+                this.attr.forEach(row => {
+                    if (!row._disabled) unDisabledSelectionLength++
                 })
                 return selection.length === unDisabledSelectionLength
             }
@@ -66,14 +66,22 @@
             setColGroup() {
                 if (this.columns.length === 0) return
                 let width = parseInt(getComputedStyle(this.$refs.header).width)
-                let averageWidth = parseInt(width / this.columns.length)
+                let length = 0
+                this.columns.forEach(col => {
+                    if (!col.width) {
+                        length++
+                    }else{
+                        width -= parseInt(col.width)
+                    }
+                })
+                let averageWidth = parseInt(width / length)
                 this.columns.forEach((item, index) => {
                     this.$refs.headerColGroup.children[index].style.width = !item.width ? averageWidth + 'px' : item.width
 
                 })
             },
             selectAll(val) {
-                this.$parent.attr.forEach(row => !row._disabled?row._checked = val:'')
+                this.$parent.attr.forEach(row => !row._disabled ? row._checked = val : '')
                 this.$parent.selectChange()
             }
         },

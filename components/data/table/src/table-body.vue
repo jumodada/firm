@@ -74,7 +74,15 @@
             setColGroup() {
                 if (this.columns.length === 0) return
                 let width = parseInt(getComputedStyle(this.$parent.$refs.tableFixedHeader.$el).width)
-                let averageWidth = parseInt(width / this.columns.length)
+                let length = 0
+                this.columns.forEach(col => {
+                    if (!col.width) {
+                        length++
+                    }else{
+                        width -= parseInt(col.width)
+                    }
+                })
+                let averageWidth = parseInt(width / length)
                 this.columns.forEach((item, index) => {
                     if (!item.width) {
                         this.$refs.bodyColGroup.children[index].style.width = averageWidth + 'px'
