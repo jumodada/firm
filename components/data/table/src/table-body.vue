@@ -40,6 +40,13 @@
             Cell
         },
         props: {
+            maxHeight:{
+                type: [Number, String]
+            },
+            scrollBarWidth:{
+                type:Number,
+                default:0
+            },
             columns: {
                 type: Array,
                 default: () => []
@@ -73,13 +80,13 @@
             },
             setColGroup() {
                 if (this.columns.length === 0) return
-                let width = parseInt(getComputedStyle(this.$parent.$refs.tableFixedHeader.$el).width)
+                let width = parseInt(getComputedStyle(this.$parent.$refs.headerMain.$el).width)
                 let length = 0
                 this.columns.forEach(col => {
                     if (!col.width) {
                         length++
                     }else{
-                        width -= parseInt(col.width)
+                        width -= parseInt(col.width + (this.maxHeight?this.scrollBarWidth:0))
                     }
                 })
                 let averageWidth = parseInt(width / length)

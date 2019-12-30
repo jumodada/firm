@@ -2,6 +2,7 @@
     <table v-if="columns&&columns.length>0" ref="header">
         <colgroup ref="headerColGroup">
             <col v-for="(column,index) in columns" :key="index" :style="{width:`${column.width}px`}">
+            <col v-if="scrollBarWidth>0&&maxHeight" :style="{width: `${scrollBarWidth}px`}">
         </colgroup>
         <thead class="f-table-head">
         <tr>
@@ -23,6 +24,7 @@
                     </span>
                 </div>
             </th>
+            <th style="padding: 0;" v-if="scrollBarWidth>0&&maxHeight"></th>
         </tr>
         </thead>
     </table>
@@ -37,6 +39,13 @@
             checkBox
         },
         props: {
+            maxHeight:{
+                type: [Number, String]
+            },
+            scrollBarWidth:{
+              type:Number,
+              default:0
+            },
             columns: {
                 type: Array,
                 default: () => []
@@ -70,14 +79,13 @@
                 this.columns.forEach(col => {
                     if (!col.width) {
                         length++
-                    }else{
-                        width -= parseInt(col.width)
+                    } else {
+                        width -= parseInt(col.width + (this.maxHeight?this.scrollBarWidth:0))
                     }
                 })
                 let averageWidth = parseInt(width / length)
                 this.columns.forEach((item, index) => {
                     this.$refs.headerColGroup.children[index].style.width = !item.width ? averageWidth + 'px' : item.width
-
                 })
             },
             selectAll(val) {

@@ -7,6 +7,7 @@
 <f-row>
     <f-table 
     bordered
+    :maxHeight="200"
     @on-select-change="getSelect"
     @on-select-cancel="selectCancel"
     align="center"
@@ -27,6 +28,14 @@ export default {
                {title:'天梯分数',key:'score'}
             ],
             data:[
+              {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
+              {name:'Pis',year:23,sex:'男',score:2100},
+              {name:'蛛丝马迹',year:22,sex:'男',score:2001},
+              {name:'阿川',year:24,sex:'男',score:1967},
+              {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
+              {name:'Pis',year:23,sex:'男',score:2100},
+              {name:'蛛丝马迹',year:22,sex:'男',score:2001},
+              {name:'阿川',year:24,sex:'男',score:1967},
               {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
               {name:'Pis',year:23,sex:'男',score:2100},
               {name:'蛛丝马迹',year:22,sex:'男',score:2001},

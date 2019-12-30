@@ -9,19 +9,23 @@
                 <tableHeader
                         :attr="attr"
                         :row-data="data"
+                        :scrollBarWidth="scrollBarWidth"
+                        :maxHeight="maxHeight"
                         :columns="headerColumns"
                         class="f-table"
                         :class="{bordered,stripe,textAlign}"
-                        ref="tableFixedHeader">
+                        ref="headerMain">
                 </tableHeader>
             </div>
             <div class="f-table-main-body"
-                 :style="{overflow:'auto'}"
+                 :style="{overflow:'auto',height:theMaxHeight}"
                  ref="tableMainWrapper"
             >
                 <tableBody
                         :columns="headerColumns"
                         :body-data="bodyData"
+                        :scrollBarWidth="scrollBarWidth"
+                        :maxHeight="maxHeight"
                         :attr="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
@@ -44,6 +48,7 @@
     import elementResizeDetectorMaker from 'element-resize-detector'
     import tableHeader from './table-header'
     import tableBody from './table-body'
+    import {isNumber, isString} from "../../../../src/utils/type-of";
 
     export default {
         name: "f-table",
@@ -53,6 +58,10 @@
         computed: {
             textAlign() {
                 return `align-${this.align}`
+            },
+            theMaxHeight(){
+                let height = this.maxHeight
+                return isNumber(height) ? height + 'px' : isString(height) ? height : null
             }
         },
         components: {
@@ -120,6 +129,7 @@
                     left: true,
                     right: false
                 },
+                scrollBarWidth:0,
                 oldScrollLeft: 0,
                 headersCollection: [],
                 tableWidth: 0,
@@ -127,6 +137,7 @@
             }
         },
         mounted() {
+            this.getScrollBarWidth()
             this.copyColumns()
             this.checkFixed()
             this.copyBodyData()
@@ -148,6 +159,22 @@
             }
         },
         methods: {
+            getScrollBarWidth() {
+                const scrollBar = document.createElement('div')
+                let style = {
+                    height: '50px',
+                    overflow: 'scroll',
+                    position: 'absolute',
+                    top: '-9999px',
+                    width: '50px'
+                }
+                Object.keys(style).forEach(item => {
+                    scrollBar.style[item] = style[item]
+                })
+                document.body.appendChild(scrollBar)
+                this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
+                document.body.removeChild(scrollBar)
+            },
             listenToReSize() {
                 window.addEventListener('resize', this.listenToWindowResize)
                 this.observer = elementResizeDetectorMaker()
@@ -181,11 +208,13 @@
                 } else {
                     width = this.tableWidth
                 }
+                width -= this.maxHeight?this.scrollBarWidth:0
                 $refs.tableMain.$el.style.width = width + 'px'
+
             },
             setHeaderToTop(tableWidth) {
-                if (this.$refs.tableFixedHeader.$el.style) {
-                    this.$refs.tableFixedHeader.$el.style.width = tableWidth
+                if (this.$refs.headerMain.$el.style) {
+                    this.$refs.headerMain.$el.style.width = tableWidth+'px'
                 }
             },
             checkFixed() {

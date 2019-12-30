@@ -9,7 +9,9 @@
   -webkit-font-smoothing: antialiased;
   position: relative;
   overflow: hidden;
-  border-left: 1px solid white;
+  border: 1px solid #efefef;
+  border-right: none;
+  border-bottom: none;
   margin: 0;
   padding: 0;
   display: inline-block;
@@ -27,13 +29,10 @@
   overflow: scroll;
   &.bordered{
     th{
-      border: 1px solid #efefef;
+      border-right: 1px solid #efefef;
     }
     td{
       border-right: 1px solid #efefef;
-      &:first-child{
-       border-left: 1px solid #efefef;
-      }
     }
   }
   &-cell{
@@ -113,12 +112,13 @@
     z-index: 2;
   }
   &-main{
-    width: 100%;
+    width: inherit;
     display: inline-block;
     &-header{
-      width: 100%;
+      margin: 0;
+      padding: 0;
       background-color: #f9f9f9;
-      overflow: scroll;
+      overflow: hidden;
       z-index: 3;
       &::-webkit-scrollbar{
         display: none;
