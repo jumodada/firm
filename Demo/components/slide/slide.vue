@@ -47,7 +47,7 @@
         width: 260px;
         height: calc(100vh - 70px);
         box-shadow: $shadow-right-black;
-        background-color: $slider-dark-1;
+        background-color: $slider-dark-2;
         overflow: auto;
         &-ul{
             margin-top: 20px;

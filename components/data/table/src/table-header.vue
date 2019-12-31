@@ -66,15 +66,11 @@
                 return selection.length === unDisabledSelectionLength
             }
         },
-        mounted() {
-            this.$nextTick(() => {
-                this.setColGroup()
-            })
-        },
         methods: {
             setColGroup() {
+                console.log(123)
                 if (this.columns.length === 0) return
-                let width = parseInt(getComputedStyle(this.$refs.header).width)
+                let width = parseInt(getComputedStyle(this.$parent.$refs.tableFixedHeaderWrapper).width)
                 let length = 0
                 this.columns.forEach(col => {
                     if (!col.width) {
@@ -84,8 +80,21 @@
                     }
                 })
                 let averageWidth = parseInt(width / length)
+                let remainder = width - parseInt(length*averageWidth)
+                let colHaveNoWidth = []
+                while(colHaveNoWidth.length<length){
+                    colHaveNoWidth.push(averageWidth)
+                }
+                colHaveNoWidth.forEach((width,index)=>{
+                    if(index>=colHaveNoWidth.length-remainder)colHaveNoWidth[index]++
+                    }
+                )
                 this.columns.forEach((item, index) => {
-                    this.$refs.headerColGroup.children[index].style.width = !item.width ? averageWidth + 'px' : item.width
+                    if (!item.width) {
+                        this.$refs.headerColGroup.children[index].style.width = colHaveNoWidth.shift() + 'px'
+                    } else {
+                        this.$refs.headerColGroup.children[index].style.width = item.width
+                    }
                 })
             },
             selectAll(val) {

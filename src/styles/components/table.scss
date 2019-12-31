@@ -8,13 +8,13 @@
   width: 100%;
   -webkit-font-smoothing: antialiased;
   position: relative;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   border: 1px solid #efefef;
   border-right: none;
   border-bottom: none;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
+  display: block;
   &.borderHidden{
     border-bottom: none;
   }
@@ -22,11 +22,16 @@
 .f-table{
   transition: .3s all ease;
   -webkit-font-smoothing: antialiased;
-  width: 100%;
   color:#515a6e;
   border-collapse: collapse;
   border-spacing: 0;
-  overflow: scroll;
+  table-layout: fixed;
+  width: inherit;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  box-sizing: border-box;
   &.bordered{
     th{
       border-right: 1px solid #efefef;
@@ -133,6 +138,7 @@
       }
     }
     &-body{
+      overflow:hidden;
     }
   }
   &-left{
@@ -177,6 +183,9 @@
       z-index: 4;
       background-color: #f9f9f9;
     }
+  }
+  &-overflow-y{
+    overflow-y: scroll;
   }
 }
 .align-left{

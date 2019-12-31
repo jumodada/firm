@@ -17,8 +17,8 @@
                         ref="headerMain">
                 </tableHeader>
             </div>
-            <div class="f-table-main-body"
-                 :style="{overflow:'auto',height:theMaxHeight}"
+            <div class="f-table-main-body f-table-overflow-y"
+                 :style="{height:theMaxHeight}"
                  ref="tableMainWrapper"
             >
                 <tableBody
@@ -59,7 +59,7 @@
             textAlign() {
                 return `align-${this.align}`
             },
-            theMaxHeight(){
+            theMaxHeight() {
                 let height = this.maxHeight
                 return isNumber(height) ? height + 'px' : isString(height) ? height : null
             }
@@ -129,7 +129,7 @@
                     left: true,
                     right: false
                 },
-                scrollBarWidth:0,
+                scrollBarWidth: 0,
                 oldScrollLeft: 0,
                 headersCollection: [],
                 tableWidth: 0,
@@ -145,8 +145,8 @@
             this.setHeadersCollection()
         },
         beforeDestroy() {
-            window.removeEventListener('resize', this.listenToWindowResize)
-            this.observer.removeListener(this.$el, this.tableResize);
+            this.removeListenResize()
+            this.observer.removeListener(this.$el, this.tableResize)
         },
         watch: {
             data() {
@@ -154,7 +154,11 @@
                 this.attr = this.setAttr()
                 this.checkFixed()
                 this.copyBodyData()
-                this.$nextTick(() => this.tableResize())
+                this.$nextTick(() =>{
+                    this.removeListenResize()
+                    this.tableResize()
+                }
+            )
                 this.setHeadersCollection()
             }
         },
@@ -168,15 +172,15 @@
                     top: '-9999px',
                     width: '50px'
                 }
-                Object.keys(style).forEach(item => {
-                    scrollBar.style[item] = style[item]
-                })
+                Object.keys(style).forEach(item => scrollBar.style[item] = style[item])
                 document.body.appendChild(scrollBar)
                 this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
                 document.body.removeChild(scrollBar)
             },
+            removeListenResize(){
+                this.observer.removeListener(this.$el, this.tableResize)
+            },
             listenToReSize() {
-                window.addEventListener('resize', this.listenToWindowResize)
                 this.observer = elementResizeDetectorMaker()
                 this.observer.listenTo(this.$el, this.tableResize)
             },
@@ -198,6 +202,7 @@
             tableResize() {
                 if (this.headerColumns.length === 0) return
                 let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
+                this.tellChildren()
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
             },
@@ -208,13 +213,12 @@
                 } else {
                     width = this.tableWidth
                 }
-                width -= this.maxHeight?this.scrollBarWidth:0
+                width -= this.maxHeight ? this.scrollBarWidth : 0
                 $refs.tableMain.$el.style.width = width + 'px'
-
             },
             setHeaderToTop(tableWidth) {
                 if (this.$refs.headerMain.$el.style) {
-                    this.$refs.headerMain.$el.style.width = tableWidth+'px'
+                    this.$refs.headerMain.$el.style.width = tableWidth + 'px'
                 }
             },
             checkFixed() {
@@ -252,6 +256,10 @@
             sortDown(key) {
                 this.clickSort(key, 'descending')
             },
+            tellChildren() {
+                this.$refs.headerMain.setColGroup()
+                this.$refs.tableMain.setColGroup()
+            },
             toggleSelect(index) {
                 let val = !this.attr[index]._checked
                 this.attr[index]._checked = val
@@ -266,7 +274,7 @@
             getSelection() {
                 let selection = []
                 this.attr.forEach(row => {
-                    if (row._checked&&!row._disabled) selection.push(row)
+                    if (row._checked && !row._disabled) selection.push(row)
                 })
                 return selection
             }
