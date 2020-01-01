@@ -77,7 +77,7 @@
             },
             setColGroup() {
                 if (this.columns.length === 0) return
-                let width = parseInt(getComputedStyle(this.$parent.$refs.tableFixedHeaderWrapper).width)
+                let width = parseInt(getComputedStyle(this.$parent.$refs.headerMainWrapper).width)
                 let length = 0
                 this.columns.forEach(col => {
                     if (!col.width) {

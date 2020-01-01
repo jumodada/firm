@@ -45,7 +45,7 @@ export default {
     },
     methods:{
         getSelect(val){
-            console.log(val)
+            //console.log(val)
         },
         selectCancel(val,cancel){
               //console.log(val)

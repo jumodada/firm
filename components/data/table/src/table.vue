@@ -1,10 +1,12 @@
 <template>
     <div class="f-table-wrapper"
-         style="position:relative;overflow: hidden;" ref="totalWrapper">
+         style="position:relative;overflow: hidden;"
+         :style="{height:maxHeight+'px'}"
+         ref="totalWrapper">
         <!--  主体-->
         <div class="f-table-main">
             <div class="f-table-main-header"
-                 ref="tableFixedHeaderWrapper"
+                 ref="headerMainWrapper"
             >
                 <tableHeader
                         :attr="attr"
@@ -17,7 +19,8 @@
                         ref="headerMain">
                 </tableHeader>
             </div>
-            <div class="f-table-main-body f-table-overflow-y"
+            <div class="f-table-main-body"
+                 :class="{'f-table-overflow-y':maxHeight}"
                  :style="{height:theMaxHeight}"
                  ref="tableMainWrapper"
             >
@@ -143,10 +146,12 @@
             this.copyBodyData()
             this.listenToReSize()
             this.setHeadersCollection()
+            this.$nextTick(()=>{
+                this.setBodyHeight()
+            })
         },
         beforeDestroy() {
             this.removeListenResize()
-            this.observer.removeListener(this.$el, this.tableResize)
         },
         watch: {
             data() {
@@ -155,6 +160,7 @@
                 this.checkFixed()
                 this.copyBodyData()
                 this.$nextTick(() =>{
+                    this.setBodyHeight()
                     this.removeListenResize()
                     this.tableResize()
                 }
@@ -184,10 +190,6 @@
                 this.observer = elementResizeDetectorMaker()
                 this.observer.listenTo(this.$el, this.tableResize)
             },
-            listenToWindowResize() {
-                clearTimeout(this.timer)
-                this.timer = setTimeout(() => this.tableResize(), 150)
-            },
             setAttr() {
                 let data = []
                 this.data.forEach((row, index) => {
@@ -201,7 +203,7 @@
             },
             tableResize() {
                 if (this.headerColumns.length === 0) return
-                let tableWidth = parseInt(getComputedStyle(this.$refs.tableFixedHeaderWrapper).width)
+                let tableWidth = parseInt(getComputedStyle(this.$refs.headerMainWrapper).width)
                 this.tellChildren()
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
@@ -217,9 +219,13 @@
                 $refs.tableMain.$el.style.width = width + 'px'
             },
             setHeaderToTop(tableWidth) {
-                if (this.$refs.headerMain.$el.style) {
-                    this.$refs.headerMain.$el.style.width = tableWidth + 'px'
-                }
+                this.$refs.headerMain.$el.style.width = tableWidth + 'px'
+            },
+            setBodyHeight(){
+                if(!this.maxHeight)return
+                let tableHeight = parseInt(getComputedStyle(this.$refs.headerMainWrapper).height)
+                let bodyHeight = parseInt(this.maxHeight)-tableHeight
+                this.$refs.tableMainWrapper.style.height = bodyHeight + 'px'
             },
             checkFixed() {
                 let fixed = {
