@@ -5,7 +5,6 @@
   opacity: 0 ;
 }
 .f-table-wrapper{
-  width: 100%;
   -webkit-font-smoothing: antialiased;
   position: relative;
   margin: 0;
@@ -78,10 +77,7 @@
   }
 
   th{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
+
   }
   tr{
     transition: .3s background-color  ease-in-out;

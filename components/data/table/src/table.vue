@@ -147,6 +147,7 @@
             this.listenToReSize()
             this.setHeadersCollection()
             this.$nextTick(()=>{
+                console.log(getComputedStyle(this.$el))
                 this.setBodyHeight()
             })
         },
