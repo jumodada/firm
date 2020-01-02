@@ -11,9 +11,10 @@
                 <tableHeader
                         :attr="attr"
                         :row-data="data"
+                        :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
                         :maxHeight="maxHeight"
-                        :columns="headerColumns"
+                        :columns="cloneColumns"
                         class="f-table"
                         :class="{bordered,stripe,textAlign}"
                         ref="headerMain">
@@ -25,8 +26,9 @@
                  ref="tableMainWrapper"
             >
                 <tableBody
-                        :columns="headerColumns"
+                        :columns="cloneColumns"
                         :body-data="bodyData"
+                        :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
                         :maxHeight="maxHeight"
                         :attr="attr"
@@ -52,6 +54,7 @@
     import tableHeader from './table-header'
     import tableBody from './table-body'
     import {isNumber, isString} from "../../../../src/utils/type-of";
+    import {off, on} from "../../../../src/utils/dom";
 
     export default {
         name: "f-table",
@@ -125,13 +128,14 @@
             return {
                 order: {},
                 bodyData: [],
-                headerColumns: [],
+                cloneColumns: [],
                 fixedLeft: [],
                 fixedRight: [],
                 hiddenShadow: {
                     left: true,
                     right: false
                 },
+                colWidth:{},
                 scrollBarWidth: 0,
                 oldScrollLeft: 0,
                 headersCollection: [],
@@ -147,7 +151,7 @@
             this.listenToReSize()
             this.setHeadersCollection()
             this.$nextTick(()=>{
-                console.log(getComputedStyle(this.$el))
+                this.setColWidth()
                 this.setBodyHeight()
             })
         },
@@ -161,9 +165,8 @@
                 this.checkFixed()
                 this.copyBodyData()
                 this.$nextTick(() =>{
+                    this.setColWidth()
                     this.setBodyHeight()
-                    this.removeListenResize()
-                    this.tableResize()
                 }
             )
                 this.setHeadersCollection()
@@ -185,11 +188,42 @@
                 document.body.removeChild(scrollBar)
             },
             removeListenResize(){
+                off(window, 'resize', this.tableResize)
                 this.observer.removeListener(this.$el, this.tableResize)
             },
             listenToReSize() {
+                on(window, 'resize', this.tableResize)
                 this.observer = elementResizeDetectorMaker()
                 this.observer.listenTo(this.$el, this.tableResize)
+            },
+            setColWidth(width) {
+                if (this.columns.length === 0) return
+                this.$el.style.width = '100%'
+                if(!width)width = this.$el.clientWidth -1
+                let colWidth = {}
+                let length = 0
+                this.cloneColumns.forEach(col => {
+                    if (!col.width) {
+                        length++
+                    } else {
+                        width -= parseInt(col.width + (this.maxHeight?this.scrollBarWidth:0))
+                    }
+                })
+                let averageWidth = parseInt(width / length)
+                let remainder = width - parseInt(length*averageWidth)
+                let colHaveNoWidth = []
+                while(colHaveNoWidth.length<length){
+                    colHaveNoWidth.push(averageWidth)
+                }
+                colHaveNoWidth.forEach((width,index)=>{
+                        if(index>=colHaveNoWidth.length-remainder)colHaveNoWidth[index]++
+                    }
+                )
+                this.cloneColumns.forEach((item, index) => {
+                    colWidth[index] = !item.width ? colHaveNoWidth.shift()  : item.width
+                })
+                this.colWidth = colWidth
+                this.$el.style.width = ''
             },
             setAttr() {
                 let data = []
@@ -203,11 +237,13 @@
                 return data
             },
             tableResize() {
-                if (this.headerColumns.length === 0) return
-                let tableWidth = parseInt(getComputedStyle(this.$refs.headerMainWrapper).width)
-                this.tellChildren()
+                if (this.cloneColumns.length === 0) return
+                this.$el.style.width = '100%'
+                let tableWidth = this.$el.clientWidth-1
                 this.setHeaderToTop(tableWidth)
                 this.setMainWidth(tableWidth)
+                this.setColWidth(tableWidth)
+                this.$el.style.width = ''
             },
             setMainWidth(tableWidth) {
                 let [$refs, width] = [this.$refs, 0]
@@ -237,18 +273,20 @@
                 this.columns.forEach(item => fixed[item.fixed || 'main'].push(item))
                 if (fixed.left.length > 0) this.fixedLeft = fixed.left.concat(fixed.main, fixed.right)
                 if (fixed.right.length > 0) this.fixedRight = fixed.right.concat(fixed.main, fixed.left)
-                this.headerColumns = fixed.left.concat(fixed.main, fixed.right)
+                //this.cloneColumns = fixed.left.concat(fixed.main, fixed.right)
             },
             copyBodyData() {
                 this.bodyData = deepClone(this.data)
             },
             copyColumns() {
-                this.headerColumns = deepClone(this.columns)
+                this.cloneColumns = deepClone(this.columns)
+                this.cloneColumns.forEach((col,index)=>col._index= index)
+                console.log(this.cloneColumns)
             },
             setHeadersCollection() {
                 let i = 0
                 while (i < this.bodyData.length) {
-                    this.headersCollection[i] = recurrenceOnceDeepCopy(this.headerColumns)
+                    this.headersCollection[i] = recurrenceOnceDeepCopy(this.cloneColumns)
                     i++
                 }
             },
@@ -262,10 +300,6 @@
             },
             sortDown(key) {
                 this.clickSort(key, 'descending')
-            },
-            tellChildren() {
-                this.$refs.headerMain.setColGroup()
-                this.$refs.tableMain.setColGroup()
             },
             toggleSelect(index) {
                 let val = !this.attr[index]._checked

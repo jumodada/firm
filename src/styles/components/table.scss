@@ -12,7 +12,9 @@
   overflow: hidden;
   border: 1px solid #efefef;
   border-right: none;
+  border-bottom: none;
   display: block;
+
   &.borderHidden{
     border-bottom: none;
   }
@@ -114,6 +116,16 @@
   &-main{
     width: inherit;
     display: inline-block;
+    &::before{
+      content: "";
+      position: absolute;
+      background-color: #dcdee2;
+      width: 100%;
+      height: 1px;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+    }
     &-header{
       margin: 0;
       padding: 0;

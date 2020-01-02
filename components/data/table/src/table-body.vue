@@ -1,7 +1,7 @@
 <template>
     <table>
         <colgroup ref="bodyColGroup">
-            <col v-for="(column,index) in columns" :key="index" :style="{width:`${column.width}px`}">
+            <col v-for="(column,index) in columns" :key="index" :style="{width:`${colWidth[column._index]}px`}">
         </colgroup>
         <tbody ref="tBodyMain">
         <tr v-if="bodyData.length===0">
@@ -51,6 +51,10 @@
                 type: Array,
                 default: () => []
             },
+            colWidth:{
+                type: Object,
+                default: () => {}
+            },
             attr:{
               type:Array
             },
@@ -74,31 +78,6 @@
                     mouseleave: ''
                 }
                 this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
-            },
-            setColGroup() {
-                if (this.columns.length === 0) return
-                let width = parseInt(getComputedStyle(this.$parent.$refs.headerMainWrapper).width)
-                let length = 0
-                this.columns.forEach(col => {
-                    if (!col.width) {
-                        length++
-                    }else{
-                        width -= parseInt(col.width + (this.maxHeight?this.scrollBarWidth:0))
-                    }
-                })
-                let averageWidth = parseInt(width / length)
-                let remainder = width - parseInt(length*averageWidth)
-                let colHaveNoWidth = []
-                while(colHaveNoWidth.length<length){
-                    colHaveNoWidth.push(averageWidth)
-                }
-                colHaveNoWidth.forEach((width,index)=>{
-                        if(index>=colHaveNoWidth.length-remainder)colHaveNoWidth[index]++
-                    }
-                )
-                this.columns.forEach((item, index) => {
-                    this.$refs.bodyColGroup.children[index].style.width = !item.width ? colHaveNoWidth.shift() + 'px' : item.width
-                })
             },
             checkToggle(index){
                 return this.attr[index]&&this.attr[index]._checked

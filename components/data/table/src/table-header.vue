@@ -1,7 +1,7 @@
 <template>
     <table v-if="columns&&columns.length>0" ref="header">
         <colgroup ref="headerColGroup">
-            <col v-for="(column,index) in columns" :key="index" :style="{width:`${column.width}px`}">
+            <col v-for="(column,index) in columns" :key="index" :style="{width:`${colWidth[column._index]}px`}">
             <col v-if="scrollBarWidth>0&&maxHeight" :style="{width: `${scrollBarWidth}px`}">
         </colgroup>
         <thead class="f-table-head">
@@ -24,7 +24,7 @@
                     </span>
                 </div>
             </th>
-            <th style="padding: 0;" v-if="scrollBarWidth>0&&maxHeight"></th>
+            <th v-if="scrollBarWidth>0&&maxHeight"></th>
         </tr>
         </thead>
     </table>
@@ -50,11 +50,20 @@
                 type: Array,
                 default: () => []
             },
+            colWidth:{
+                type: Object,
+                default: () => {}
+            },
             rowData: {
                 type: Array,
                 default: () => []
             },
             attr: Array
+        },
+        mounted() {
+            setTimeout(()=>{
+                console.log(this.columns)
+            },200)
         },
         computed: {
             checkBoxValue() {
@@ -67,35 +76,6 @@
             }
         },
         methods: {
-            setColGroup() {
-                if (this.columns.length === 0) return
-                let width = parseInt(getComputedStyle(this.$parent.$refs.headerMainWrapper).width)
-                let length = 0
-                this.columns.forEach(col => {
-                    if (!col.width) {
-                        length++
-                    } else {
-                        width -= parseInt(col.width + (this.maxHeight?this.scrollBarWidth:0))
-                    }
-                })
-                let averageWidth = parseInt(width / length)
-                let remainder = width - parseInt(length*averageWidth)
-                let colHaveNoWidth = []
-                while(colHaveNoWidth.length<length){
-                    colHaveNoWidth.push(averageWidth)
-                }
-                colHaveNoWidth.forEach((width,index)=>{
-                    if(index>=colHaveNoWidth.length-remainder)colHaveNoWidth[index]++
-                    }
-                )
-                this.columns.forEach((item, index) => {
-                    if (!item.width) {
-                        this.$refs.headerColGroup.children[index].style.width = colHaveNoWidth.shift() + 'px'
-                    } else {
-                        this.$refs.headerColGroup.children[index].style.width = item.width
-                    }
-                })
-            },
             selectAll(val) {
                 this.$parent.attr.forEach(row => !row._disabled ? row._checked = val : '')
                 this.$parent.selectChange()
