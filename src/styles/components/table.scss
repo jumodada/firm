@@ -14,7 +14,16 @@
   border-right: none;
   border-bottom: none;
   display: block;
-
+  &::before{
+    content: "";
+    position: absolute;
+    background-color: #efefef;
+    top:0;
+    width: 1px;
+    height: 100%;
+    right: 0;
+    z-index: 1;
+  }
   &.borderHidden{
     border-bottom: none;
   }
