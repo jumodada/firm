@@ -24,7 +24,7 @@ export default {
                {title:'名字',key:'name'},
                {type:'selection',width:60},
                {title:'年龄',key:'year'},
-               {title:'性别',key:'sex'},
+               {title:'性别',key:'sex',fixed:'left'},
                {title:'天梯分数',key:'score'}
             ],
             data:[

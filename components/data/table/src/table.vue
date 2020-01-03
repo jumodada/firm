@@ -23,7 +23,7 @@
             <div class="f-table-main-body"
                  :class="{'f-table-overflow-y':maxHeight}"
                  :style="{height:theMaxHeight}"
-                 ref="tableMainWrapper"
+                 ref="bodyMainWrapper"
             >
                 <tableBody
                         :columns="cloneColumns"
@@ -35,8 +35,26 @@
                         class="f-table"
                         :numberVisible="numberVisible"
                         :class="{bordered,stripe,textAlign}"
-                        ref="tableMain">
+                        ref="bodyMain">
                 </tableBody>
+            </div>
+        </div>
+        <div class="f-table-left">
+            <div class="f-table-left-header" ref="headerLeftWrapper">
+                <tableHeader
+                        :attr="attr"
+                        :row-data="data"
+                        :colWidth="colWidth"
+                        :scrollBarWidth="scrollBarWidth"
+                        :maxHeight="maxHeight"
+                        :columns="fixedLeftColumns"
+                        class="f-table"
+                        :class="{bordered,stripe,textAlign}"
+                        ref="headerLeft">
+                </tableHeader>
+            </div>
+            <div class="f-table-left-body" ref="bodyLeftWrapper">
+
             </div>
         </div>
         <transition name="fade">
@@ -53,8 +71,9 @@
     import elementResizeDetectorMaker from 'element-resize-detector'
     import tableHeader from './table-header'
     import tableBody from './table-body'
-    import {isNumber, isString} from "../../../../src/utils/type-of";
-    import {off, on} from "../../../../src/utils/dom";
+    import {isNumber, isString} from "../../../../src/utils/type-of"
+    import {off, on} from "../../../../src/utils/dom"
+    import {getScrollBarWidth} from "../../../../src/utils/window"
 
     export default {
         name: "f-table",
@@ -129,27 +148,23 @@
                 order: {},
                 bodyData: [],
                 cloneColumns: [],
-                fixedLeft: [],
-                fixedRight: [],
+                fixedLeftColumns: [],
+                fixedRightColumns: [],
                 hiddenShadow: {
                     left: true,
                     right: false
                 },
                 colWidth:{},
-                scrollBarWidth: 0,
+                scrollBarWidth: getScrollBarWidth(),
                 oldScrollLeft: 0,
                 headersCollection: [],
                 tableWidth: 0,
-                attr: this.setAttr()
+                attr: []
             }
         },
         mounted() {
-            this.getScrollBarWidth()
-            this.copyColumns()
-            this.checkFixed()
-            this.copyBodyData()
+            this.init()
             this.listenToReSize()
-            this.setHeadersCollection()
             this.$nextTick(()=>{
                 this.setColWidth()
                 this.setBodyHeight()
@@ -160,32 +175,21 @@
         },
         watch: {
             data() {
-                this.copyColumns()
-                this.attr = this.setAttr()
-                this.checkFixed()
-                this.copyBodyData()
+               this.init()
                 this.$nextTick(() =>{
                     this.setColWidth()
                     this.setBodyHeight()
                 }
             )
-                this.setHeadersCollection()
             }
         },
         methods: {
-            getScrollBarWidth() {
-                const scrollBar = document.createElement('div')
-                let style = {
-                    height: '50px',
-                    overflow: 'scroll',
-                    position: 'absolute',
-                    top: '-9999px',
-                    width: '50px'
-                }
-                Object.keys(style).forEach(item => scrollBar.style[item] = style[item])
-                document.body.appendChild(scrollBar)
-                this.scrollBarWidth = scrollBar.offsetWidth - scrollBar.clientWidth
-                document.body.removeChild(scrollBar)
+            init(){
+                this.copyColumns()
+                this.checkFixed()
+                this.copyBodyData()
+                this.attr = this.setAttr()
+                this.setHeadersCollection()
             },
             removeListenResize(){
                 off(window, 'resize', this.tableResize)
@@ -219,8 +223,8 @@
                         if(index>=colHaveNoWidth.length-remainder)colHaveNoWidth[index]++
                     }
                 )
-                this.cloneColumns.forEach((item, index) => {
-                    colWidth[index] = !item.width ? colHaveNoWidth.shift()  : item.width
+                this.cloneColumns.forEach(item => {
+                    colWidth[item._index] = !item.width ? colHaveNoWidth.shift()  : item.width
                 })
                 this.colWidth = colWidth
                 this.$el.style.width = ''
@@ -253,7 +257,7 @@
                     width = this.tableWidth
                 }
                 width -= this.maxHeight ? this.scrollBarWidth : 0
-                $refs.tableMain.$el.style.width = width + 'px'
+                $refs.bodyMain.$el.style.width = width + 'px'
             },
             setHeaderToTop(tableWidth) {
                 this.$refs.headerMain.$el.style.width = tableWidth + 'px'
@@ -262,7 +266,7 @@
                 if(!this.maxHeight)return
                 let tableHeight = parseInt(getComputedStyle(this.$refs.headerMainWrapper).height)
                 let bodyHeight = parseInt(this.maxHeight)-tableHeight
-                this.$refs.tableMainWrapper.style.height = bodyHeight + 'px'
+                this.$refs.bodyMainWrapper.style.height = bodyHeight + 'px'
             },
             checkFixed() {
                 let fixed = {
@@ -270,10 +274,10 @@
                     right: [],
                     main: []
                 }
-                this.columns.forEach(item => fixed[item.fixed || 'main'].push(item))
-                if (fixed.left.length > 0) this.fixedLeft = fixed.left.concat(fixed.main, fixed.right)
-                if (fixed.right.length > 0) this.fixedRight = fixed.right.concat(fixed.main, fixed.left)
-                //this.cloneColumns = fixed.left.concat(fixed.main, fixed.right)
+                this.cloneColumns.forEach(item => fixed[item.fixed || 'main'].push(item))
+                if (fixed.left.length > 0) this.fixedLeftColumns = fixed.left.concat(fixed.main, fixed.right)
+                if (fixed.right.length > 0) this.fixedRightColumns = fixed.right.concat(fixed.main, fixed.left)
+                this.cloneColumns = fixed.left.concat(fixed.main, fixed.right)
             },
             copyBodyData() {
                 this.bodyData = deepClone(this.data)
@@ -281,7 +285,7 @@
             copyColumns() {
                 this.cloneColumns = deepClone(this.columns)
                 this.cloneColumns.forEach((col,index)=>col._index= index)
-                console.log(this.cloneColumns)
+                console.log(this.colWidth)
             },
             setHeadersCollection() {
                 let i = 0
