@@ -153,10 +153,19 @@
         }
       }
     }
-    &-body{
 
-    }
+
   }
+
+  &-hasLeft{
+     table{
+       td{
+         &:first-child{
+           border-right:0 !important;
+         }
+       }
+     }
+   }
   &-left{
     position: absolute;
     left: 0;

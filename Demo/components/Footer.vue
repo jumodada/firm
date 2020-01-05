@@ -38,6 +38,7 @@
     export default {
         name: "Footer",
         methods:{
+
         }
     }
 </script>

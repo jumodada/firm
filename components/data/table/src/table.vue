@@ -16,14 +16,16 @@
                         :maxHeight="maxHeight"
                         :columns="cloneColumns"
                         class="f-table"
+                        :style="headerStyle"
                         :class="{bordered,stripe,textAlign}"
                         ref="headerMain">
                 </tableHeader>
             </div>
             <div class="f-table-main-body"
-                 :class="{'f-table-overflow-y':maxHeight}"
+                 :class="{'f-table-overflow-y':maxHeight,'f-table-hasLeft':fixedLeftStyle.width}"
                  :style="{height:theMaxHeight}"
                  ref="bodyMainWrapper"
+                 @scroll.passive="scrollGradient"
             >
                 <tableBody
                         :columns="cloneColumns"
@@ -39,9 +41,10 @@
                 </tableBody>
             </div>
         </div>
-        <div class="f-table-left">
-            <div class="f-table-left-header" ref="headerLeftWrapper">
+        <div :style="{height:maxHeight+'px'}" class="f-table-left">
+            <div :style="fixedLeftStyle" class="f-table-left-header" ref="headerLeftWrapper">
                 <tableHeader
+                        :style="headerStyle"
                         :attr="attr"
                         :row-data="data"
                         :colWidth="colWidth"
@@ -53,8 +56,19 @@
                         ref="headerLeft">
                 </tableHeader>
             </div>
-            <div class="f-table-left-body" ref="bodyLeftWrapper">
-
+            <div  v-x-scroll :style="fixedBodyStyle"  class="f-table-left-body" ref="bodyLeftWrapper">
+                <tableBody
+                        :columns="fixedLeftColumns"
+                        :body-data="bodyData"
+                        :colWidth="colWidth"
+                        :scrollBarWidth="scrollBarWidth"
+                        :maxHeight="maxHeight"
+                        :attr="attr"
+                        class="f-table"
+                        :numberVisible="numberVisible"
+                        :class="{bordered,stripe,textAlign}"
+                        ref="bodyLeft">
+                </tableBody>
             </div>
         </div>
         <transition name="fade">
@@ -87,6 +101,28 @@
             theMaxHeight() {
                 let height = this.maxHeight
                 return isNumber(height) ? height + 'px' : isString(height) ? height : null
+            },
+            fixedLeftStyle(){
+                let style ={}
+                let width =this.fixedLeftColumns.reduce((a,b) => b.fixed && b.fixed === 'left' ? a + b._width : a,0)
+                if(width)style.width= width+'px'
+                return style
+            },
+            fixedBodyStyle(){
+                let style = {
+                    overflow:'hidden',
+                }
+                if(this.$refs.bodyMain){
+                    let {clientHeight} = this.$refs.bodyMain.$el
+                    if(clientHeight>this.maxHeight)style.overflowY = 'scroll'
+                }
+                if(this.fixedLeftStyle.width) style.width = this.fixedLeftStyle.width
+                return style
+            },
+            headerStyle(){
+                return {
+                    width:this.tableWidth+'px'
+                }
             }
         },
         components: {
@@ -147,6 +183,8 @@
             return {
                 order: {},
                 bodyData: [],
+                tableWidth:0,
+                bodyHeight:0,
                 cloneColumns: [],
                 fixedLeftColumns: [],
                 fixedRightColumns: [],
@@ -158,35 +196,29 @@
                 scrollBarWidth: getScrollBarWidth(),
                 oldScrollLeft: 0,
                 headersCollection: [],
-                tableWidth: 0,
                 attr: []
             }
         },
         mounted() {
             this.init()
             this.listenToReSize()
-            this.$nextTick(()=>{
-                this.setColWidth()
-                this.setBodyHeight()
-            })
+            this.tableResize()
         },
         beforeDestroy() {
             this.removeListenResize()
         },
         watch: {
             data() {
-               this.init()
-                this.$nextTick(() =>{
-                    this.setColWidth()
-                    this.setBodyHeight()
-                }
-            )
+                this.init()
+                this.listenToReSize()
+                this.$nextTick(()=>{
+                    this.tableResize()
+                })
             }
         },
         methods: {
             init(){
                 this.copyColumns()
-                this.checkFixed()
                 this.copyBodyData()
                 this.attr = this.setAttr()
                 this.setHeadersCollection()
@@ -200,9 +232,10 @@
                 this.observer = elementResizeDetectorMaker()
                 this.observer.listenTo(this.$el, this.tableResize)
             },
-            setColWidth(width) {
+            setColWidth() {
                 if (this.columns.length === 0) return
                 this.$el.style.width = '100%'
+                let width = this.tableWidth
                 if(!width)width = this.$el.clientWidth -1
                 let colWidth = {}
                 let length = 0
@@ -224,7 +257,7 @@
                     }
                 )
                 this.cloneColumns.forEach(item => {
-                    colWidth[item._index] = !item.width ? colHaveNoWidth.shift()  : item.width
+                    item._width = colWidth[item._index] = !item.width ? colHaveNoWidth.shift()  : item.width
                 })
                 this.colWidth = colWidth
                 this.$el.style.width = ''
@@ -243,13 +276,15 @@
             tableResize() {
                 if (this.cloneColumns.length === 0) return
                 this.$el.style.width = '100%'
-                let tableWidth = this.$el.clientWidth-1
-                this.setHeaderToTop(tableWidth)
-                this.setMainWidth(tableWidth)
-                this.setColWidth(tableWidth)
+                this.tableWidth = this.$el.clientWidth-1
+                this.setMainWidth()
+                this.setColWidth()
+                this.checkFixed()
+                this.setBodyHeight()
                 this.$el.style.width = ''
             },
-            setMainWidth(tableWidth) {
+            setMainWidth() {
+                let tableWidth = this.tableWidth
                 let [$refs, width] = [this.$refs, 0]
                 if (!this.tableWidth || this.tableWidth === 0) {
                     width = tableWidth
@@ -259,14 +294,36 @@
                 width -= this.maxHeight ? this.scrollBarWidth : 0
                 $refs.bodyMain.$el.style.width = width + 'px'
             },
-            setHeaderToTop(tableWidth) {
-                this.$refs.headerMain.$el.style.width = tableWidth + 'px'
-            },
             setBodyHeight(){
                 if(!this.maxHeight)return
-                let tableHeight = parseInt(getComputedStyle(this.$refs.headerMainWrapper).height)
+                let tableHeight = this.$refs.headerMain.$el.clientHeight
                 let bodyHeight = parseInt(this.maxHeight)-tableHeight
-                this.$refs.bodyMainWrapper.style.height = bodyHeight + 'px'
+                this.$refs.bodyLeftWrapper.style.height = this.$refs.bodyMainWrapper.style.height = bodyHeight + 'px'
+                //todo  maxHeight Feature可能没有添加判断，template里面
+            },
+            scrollGradient() {
+                const ref = this.$refs
+                const {bodyLeftWrapper, tableRightWrapper} = ref
+                let {scrollTop, scrollLeft} = ref.bodyMainWrapper
+                if (scrollLeft !== xScroll.data.currentScrollLeft) {
+                    let {width} = ref.tableMain.style
+                    this.hiddenShadow.left = scrollLeft === 0
+                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.maxWidth)
+                    //this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
+                    xScroll.data.currentScrollLeft = scrollLeft
+                    return
+                }
+                if (xScroll.data.currentScrollTop === scrollTop) return
+                xScroll.data.currentScrollTop = scrollTop
+                window.requestAnimationFrame(() => {
+                    if (this.fixedLeftStyle.width) {
+                        bodyLeftWrapper.scrollTop = scrollTop
+                    }
+                    //todo right requestAnimationFrame兼容问题
+                    // if (this.fixedRight.length > 0) {
+                    //     tableRightWrapper.scrollTop = scrollTop
+                    // }
+                })
             },
             checkFixed() {
                 let fixed = {
