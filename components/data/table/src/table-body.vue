@@ -10,7 +10,7 @@
                 暂无数据
             </td>
         </tr>
-        <tr v-for="(item,rowIndex) in bodyData" :key="rowIndex"
+        <tr :class="{onHover:attr[rowIndex]._isHover}" v-for="(item,rowIndex) in bodyData" :key="rowIndex"
             @mouseenter="hoverChangeMain(rowIndex,$event)"
             @mouseleave="hoverChangeMain(rowIndex,$event)"
             ref="trMain">
@@ -33,7 +33,7 @@
 
 <script>
     import Cell from './table-cell'
-
+    import {deepClone} from "../../../../src/utils/common";
     export default {
         name: "table-body",
         components: {
@@ -72,12 +72,13 @@
             }
         },
         methods: {
-            hoverChangeMain(index, e) {
-                let typeName = {
-                    mouseenter: '#fafafa',
-                    mouseleave: ''
-                }
-                this.$refs.trMain[index].style.backgroundColor = typeName[e.type]
+            hoverChangeMain(index) {
+                let copyAttr = deepClone(this.attr)
+                copyAttr.forEach((row,_index)=>copyAttr[index]._isHover = _index === index)
+                this.$emit('update:attr',copyAttr)
+                console.log(copyAttr)
+                // 数据量大的情况，诸如此类的通信方式会卡。之后会做修改
+                //todo 考虑直接dom操作
             },
             checkToggle(index){
                 return this.attr[index]&&this.attr[index]._checked

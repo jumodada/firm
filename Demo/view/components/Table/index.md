@@ -22,9 +22,9 @@ export default {
         return {
             columns:[
                {title:'名字',key:'name'},
-               {type:'selection',width:60},
-               {title:'年龄',key:'year'},
-               {title:'性别',key:'sex',fixed:'left'},
+               {type:'selection',width:60,fixed:'left'},
+               {title:'年龄',key:'year',fixed:'left'},
+               {title:'性别',key:'sex'},
                {title:'天梯分数',key:'score'}
             ],
             data:[

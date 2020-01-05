@@ -157,18 +157,9 @@
 
   }
 
-  &-hasLeft{
-     table{
-       td{
-         &:first-child{
-           border-right:0 !important;
-         }
-       }
-     }
-   }
   &-left{
     position: absolute;
-    left: 0;
+    left: 1px;
     top: 0;
     will-change: transform;
     box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);

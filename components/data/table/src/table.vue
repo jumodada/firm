@@ -22,7 +22,7 @@
                 </tableHeader>
             </div>
             <div class="f-table-main-body"
-                 :class="{'f-table-overflow-y':maxHeight,'f-table-hasLeft':fixedLeftStyle.width}"
+                 :class="{'f-table-overflow-y':maxHeight}"
                  :style="{height:theMaxHeight}"
                  ref="bodyMainWrapper"
                  @scroll.passive="scrollGradient"
@@ -33,7 +33,7 @@
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
                         :maxHeight="maxHeight"
-                        :attr="attr"
+                        :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
                         :class="{bordered,stripe,textAlign}"
@@ -63,7 +63,7 @@
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
                         :maxHeight="maxHeight"
-                        :attr="attr"
+                        :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
                         :class="{bordered,stripe,textAlign}"
@@ -342,7 +342,6 @@
             copyColumns() {
                 this.cloneColumns = deepClone(this.columns)
                 this.cloneColumns.forEach((col,index)=>col._index= index)
-                console.log(this.colWidth)
             },
             setHeadersCollection() {
                 let i = 0

@@ -60,11 +60,6 @@
             },
             attr: Array
         },
-        mounted() {
-            setTimeout(()=>{
-                console.log(this.columns)
-            },200)
-        },
         computed: {
             checkBoxValue() {
                 let selection = this.$parent.getSelection()
