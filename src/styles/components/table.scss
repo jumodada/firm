@@ -88,13 +88,18 @@
   }
 
   th{
-
+    border-right: 0;
   }
-  tr{
-    transition: .3s background-color  ease-in-out;
-    &:hover{
-      background-color: #f9f9f9;
+  tbody{
+    tr{
+      transition: .3s background-color  ease-in-out;
+      &:hover{
+        background-color: #f9f9f9;
+      }
     }
+  }
+  .onHover{
+    background-color: #f9f9f9;
   }
   &-th{
     display: inline-flex;
@@ -159,7 +164,7 @@
 
   &-left{
     position: absolute;
-    left: 1px;
+    left: 0;
     top: 0;
     will-change: transform;
     box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);

@@ -22,8 +22,8 @@
                 </tableHeader>
             </div>
             <div class="f-table-main-body"
+                 :style="mainBodyStyle"
                  :class="{'f-table-overflow-y':maxHeight}"
-                 :style="{height:theMaxHeight}"
                  ref="bodyMainWrapper"
                  @scroll.passive="scrollGradient"
             >
@@ -41,8 +41,8 @@
                 </tableBody>
             </div>
         </div>
-        <div :style="{height:maxHeight+'px'}" class="f-table-left">
-            <div :style="fixedLeftStyle" class="f-table-left-header" ref="headerLeftWrapper">
+        <div v-if="fixedLeftBodyStyle.width" :style="{height:maxHeight+'px'}" class="f-table-left">
+            <div :style="fixedLeftHeaderStyle" class="f-table-left-header" ref="headerLeftWrapper">
                 <tableHeader
                         :style="headerStyle"
                         :attr="attr"
@@ -56,7 +56,7 @@
                         ref="headerLeft">
                 </tableHeader>
             </div>
-            <div  v-x-scroll :style="fixedBodyStyle"  class="f-table-left-body" ref="bodyLeftWrapper">
+            <div  v-x-scroll :style="fixedLeftBodyStyle"  class="f-table-left-body" ref="bodyLeftWrapper">
                 <tableBody
                         :columns="fixedLeftColumns"
                         :body-data="bodyData"
@@ -85,7 +85,6 @@
     import elementResizeDetectorMaker from 'element-resize-detector'
     import tableHeader from './table-header'
     import tableBody from './table-body'
-    import {isNumber, isString} from "../../../../src/utils/type-of"
     import {off, on} from "../../../../src/utils/dom"
     import {getScrollBarWidth} from "../../../../src/utils/window"
 
@@ -98,32 +97,38 @@
             textAlign() {
                 return `align-${this.align}`
             },
-            theMaxHeight() {
-                let height = this.maxHeight
-                return isNumber(height) ? height + 'px' : isString(height) ? height : null
-            },
-            fixedLeftStyle(){
+            fixedLeftHeaderStyle(){
                 let style ={}
                 let width =this.fixedLeftColumns.reduce((a,b) => b.fixed && b.fixed === 'left' ? a + b._width : a,0)
                 if(width)style.width= width+'px'
                 return style
             },
-            fixedBodyStyle(){
+            fixedLeftBodyStyle(){
                 let style = {
                     overflow:'hidden',
                 }
+                if(this.bodyHeight())style.height = this.bodyHeight()
                 if(this.$refs.bodyMain){
                     let {clientHeight} = this.$refs.bodyMain.$el
                     if(clientHeight>this.maxHeight)style.overflowY = 'scroll'
                 }
-                if(this.fixedLeftStyle.width) style.width = this.fixedLeftStyle.width
+                if(this.fixedLeftHeaderStyle.width) style.width = this.fixedLeftHeaderStyle.width
+                return style
+            },
+            mainBodyStyle(){
+                let style = {
+                    overflow:'auto',
+                }
+                if(this.bodyHeight())style.height = this.bodyHeight()
+                if(this.cloneColumns.width) style.width = ''
+                console.log(style)
                 return style
             },
             headerStyle(){
                 return {
                     width:this.tableWidth+'px'
                 }
-            }
+            },
         },
         components: {
             'f-icon': Icon,
@@ -184,7 +189,6 @@
                 order: {},
                 bodyData: [],
                 tableWidth:0,
-                bodyHeight:0,
                 cloneColumns: [],
                 fixedLeftColumns: [],
                 fixedRightColumns: [],
@@ -211,9 +215,7 @@
             data() {
                 this.init()
                 this.listenToReSize()
-                this.$nextTick(()=>{
-                    this.tableResize()
-                })
+                this.tableResize()
             }
         },
         methods: {
@@ -280,7 +282,6 @@
                 this.setMainWidth()
                 this.setColWidth()
                 this.checkFixed()
-                this.setBodyHeight()
                 this.$el.style.width = ''
             },
             setMainWidth() {
@@ -293,13 +294,6 @@
                 }
                 width -= this.maxHeight ? this.scrollBarWidth : 0
                 $refs.bodyMain.$el.style.width = width + 'px'
-            },
-            setBodyHeight(){
-                if(!this.maxHeight)return
-                let tableHeight = this.$refs.headerMain.$el.clientHeight
-                let bodyHeight = parseInt(this.maxHeight)-tableHeight
-                this.$refs.bodyLeftWrapper.style.height = this.$refs.bodyMainWrapper.style.height = bodyHeight + 'px'
-                //todo  maxHeight Feature可能没有添加判断，template里面
             },
             scrollGradient() {
                 const ref = this.$refs
@@ -316,7 +310,7 @@
                 if (xScroll.data.currentScrollTop === scrollTop) return
                 xScroll.data.currentScrollTop = scrollTop
                 window.requestAnimationFrame(() => {
-                    if (this.fixedLeftStyle.width) {
+                    if (this.fixedLeftHeaderStyle.width) {
                         bodyLeftWrapper.scrollTop = scrollTop
                     }
                     //todo right requestAnimationFrame兼容问题
@@ -378,7 +372,15 @@
                     if (row._checked && !row._disabled) selection.push(row)
                 })
                 return selection
-            }
+            },
+            bodyHeight(){
+                let height
+                if(this.$refs.headerMainWrapper){
+                    let headerHeight = this.$refs.headerMainWrapper.clientHeight
+                    height = (this.maxHeight-headerHeight)+'px'
+                }
+                return height
+            },
         },
     }
 </script>
