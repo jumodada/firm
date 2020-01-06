@@ -71,6 +71,36 @@
                 </tableBody>
             </div>
         </div>
+        <div v-if="fixedRightBodyStyle.width" :style="rightWrapperStyle" class="f-table-right">
+            <div :style="fixedRightHeaderStyle" class="f-table-right-header" ref="headerRightWrapper">
+                <tableHeader
+                        :style="headerStyle"
+                        :attr="attr"
+                        :row-data="data"
+                        :colWidth="colWidth"
+                        :scrollBarWidth="scrollBarWidth"
+                        :maxHeight="maxHeight"
+                        :columns="fixedRightColumns"
+                        class="f-table"
+                        :class="{bordered,stripe,textAlign}"
+                        ref="headerRight">
+                </tableHeader>
+            </div>
+            <div  v-x-scroll :style="fixedRightBodyStyle"  class="f-table-right-body" ref="bodyRightWrapper">
+                <tableBody
+                        :columns="fixedRightColumns"
+                        :body-data="bodyData"
+                        :colWidth="colWidth"
+                        :scrollBarWidth="scrollBarWidth"
+                        :maxHeight="maxHeight"
+                        :attr.sync="attr"
+                        class="f-table"
+                        :numberVisible="numberVisible"
+                        :class="{bordered,stripe,textAlign}"
+                        ref="bodyRight">
+                </tableBody>
+            </div>
+        </div>
         <transition name="fade">
             <loading v-if="loading" class="f-table-loading"></loading>
         </transition>
@@ -103,25 +133,36 @@
                 if(width)style.width= width+'px'
                 return style
             },
+            fixedRightHeaderStyle(){
+                let style ={}
+                let width =this.fixedRightColumns.reduce((a,b) => b.fixed && b.fixed === 'right' ? a + b._width : a,0)
+                if(width)style.width= width+'px'
+                return style
+            },
             fixedLeftBodyStyle(){
                 let style = {
                     overflow:'hidden',
                 }
-                if(this.bodyHeight())style.height = this.bodyHeight()
-                if(this.$refs.bodyMain){
-                    let {clientHeight} = this.$refs.bodyMain.$el
-                    if(clientHeight>this.maxHeight)style.overflowY = 'scroll'
-                }
+                if(this.getBodyHeight())style.height = this.getBodyHeight()
+                this.setScrollY(style)
                 if(this.fixedLeftHeaderStyle.width) style.width = this.fixedLeftHeaderStyle.width
+                return style
+            },
+            fixedRightBodyStyle(){
+                let style = {
+                    overflow:'hidden',
+                }
+                if(this.getBodyHeight())style.height = this.getBodyHeight()
+                this.setScrollY(style)
+                if(this.fixedRightHeaderStyle.width) style.width = this.fixedRightHeaderStyle.width
                 return style
             },
             mainBodyStyle(){
                 let style = {
                     overflow:'auto',
                 }
-                if(this.bodyHeight())style.height = this.bodyHeight()
+                if(this.getBodyHeight())style.height = this.getBodyHeight()
                 if(this.cloneColumns.width) style.width = ''
-                console.log(style)
                 return style
             },
             headerStyle(){
@@ -129,6 +170,14 @@
                     width:this.tableWidth+'px'
                 }
             },
+            rightWrapperStyle(){
+                let style = {}
+                if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
+                if(this.maxHeight&&this.scrollBarWidth>0){
+                    style.right = this.scrollBarWidth+'px'
+                }
+                return style
+            }
         },
         components: {
             'f-icon': Icon,
@@ -297,7 +346,7 @@
             },
             scrollGradient() {
                 const ref = this.$refs
-                const {bodyLeftWrapper, tableRightWrapper} = ref
+                const {bodyLeftWrapper, bodyRightWrapper} = ref
                 let {scrollTop, scrollLeft} = ref.bodyMainWrapper
                 if (scrollLeft !== xScroll.data.currentScrollLeft) {
                     let {width} = ref.tableMain.style
@@ -314,9 +363,9 @@
                         bodyLeftWrapper.scrollTop = scrollTop
                     }
                     //todo right requestAnimationFrame兼容问题
-                    // if (this.fixedRight.length > 0) {
-                    //     tableRightWrapper.scrollTop = scrollTop
-                    // }
+                    if (this.fixedRightHeaderStyle.width) {
+                        bodyRightWrapper.scrollTop = scrollTop
+                    }
                 })
             },
             checkFixed() {
@@ -373,7 +422,7 @@
                 })
                 return selection
             },
-            bodyHeight(){
+            getBodyHeight(){
                 let height
                 if(this.$refs.headerMainWrapper){
                     let headerHeight = this.$refs.headerMainWrapper.clientHeight
@@ -381,6 +430,12 @@
                 }
                 return height
             },
+            setScrollY(style){
+                if(this.$refs.bodyMain){
+                    let {clientHeight} = this.$refs.bodyMain.$el
+                    if(clientHeight>this.maxHeight)style.overflowY = 'scroll'
+                }
+            }
         },
     }
 </script>

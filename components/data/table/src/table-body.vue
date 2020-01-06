@@ -11,7 +11,8 @@
             </td>
         </tr>
         <tr :class="{onHover:attr[rowIndex]._isHover}" v-for="(item,rowIndex) in bodyData" :key="rowIndex"
-            @mouseenter="hoverChangeMain(rowIndex)"
+            @mouseenter="hoverChangeMain(rowIndex,$event)"
+            @mouseleave="hoverChangeMain(rowIndex,$event)"
             ref="trMain">
             <td v-if="numberVisible">{{rowIndex+1}}</td>
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
@@ -71,9 +72,9 @@
             }
         },
         methods: {
-            hoverChangeMain(_index) {
+            hoverChangeMain(_index,e) {
                 let copyAttr = deepClone(this.attr)
-                copyAttr.forEach((row,index)=>copyAttr[index]._isHover = _index===index)
+                copyAttr[_index]._isHover = e.type==='mouseenter'
                 this.$emit('update:attr',copyAttr)
                 // 数据量大的情况，诸如此类的通信方式会卡。之后会做修改
                 //todo 考虑直接dom操作
