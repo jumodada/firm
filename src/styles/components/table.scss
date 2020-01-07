@@ -167,6 +167,7 @@
     left: 0;
     top: 0;
     will-change: transform;
+    overflow: hidden;
     box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
     &-header{
       background-color: #f9f9f9;

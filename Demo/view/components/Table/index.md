@@ -8,6 +8,7 @@
     <f-table 
     bordered
     :maxHeight="200"
+    :width="400"
     @on-select-change="getSelect"
     @on-select-cancel="selectCancel"
     align="center"

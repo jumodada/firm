@@ -4,9 +4,10 @@
          :style="{height:maxHeight+'px'}"
          ref="totalWrapper">
         <!--  主体-->
-        <div class="f-table-main">
+        <div :style="mainWrapperStyle" class="f-table-main">
             <div class="f-table-main-header"
                  ref="headerMainWrapper"
+                 :style="mainHeaderStyle"
             >
                 <tableHeader
                         :attr="attr"
@@ -141,7 +142,7 @@
             },
             fixedLeftBodyStyle(){
                 let style = {
-                    overflow:'hidden',
+                    overflow:'hidden'
                 }
                 if(this.getBodyHeight())style.height = this.getBodyHeight()
                 this.setScrollY(style)
@@ -150,7 +151,7 @@
             },
             fixedRightBodyStyle(){
                 let style = {
-                    overflow:'hidden',
+                    overflow:'hidden'
                 }
                 if(this.getBodyHeight())style.height = this.getBodyHeight()
                 this.setScrollY(style)
@@ -159,10 +160,29 @@
             },
             mainBodyStyle(){
                 let style = {
-                    overflow:'auto',
+                    overflow:'hidden'
                 }
+                this.setScrollY(style)
+                this.setScrollX(style)
                 if(this.getBodyHeight())style.height = this.getBodyHeight()
                 if(this.cloneColumns.width) style.width = ''
+                //todo main和left的接壤有一个border-right需要移除
+                return style
+            },
+            mainHeaderStyle(){
+                let style = {
+                    overflow:'hidden'
+                }
+                this.setScrollX(style)
+                if(this.cloneColumns.width) style.width = ''
+                return style
+            },
+            mainWrapperStyle(){
+                let style ={
+                    overflow:'hidden'
+                }
+                if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
+                if(this.width)style.width = parseInt(this.width)+'px'
                 return style
             },
             headerStyle(){
@@ -193,7 +213,7 @@
             maxHeight: {
                 type: [Number, String]
             },
-            maxWidth: {
+            width: {
                 type: [Number, String]
             },
             bordered: {
@@ -349,10 +369,10 @@
                 const {bodyLeftWrapper, bodyRightWrapper} = ref
                 let {scrollTop, scrollLeft} = ref.bodyMainWrapper
                 if (scrollLeft !== xScroll.data.currentScrollLeft) {
-                    let {width} = ref.tableMain.style
+                    let {width} = ref.bodyMain.$el.style
                     this.hiddenShadow.left = scrollLeft === 0
-                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.maxWidth)
-                    //this.$refs.tableFixedHeaderWrapper.scrollLeft = scrollLeft
+                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.width)
+                    this.$refs.headerMainWrapper.scrollLeft = scrollLeft
                     xScroll.data.currentScrollLeft = scrollLeft
                     return
                 }
@@ -434,6 +454,12 @@
                 if(this.$refs.bodyMain){
                     let {clientHeight} = this.$refs.bodyMain.$el
                     if(clientHeight>this.maxHeight)style.overflowY = 'scroll'
+                }
+            },
+            setScrollX(style){
+                if(this.$refs.bodyMain){
+                    let {clientWidth} = this.$refs.bodyMain.$el
+                    if(clientWidth>this.width)style.overflowX = 'scroll'
                 }
             }
         },
