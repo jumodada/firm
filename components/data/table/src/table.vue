@@ -1,8 +1,7 @@
 <template>
     <div class="f-table-wrapper"
-         style="position:relative;overflow: hidden;"
-         :style="{height:maxHeight+'px'}"
-         ref="totalWrapper">
+         :style="wrapperStyle"
+    >
         <!--  主体-->
         <div :style="mainWrapperStyle" class="f-table-main">
             <div class="f-table-main-header"
@@ -42,7 +41,7 @@
                 </tableBody>
             </div>
         </div>
-        <div v-if="fixedLeftBodyStyle.width" :style="{height:maxHeight+'px'}" class="f-table-left">
+        <div v-if="fixedLeftHeaderStyle.width"  :style="leftWrapperStyle" class="f-table-left">
             <div :style="fixedLeftHeaderStyle" class="f-table-left-header" ref="headerLeftWrapper">
                 <tableHeader
                         :style="headerStyle"
@@ -72,7 +71,7 @@
                 </tableBody>
             </div>
         </div>
-        <div v-if="fixedRightBodyStyle.width" :style="rightWrapperStyle" class="f-table-right">
+        <div v-if="fixedRightHeaderStyle.width"  :style="rightWrapperStyle" class="f-table-right">
             <div :style="fixedRightHeaderStyle" class="f-table-right-header" ref="headerRightWrapper">
                 <tableHeader
                         :style="headerStyle"
@@ -102,6 +101,7 @@
                 </tableBody>
             </div>
         </div>
+        <div v-if="fixedThExist" :style="rightFixedTh" class="f-table-right-header-fixed"></div>
         <transition name="fade">
             <loading v-if="loading" class="f-table-loading"></loading>
         </transition>
@@ -128,6 +128,15 @@
             textAlign() {
                 return `align-${this.align}`
             },
+            wrapperStyle(){
+                let style = {
+                    position:'relative',
+                    overflow: 'hidden'
+                }
+                if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
+                if(this.width)style.width = parseInt(this.width)+'px'
+                return style
+            },
             fixedLeftHeaderStyle(){
                 let style ={}
                 let width =this.fixedLeftColumns.reduce((a,b) => b.fixed && b.fixed === 'left' ? a + b._width : a,0)
@@ -144,18 +153,27 @@
                 let style = {
                     overflow:'hidden'
                 }
-                if(this.getBodyHeight())style.height = this.getBodyHeight()
+                if(this.getBodyHeight()){
+                    style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.getBodyHeight()) - this.scrollBarWidth + 'px' : this.getBodyHeight()
+                }
                 this.setScrollY(style)
                 if(this.fixedLeftHeaderStyle.width) style.width = this.fixedLeftHeaderStyle.width
+                return style
+            },
+            leftWrapperStyle(){
+                let style = {}
+                style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
                 return style
             },
             fixedRightBodyStyle(){
                 let style = {
                     overflow:'hidden'
                 }
-                if(this.getBodyHeight())style.height = this.getBodyHeight()
+                if(this.getBodyHeight()){
+                    style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.getBodyHeight()) - this.scrollBarWidth + 'px' : this.getBodyHeight()
+                }
                 this.setScrollY(style)
-                if(this.fixedRightHeaderStyle.width) style.width = this.fixedRightHeaderStyle.width
+                if(this.fixedRightHeaderStyle.width)style.width = this.fixedRightHeaderStyle.width
                 return style
             },
             mainBodyStyle(){
@@ -166,7 +184,6 @@
                 this.setScrollX(style)
                 if(this.getBodyHeight())style.height = this.getBodyHeight()
                 if(this.cloneColumns.width) style.width = ''
-                //todo main和left的接壤有一个border-right需要移除
                 return style
             },
             mainHeaderStyle(){
@@ -181,6 +198,7 @@
                 let style ={
                     overflow:'hidden'
                 }
+                if(this.cloneColumns.width) style.width = ''
                 if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
                 if(this.width)style.width = parseInt(this.width)+'px'
                 return style
@@ -192,11 +210,20 @@
             },
             rightWrapperStyle(){
                 let style = {}
-                if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
-                if(this.maxHeight&&this.scrollBarWidth>0){
-                    style.right = this.scrollBarWidth+'px'
-                }
+                style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
+                if(this.maxHeight&&this.scrollBarWidth>0) style.right = this.scrollBarWidth -1+'px'
                 return style
+            },
+            rightFixedTh(){
+                let style = {}
+                if(this.cloneColumns.width) style.width = ''
+                style.width = this.scrollBarWidth+'px'
+                style.height = (this.$refs.headerMainWrapper?this.$refs.headerMainWrapper.clientHeight:0)+1+'px'
+                return style
+            },
+            fixedThExist(){
+                let width = this.cloneColumns.reduce((a,b)=>a+b._width,0)
+                return width>this.width&&this.scrollBarWidth>0
             }
         },
         components: {
@@ -258,6 +285,7 @@
                 order: {},
                 bodyData: [],
                 tableWidth:0,
+                needFixedRightTh:0,
                 cloneColumns: [],
                 fixedLeftColumns: [],
                 fixedRightColumns: [],
@@ -305,7 +333,6 @@
             },
             setColWidth() {
                 if (this.columns.length === 0) return
-                this.$el.style.width = '100%'
                 let width = this.tableWidth
                 if(!width)width = this.$el.clientWidth -1
                 let colWidth = {}
@@ -331,7 +358,6 @@
                     item._width = colWidth[item._index] = !item.width ? colHaveNoWidth.shift()  : item.width
                 })
                 this.colWidth = colWidth
-                this.$el.style.width = ''
             },
             setAttr() {
                 let data = []
@@ -346,12 +372,10 @@
             },
             tableResize() {
                 if (this.cloneColumns.length === 0) return
-                this.$el.style.width = '100%'
                 this.tableWidth = this.$el.clientWidth-1
                 this.setMainWidth()
                 this.setColWidth()
                 this.checkFixed()
-                this.$el.style.width = ''
             },
             setMainWidth() {
                 let tableWidth = this.tableWidth
@@ -461,6 +485,10 @@
                     let {clientWidth} = this.$refs.bodyMain.$el
                     if(clientWidth>this.width)style.overflowX = 'scroll'
                 }
+            },
+            isXOverFlow(){
+                let width = this.cloneColumns.reduce((a,b)=>a+b._width,0)
+                return width>parseInt(this.width)
             }
         },
     }

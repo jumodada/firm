@@ -4,8 +4,7 @@
 ## 表格
 :::demo 支持五种类型的按钮，使用`dashed`、`type`、`round`、`plain`,`circle`为按钮添加固定样式
 ```html
-<f-row>
-    <f-table 
+ <f-table 
     bordered
     :maxHeight="200"
     :width="400"
@@ -15,18 +14,17 @@
     :columns="columns"
      :data="data">
     </f-table>
-</f-row>
 
 <script>
 export default {
     data(){
         return {
             columns:[
-               {title:'名字',key:'name'},
+               {title:'名字',key:'name',fixed:'right',width:110},
                {type:'selection',width:60},
-               {title:'年龄',key:'year',fixed:'left'},
-               {title:'性别',key:'sex',fixed:'right'},
-               {title:'天梯分数',key:'score'}
+               {title:'年龄',key:'year',fixed:'left',width:110},
+               {title:'性别',key:'sex',width:110},
+               {title:'天梯分数',key:'score',width:110}
             ],
             data:[
               {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
