@@ -41,7 +41,7 @@
                 </tableBody>
             </div>
         </div>
-        <div v-if="fixedLeftHeaderStyle.width"  :style="leftWrapperStyle" class="f-table-left">
+        <div v-if="fixedLeftHeaderStyle.width"  :class="{boxShadowNone:hiddenShadow.left}"   :style="leftWrapperStyle" class="f-table-left">
             <div :style="fixedLeftHeaderStyle" class="f-table-left-header" ref="headerLeftWrapper">
                 <tableHeader
                         :style="headerStyle"
@@ -71,7 +71,7 @@
                 </tableBody>
             </div>
         </div>
-        <div v-if="fixedRightHeaderStyle.width"  :style="rightWrapperStyle" class="f-table-right">
+        <div v-if="fixedRightHeaderStyle.width" :class="{boxShadowNone:hiddenShadow.right}" :style="rightWrapperStyle" class="f-table-right">
             <div :style="fixedRightHeaderStyle" class="f-table-right-header" ref="headerRightWrapper">
                 <tableHeader
                         :style="headerStyle"
@@ -393,9 +393,9 @@
                 const {bodyLeftWrapper, bodyRightWrapper} = ref
                 let {scrollTop, scrollLeft} = ref.bodyMainWrapper
                 if (scrollLeft !== xScroll.data.currentScrollLeft) {
-                    let {width} = ref.bodyMain.$el.style
+                    let width = ref.bodyMain.$el.clientWidth
                     this.hiddenShadow.left = scrollLeft === 0
-                    this.hiddenShadow.right = parseInt(width) <= scrollLeft + parseInt(this.width)
+                    this.hiddenShadow.right = parseInt(width)+this.scrollBarWidth <= scrollLeft+ parseInt(this.width)
                     this.$refs.headerMainWrapper.scrollLeft = scrollLeft
                     xScroll.data.currentScrollLeft = scrollLeft
                     return

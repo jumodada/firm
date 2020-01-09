@@ -159,6 +159,7 @@
     will-change: transform;
     overflow: hidden;
     box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
+    transition: box-shadow .23s ease;
     &-header{
       background-color: #f9f9f9;
       z-index: 4;
@@ -180,6 +181,7 @@
     top: 0;
     right: 0;
     box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
+    transition: box-shadow .23s ease;
     will-change: transform;
     overflow: hidden;
     &-body{
