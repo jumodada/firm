@@ -2,7 +2,7 @@
     <table v-if="columns&&columns.length>0" ref="header">
         <colgroup ref="headerColGroup">
             <col v-for="(column,index) in columns" :key="index" :style="{width:`${colWidth[column._index]}px`}">
-            <col v-if="scrollBarWidth>0&&maxHeight" :style="{width: `${scrollBarWidth}px`}">
+            <col v-if="$parent.isYScrollBarShow" :style="{width: `${scrollBarWidth}px`}">
         </colgroup>
         <thead class="f-table-head">
         <tr>
@@ -24,7 +24,7 @@
                     </span>
                 </div>
             </th>
-            <th v-if="scrollBarWidth>0&&maxHeight"></th>
+            <th v-if="$parent.isYScrollBarShow"></th>
         </tr>
         </thead>
     </table>
@@ -39,9 +39,6 @@
             checkBox
         },
         props: {
-            maxHeight:{
-                type: [Number, String]
-            },
             scrollBarWidth:{
               type:Number,
               default:0

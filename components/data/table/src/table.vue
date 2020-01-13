@@ -13,7 +13,6 @@
                         :row-data="data"
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
-                        :maxHeight="maxHeight"
                         :columns="cloneColumns"
                         class="f-table"
                         :style="headerStyle"
@@ -23,7 +22,7 @@
             </div>
             <div class="f-table-main-body"
                  :style="mainBodyStyle"
-                 :class="{'f-table-overflow-y':maxHeight}"
+                 :class="{'f-table-overflow-y':isYScrollBarShow}"
                  ref="bodyMainWrapper"
                  @scroll.passive="scrollGradient"
             >
@@ -32,7 +31,6 @@
                         :body-data="bodyData"
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
-                        :maxHeight="maxHeight"
                         :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
@@ -50,7 +48,6 @@
                         :row-data="data"
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
-                        :maxHeight="maxHeight"
                         :columns="fixedLeftColumns"
                         class="f-table"
                         :class="{bordered,stripe,textAlign}"
@@ -63,7 +60,6 @@
                         :body-data="bodyData"
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
-                        :maxHeight="maxHeight"
                         :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
@@ -81,7 +77,6 @@
                         :row-data="data"
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
-                        :maxHeight="maxHeight"
                         :columns="fixedRightColumns"
                         class="f-table"
                         :class="{bordered,stripe,textAlign}"
@@ -94,7 +89,6 @@
                         :body-data="bodyData"
                         :colWidth="colWidth"
                         :scrollBarWidth="scrollBarWidth"
-                        :maxHeight="maxHeight"
                         :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
@@ -213,8 +207,7 @@
             rightWrapperStyle() {
                 let style = {}
                 style.height = this.width && this.scrollBarWidth > 0 && this.isXScrollBarShow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
-                console.log(this.isYScrollBarShow())
-                if (this.maxHeight && this.scrollBarWidth > 0) style.right = this.scrollBarWidth - 1 + 'px'
+                if (this.isYScrollBarShow) style.right = this.scrollBarWidth - 1 + 'px'
                 return style
             },
             rightFixedTh() {
@@ -227,6 +220,10 @@
             fixedThExist() {
                 let width = this.cloneColumns.reduce((a, b) => a + b._width, 0)
                 return width > this.width && this.scrollBarWidth > 0
+            },
+            isYScrollBarShow(){
+                if(this.cloneColumns.length===0)return false
+                return this.maxHeight&&parseInt(this.maxHeight)<this.getTableHeight()
             }
         },
         components: {
@@ -306,8 +303,9 @@
         mounted() {
             this.init()
             this.tableResize()
-            this.listenToReSize()
-
+            this.$nextTick(()=>{
+                this.listenToReSize()
+            })
         },
         beforeDestroy() {
             this.removeListenResize()
@@ -316,7 +314,6 @@
             data() {
                 this.init()
                 this.tableResize()
-                this.listenToReSize()
             }
         },
         methods: {
@@ -347,7 +344,7 @@
                         width -= parseInt(col.width)
                     }
                 })
-                if (this.isYScrollBarShow()) width -= this.scrollBarWidth?this.scrollBarWidth:0
+                if (this.isYScrollBarShow) width -= this.scrollBarWidth?this.scrollBarWidth:0
                 let averageWidth = parseInt(width / length)
                 let remainder = width - parseInt(length * averageWidth)
                 let colHaveNoWidth = []
@@ -380,6 +377,7 @@
                 return data
             },
             tableResize() {
+                console.log(1)
                 if (this.cloneColumns.length === 0) return
                 this.tableWidth = this.$el.clientWidth - 1
                 this.setMainWidth()
@@ -394,7 +392,7 @@
                 } else {
                     width = this.tableWidth
                 }
-                width -= this.isYScrollBarShow() ? this.scrollBarWidth : 0
+                width -= this.isYScrollBarShow ? this.scrollBarWidth : 0
                 $refs.bodyMain.$el.style.width = width + 'px'
             },
             scrollGradient() {
@@ -492,9 +490,6 @@
                 let width = this.cloneColumns.reduce((a, b) => a + b._width, 0)
                 return width > parseInt(this.width)
             },
-            isYScrollBarShow(){
-                return this.maxHeight&&parseInt(this.maxHeight)<this.getTableHeight()
-            }
         },
     }
 </script>

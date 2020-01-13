@@ -40,9 +40,6 @@
             Cell
         },
         props: {
-            maxHeight:{
-                type: [Number, String]
-            },
             scrollBarWidth:{
                 type:Number,
                 default:0

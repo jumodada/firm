@@ -27,8 +27,18 @@ export default {
             ],
             data:[
               {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
-              {name:'Pis',year:23,sex:'男',score:2100},
-      
+                            {name:'Pis',year:23,sex:'男',score:2100},
+                            {name:'蛛丝马迹',year:22,sex:'男',score:2001},
+                            {name:'阿川',year:24,sex:'男',score:1967},
+                            {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
+                            {name:'Pis',year:23,sex:'男',score:2100},
+                            {name:'蛛丝马迹',year:22,sex:'男',score:2001},
+                            {name:'阿川',year:24,sex:'男',score:1967},
+                            {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
+                            {name:'Pis',year:23,sex:'男',score:2100},
+                            {name:'蛛丝马迹',year:22,sex:'男',score:2001},
+                            {name:'阿川',year:24,sex:'男',score:1967},
+ 
             ]
         }
     },
