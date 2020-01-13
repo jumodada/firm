@@ -7,7 +7,6 @@
  <f-table 
     bordered
     :maxHeight="200"
-    :width="400"
     @on-select-change="getSelect"
     @on-select-cancel="selectCancel"
     align="center"
@@ -20,25 +19,16 @@ export default {
     data(){
         return {
             columns:[
-               {title:'名字',key:'name',fixed:'right',width:110},
+               {title:'名字',key:'name',width:100},
                {type:'selection',width:60},
-               {title:'年龄',key:'year',fixed:'left',width:110},
-               {title:'性别',key:'sex',width:110},
-               {title:'天梯分数',key:'score',width:110}
+               {title:'年龄',key:'year',width:100,fixed:'left'},
+               {title:'性别',key:'sex',width:100,fixed:'right'},
+               {title:'天梯分数',key:'score'}
             ],
             data:[
               {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
               {name:'Pis',year:23,sex:'男',score:2100},
-              {name:'蛛丝马迹',year:22,sex:'男',score:2001},
-              {name:'阿川',year:24,sex:'男',score:1967},
-              {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
-              {name:'Pis',year:23,sex:'男',score:2100},
-              {name:'蛛丝马迹',year:22,sex:'男',score:2001},
-              {name:'阿川',year:24,sex:'男',score:1967},
-              {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
-              {name:'Pis',year:23,sex:'男',score:2100},
-              {name:'蛛丝马迹',year:22,sex:'男',score:2001},
-              {name:'阿川',year:24,sex:'男',score:1967},
+      
             ]
         }
     },

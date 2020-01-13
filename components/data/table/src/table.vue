@@ -41,7 +41,8 @@
                 </tableBody>
             </div>
         </div>
-        <div v-if="fixedLeftHeaderStyle.width"  :class="{boxShadowNone:hiddenShadow.left}"   :style="leftWrapperStyle" class="f-table-left">
+        <div v-if="fixedLeftHeaderStyle.width" :class="{boxShadowNone:hiddenShadow.left}" :style="leftWrapperStyle"
+             class="f-table-left">
             <div :style="fixedLeftHeaderStyle" class="f-table-left-header" ref="headerLeftWrapper">
                 <tableHeader
                         :style="headerStyle"
@@ -56,7 +57,7 @@
                         ref="headerLeft">
                 </tableHeader>
             </div>
-            <div  v-x-scroll :style="fixedLeftBodyStyle"  class="f-table-left-body" ref="bodyLeftWrapper">
+            <div v-x-scroll :style="fixedLeftBodyStyle" class="f-table-left-body" ref="bodyLeftWrapper">
                 <tableBody
                         :columns="fixedLeftColumns"
                         :body-data="bodyData"
@@ -71,7 +72,8 @@
                 </tableBody>
             </div>
         </div>
-        <div v-if="fixedRightHeaderStyle.width" :class="{boxShadowNone:hiddenShadow.right}" :style="rightWrapperStyle" class="f-table-right">
+        <div v-if="fixedRightHeaderStyle.width" :class="{boxShadowNone:hiddenShadow.right}" :style="rightWrapperStyle"
+             class="f-table-right">
             <div :style="fixedRightHeaderStyle" class="f-table-right-header" ref="headerRightWrapper">
                 <tableHeader
                         :style="headerStyle"
@@ -86,7 +88,7 @@
                         ref="headerRight">
                 </tableHeader>
             </div>
-            <div  v-x-scroll :style="fixedRightBodyStyle"  class="f-table-right-body" ref="bodyRightWrapper">
+            <div v-x-scroll :style="fixedRightBodyStyle" class="f-table-right-body" ref="bodyRightWrapper">
                 <tableBody
                         :columns="fixedRightColumns"
                         :body-data="bodyData"
@@ -128,102 +130,103 @@
             textAlign() {
                 return `align-${this.align}`
             },
-            wrapperStyle(){
+            wrapperStyle() {
                 let style = {
-                    position:'relative',
+                    position: 'relative',
                     overflow: 'hidden'
                 }
-                if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
-                if(this.width)style.width = parseInt(this.width)+'px'
+                if (this.maxHeight) style.maxHeight = parseInt(this.maxHeight) + 'px'
+                if (this.width) style.width = parseInt(this.width) + 'px'
                 return style
             },
-            fixedLeftHeaderStyle(){
-                let style ={}
-                let width =this.fixedLeftColumns.reduce((a,b) => b.fixed && b.fixed === 'left' ? a + b._width : a,0)
-                if(width)style.width= width+'px'
-                return style
-            },
-            fixedRightHeaderStyle(){
-                let style ={}
-                let width =this.fixedRightColumns.reduce((a,b) => b.fixed && b.fixed === 'right' ? a + b._width : a,0)
-                if(width)style.width= width+'px'
-                return style
-            },
-            fixedLeftBodyStyle(){
-                let style = {
-                    overflow:'hidden'
-                }
-                if(this.getBodyHeight()){
-                    style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.getBodyHeight()) - this.scrollBarWidth + 'px' : this.getBodyHeight()
-                }
-                this.setScrollY(style)
-                if(this.fixedLeftHeaderStyle.width) style.width = this.fixedLeftHeaderStyle.width
-                return style
-            },
-            leftWrapperStyle(){
+            fixedLeftHeaderStyle() {
                 let style = {}
-                style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
+                let width = this.fixedLeftColumns.reduce((a, b) => b.fixed && b.fixed === 'left' ? a + b._width : a, 0)
+                if (width) style.width = width + 'px'
                 return style
             },
-            fixedRightBodyStyle(){
+            fixedRightHeaderStyle() {
+                let style = {}
+                let width = this.fixedRightColumns.reduce((a, b) => b.fixed && b.fixed === 'right' ? a + b._width : a, 0)
+                if (width) style.width = width + 'px'
+                return style
+            },
+            fixedLeftBodyStyle() {
                 let style = {
-                    overflow:'hidden'
+                    overflow: 'hidden'
                 }
-                if(this.getBodyHeight()){
-                    style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.getBodyHeight()) - this.scrollBarWidth + 'px' : this.getBodyHeight()
+                if (this.getBodyHeight()) {
+                    style.height = this.width && this.scrollBarWidth > 0 && this.isXScrollBarShow() ? parseInt(this.getBodyHeight()) - this.scrollBarWidth + 'px' : this.getBodyHeight()
                 }
                 this.setScrollY(style)
-                if(this.fixedRightHeaderStyle.width)style.width = this.fixedRightHeaderStyle.width
+                if (this.fixedLeftHeaderStyle.width) style.width = this.fixedLeftHeaderStyle.width
                 return style
             },
-            mainBodyStyle(){
+            leftWrapperStyle() {
+                let style = {}
+                style.height = this.width && this.scrollBarWidth > 0 && this.isXScrollBarShow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
+                return style
+            },
+            fixedRightBodyStyle() {
                 let style = {
-                    overflow:'hidden'
+                    overflow: 'hidden'
+                }
+                if (this.getBodyHeight()) {
+                    style.height = this.width && this.scrollBarWidth > 0 && this.isXScrollBarShow() ? parseInt(this.getBodyHeight()) - this.scrollBarWidth + 'px' : this.getBodyHeight()
+                }
+                this.setScrollY(style)
+                if (this.fixedRightHeaderStyle.width) style.width = this.fixedRightHeaderStyle.width
+                return style
+            },
+            mainBodyStyle() {
+                let style = {
+                    overflow: 'hidden'
                 }
                 this.setScrollY(style)
                 this.setScrollX(style)
-                if(this.getBodyHeight())style.height = this.getBodyHeight()
-                if(this.cloneColumns.width) style.width = ''
+                if (this.getBodyHeight()) style.height = this.getBodyHeight()
+                if (this.cloneColumns.width) style.width = ''
                 return style
             },
-            mainHeaderStyle(){
+            mainHeaderStyle() {
                 let style = {
-                    overflow:'hidden'
+                    overflow: 'hidden'
                 }
                 this.setScrollX(style)
-                if(this.cloneColumns.width) style.width = ''
+                if (this.cloneColumns.width) style.width = ''
                 return style
             },
-            mainWrapperStyle(){
-                let style ={
-                    overflow:'hidden'
+            mainWrapperStyle() {
+                let style = {
+                    overflow: 'hidden'
                 }
-                if(this.cloneColumns.width) style.width = ''
-                if(this.maxHeight)style.height = parseInt(this.maxHeight)+'px'
-                if(this.width)style.width = parseInt(this.width)+'px'
+                if (this.cloneColumns.width) style.width = ''
+                if (this.maxHeight) style.maxHeight = parseInt(this.maxHeight) + 'px'
+                if (this.width) style.width = parseInt(this.width) + 'px'
                 return style
             },
-            headerStyle(){
+            headerStyle() {
                 return {
-                    width:this.tableWidth+'px'
+                    width: this.tableWidth + 'px'
                 }
             },
-            rightWrapperStyle(){
+            rightWrapperStyle() {
                 let style = {}
-                style.height = this.width && this.scrollBarWidth > 0 && this.isXOverFlow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
-                if(this.maxHeight&&this.scrollBarWidth>0) style.right = this.scrollBarWidth -1+'px'
+                style.height = this.width && this.scrollBarWidth > 0 && this.isXScrollBarShow() ? parseInt(this.maxHeight) - this.scrollBarWidth + 'px' : parseInt(this.maxHeight) + 'px'
+                console.log(this.isYScrollBarShow())
+                if (this.maxHeight && this.scrollBarWidth > 0) style.right = this.scrollBarWidth - 1 + 'px'
                 return style
             },
-            rightFixedTh(){
+            rightFixedTh() {
                 let style = {}
-                if(this.cloneColumns.width) style.width = ''
-                style.width = this.scrollBarWidth+'px'
-                style.height = (this.$refs.headerMainWrapper?this.$refs.headerMainWrapper.clientHeight:0)+1+'px'
+                if (this.cloneColumns.width) style.width = ''
+                style.width = this.scrollBarWidth + 'px'
+                style.height = (this.$refs.headerMainWrapper ? this.$refs.headerMainWrapper.clientHeight : 0) + 1 + 'px'
                 return style
             },
-            fixedThExist(){
-                let width = this.cloneColumns.reduce((a,b)=>a+b._width,0)
-                return width>this.width&&this.scrollBarWidth>0
+            fixedThExist() {
+                let width = this.cloneColumns.reduce((a, b) => a + b._width, 0)
+                return width > this.width && this.scrollBarWidth > 0
             }
         },
         components: {
@@ -284,8 +287,8 @@
             return {
                 order: {},
                 bodyData: [],
-                tableWidth:0,
-                needFixedRightTh:0,
+                tableWidth: 0,
+                needFixedRightTh: 0,
                 cloneColumns: [],
                 fixedLeftColumns: [],
                 fixedRightColumns: [],
@@ -293,17 +296,18 @@
                     left: true,
                     right: false
                 },
-                colWidth:{},
+                colWidth: {},
                 scrollBarWidth: getScrollBarWidth(),
                 oldScrollLeft: 0,
-                headersCollection: [],
+
                 attr: []
             }
         },
         mounted() {
             this.init()
-            this.listenToReSize()
             this.tableResize()
+            this.listenToReSize()
+
         },
         beforeDestroy() {
             this.removeListenResize()
@@ -311,18 +315,17 @@
         watch: {
             data() {
                 this.init()
-                this.listenToReSize()
                 this.tableResize()
+                this.listenToReSize()
             }
         },
         methods: {
-            init(){
+            init() {
                 this.copyColumns()
                 this.copyBodyData()
                 this.attr = this.setAttr()
-                this.setHeadersCollection()
             },
-            removeListenResize(){
+            removeListenResize() {
                 off(window, 'resize', this.tableResize)
                 this.observer.removeListener(this.$el, this.tableResize)
             },
@@ -334,30 +337,36 @@
             setColWidth() {
                 if (this.columns.length === 0) return
                 let width = this.tableWidth
-                if(!width)width = this.$el.clientWidth -1
+                if (!width) width = this.$el.clientWidth - 1
                 let colWidth = {}
                 let length = 0
                 this.cloneColumns.forEach(col => {
                     if (!col.width) {
                         length++
                     } else {
-                        width -= parseInt(col.width + (this.maxHeight?this.scrollBarWidth:0))
+                        width -= parseInt(col.width)
                     }
                 })
+                if (this.isYScrollBarShow()) width -= this.scrollBarWidth?this.scrollBarWidth:0
                 let averageWidth = parseInt(width / length)
-                let remainder = width - parseInt(length*averageWidth)
+                let remainder = width - parseInt(length * averageWidth)
                 let colHaveNoWidth = []
-                while(colHaveNoWidth.length<length){
+                while (colHaveNoWidth.length < length) {
                     colHaveNoWidth.push(averageWidth)
                 }
-                colHaveNoWidth.forEach((width,index)=>{
-                        if(index>=colHaveNoWidth.length-remainder)colHaveNoWidth[index]++
+                colHaveNoWidth.forEach((width, index) => {
+                        if (index >= colHaveNoWidth.length - remainder) colHaveNoWidth[index]++
                     }
                 )
                 this.cloneColumns.forEach(item => {
-                    item._width = colWidth[item._index] = !item.width ? colHaveNoWidth.shift()  : item.width
+                    item._width = colWidth[item._index] = !item.width ? colHaveNoWidth.shift() : item.width
                 })
                 this.colWidth = colWidth
+            },
+            getTableHeight() {
+                let headerHeight = this.$refs.headerMain.$el.clientHeight
+                let bodyHeight = this.$refs.bodyMain.$el.clientHeight
+                return headerHeight+bodyHeight
             },
             setAttr() {
                 let data = []
@@ -372,7 +381,7 @@
             },
             tableResize() {
                 if (this.cloneColumns.length === 0) return
-                this.tableWidth = this.$el.clientWidth-1
+                this.tableWidth = this.$el.clientWidth - 1
                 this.setMainWidth()
                 this.setColWidth()
                 this.checkFixed()
@@ -385,7 +394,7 @@
                 } else {
                     width = this.tableWidth
                 }
-                width -= this.maxHeight ? this.scrollBarWidth : 0
+                width -= this.isYScrollBarShow() ? this.scrollBarWidth : 0
                 $refs.bodyMain.$el.style.width = width + 'px'
             },
             scrollGradient() {
@@ -395,7 +404,7 @@
                 if (scrollLeft !== xScroll.data.currentScrollLeft) {
                     let width = ref.bodyMain.$el.clientWidth
                     this.hiddenShadow.left = scrollLeft === 0
-                    this.hiddenShadow.right = parseInt(width)+this.scrollBarWidth <= scrollLeft+ parseInt(this.width)
+                    this.hiddenShadow.right = parseInt(width) + this.scrollBarWidth <= scrollLeft + parseInt(this.width)
                     this.$refs.headerMainWrapper.scrollLeft = scrollLeft
                     xScroll.data.currentScrollLeft = scrollLeft
                     return
@@ -428,14 +437,7 @@
             },
             copyColumns() {
                 this.cloneColumns = deepClone(this.columns)
-                this.cloneColumns.forEach((col,index)=>col._index= index)
-            },
-            setHeadersCollection() {
-                let i = 0
-                while (i < this.bodyData.length) {
-                    this.headersCollection[i] = recurrenceOnceDeepCopy(this.cloneColumns)
-                    i++
-                }
+                this.cloneColumns.forEach((col, index) => col._index = index)
             },
             clickSort(key, direction) {
                 this.order.state = this.order.state === true || this.order.name !== key ? direction : (this.order.state = this.order.state === direction ? true : direction)
@@ -466,29 +468,32 @@
                 })
                 return selection
             },
-            getBodyHeight(){
+            getBodyHeight() {
                 let height
-                if(this.$refs.headerMainWrapper){
+                if (this.$refs.headerMainWrapper) {
                     let headerHeight = this.$refs.headerMainWrapper.clientHeight
-                    height = (this.maxHeight-headerHeight)+'px'
+                    height = (this.maxHeight - headerHeight) + 'px'
                 }
                 return height
             },
-            setScrollY(style){
-                if(this.$refs.bodyMain){
+            setScrollY(style) {
+                if (this.$refs.bodyMain) {
                     let {clientHeight} = this.$refs.bodyMain.$el
-                    if(clientHeight>this.maxHeight)style.overflowY = 'scroll'
+                    if (clientHeight > this.maxHeight) style.overflowY = 'scroll'
                 }
             },
-            setScrollX(style){
-                if(this.$refs.bodyMain){
+            setScrollX(style) {
+                if (this.$refs.bodyMain) {
                     let {clientWidth} = this.$refs.bodyMain.$el
-                    if(clientWidth>this.width)style.overflowX = 'scroll'
+                    if (clientWidth > this.width) style.overflowX = 'scroll'
                 }
             },
-            isXOverFlow(){
-                let width = this.cloneColumns.reduce((a,b)=>a+b._width,0)
-                return width>parseInt(this.width)
+            isXScrollBarShow() {
+                let width = this.cloneColumns.reduce((a, b) => a + b._width, 0)
+                return width > parseInt(this.width)
+            },
+            isYScrollBarShow(){
+                return this.maxHeight&&parseInt(this.maxHeight)<this.getTableHeight()
             }
         },
     }
