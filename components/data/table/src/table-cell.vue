@@ -1,7 +1,7 @@
 <template>
-    <div :class="classes">
+    <div :class="classes" >
         <template v-if="column.key" class="td-div">
-            {{item[column.key]}}
+            <span>{{item[column.key]}}</span>
         </template>
         <template v-if="column.slot" class="td-div">
             <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
@@ -38,6 +38,7 @@
                 return [
                     `f-table-cell`,
                     {
+                        'f-table-visable-hidden':this.column.fixed
                     }
                 ];
             },

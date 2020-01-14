@@ -11,8 +11,8 @@
             </td>
         </tr>
         <tr :class="{onHover:attr[rowIndex]._isHover}" v-for="(item,rowIndex) in bodyData" :key="rowIndex"
-            @mouseenter="hoverChangeMain(rowIndex,$event)"
-            @mouseleave="hoverChangeMain(rowIndex,$event)"
+            @mouseenter="hoverSynchro(rowIndex,$event)"
+            @mouseleave="hoverSynchro(rowIndex,$event)"
             ref="trMain">
             <td v-if="numberVisible">{{rowIndex+1}}</td>
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
@@ -23,7 +23,7 @@
                           :column="column"
                           :disabled="isDisabled(rowIndex)"
                           :rowIndex="rowIndex"
-                    ></Cell>
+                    />
                 </td>
             </template>
         </tr>
@@ -33,7 +33,7 @@
 
 <script>
     import Cell from './table-cell'
-    import {deepClone} from "../../../../src/utils/common";
+    import {deepClone} from "../../../../src/utils/common"
     export default {
         name: "table-body",
         components: {
@@ -69,12 +69,11 @@
             }
         },
         methods: {
-            hoverChangeMain(_index,e) {
+            hoverSynchro(_index,e) {
                 let copyAttr = deepClone(this.attr)
                 copyAttr[_index]._isHover = e.type==='mouseenter'
                 this.$emit('update:attr',copyAttr)
-                // 数据量大的情况，诸如此类的通信方式会卡。之后会做修改
-                //todo 考虑直接dom操作
+                // todo 数据量大的情况，此类的通信方式会卡。之后会做修改
             },
             checkToggle(index){
                 return this.attr[index]&&this.attr[index]._checked

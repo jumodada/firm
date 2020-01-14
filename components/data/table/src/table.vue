@@ -339,8 +339,7 @@
             },
             setColWidth() {
                 if (this.columns.length === 0) return
-                let width = this.tableWidth
-                if (!width) width = this.$el.clientWidth - 1
+                let width = this.$el.clientWidth - 1
                 let colWidth = {}
                 let length = 0
                 this.cloneColumns.forEach(col => {

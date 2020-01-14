@@ -7,7 +7,7 @@
         <thead class="f-table-head">
         <tr>
             <th v-for="column in columns " :key="column.key">
-                <div class="f-table-th td-div">
+                <div :class="{'f-table-visable-hidden':column.fixed}" class="f-table-th td-div">
                     <template v-if="column.title">
                         {{column.title}}
                     </template>

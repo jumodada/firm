@@ -6,7 +6,6 @@
 ```html
  <f-table 
     bordered
-    
     :maxHeight="200"
     @on-select-change="getSelect"
     @on-select-cancel="selectCancel"
@@ -20,11 +19,11 @@ export default {
     data(){
         return {
             columns:[
-               {title:'名字',key:'name'},
-               {type:'selection'},
-               {title:'年龄',key:'year'},
-               {title:'性别',key:'sex',},
-               {title:'天梯分数',key:'score'}
+               {title:'名字',key:'name',width:100},
+               {type:'selection',width:100,fixed:'right'},
+               {title:'年龄',key:'year',width:100},
+               {title:'性别',key:'sex',width:100},
+               {title:'天梯分数',key:'score',width:100}
             ],
             data:[
               {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},
