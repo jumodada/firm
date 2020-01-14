@@ -21,7 +21,7 @@
                 </tableHeader>
             </div>
             <div class="f-table-main-body"
-                 :style="mainBodyStyle"
+                 :style="mainBodyWrapperStyle"
                  :class="{'f-table-overflow-y':isYScrollBarShow}"
                  ref="bodyMainWrapper"
                  @scroll.passive="scrollGradient"
@@ -35,6 +35,7 @@
                         class="f-table"
                         :numberVisible="numberVisible"
                         :class="{bordered,stripe,textAlign}"
+                        :style="mainBodyStyle"
                         ref="bodyMain">
                 </tableBody>
             </div>
@@ -172,7 +173,7 @@
                 if (this.fixedRightHeaderStyle.width) style.width = this.fixedRightHeaderStyle.width
                 return style
             },
-            mainBodyStyle() {
+            mainBodyWrapperStyle() {
                 let style = {
                     overflow: 'hidden'
                 }
@@ -180,6 +181,19 @@
                 this.setScrollX(style)
                 if (this.getBodyHeight()) style.height = this.getBodyHeight()
                 if (this.cloneColumns.width) style.width = ''
+                return style
+            },
+            mainBodyStyle(){
+                let style = {}
+                let tableWidth = this.tableWidth
+                let width = 0
+                if (!this.tableWidth || this.tableWidth === 0) {
+                    width = tableWidth
+                } else {
+                    width = this.tableWidth
+                }
+                width -= this.isYScrollBarShow ? this.scrollBarWidth : 0
+                style.width = width + 'px'
                 return style
             },
             mainHeaderStyle() {
@@ -303,9 +317,7 @@
         mounted() {
             this.init()
             this.tableResize()
-            this.$nextTick(()=>{
-                this.listenToReSize()
-            })
+            this.listenToReSize()
         },
         beforeDestroy() {
             this.removeListenResize()
@@ -377,23 +389,10 @@
                 return data
             },
             tableResize() {
-                console.log(1)
                 if (this.cloneColumns.length === 0) return
                 this.tableWidth = this.$el.clientWidth - 1
-                this.setMainWidth()
                 this.setColWidth()
                 this.checkFixed()
-            },
-            setMainWidth() {
-                let tableWidth = this.tableWidth
-                let [$refs, width] = [this.$refs, 0]
-                if (!this.tableWidth || this.tableWidth === 0) {
-                    width = tableWidth
-                } else {
-                    width = this.tableWidth
-                }
-                width -= this.isYScrollBarShow ? this.scrollBarWidth : 0
-                $refs.bodyMain.$el.style.width = width + 'px'
             },
             scrollGradient() {
                 const ref = this.$refs
