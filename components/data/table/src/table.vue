@@ -109,7 +109,7 @@
     import loading from '../../../currency/dynamic icon/loading'
     import Icon from '../../../currency/icon/src/icon'
     import xScroll from './scroll-synchro'
-    import {deepClone, recurrenceOnceDeepCopy} from "../../../../src/utils/common"
+    import {deepClone} from "../../../../src/utils/common"
     import elementResizeDetectorMaker from 'element-resize-detector'
     import tableHeader from './table-header'
     import tableBody from './table-body'
@@ -184,14 +184,9 @@
                 return style
             },
             mainBodyStyle(){
-                let style = {}
                 let tableWidth = this.tableWidth
-                let width = 0
-                if (!this.tableWidth || this.tableWidth === 0) {
-                    width = tableWidth
-                } else {
-                    width = this.tableWidth
-                }
+                let style = {}
+                let width = tableWidth
                 width -= this.isYScrollBarShow ? this.scrollBarWidth : 0
                 style.width = width + 'px'
                 return style
@@ -310,7 +305,6 @@
                 colWidth: {},
                 scrollBarWidth: getScrollBarWidth(),
                 oldScrollLeft: 0,
-
                 attr: []
             }
         },
@@ -388,9 +382,14 @@
                 });
                 return data
             },
+            getTableWidth(){
+                let width = this.cloneColumns.reduce((a,b)=>a+b._width,0)
+                if(!width)width = this.$el.clientWidth - 1
+                return width
+            },
             tableResize() {
                 if (this.cloneColumns.length === 0) return
-                this.tableWidth = this.$el.clientWidth - 1
+                this.tableWidth = this.getTableWidth()
                 this.setColWidth()
                 this.checkFixed()
             },
