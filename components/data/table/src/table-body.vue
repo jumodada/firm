@@ -16,8 +16,9 @@
             ref="trMain">
             <td v-if="numberVisible">{{rowIndex+1}}</td>
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
-                <td :key="column.key">
+                <td :class="classes(column)" :key="column.key">
                     <Cell :item="item"
+                          :fixed="fixed"
                           :index="rowIndex"
                           :checked="checkToggle(rowIndex)"
                           :column="column"
@@ -40,6 +41,11 @@
             Cell
         },
         props: {
+            fixed:{
+                type:String,
+                validator: val=>['left','right',''].indexOf(val)>-1,
+                default:''
+            },
             scrollBarWidth:{
                 type:Number,
                 default:0
@@ -69,6 +75,13 @@
             }
         },
         methods: {
+            classes (column) {
+                return [
+                    {
+                        'f-table-visable-hidden':column.fixed&&!this.fixed
+                    }
+                ]
+            },
             hoverSynchro(_index,e) {
                 let copyAttr = deepClone(this.attr)
                 copyAttr[_index]._isHover = e.type==='mouseenter'

@@ -9,7 +9,6 @@
   position: relative;
   margin: 0;
   padding: 0;
-
   overflow: hidden;
   border: 1px solid #efefef;
   border-right: none;
@@ -22,6 +21,16 @@
     width: 1px;
     height: 100%;
     right: 0;
+    z-index: 1;
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    background-color: #efefef;
+    top:calc(100% - 1px);
+    width: 100%;
+    height: 1px;
+    left: 0;
     z-index: 1;
   }
   &.borderHidden{
@@ -40,6 +49,9 @@
   overflow: hidden;
   font-size: 14px;
   box-sizing: border-box;
+  th{
+    background-color: #f9f9f9;
+  }
   &.bordered{
     th{
       border-right: 1px solid #efefef;
@@ -136,7 +148,6 @@
     &-header{
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
       overflow: hidden;
       z-index: 3;
       &::-webkit-scrollbar{
@@ -145,14 +156,7 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
       overflow: -moz-scrollbars-none;
-      table{
-        thead{
-          background-color: #f9f9f9;
-        }
-      }
     }
-
-
   }
 
   &-left{
@@ -199,7 +203,6 @@
     }
     &-header{
       z-index: 4;
-      background-color: #f9f9f9;
     }
   }
   &-overflow-y{
@@ -209,9 +212,10 @@
     position: absolute;
     top: -1px;
     right: 0;
-    background-color: #f9f9f9;
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
+    background-color: #f9f9f9;
+    z-index: 2;
   }
   &-visable-hidden{
     visibility: hidden;

@@ -23,7 +23,7 @@ export default {
                {type:'selection',width:100,fixed:'right'},
                {title:'年龄',key:'year',width:100},
                {title:'性别',key:'sex',width:100},
-               {title:'天梯分数',key:'score',width:100}
+               {title:'天梯分数',key:'score',width:100,fixed:'left'}
             ],
             data:[
               {name:'伍声',year:21,sex:'男',score:2009,_disabled:true},

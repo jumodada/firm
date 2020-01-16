@@ -20,6 +20,11 @@
             checkBox
         },
         props:{
+            fixed:{
+                type:String,
+                validator: val=>['left','right',''].indexOf(val)>-1,
+                default:''
+            },
             column:Object,
             item:Object,
             rowIndex:Number,
@@ -38,9 +43,9 @@
                 return [
                     `f-table-cell`,
                     {
-                        'f-table-visable-hidden':this.column.fixed
+                        'f-table-visable-hidden':this.column.fixed&&!this.fixed
                     }
-                ];
+                ]
             },
         },
         methods:{

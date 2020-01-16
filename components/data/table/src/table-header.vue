@@ -6,8 +6,8 @@
         </colgroup>
         <thead class="f-table-head">
         <tr>
-            <th v-for="column in columns " :key="column.key">
-                <div :class="{'f-table-visable-hidden':column.fixed}" class="f-table-th td-div">
+            <th :class="classes(column)" v-for="column in columns" :key="column.key">
+                <div :class="classes(column)" class="f-table-th td-div">
                     <template v-if="column.title">
                         {{column.title}}
                     </template>
@@ -24,7 +24,7 @@
                     </span>
                 </div>
             </th>
-            <th v-if="$parent.isYScrollBarShow"></th>
+            <th :class="lastThClass" v-if="$parent.isYScrollBarShow"></th>
         </tr>
         </thead>
     </table>
@@ -39,6 +39,11 @@
             checkBox
         },
         props: {
+            fixed:{
+                type:String,
+                validator: val=>['left','right',''].indexOf(val)>-1,
+                default:''
+            },
             scrollBarWidth:{
               type:Number,
               default:0
@@ -65,12 +70,26 @@
                     if (!row._disabled) unDisabledSelectionLength++
                 })
                 return selection.length === unDisabledSelectionLength
+            },
+            lastThClass(){
+                return [
+                    {
+                        'f-table-visable-hidden':this.columns.some(col=>col.fixed==='right')&&!this.fixed
+                    }
+                ]
             }
         },
         methods: {
             selectAll(val) {
                 this.$parent.attr.forEach(row => !row._disabled ? row._checked = val : '')
                 this.$parent.selectChange()
+            },
+            classes (column) {
+                return [
+                    {
+                        'f-table-visable-hidden':column.fixed&&!this.fixed
+                    }
+                ]
             }
         },
     }

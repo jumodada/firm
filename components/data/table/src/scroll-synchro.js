@@ -9,12 +9,8 @@ const wheel =  function fixedWheel(e,target){
         e.preventDefault()
         return
     }
-    if (e.deltaY< 0 && currentScrollTop !== 0) {
-        e.preventDefault()
-    }
-    if (e.deltaY> 0 && target.scrollHeight - target.clientHeight > currentScrollTop) {
-        e.preventDefault()
-    }
+    if (e.deltaY< 0 && currentScrollTop !== 0) e.preventDefault()
+    if (e.deltaY> 0 && target.scrollHeight - target.clientHeight > currentScrollTop) e.preventDefault()
     let scrollArea = target.parentNode.parentNode.childNodes[0].childNodes[1]
     scrollArea.scrollTop += e.deltaY
 }
