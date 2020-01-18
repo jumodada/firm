@@ -68,7 +68,6 @@
     white-space: normal;
     word-break: break-all;
     box-sizing: border-box;
-    display: inline-block;
     word-wrap: normal;
     vertical-align: middle;
   }
@@ -144,7 +143,6 @@
   }
   &-main{
     width: 100%;
-    display: inline-block;
     &-header{
       margin: 0;
       padding: 0;
