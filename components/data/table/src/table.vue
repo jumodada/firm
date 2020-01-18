@@ -404,7 +404,7 @@
                     if (this.fixedLeftHeaderStyle.width) {
                         bodyLeftWrapper.scrollTop = scrollTop
                     }
-                    //todo right requestAnimationFrame兼容问题
+                    //todo requestAnimationFrame兼容问题
                     if (this.fixedRightHeaderStyle.width) {
                         bodyRightWrapper.scrollTop = scrollTop
                     }
@@ -474,12 +474,12 @@
             setScrollX(style) {
                 if (this.$refs.bodyMain) {
                     let width = this.cloneColumns.reduce((a, b) =>  a + b._width, 0)
-                    if (width +this.scrollBarWidth > this.$el.clientWidth-1) style.overflowX = 'scroll'
+                    if (width +(this.isXScrollBarShow()?this.scrollBarWidth:0) > this.$el.clientWidth-1) style.overflowX = 'scroll'
                 }
             },
             isXScrollBarShow() {
                 let width = this.cloneColumns.reduce((a, b) => a + b._width, 0)
-                return width + this.scrollBarWidth > this.$el.clientWidth-1
+                return width+(this.isYScrollBarShow?this.scrollBarWidth:0)  > this.$el.clientWidth-1
             }
         },
     }
