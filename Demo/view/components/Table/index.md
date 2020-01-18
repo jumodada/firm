@@ -9,6 +9,9 @@
     align="center"
     :columns="columns"
      :data="data">
+        <template slot-scope="{row}"  slot="name">
+        <f-button type="warn">{{row.name}}</f-button>
+        </template>
     </f-table>
 
 <script>
@@ -16,7 +19,7 @@ export default {
     data(){
         return {
             columns:[
-               {title:'名字',key:'name'},
+               {title:'名字',slot:'name'},
                {title:'年龄',key:'year'},
                {title:'性别',key:'sex'},
                {title:'天梯分数',key:'score'}

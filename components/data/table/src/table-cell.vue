@@ -1,22 +1,28 @@
 <template>
     <div :class="classes" >
         <template v-if="column.key" class="td-div">
-            <span>{{item[column.key]}}</span>
-        </template>
-        <template v-if="column.slot" class="td-div">
-            <slot :name="column.slot" :column="item" :index="rowIndex"></slot>
+            <span>{{row[column.key]}}</span>
         </template>
         <template v-if="column.type==='selection'">
             <checkBox :disabled="disabled" :value="checked" @input="checkToggle"></checkBox>
         </template>
+        <Render
+                v-if="column.slot"
+                :row="row"
+                :column="column"
+                :index="index"
+        />
     </div>
 </template>
 
 <script>
     import checkBox from '../../../currency/check-box'
+    import Render from './table-render'
     export default {
         name: "table-cell",
+        inject: ['tableRoot'],
         components:{
+            Render,
             checkBox
         },
         props:{
@@ -26,7 +32,7 @@
                 default:''
             },
             column:Object,
-            item:Object,
+            row:Object,
             rowIndex:Number,
             cellData:Object,
             index:Number,

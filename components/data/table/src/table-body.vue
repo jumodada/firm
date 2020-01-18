@@ -10,14 +10,14 @@
                 暂无数据
             </td>
         </tr>
-        <tr :class="{onHover:attr[rowIndex]._isHover}" v-for="(item,rowIndex) in bodyData" :key="rowIndex"
+        <tr :class="{onHover:attr[rowIndex]._isHover}" v-for="(row,rowIndex) in bodyData" :key="rowIndex"
             @mouseenter="hoverSynchro(rowIndex,$event)"
             @mouseleave="hoverSynchro(rowIndex,$event)"
             ref="trMain">
             <td v-if="numberVisible">{{rowIndex+1}}</td>
             <template v-for="(column,colIndex) in headersCollection[rowIndex] || columns">
                 <td :class="classes(column)" :key="column.key">
-                    <Cell :item="item"
+                    <Cell :row="row"
                           :fixed="fixed"
                           :index="rowIndex"
                           :checked="checkToggle(rowIndex)"

@@ -125,6 +125,11 @@
         directives: {
             xScroll
         },
+        provide() {
+            return {
+                tableRoot: this
+            };
+        },
         computed: {
             textAlign() {
                 return `align-${this.align}`
