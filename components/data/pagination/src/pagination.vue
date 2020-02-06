@@ -34,8 +34,8 @@
 
 <script>
 
-    import Dots from '../../../currency/dynamic icon/dots'
-    import Icon from '../../../currency/icon/src/icon'
+    import Dots from '../../../dynamic icon/dots'
+    import Icon from '../../../icon/src/icon'
     export default {
         name: "x-pagination",
         components:{

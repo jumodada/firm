@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import Icon from '../currency/icon/src/icon'
+    import Icon from '../icon/src/icon'
     export default {
         name: "x-sub-menu",
         inject:['root'],

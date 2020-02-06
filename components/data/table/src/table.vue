@@ -169,8 +169,8 @@
 </template>
 
 <script>
-    import loading from '../../../currency/dynamic icon/loading'
-    import Icon from '../../../currency/icon/src/icon'
+    import loading from '../../../dynamic icon/loading'
+    import Icon from '../../../icon/src/icon'
     import xScroll from './scroll-synchro'
     import {deepClone, recurrenceOnceDeepCopy} from "../../../../src/utils/common"
     import elementResizeDetectorMaker from 'element-resize-detector'

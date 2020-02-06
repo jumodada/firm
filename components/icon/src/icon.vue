@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import '../../../../src/svg.js'
+    import '../../../src/svg.js'
     import {isString,isNumber} from "../../../../src/utils/type-of"
 
     export default {

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-    import Icon from '../currency/icon/src/icon'
+    import Icon from '../icon/src/icon'
     import xCascaderItems from './cascader-item'
     export default {
         name: 'x-',

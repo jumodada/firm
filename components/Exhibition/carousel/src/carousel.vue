@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import Icon from '../../../currency/icon/src/icon'
+    import Icon from '../../../icon/src/icon'
     import CarouselItem from './carousel-item'
     export default {
         name: "carousel",

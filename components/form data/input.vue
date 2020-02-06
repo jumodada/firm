@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import xIcon from '../currency/icon/src/icon'
+    import xIcon from '../icon/src/icon'
     export default {
         name: "Input",
         components:{

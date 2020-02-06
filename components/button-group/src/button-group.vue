@@ -21,7 +21,7 @@
  .f-button-group{
     display: inline-flex;
     vertical-align: center;
-    @import "../../../../src/global";
+    @import "../../../src/global";
 
      /deep/ .f-button{
 
