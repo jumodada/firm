@@ -11,11 +11,10 @@ export default {
         }
     },
     render: (h, ctx) => {
-        console.log(ctx.injections.tableRoot.$scopedSlots,ctx.props.column.slot)
         return h('div', ctx.injections.tableRoot.$scopedSlots[ctx.props.column.slot]({
             row: ctx.props.row,
             column: ctx.props.column,
             index: ctx.props.index
-        }));
+        }))
     }
 }

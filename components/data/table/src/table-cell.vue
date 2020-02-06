@@ -20,7 +20,6 @@
     import Render from './table-render'
     export default {
         name: "table-cell",
-        inject: ['tableRoot'],
         components:{
             Render,
             checkBox

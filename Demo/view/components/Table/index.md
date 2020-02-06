@@ -19,7 +19,7 @@ export default {
     data(){
         return {
             columns:[
-               {title:'名字',slot:'name'},
+               {title:'姓名',slot:'name'},
                {title:'年龄',key:'year'},
                {title:'性别',key:'sex'},
                {title:'天梯分数',key:'score'}
