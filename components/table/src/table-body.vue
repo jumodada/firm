@@ -34,7 +34,7 @@
 
 <script>
     import Cell from './table-cell'
-    import {deepClone} from "../../../../src/utils/common"
+    import {deepClone} from "../../../src/utils/common"
     export default {
         name: "table-body",
         components: {

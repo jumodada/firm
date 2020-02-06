@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import checkBox from '../../../currency/check-box'
+    import checkBox from '../../check-box'
     import Render from './table-render'
     export default {
         name: "table-cell",

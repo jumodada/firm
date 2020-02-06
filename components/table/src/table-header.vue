@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import checkBox from '../../../currency/check-box'
+    import checkBox from '../../check-box'
 
     export default {
         name: "f-table-header",
@@ -96,5 +96,5 @@
 </script>
 
 <style scoped>
-    @import "../../../../src/styles/components/table.scss";
+    @import "../../../src/styles/components/table.scss";
 </style>

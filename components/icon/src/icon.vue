@@ -6,7 +6,7 @@
 
 <script>
     import '../../../src/svg.js'
-    import {isString,isNumber} from "../../../../src/utils/type-of"
+    import {isString,isNumber} from "../../../src/utils/type-of"
 
     export default {
         name: "f-icon",

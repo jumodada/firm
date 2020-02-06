@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import Icon from '../../icon/src/icon'
+    import Icon from '../icon/src/icon'
     export default {
         name: "x-collapse-item",
         data(){

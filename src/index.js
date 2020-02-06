@@ -1,10 +1,10 @@
 import Button from '../components/button'
 import ButtonGroup from '../components/button-group'
 import Icon from '../components/icon'
-import Collapse from '../components/Exhibition/collapse'
-import CollapseItem from '../components/Exhibition/collapse-item'
+import Collapse from '../components/collapse'
+import CollapseItem from '../components/collapse-item'
 import Row from '../components/layout/row'
-import Table from '../components/data/table'
+import Table from '../components/table'
 
 
 const components = [

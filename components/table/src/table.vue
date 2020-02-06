@@ -110,15 +110,15 @@
 </template>
 
 <script>
-    import loading from '../../../dynamic icon/loading'
-    import Icon from '../../../icon/src/icon'
+    import loading from '../../dynamic icon/loading'
+    import Icon from '../../icon'
     import xScroll from './scroll-synchro'
-    import {deepClone} from "../../../../src/utils/common"
+    import {deepClone} from "../../../src/utils/common"
     import elementResizeDetectorMaker from 'element-resize-detector'
     import tableHeader from './table-header'
     import tableBody from './table-body'
-    import {off, on} from "../../../../src/utils/dom"
-    import {getScrollBarWidth} from "../../../../src/utils/window"
+    import {off, on} from "../../../src/utils/dom"
+    import {getScrollBarWidth} from "../../../src/utils/window"
 
     export default {
         name: "f-table",
