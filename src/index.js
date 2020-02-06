@@ -5,7 +5,7 @@ import Collapse from '../components/collapse'
 import CollapseItem from '../components/collapse-item'
 import Row from '../components/layout/row'
 import Table from '../components/table'
-
+import Upload from '../components/Upload'
 
 const components = [
     Button,
@@ -14,7 +14,8 @@ const components = [
     CollapseItem,
     Row,
     ButtonGroup,
-    Table
+    Table,
+    Upload
 ]
 
 const install = function (Vue) {
@@ -28,6 +29,7 @@ export default {
     install,
     Button,
     Icon,
-    Table
+    Table,
+    Upload
 }
 

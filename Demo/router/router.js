@@ -63,6 +63,15 @@ export default [
                     type: 'component'
                 },
                 component: (resolve) => require(['../view/components/Table/index.md'], resolve)
+            },
+            {
+                path: '/components/Upload',
+                name: 'Upload',
+                meta: {
+                    name: '上传组件',
+                    type: 'component'
+                },
+                component: (resolve) => require(['../view/components/Upload/index.md'], resolve)
             }
         ]
     },
