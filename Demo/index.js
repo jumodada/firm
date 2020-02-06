@@ -5,6 +5,7 @@ import router from './router'
 import demoCard from './components/demo-card'
 import highlightJs from 'highlight.js'
 import './assets/styles/hightlight.scss'
+import '../src/styles/index.scss'
 
 Vue.use(X)
 Vue.component(demoCard.name, demoCard)

@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "css-loader": "^3.2.0",
-    "element-resize-detector": "^1.1.15",
+    "element-resize-detector": "^1.2.0",
     "highlight.js": "^9.16.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
@@ -52,6 +52,7 @@
     "node-sass": "^4.9.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "sass-loader": "^7.1.0",
+    "sass-resources-loader": "^2.0.1",
     "sinon": "^7.2.7",
     "sinon-chai": "^3.3.0",
     "style-loader": "^1.0.0",

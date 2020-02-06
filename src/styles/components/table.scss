@@ -1,46 +1,82 @@
-*{
-  transition: .3s all ease;
-  -webkit-font-smoothing: antialiased;
-}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
 }
 .fade-enter, .fade-leave-to  {
   opacity: 0 ;
 }
-.x-table-wrapper{
-  width: 100%;
+.f-table-wrapper{
   -webkit-font-smoothing: antialiased;
   position: relative;
-  overflow: hidden;
-  border-left: 1px solid white;
   margin: 0;
   padding: 0;
-  display: inline-block;
+  overflow: hidden;
+  border: 1px solid #efefef;
+  border-right: none;
+  border-bottom: none;
+  &::before{
+    content: "";
+    position: absolute;
+    background-color: #efefef;
+    top:0;
+    width: 1px;
+    height: 100%;
+    right: 0;
+    z-index: 1;
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    background-color: #efefef;
+    top:calc(100% - 1px);
+    width: 100%;
+    height: 1px;
+    left: 0;
+    z-index: 1;
+  }
   &.borderHidden{
     border-bottom: none;
   }
 }
-.x-table{
-
-  transition: .3s all;
-  width: 100%;
+.f-table{
+  transition: .3s all ease;
+  -webkit-font-smoothing: antialiased;
   color:#515a6e;
   border-collapse: collapse;
   border-spacing: 0;
-  border-bottom: 1px solid #efefef;
-  overflow: scroll;
+  table-layout: fixed;
+  width: inherit;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  box-sizing: border-box;
+  th{
+    background-color: #f9f9f9;
+  }
   &.bordered{
-    border:1px solid #efefef;
-    td,th{
-      border: 1px solid #efefef;
+    th{
+      border-right: 1px solid #efefef;
+    }
+    td{
+      border-right: 1px solid #efefef;
     }
   }
+  &-cell {
+    padding-left: 12px;
+    padding-right: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+    word-wrap: normal;
+    vertical-align: middle;
+  }
+
   &.stripe{
     tbody {
       >tr{
         &:nth-child(even){
-          background-color: #FCF9F9;
+          background-color: #f9f9f9;
         }
       }
     }
@@ -54,6 +90,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     .td-div{
+      padding: 0 7px;
       box-sizing: border-box;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -61,19 +98,22 @@
       word-break: break-all;
       word-wrap: normal;
       vertical-align: middle;
+    }
+  }
 
-    }
-  }
   th{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
+    border-right: 0;
   }
-  tr{
-    &:hover{
-      background-color: #FCF9F9;
+  tbody{
+    tr{
+      transition: .3s background-color  ease-in-out;
+      &:hover{
+        background-color: #f9f9f9;
+      }
     }
+  }
+  .onHover{
+    background-color: #f9f9f9;
   }
   &-th{
     display: inline-flex;
@@ -103,11 +143,10 @@
   }
   &-main{
     width: 100%;
-    display: inline-block;
     &-header{
-      width: 100%;
-      background-color: #f9f9f9;
-      overflow: scroll;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
       z-index: 3;
       &::-webkit-scrollbar{
         display: none;
@@ -115,22 +154,17 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
       overflow: -moz-scrollbars-none;
-      table{
-        thead{
-          background-color: #f9f9f9;
-        }
-      }
-    }
-    &-body{
-      border-bottom: 1px solid #efefef;
     }
   }
+
   &-left{
     position: absolute;
     left: 0;
     top: 0;
     will-change: transform;
+    overflow: hidden;
     box-shadow: 6px 0 6px -4px rgba(0,0,0,0.15);
+    transition: box-shadow .23s ease;
     &-header{
       background-color: #f9f9f9;
       z-index: 4;
@@ -152,7 +186,9 @@
     top: 0;
     right: 0;
     box-shadow: -6px 0 6px -4px rgba(0,0,0,0.15);
+    transition: box-shadow .23s ease;
     will-change: transform;
+    overflow: hidden;
     &-body{
       &::-webkit-scrollbar{
         display: none;
@@ -165,8 +201,32 @@
     }
     &-header{
       z-index: 4;
-      background-color: #f9f9f9;
     }
+  }
+  &-overflow-y{
+    overflow-y: scroll;
+  }
+  &-right-header-fixed {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    background-color: #f9f9f9;
+    z-index: 2;
+  }
+  &-visable-hidden{
+    visibility: hidden;
+  }
+}
+.align-left{
+  td,th{
+    text-align: left;
+  }
+}
+.align-right{
+  td,th{
+    text-align: right;
   }
 }
 .boxShadowNone{
@@ -174,7 +234,4 @@
 }
 .stopScroll{
   pointer-events:none!important;
-}
-.debug{
-  transform: translateZ(0);
 }

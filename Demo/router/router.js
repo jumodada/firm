@@ -26,7 +26,7 @@ export default [
                     name: '安装',
                     type: 'compass'
                 },
-                component: () => import('../view/components/install/index.md')
+                component: (resolve) => require(['../view/components/install/index.md'], resolve)
             },
             {
                 path: '/components/start',
@@ -35,7 +35,7 @@ export default [
                     name: '快速开始',
                     type: 'compass'
                 },
-                component: () => import('../view/components/start')
+                component: (resolve) => require(['../view/components/start'], resolve)
             },
             {
                 path: '/components/Button',
@@ -44,7 +44,7 @@ export default [
                     name: '按钮',
                     type: 'component'
                 },
-                component: () => import('../view/components/Button/index.md')
+                component: (resolve) => require(['../view/components/Button/index.md'], resolve)
             },
             {
                 path: '/components/Layout',
@@ -53,7 +53,7 @@ export default [
                     name: '布局',
                     type: 'component'
                 },
-                component: () => import('../view/components/Layout/index.md')
+                component: (resolve) => require(['../view/components/Layout/index.md'], resolve)
             },
             {
                 path: '/components/Table',
@@ -62,7 +62,7 @@ export default [
                     name: '表格',
                     type: 'component'
                 },
-                component: () => import('../view/components/Table/index.md')
+                component: (resolve) => require(['../view/components/Table/index.md'], resolve)
             }
         ]
     },

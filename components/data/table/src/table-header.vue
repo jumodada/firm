@@ -1,53 +1,100 @@
 <template>
     <table v-if="columns&&columns.length>0" ref="header">
         <colgroup ref="headerColGroup">
-            <col v-for="(column,index) in columns" :key="index" :style="{width:`${column.width}px`}">
+            <col v-for="(column,index) in columns" :key="index" :style="{width:`${colWidth[column._index]}px`}">
+            <col v-if="$parent.isYScrollBarShow" :style="{width: `${scrollBarWidth}px`}">
         </colgroup>
-        <thead class="x-table-head">
+        <thead class="f-table-head">
         <tr>
-            <th v-for="column in columns " :key="column.key">
-                <div class="x-table-th td-div">
-                    {{column.title}}
-                    <span class="x-table-th-icon" v-if="column.sortBy=== true">
+            <th :class="classes(column)" v-for="column in columns" :key="column.key">
+                <div :class="classes(column)" class="f-table-th td-div">
+                    <template v-if="column.title">
+                        {{column.title}}
+                    </template>
+                    <template v-if="column.type==='selection'">
+                        <checkBox :value="checkBoxValue" @input="selectAll"></checkBox>
+                    </template>
+                    <span class="f-table-th-icon" v-if="column.sortBy=== true">
                             <f-icon @click="sortUp(column.key)"
                                     :style="{fill:order.state=== 'ascending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     name="asc"></f-icon>
                             <f-icon @click="sortDown(column.key)"
                                     :style="{fill:order.state === 'descending' && order.name===column.key ? '109CCB' : '#666666'}"
                                     style="margin-top: 2px" name="desc"></f-icon>
-                           </span>
+                    </span>
                 </div>
             </th>
+            <th :class="lastThClass" v-if="$parent.isYScrollBarShow"></th>
         </tr>
         </thead>
     </table>
 </template>
 
 <script>
+    import checkBox from '../../../currency/check-box'
+
     export default {
         name: "f-table-header",
-        props:{
-            columns:{
-                type:Array,
+        components: {
+            checkBox
+        },
+        props: {
+            fixed:{
+                type:String,
+                validator: val=>['left','right',''].indexOf(val)>-1,
+                default:''
+            },
+            scrollBarWidth:{
+              type:Number,
+              default:0
+            },
+            columns: {
+                type: Array,
+                default: () => []
+            },
+            colWidth:{
+                type: Object,
+                default: () => {}
+            },
+            rowData: {
+                type: Array,
+                default: () => []
+            },
+            attr: Array
+        },
+        computed: {
+            checkBoxValue() {
+                let selection = this.$parent.getSelection()
+                let unDisabledSelectionLength = 0
+                this.attr.forEach(row => {
+                    if (!row._disabled) unDisabledSelectionLength++
+                })
+                return selection.length === unDisabledSelectionLength
+            },
+            lastThClass(){
+                return [
+                    {
+                        'f-table-visable-hidden':this.columns.some(col=>col.fixed==='right')&&!this.fixed
+                    }
+                ]
             }
         },
-        mounted(){
-            this.$nextTick(()=>{
-                this.setColGroup()
-            })
+        methods: {
+            selectAll(val) {
+                this.$parent.attr.forEach(row => !row._disabled ? row._checked = val : '')
+                this.$parent.selectChange()
+            },
+            classes (column) {
+                return [
+                    {
+                        'f-table-visable-hidden':column.fixed&&!this.fixed
+                    }
+                ]
+            }
         },
-         methods:{
-             setColGroup() {
-                 let width = parseInt(getComputedStyle(this.$refs.header).width)
-                 let averageWidth = parseInt(width / this.columns.length)
-                 this.columns.forEach((item, index) => {
-                     if (!item.width) this.$refs.headerColGroup.children[index].style.width = averageWidth + 'px'
-                 })
-             },
-         }
     }
 </script>
 
 <style scoped>
-    @import "../../../../src/styles/table.scss";
+    @import "../../../../src/styles/components/table.scss";
 </style>
