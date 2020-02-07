@@ -3,7 +3,8 @@ const types = {
     Object: '[object Object]',
     Array: '[object Array]',
     String: '[object String]',
-    Number: '[object Number]'
+    Number: '[object Number]',
+    File:'[object File]'
 }
 
 const toString = Object.prototype.toString
@@ -25,3 +26,6 @@ export const isArray = (val) =>
 
 export const isDate = (val) =>
     typeOf(val, 'Date')
+
+export const isFile = (val) =>
+    typeOf(val, 'File')
