@@ -7,4 +7,17 @@
       display: none;
     }
   }
+  &-ul{
+    padding: 0;
+    margin: 12px 0 0;
+    list-style: none;
+    color:#c2c5cb;
+  }
+  &-ul-file-info{
+    display: flex;
+    align-items: center;
+    svg{
+      margin-right: 5px;
+    }
+  }
 }

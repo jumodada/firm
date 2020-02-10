@@ -25,7 +25,7 @@
     "marked": "^0.6.1",
     "multer": "^1.4.2",
     "text-loader": "^0.0.1",
-    "vue": "^2.6.6",
+    "vue": "^2.5.17",
     "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "webpack": "^4.41.2",

@@ -1,0 +1,7 @@
+.fade-li-enter-active,  .fade-li-leave-active {
+  transition: all .4s;
+}
+.fade-li-enter,.fade-li-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}

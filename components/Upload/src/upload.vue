@@ -12,14 +12,19 @@
                     type="file">
             <slot></slot>
         </div>
+        <uploadList :fileLists="fileList"></uploadList>
     </div>
 </template>
 
 <script>
     import ajax from './ajax'
     import {isFile} from "../../../src/utils/type-of"
+    import uploadList from './upload-list'
     export default {
         name: "f-upload",
+        components:{
+            uploadList
+        },
         data(){
             return {
                 fileList: [],
@@ -30,6 +35,10 @@
             name: {
                 type: String,
                 default: 'file'
+            },
+            action: {
+                type: String,
+                require:true
             },
             data: {
                 type: Object
@@ -52,6 +61,24 @@
                     return {}
                 }
             },
+            onProgress: {
+                type: Function,
+                default () {
+                    return {};
+                }
+            },
+            onSuccess: {
+                type: Function,
+                default () {
+                    return {};
+                }
+            },
+            onError: {
+                type: Function,
+                default () {
+                    return {};
+                }
+            },
             onExceededSize: {
                 type: Function,
                 default () {
@@ -71,10 +98,9 @@
         },
         methods:{
             handleChange (e) {
-                const files = e.target.files
-                if (!files) return
+                const {files} = e.target
                 this.uploadFiles(files)
-                this.$refs.input.value = null
+                //this.$refs.input.value = null
             },
             handleClick(){
                 if (this.disabled) return
@@ -82,8 +108,7 @@
             },
             uploadFiles(files){
                 let postFiles = Array.prototype.slice.call(files)
-                if (!this.multiple) postFiles.splice(0, 1)
-                console.log(postFiles)
+                if (!this.multiple) postFiles = postFiles.slice(0, 1)
                 postFiles.forEach(file => this.upload(file))
             },
             upload (file) {
@@ -106,12 +131,12 @@
                 }
             },
             handleStart (file) {
-                file.uid = Date.now() + this.tempIndex++;
+                file.uid = Date.now() + this.tempIndex++
                 const _file = {
                     status: 'uploading',
                     name: file.name,
                     size: file.size,
-                    percentage: 0,
+                    percent: 0,
                     uid: file.uid,
                     showProgress: true
                 };
@@ -137,7 +162,7 @@
                 this.handleStart(file)
                 let formData = new FormData()
                 formData.append(this.name, file)
-
+                console.log(this.action)
                 ajax({
                     headers: this.headers,
                     withCredentials: this.withCredentials,
@@ -154,46 +179,35 @@
                     onError: (err, response) => {
                         this.handleError(err, response, file);
                     }
-                });
+                })
             },
             getFile (file) {
-                const fileList = this.fileList;
-                let target;
-                fileList.every(item => {
-                    target = file.uid === item.uid ? item : null;
-                    return !target;
-                });
-                return target;
+                return this.fileList.find(_f => file.uid === _f.uid)
             },
             handleProgress (e, file) {
-                const _file = this.getFile(file);
-                this.onProgress(e, _file, this.fileList);
-                _file.percentage = e.percent || 0;
+                const _file = this.getFile(file)
+                this.onProgress(e, _file, this.fileList)
+                _file.percent = e.percent || 0
             },
             handleSuccess (res, file) {
-                const _file = this.getFile(file);
-
+                const _file = this.getFile(file)
                 if (_file) {
-                    _file.status = 'finished';
-                    _file.response = res;
+                    _file.status = 'finished'
+                    _file.response = res
 
-                    this.onSuccess(res, _file, this.fileList);
-                    this.dispatch('FormItem', 'on-form-change', _file);
+                    this.onSuccess(res, _file, this.fileList)
 
                     setTimeout(() => {
-                        _file.showProgress = false;
-                    }, 1000);
+                        _file.showProgress = false
+                    }, 600)
                 }
             },
             handleError (err, response, file) {
-                const _file = this.getFile(file);
-                const fileList = this.fileList;
-
-                _file.status = 'fail';
-
-                fileList.splice(fileList.indexOf(_file), 1);
-
-                this.onError(err, response, file);
+                const _file = this.getFile(file)
+                const fileList = this.fileList
+                _file.status = 'fail'
+                fileList.splice(fileList.indexOf(_file), 1)
+                this.onError(err, response, file)
             },
         }
     }
