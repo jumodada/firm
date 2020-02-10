@@ -7,30 +7,36 @@
                 </div>
             </div>
         </div>
-        <div :class="progressText">
-
-        </div>
+        <span v-if="!hideText" :class="progressText">
+            <Icon v-if="percent===100||status==='success'" name="success1"></Icon>
+            <span v-else>{{percent+'%'}}</span>
+        </span>
     </div>
 </template>
 
 <script>
     import {getDarkColor} from "../../../src/utils/color";
-
+    import Icon from '../../icon'
     export default {
         name: "f-progress",
+        components:{Icon},
         props:{
             percent:{
                 type:Number,
                 default:0
             },
+            hideText:{
+                type:Boolean,
+                default:false
+            },
             status:{
                 type:String,
                 default:'normal',
-                validator:val=>['normal','error','success','active'].indexOf(val)>-1
+                validator:val=>['normal','error','success'].indexOf(val)>-1
             },
-            height:{
+            barWidth:{
                 type:Number,
-                default:0
+                default:12
             },
             color:{
                 type:String,
@@ -40,6 +46,11 @@
                 type:String,
                 validator:val=>['wave','stripe','ripple'].indexOf(val)>-1
             },
+            stripeColorRatio:{
+                type:Number,
+                default:0.12,
+                validator:val=>1>val>0
+            }
         },
         computed:{
             progress(){
@@ -48,24 +59,24 @@
                 ]
             },
             waveStyle(){
-                let height = (this.height||10)
-                let sideLength = height*3
+                let barWidth = this.barWidth
+                let sideLength = barWidth*3
                 return {
                     height:sideLength+'px',
                     width:sideLength+'px',
                     right:-sideLength+10+'px',
-                    bottom:`calc(50% + ${height/2}px)`,
+                    bottom:`calc(50% + ${barWidth/2}px)`,
                     display:this.percent===100?'none':''
                 }
             },
             barStyle(){
                 let style = {
                     'background-color':this.bgColor(),
-                    height:(this.height||10)+'px',
+                    height:this.barWidth+'px',
                     width:this.percent+'%',
                 }
-                if(this.animation==='stripe'){
-                    let darkColor = getDarkColor(this.bgColor(),0.3)
+                if(this.animation==='stripe'&&this.percent!==100&&this.status!=='success'){
+                    let darkColor = getDarkColor(this.bgColor(),this.stripeColorRatio)
                     let bottomColor = getDarkColor(this.bgColor(),0.5)
                     style.background = `${this.color} repeating-linear-gradient(-45deg,${this.color} , ${this.color} 30px, ${darkColor} 30px, ${darkColor} 60px)`
                     style['background-size'] = '600px 100%'
@@ -77,13 +88,13 @@
                 return [
                     'f-progress-bar',
                     {
-                        'f-progress-active':this.status==='active'
+                        'f-progress-ripple':this.animation==='ripple'
                     }
                 ]
             },
             progressBarBg(){
               return {
-                  height:this.height+'px'
+                  barWidth:this.barWidth+'px'
               }
             },
             progressText(){
