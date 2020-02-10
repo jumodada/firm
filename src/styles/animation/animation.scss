@@ -1,0 +1,32 @@
+@keyframes progress-active-one {
+  0% {
+    opacity: .3;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}
+
+@keyframes progress-active-two {
+  0% {
+    transform: translate(10px, 70%)  rotate(720deg);
+  }
+  50% {
+    transform: translate(0, 50%)  rotate(150deg);
+  }
+  100% {
+    transform: translate(10px, 70%)  rotate(720deg);
+  }
+}
+
+@keyframes stripe {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 600px 0
+  }
+}

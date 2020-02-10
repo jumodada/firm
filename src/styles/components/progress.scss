@@ -1,0 +1,43 @@
+.f-progress{
+  margin: 0;
+  padding: 0;
+  &-wave {
+    position: absolute;
+    background: #efefef;
+    border-radius: 45% 47% 44% 42%;
+    z-index: 1;
+    animation: progress-active-two 10s linear infinite;
+  }
+  &-bar-wrapper,&-barBg,&-bar{
+    border-radius: 100px;
+  }
+  &-bar-wrapper{
+    padding-right: 85px;
+    margin-right: -15px;
+    overflow: hidden;
+  }
+  &-barBg{
+    overflow: hidden;
+    background: #efefef;
+    position: relative;
+  }
+  &-bar{
+    transition: 0.3s all ease-in;
+    position: relative;
+    animation: stripe 12s linear infinite;
+  }
+  &-active{
+    &:before{
+      content: "";
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      border-radius: 10px;
+      animation: progress-active 2s ease-in-out infinite;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import CollapseItem from '../components/collapse-item'
 import Row from '../components/layout/row'
 import Table from '../components/table'
 import Upload from '../components/Upload'
+import Progress from '../components/progress'
 
 const components = [
     Button,
@@ -15,7 +16,8 @@ const components = [
     Row,
     ButtonGroup,
     Table,
-    Upload
+    Upload,
+    Progress
 ]
 
 const install = function (Vue) {
@@ -30,6 +32,7 @@ export default {
     Button,
     Icon,
     Table,
-    Upload
+    Upload,
+    Progress
 }
 

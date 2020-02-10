@@ -72,6 +72,15 @@ export default [
                     type: 'component'
                 },
                 component: (resolve) => require(['../view/components/Upload/index.md'], resolve)
+            },
+            {
+                path: '/components/Progress',
+                name: 'Upload',
+                meta: {
+                    name: '进度条',
+                    type: 'component'
+                },
+                component: (resolve) => require(['../view/components/Progress/index.md'], resolve)
             }
         ]
     },

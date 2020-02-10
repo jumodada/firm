@@ -5,14 +5,14 @@
 :::demo 暂定
 ```html
 <f-upload>
-    <f-button icon="shangchuan">上传</f-button>
+    <f-button  icon="shangchuan">上传</f-button>
 </f-upload>
 
 <script>
 export default {
     data(){
         return {
-         
+       
         }
     }
  
