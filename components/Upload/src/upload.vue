@@ -100,7 +100,7 @@
             handleChange (e) {
                 const {files} = e.target
                 this.uploadFiles(files)
-                //this.$refs.input.value = null
+                this.$refs.input.value = null
             },
             handleClick(){
                 if (this.disabled) return
@@ -108,7 +108,7 @@
             },
             uploadFiles(files){
                 let postFiles = Array.prototype.slice.call(files)
-                if (!this.multiple) postFiles = postFiles.slice(0, 1)
+                if (!this.multiple)postFiles.splice(1)
                 postFiles.forEach(file => this.upload(file))
             },
             upload (file) {
@@ -130,7 +130,7 @@
                     //todo
                 }
             },
-            handleStart (file) {
+            updateFileList (file) {
                 file.uid = Date.now() + this.tempIndex++
                 const _file = {
                     status: 'uploading',
@@ -159,10 +159,9 @@
                     }
                 }
 
-                this.handleStart(file)
+                this.updateFileList(file)
                 let formData = new FormData()
                 formData.append(this.name, file)
-                console.log(this.action)
                 ajax({
                     headers: this.headers,
                     withCredentials: this.withCredentials,
@@ -196,10 +195,9 @@
                     _file.response = res
 
                     this.onSuccess(res, _file, this.fileList)
-
                     setTimeout(() => {
                         _file.showProgress = false
-                    }, 600)
+                    }, 700)
                 }
             },
             handleError (err, response, file) {
