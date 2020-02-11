@@ -1,14 +1,15 @@
 <template>
         <transition-group
                 class="f-upload-ul" name="fade-li" tag="ul">
-            <li v-for="file in fileLists" :key="file.uid">
+            <li v-for="(file,index) in fileLists" :key="file.uid">
                <transition name="fade-li">
-                   <div v-if="file.showProgress">
+                   <div v-if="file.status!=='finished'">
                       <div class="f-upload-ul-file-info">
                           <Icon color="#c2c5cb" font-size="16" :name="formatName(file)"></Icon>
                           <span>{{file.name}}</span>
+                          <Icon v-if="file.status==='fromOuter'" @click="handleDelete(index)" class="f-upload-ul-file-info-delete" font-size="12" name="wrong"></Icon>
                       </div>
-                       <Progress animation="stripe" :percent="Math.floor(file.percent)" :bar-width="7"></Progress>
+                       <Progress v-if="file.status!=='fromOuter'" :status="processStatus(file)" animation="stripe" :percent="Math.floor(file.percent)" :bar-width="7"></Progress>
                    </div>
                </transition>
             </li>
@@ -32,6 +33,13 @@
             }
         },
         methods:{
+            processStatus(file){
+                if(file.status==='finished')return 'success'
+                return 'normal'
+            },
+            handleDelete(idx){
+                this.$parent.fileLists.splice(idx,1)
+            },
             formatName(file){
                 let formatName = file.name.split('.').pop().toLocaleLowerCase()||''
                 let name = 'lixian'

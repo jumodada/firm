@@ -161,10 +161,8 @@
                     name: file.name,
                     size: file.size,
                     percent: 0,
-                    uid: file.uid,
-                    showProgress: true
-                };
-
+                    uid: file.uid
+                }
                 this.fileLists.push(_file)
             },
             isForMatWrong(file){
@@ -220,11 +218,7 @@
                 if (_file) {
                     _file.status = 'finished'
                     _file.response = res
-
                     this.onSuccess(res, _file, this.fileLists)
-                    setTimeout(() => {
-                        _file.showProgress = false
-                    }, 700)
                 }
             },
             handleError (err, response, file) {
@@ -234,6 +228,19 @@
                 fileLists.splice(fileLists.indexOf(_file), 1)
                 this.onError(err, response, file)
             },
+        },
+        watch: {
+            defaultFileLists: {
+                immediate: true,
+                handler(fileList) {
+                    this.fileLists = fileList.map(item => {
+                        item.status = 'fromOuter'
+                        item.percentage = 100
+                        item.uid = Date.now() + this.tempIndex++
+                        return item
+                    });
+                }
+            }
         }
     }
 </script>
