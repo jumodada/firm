@@ -12,7 +12,7 @@
                     type="file">
             <slot></slot>
         </div>
-        <uploadList :fileLists="fileLists"></uploadList>
+        <uploadList v-if="showUploadList" :fileLists="fileLists"></uploadList>
     </div>
 </template>
 
@@ -36,7 +36,12 @@
                 type:Array,
                 default:()=>[]
             },
+
             maxLength:Number,
+            showUploadList:{
+                type:Boolean,
+               default:true
+           },
             name: {
                 type: String,
                 default: 'file'
