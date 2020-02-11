@@ -12,7 +12,7 @@
                     type="file">
             <slot></slot>
         </div>
-        <uploadList :fileLists="fileList"></uploadList>
+        <uploadList :fileLists="fileLists"></uploadList>
     </div>
 </template>
 
@@ -27,11 +27,16 @@
         },
         data(){
             return {
-                fileList: [],
-                tempIndex:1
+                tempIndex:1,
+                fileLists:[]
             }
         },
         props:{
+            defaultFileLists:{
+                type:Array,
+                default:()=>[]
+            },
+            maxLength:Number,
             name: {
                 type: String,
                 default: 'file'
@@ -62,6 +67,12 @@
                 }
             },
             onProgress: {
+                type: Function,
+                default () {
+                    return {};
+                }
+            },
+            onExceeded:{
                 type: Function,
                 default () {
                     return {};
@@ -106,28 +117,36 @@
                 if (this.disabled) return
                 this.$refs.input.click()
             },
+            isFileLengthExceed(file,postFiles){
+                if(this.maxLength&&this.maxLength<this.fileLists.length+this.defaultFileLists.length+postFiles.length){
+                    this.onExceeded(file,this.fileLists)
+                    return true
+                }
+                return false
+            },
             uploadFiles(files){
                 let postFiles = Array.prototype.slice.call(files)
+                if(this.isFileLengthExceed(files,postFiles))return
                 if (!this.multiple)postFiles.splice(1)
                 postFiles.forEach(file => this.upload(file))
             },
             upload (file) {
+                if(this.isForMatWrong(file))return
+                if(this.isOverFlow(file))return
                 if (!this.beforeUpload) return this.post(file)
                 const before = this.beforeUpload(file)
                 if (before && before.then) {
-                    before.then(processedFile => {
-                        if (isFile(processedFile)) {
-                            this.post(processedFile)
+                    before.then(source => {
+                      if (isFile(source)) {
+                            this.post(source)
                         } else {
                             this.post(file)
                         }
-                    }, () => {
-                         //todo
+                    }, (err) => {
+                        console.error(err)
                     });
                 } else if (before !== false) {
                     this.post(file)
-                } else {
-                    //todo
                 }
             },
             updateFileList (file) {
@@ -141,27 +160,30 @@
                     showProgress: true
                 };
 
-                this.fileList.push(_file)
+                this.fileLists.push(_file)
             },
-            post (file) {
+            isForMatWrong(file){
                 if (this.format.length) {
                     const _file_format = file.name.split('.').pop().toLocaleLowerCase()
                     const checked = this.format.some(item => item.toLocaleLowerCase() === _file_format)
                     if (!checked) {
-                        this.onFormatError(file, this.fileList)
-                        return false
+                        this.onFormatError(file, this.fileLists)
+                        return true
                     }
                 }
+                return false
+            },
+            isOverFlow(file){
                 if (this.maxSize) {
                     if (file.size > this.maxSize * 1024) {
-                        this.onExceededSize(file, this.fileList)
-                        return false
+                        this.onExceededSize(file, this.fileLists)
+                        return true
                     }
                 }
-
+                return false
+            },
+            post (file) {
                 this.updateFileList(file)
-                let formData = new FormData()
-                formData.append(this.name, file)
                 ajax({
                     headers: this.headers,
                     withCredentials: this.withCredentials,
@@ -181,11 +203,11 @@
                 })
             },
             getFile (file) {
-                return this.fileList.find(_f => file.uid === _f.uid)
+                return this.fileLists.find(_f => file.uid === _f.uid)
             },
             handleProgress (e, file) {
                 const _file = this.getFile(file)
-                this.onProgress(e, _file, this.fileList)
+                this.onProgress(e, _file, this.fileLists)
                 _file.percent = e.percent || 0
             },
             handleSuccess (res, file) {
@@ -194,7 +216,7 @@
                     _file.status = 'finished'
                     _file.response = res
 
-                    this.onSuccess(res, _file, this.fileList)
+                    this.onSuccess(res, _file, this.fileLists)
                     setTimeout(() => {
                         _file.showProgress = false
                     }, 700)
@@ -202,9 +224,9 @@
             },
             handleError (err, response, file) {
                 const _file = this.getFile(file)
-                const fileList = this.fileList
+                const fileLists = this.fileLists
                 _file.status = 'fail'
-                fileList.splice(fileList.indexOf(_file), 1)
+                fileLists.splice(fileLists.indexOf(_file), 1)
                 this.onError(err, response, file)
             },
         }
