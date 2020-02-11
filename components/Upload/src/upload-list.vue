@@ -7,7 +7,7 @@
                       <div class="f-upload-ul-file-info">
                           <Icon color="#c2c5cb" font-size="16" :name="formatName(file)"></Icon>
                           <span>{{file.name}}</span>
-                          <Icon v-if="file.status==='fromOuter'" @click="handleDelete(index)" class="f-upload-ul-file-info-delete" font-size="12" name="wrong"></Icon>
+                          <Icon v-if="file.status==='fromOuter'" @click="handleRemove(index)" class="f-upload-ul-file-info-delete" font-size="12" name="wrong"></Icon>
                       </div>
                        <Progress v-if="file.status!=='fromOuter'" :status="processStatus(file)" animation="stripe" :percent="Math.floor(file.percent)" :bar-width="7"></Progress>
                    </div>
@@ -30,14 +30,16 @@
             fileLists: {
                 type: Array,
                 default: () => []
-            }
+            },
+            beforeRemove:Function
         },
         methods:{
             processStatus(file){
                 if(file.status==='finished')return 'success'
                 return 'normal'
             },
-            handleDelete(idx){
+            handleRemove(idx){
+                if(this.beforeRemove&&!this.beforeRemove(this.fileLists[idx],this.fileLists))return
                 this.$parent.fileLists.splice(idx,1)
             },
             formatName(file){

@@ -12,7 +12,7 @@
                     type="file">
             <slot></slot>
         </div>
-        <uploadList v-if="showUploadList" :fileLists="fileLists"></uploadList>
+        <uploadList :beforeRemove="beforeRemove" v-if="showUploadList" :fileLists="fileLists"></uploadList>
     </div>
 </template>
 
@@ -42,6 +42,7 @@
                 type:Boolean,
                default:true
            },
+            beforeRemove:Function,
             name: {
                 type: String,
                 default: 'file'
