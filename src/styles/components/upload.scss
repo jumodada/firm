@@ -1,11 +1,29 @@
 .f-upload {
   margin: 0;
   padding: 0;
-
   &-select {
     &-input {
       display: none;
     }
+  }
+  &-drag{
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px dashed #666;
+    border-radius: 7px;
+    display: flex;
+    transition: all .3s ease;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+      border: 1px dashed #26acee;
+      box-shadow: 0 0 10px 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+    }
+  }
+  &-is-on-drag{
+    border: 1px dashed #26acee;
+    box-shadow: 0 0 10px 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
   }
   &-ul{
     padding: 0;

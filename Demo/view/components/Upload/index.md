@@ -4,7 +4,7 @@
 ## 表格
 :::demo 暂定
 ```html
-<f-upload :beforeRemove="beforeRemove" :default-file-lists="fileLists" :on-exceeded="exceeded" :max-length="3" multiple action="https://vue-wheel-node-server.herokuapp.com/upload">
+<f-upload drag :beforeRemove="beforeRemove" :default-file-lists="fileLists" :on-exceeded="exceeded" :max-length="3" multiple action="https://vue-wheel-node-server.herokuapp.com/upload">
     <f-button  icon="shangchuan">上传</f-button>
 </f-upload>
 

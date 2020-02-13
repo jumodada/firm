@@ -1,7 +1,10 @@
 <template>
     <div class="f-upload">
-        <div class="f-upload-select"
+        <div  :class="fUploadClass"
              @click="handleClick"
+             @drop.prevent="onDrop"
+             @dragover.prevent="dragOver = true"
+             @dragleave.prevent="dragOver = false"
         >
             <input
                     @change="handleChange"
@@ -12,7 +15,7 @@
                     type="file">
             <slot></slot>
         </div>
-        <uploadList :beforeRemove="beforeRemove" v-if="showUploadList" :fileLists="fileLists"></uploadList>
+        <uploadList  :beforeRemove="beforeRemove" v-if="showUploadList" :fileLists="fileLists"></uploadList>
     </div>
 </template>
 
@@ -25,18 +28,33 @@
         components:{
             uploadList
         },
+        computed:{
+          fUploadClass(){
+              return [
+                  'f-upload-select',
+                  {
+                      'f-upload-is-on-drag':this.dragOver,
+                      'f-upload-drag':this.drag,
+                  }
+              ]
+          }
+        },
         data(){
             return {
                 tempIndex:1,
-                fileLists:[]
+                fileLists:[],
+                dragOver:false,
             }
         },
         props:{
+            drag:{
+                type:Boolean,
+                default:false
+            },
             defaultFileLists:{
                 type:Array,
                 default:()=>[]
             },
-
             maxLength:Number,
             showUploadList:{
                 type:Boolean,
@@ -124,7 +142,7 @@
                 this.$refs.input.click()
             },
             isFileLengthExceed(file,postFiles){
-                if(this.maxLength&&this.maxLength<this.fileLists.length+this.defaultFileLists.length+postFiles.length){
+                if(this.maxLength&&this.maxLength<this.fileLists.length+postFiles.length){
                     this.onExceeded(file,this.fileLists)
                     return true
                 }
@@ -135,6 +153,11 @@
                 if(this.isFileLengthExceed(files,postFiles))return
                 if (!this.multiple)postFiles.splice(1)
                 postFiles.forEach(file => this.upload(file))
+            },
+            onDrop(e){
+                this.dragOver = false
+                if (this.disabled) return
+                this.uploadFiles(e.dataTransfer.files)
             },
             upload (file) {
                 if(this.isForMatWrong(file))return
