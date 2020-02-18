@@ -32,25 +32,28 @@
             }
         }
     }
+    .catalogue{
+        width: 13vw;
+        margin-top: 40px;
+    }
 </style>
 
 <template>
     <div class="firm-components-page">
         <slider></slider>
-        <div ref="content" class="firm-components-page-content">
+        <div ref="content" class="firm-components-page-content f-scrollbar-hidden">
             <router-view></router-view>
         </div>
+        <catalogue class="catalogue"></catalogue>
     </div>
 </template>
 
 <script>
     import slider from '../slide'
-
+    import catalogue from '../catalogue'
     export default {
         name: "components",
-        components: {
-            slider
-        },
+        components: {slider, catalogue},
         mounted() {
             this.editAnchorHref()
             this.$nextTick(() => this.moveToAnchorHref())

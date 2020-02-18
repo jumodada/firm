@@ -57,6 +57,7 @@
             align-items: start;
             padding-left: 25px;
             &-name{
+                margin-left: -10px;
                 margin-top: 20px;
             }
         }
@@ -64,7 +65,7 @@
             margin-top: 12px;
             text-decoration: none;
             color: white;
-            font-size: 15px;
+            font-size: 14px;
             transition: .2s ease transform,.18s ease color ;
             &:hover{
                 color: $text1-orange;

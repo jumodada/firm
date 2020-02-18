@@ -10,7 +10,7 @@
     cursor: pointer;
     padding-top: 15px;
     padding-bottom: 15px;
-    border: 1px dashed #666;
+    border: 1px dashed #c2c5cb;
     border-radius: 7px;
     display: flex;
     transition: all .3s ease;
@@ -32,6 +32,10 @@
     color:#c2c5cb;
     li{
       margin-top: 5px;
+      transition: color.23s ease;
+      &:hover{
+        color:#26acee;
+      }
     }
   }
   &-ul-file-info{

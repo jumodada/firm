@@ -75,7 +75,7 @@ export default [
             },
             {
                 path: '/components/Progress',
-                name: 'Upload',
+                name: 'Progress',
                 meta: {
                     name: '进度条',
                     type: 'component'
