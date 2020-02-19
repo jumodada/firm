@@ -10,7 +10,7 @@
             height: calc(100vh - 70px);
             overflow-x: hidden;
             overflow-y: auto;
-
+            scroll-behavior: smooth;
             h1 {
                 margin-left: 21px;
             }

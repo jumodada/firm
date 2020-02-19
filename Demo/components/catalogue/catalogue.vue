@@ -96,6 +96,7 @@
         }
 
         &-li {
+            max-height: 17px;
             position: relative;
             white-space: nowrap;
             text-overflow: ellipsis;
