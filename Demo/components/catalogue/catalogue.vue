@@ -1,6 +1,6 @@
 <template>
     <div class="f-catalogue">
-        <div class="f-catalogue-ul">
+        <div v-if="h2Lists.length>0" class="f-catalogue-ul">
             <div ref="line" class="f-catalogue-active-bar"></div>
             <div v-for="li in h2Lists" :key="li.id" :class="{'f-catalogue-active':li.id===activeId}"
                  class="f-catalogue-li">
@@ -20,12 +20,16 @@
             }
         },
         mounted() {
-            this.h2Lists = this.getAllH2Tag()
-            let {hash} = this.$route
-            if (hash) this.activeId = hash.slice(1)
-            this.activeLineMove()
+         this.init()
         },
         methods: {
+            init(){
+                this.h2Lists = this.getAllH2Tag()
+                if(this.h2Lists.length===0)return
+                let {hash} = this.$route
+                if (hash) this.activeId = hash.slice(1)
+                this.$nextTick(()=>this.activeLineMove())
+            },
             getAllH2Tag() {
                 return Array.prototype.slice.call(document.querySelectorAll('h2'))
             },
@@ -38,7 +42,7 @@
             },
             activeLineMove() {
                 let index = this.getActiveLiIndex()
-                if(index!==null){
+                if(index!==null&&index!==-1){
                     let top = index * 17
                     this.$refs.line.style.transform = `translateY(${top}px)`
                 }else{
@@ -48,10 +52,7 @@
         },
         watch: {
             '$route'() {
-                this.h2Lists = this.getAllH2Tag()
-                let {hash} = this.$route
-                if (hash) this.activeId = hash.slice(1)
-                this.activeLineMove()
+                this.init()
             }
         }
     }
@@ -83,7 +84,7 @@
 
             a {
                 text-decoration: none;
-                color: #13181b;
+                color: #606266;
                 transition: .3s color ease-in-out;
             }
         }

@@ -41,7 +41,7 @@
 <template>
     <div class="firm-components-page">
         <slider></slider>
-        <div ref="content" class="firm-components-page-content f-scrollbar-hidden">
+        <div v-x-scroll="xxx" ref="content" class="firm-components-page-content f-scrollbar-hidden">
             <router-view></router-view>
         </div>
         <catalogue class="catalogue"></catalogue>
@@ -51,8 +51,12 @@
 <script>
     import slider from '../slide'
     import catalogue from '../catalogue'
+    import xScroll from "../../../src/utils/scroll"
     export default {
         name: "components",
+        directives: {
+            xScroll
+        },
         components: {slider, catalogue},
         mounted() {
             this.editAnchorHref()
@@ -67,6 +71,9 @@
             moveToAnchorHref() {
                 let $el = Array.prototype.slice.call(document.querySelectorAll('h2 a,h3 a,h4 a,h5 a')).find(anchor => this.$route.hash.slice(1) === anchor.href.split('#')[2])
                 if ($el) this.$refs.content.scrollTop = $el.offsetTop - 80
+            },
+            xxx(e){
+                //console.log(e)
             }
         },
         beforeRouteUpdate(to, from, next) {

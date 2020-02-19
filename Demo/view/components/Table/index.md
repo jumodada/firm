@@ -7,6 +7,7 @@
  <f-table 
     bordered
     align="center"
+    :max-height="200"
     :columns="columns"
      :data="data">
         <template slot-scope="{row}"  slot="name">
@@ -25,6 +26,9 @@ export default {
                {title:'天梯分数',key:'score'}
             ],
             data:[
+              {name:'伍声',year:21,sex:'男',score:2009},
+              {name:'Pis',year:23,sex:'男',score:2100},
+              {name:'蛛丝马迹',year:22,sex:'男',score:2001},
               {name:'伍声',year:21,sex:'男',score:2009},
               {name:'Pis',year:23,sex:'男',score:2100},
               {name:'蛛丝马迹',year:22,sex:'男',score:2001},
