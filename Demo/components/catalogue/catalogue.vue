@@ -30,6 +30,12 @@
                 if (hash) this.activeId = hash.slice(1)
                 this.$nextTick(()=>this.activeLineMove())
             },
+            isOnScroll(el){
+                let {scrollTop} = el
+                let elShow = this.h2Lists.find(_el=>_el.offsetTop-32>=scrollTop)
+                this.activeId = elShow.id
+                this.activeLineMove()
+            },
             getAllH2Tag() {
                 return Array.prototype.slice.call(document.querySelectorAll('h2'))
             },

@@ -41,10 +41,10 @@
 <template>
     <div class="firm-components-page">
         <slider></slider>
-        <div v-x-scroll="xxx" ref="content" class="firm-components-page-content f-scrollbar-hidden">
+        <div v-x-scroll="contentScroll" ref="content" class="firm-components-page-content f-scrollbar-hidden">
             <router-view></router-view>
         </div>
-        <catalogue class="catalogue"></catalogue>
+        <catalogue ref="catalogue" class="catalogue"></catalogue>
     </div>
 </template>
 
@@ -72,8 +72,8 @@
                 let $el = Array.prototype.slice.call(document.querySelectorAll('h2 a,h3 a,h4 a,h5 a')).find(anchor => this.$route.hash.slice(1) === anchor.href.split('#')[2])
                 if ($el) this.$refs.content.scrollTop = $el.offsetTop - 80
             },
-            xxx(e){
-                //console.log(e)
+            contentScroll(){
+               this.$refs.catalogue.isOnScroll(this.$refs.content)
             }
         },
         beforeRouteUpdate(to, from, next) {
