@@ -86,10 +86,18 @@
             },
             classes (column) {
                 return [
+                    ['left','right','center'].indexOf(column.align)>-1
+                    ?`f-align-${column.align}`:'f-align-left',
                     {
-                        'f-table-visable-hidden':column.fixed&&!this.fixed
+                        'f-table-visable-hidden':column.fixed&&!this.fixed,
                     }
                 ]
+            },
+            sortUp(){
+
+            },
+            sortDown(){
+
             }
         },
     }

@@ -2,28 +2,19 @@
 
 
 ## 表格
-:::demo 支持五种类型的按钮，使用`dashed`、`type`、`round`、`plain`,`circle`为按钮添加固定样式
+:::demo 通过`columns`和`data`设置表头和表格数据
 ```html
- <f-table 
-    bordered
-    align="center"
-    :max-height="200"
-    :columns="columns"
-     :data="data">
-        <template slot-scope="{row}"  slot="name">
-        <f-button type="warn">{{row.name}}</f-button>
-        </template>
-    </f-table>
+ <f-table :columns="columns" :data="data"></f-table>
 
 <script>
 export default {
     data(){
         return {
             columns:[
-               {title:'姓名',slot:'name'},
-               {title:'年龄',key:'year'},
-               {title:'性别',key:'sex'},
-               {title:'天梯分数',key:'score'}
+               {title:'姓名',key:'name',align:'center'},
+               {title:'年龄',key:'year',align:'center'},
+               {title:'性别',key:'sex',align:'center'},
+               {title:'天梯分数',key:'score',align:'center'}
             ],
             data:[
               {name:'伍声',year:21,sex:'男',score:2009},
