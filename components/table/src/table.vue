@@ -1,5 +1,6 @@
 <template>
     <div class="f-table-wrapper"
+         :class="{bordered}"
          :style="wrapperStyle"
     >
         <!--  主体-->
@@ -16,7 +17,7 @@
                         :columns="cloneColumns"
                         class="f-table"
                         :style="headerStyle"
-                        :class="{bordered,stripe,textAlign}"
+                        :class="otherClass"
                         ref="headerMain">
                 </tableHeader>
             </div>
@@ -34,7 +35,7 @@
                         :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
-                        :class="{bordered,stripe,textAlign}"
+                        :class="otherClass"
                         :style="mainBodyStyle"
                         ref="bodyMain">
                 </tableBody>
@@ -52,7 +53,7 @@
                         :scrollBarWidth="scrollBarWidth"
                         :columns="fixedLeftColumns"
                         class="f-table"
-                        :class="{bordered,stripe,textAlign}"
+                        :class="otherClass"
                         ref="headerLeft">
                 </tableHeader>
             </div>
@@ -66,7 +67,7 @@
                         :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
-                        :class="{bordered,stripe,textAlign}"
+                        :class="otherClass"
                         ref="bodyLeft">
                 </tableBody>
             </div>
@@ -83,7 +84,7 @@
                         :scrollBarWidth="scrollBarWidth"
                         :columns="fixedRightColumns"
                         class="f-table"
-                        :class="{bordered,stripe,textAlign}"
+                        :class="otherClass"
                         ref="headerRight">
                 </tableHeader>
             </div>
@@ -97,7 +98,7 @@
                         :attr.sync="attr"
                         class="f-table"
                         :numberVisible="numberVisible"
-                        :class="{bordered,stripe,textAlign}"
+                        :class="otherClass"
                         ref="bodyRight">
                 </tableBody>
             </div>
@@ -131,8 +132,13 @@
             };
         },
         computed: {
-            textAlign() {
-                return `align-${this.align}`
+            otherClass(){
+              return [
+                  {
+                      bordered:this.bordered,
+                      stripe:this.stripe
+                  }
+              ]
             },
             wrapperStyle() {
                 let style = {
@@ -258,11 +264,6 @@
             columns: {
                 type: Array,
                 required: true
-            },
-            align: {
-                type: String,
-                default: 'left',
-                validator: (val) => ['left', 'right', 'center'].indexOf(val) > -1
             },
             data: {
                 type: Array,

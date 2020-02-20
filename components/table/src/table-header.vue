@@ -24,7 +24,7 @@
                     </span>
                 </div>
             </th>
-            <th :class="lastThClass" v-if="$parent.isYScrollBarShow"></th>
+            <th style="border-right: 1px solid #efefef" :class="lastThClass" v-if="$parent.isYScrollBarShow"></th>
         </tr>
         </thead>
     </table>

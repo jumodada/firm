@@ -88,7 +88,7 @@
                 let copyAttr = deepClone(this.attr)
                 copyAttr[_index]._isHover = e.type==='mouseenter'
                 this.$emit('update:attr',copyAttr)
-                // todo 数据量大的情况，此类的通信方式会卡。之后会做修改
+                // todo 数据量大的情况，此类的通信方式会卡。
             },
             checkToggle(index){
                 return this.attr[index]&&this.attr[index]._checked

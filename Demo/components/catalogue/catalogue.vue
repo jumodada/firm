@@ -33,7 +33,7 @@
             isOnScroll(el){
                 let {scrollTop} = el
                 let elShow = this.h2Lists.find(_el=>_el.offsetTop-32>=scrollTop)
-                this.activeId = elShow.id
+                elShow?this.activeId = elShow.id:''
                 this.activeLineMove()
             },
             getAllH2Tag() {
