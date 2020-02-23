@@ -1,0 +1,52 @@
+@import "../../../src/global";
+
+.f-input-wrapper{
+  font-size: $font-size;
+  display: inline-flex;
+  align-items: center;
+  > :not(:last-child){
+    margin-right: .3em;
+  }
+  .cloak{
+    position: absolute;
+    height: $input-height;
+    z-index: 2;
+    opacity: 0;
+  }
+  > input{
+    height: $input-height;
+    border:1px solid $border-color;
+    border-radius: 5px;
+    padding: 0 8px;
+    font-size: inherit;
+    transition: .23s all ease;
+    &:hover{
+      border-color: $border-color-hover;
+    }
+    &:focus{
+      box-shadow: 0 0 3px 1px #26acee, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+      outline: none;
+    }
+    &[disabled]{
+      border-color: #ccc;
+      color:#ccc;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    &.error{
+      border-color: $red;
+
+    }
+
+  }
+  &[disabled]{
+    cursor: not-allowed;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+  .errorMessage{
+    color: $red;
+  }
+}

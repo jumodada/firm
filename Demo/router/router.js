@@ -47,6 +47,15 @@ export default [
                 component: (resolve) => require(['../view/components/Button/index.md'], resolve)
             },
             {
+                path: '/components/Input',
+                name: 'Input',
+                meta: {
+                    name: '输入框',
+                    type: 'component'
+                },
+                component: (resolve) => require(['../view/components/Input/index.md'], resolve)
+            },
+            {
                 path: '/components/Layout',
                 name: 'Layout',
                 meta: {
