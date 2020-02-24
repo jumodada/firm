@@ -9,6 +9,10 @@ $line-1:$grey;
 $line-2:$grey-3;
 $line-3:$grey-2;
 
+$link-1:$blue-4;
+$link-2:$blue-5;
+$link-3:$blue-6;
+
 $disabled:$grey-3;
 
 $border-color:$grey-3;
@@ -40,6 +44,13 @@ $shadow-focus-2:0 0 5px 1px $blue, 0 0 1px $blue-6;
 $button-active-bg: #ffffff;
 $button-bg: $grey-1;
 
-
+$input-small-height:26px;
 $input-height:30px;
+$input-large-height:34px;
 
+
+.f-form-placeholder{
+  &::-webkit-input-placeholder,&::-moz-placeholder,&:-ms-input-placeholder  {
+    color: $grey-2;
+  }
+}

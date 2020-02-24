@@ -12,17 +12,13 @@
     opacity: 0;
   }
   > input{
-    color: $blue-7;
+    color: $text;
     height: $input-height;
     border:1px solid $border-color;
     border-radius: 5px;
     padding: 0 8px;
     font-size: inherit;
     transition: .23s all ease;
-    &::-webkit-input-placeholder,&::-moz-placeholder,&:-ms-input-placeholder  {
-      color: $border-color;
-      font-size: 16px;
-    }
 
     &:hover{
       border-color: $border-color;

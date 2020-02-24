@@ -1,7 +1,7 @@
 <template>
 <div class="f-input-wrapper" ref="wrapper" :disabled="disabled">
     <input type="text"
-           class="btn-dribble"
+           class="f-form-placeholder"
            :value="value"
            :disabled="disabled"
            :readonly="readonly"
