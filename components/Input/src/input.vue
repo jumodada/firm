@@ -1,9 +1,11 @@
 <template>
 <div class="f-input-wrapper" ref="wrapper" :disabled="disabled">
     <input type="text"
+           class="btn-dribble"
            :value="value"
            :disabled="disabled"
            :readonly="readonly"
+           :placeholder="placeholder"
            :class="{error:error}"
            @input="$emit('input',$event.target.value)"
            @change="$emit('change',$event.target.value)"
@@ -27,10 +29,8 @@
             xIcon
         },
         props:{
-            value:{
-                type:String,
-
-            },
+            value:String,
+            placeholder:String,
             disabled:{
                 type:Boolean,
                 default:false

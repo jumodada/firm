@@ -18,12 +18,12 @@
     justify-content: center;
     &:hover{
       border: 1px dashed #26acee;
-      box-shadow: 0 0 10px 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+      box-shadow:$shadow-focus-1;
     }
   }
   &-is-on-drag{
     border: 1px dashed #26acee;
-    box-shadow: 0 0 10px 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+    box-shadow:$shadow-focus-1;
   }
   &-ul{
     padding: 0;

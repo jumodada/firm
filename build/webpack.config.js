@@ -58,7 +58,7 @@ const webpackConfig = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: path.resolve(__dirname, '../src/styles/color/color.scss')
+                            resources: path.resolve(__dirname, '../src/styles/global.scss')
                         }
                     }
                 ]

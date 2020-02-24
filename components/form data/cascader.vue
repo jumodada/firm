@@ -275,7 +275,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../src/global";
+    @import "../../src/styles/global";
 
     .fade-enter-active, .fade-leave-active {
         transition: all .2s;
@@ -293,7 +293,7 @@
             padding: 0.3em 1em;
             display: flex;
             align-items: center;
-            color: $font-color;
+            color: $text;
             border-radius: 5px;
             overflow: auto;
             transition: all .3s cubic-bezier(.645,.045,.355,1);
@@ -336,13 +336,9 @@
     }
     .popover-wrapper {
         position: absolute;
-        color:$font-color;
+        color:$text;
         display: flex;
         transition: all .3s ;
-        @extend .box-shadow;
-        .popover{
-
-        }
         .label {
             white-space: nowrap;
         }

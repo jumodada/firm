@@ -148,7 +148,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../src/global";
+    @import "../../src/styles/global";
 
     .cascader-item{
         display: flex;

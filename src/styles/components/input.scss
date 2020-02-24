@@ -1,7 +1,5 @@
-@import "../../../src/global";
-
 .f-input-wrapper{
-  font-size: $font-size;
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
   > :not(:last-child){
@@ -14,17 +12,23 @@
     opacity: 0;
   }
   > input{
+    color: $blue-7;
     height: $input-height;
     border:1px solid $border-color;
     border-radius: 5px;
     padding: 0 8px;
     font-size: inherit;
     transition: .23s all ease;
+    &::-webkit-input-placeholder,&::-moz-placeholder,&:-ms-input-placeholder  {
+      color: $border-color;
+      font-size: 16px;
+    }
+
     &:hover{
-      border-color: $border-color-hover;
+      border-color: $border-color;
     }
     &:focus{
-      box-shadow: 0 0 3px 1px #26acee, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+      box-shadow:$shadow-focus-2;
       outline: none;
     }
     &[disabled]{

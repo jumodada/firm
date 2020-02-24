@@ -30,3 +30,94 @@
     background-position: 600px 0
   }
 }
+
+
+@keyframes loop {
+  to {
+    top: -8px;
+    left: -8px;
+    bottom: -8px;
+    right: -8px;
+    border-width: 6px;
+    opacity: 0;
+  }
+}
+
+.loop {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    background-color: inherit;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    left: -3px;
+    bottom: -3px;
+    right: -3px;
+    border-radius: inherit;
+    border: 0 solid inherit;
+    opacity: .3;
+    animation: loop .3s ease-in-out;
+    flex-shrink: 0;
+  }
+}
+
+
+@keyframes danger {
+  0% {
+    transform: scale(1);
+    opacity: 0.0;
+  }
+  25% {
+    transform: scale(1.02);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.3;
+  }
+  75% {
+    transform: scale(1.06);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 0.0;
+  }
+}
+
+@-webkit-keyframes danger {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0.0;
+  }
+  25% {
+    -webkit-transform: scale(0);
+    opacity: 0.1;
+  }
+  50% {
+    -webkit-transform: scale(0.1);
+    opacity: 0.3;
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0.0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

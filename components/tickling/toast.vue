@@ -148,7 +148,6 @@
 </script>
 
 <style scoped lang="scss">
-    $font-size:14px;
     $toast-min-height:20px;
     $toast-bg:#e4e0e0;
     $animation-duration:.45s;
@@ -182,7 +181,7 @@
     border: 1px solid $toast-bg;
     position: fixed;
     z-index: 2000;
-    font-size: $font-size;
+    font-size: 14px;
     line-height: 1.3;
     min-height: $toast-min-height;
     box-shadow: 0 0 3px rgba(0,0,0,0.5);

@@ -1,0 +1,291 @@
+.f-button {
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background: $button-bg;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+  cursor: pointer;
+  &:focus {
+    border-color: $orange-2;
+  }
+
+  > .cloakLeft {
+    float: left;
+    height: inherit;
+    opacity: 0.5;
+  }
+
+  > .cloakRight {
+    float: right;
+    height: inherit;
+    opacity: 0.5;
+  }
+
+  &.size-big {
+    font-size: 15px;
+    padding: 10px 23px;
+    border-radius: 5px;
+  }
+
+  &.size-medium {
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 4px;
+  }
+
+  &.size-small {
+    font-size: 13px;
+    padding: 6px 15px;
+    border-radius: 3px;
+  }
+
+  &.size-mini {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 3px;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active {
+    background-color: $button-active-bg;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  > .f-button-content {
+    order: 2;
+    white-space: nowrap;
+  }
+
+  > .f-icon {
+    order: 1;
+    margin-left: 0;
+    margin-right: 0.3em;
+  }
+
+  &.icon-right {
+    > .f-icon {
+      order: 2;
+      margin-right: 0;
+      margin-left: 0.3em;
+    }
+
+    > .f-button-content {
+      order: 1;
+    }
+  }
+
+  &[disabled] {
+    color: $disabled;
+    background: none;
+    pointer-events: none;
+    border-color: $border-color;
+    opacity: 0.5;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:hover {
+      color: rgba(0, 0, 0, .25);
+      border-color: $border-hover-color;
+    }
+  }
+
+  &.dashed {
+    border: 1px dashed $border-color;
+  }
+
+  &.type-error {
+    color: white;
+
+    background-color: $error-1;
+    border-color: $error-1;
+
+    &:active {
+      opacity: 1;
+      color: white;
+      background-color: $error-2;
+      border-color: $error-2;
+    }
+  }
+
+  &.type-warn {
+    color: white;
+    background-color: $warn-1;
+    border-color: $warn-1;
+
+    &:hover {
+      border-color: $warn-2;
+    }
+  }
+
+  &.type-info {
+    color: white;
+    background-color: $info-1;
+    border-color: $info-1;
+
+    &:hover {
+      border-color: $info-2;
+    }
+  }
+
+  &.type-success {
+    color: white;
+    background-color: $success-1;
+    border-color: $success-1;
+
+    &:hover {
+      opacity: 1;
+      border-color: $success-2;
+    }
+  }
+
+  &.type-primary {
+    color: white;
+    background-color: $primary-1;
+    border-color: $primary-1;
+
+    &:hover {
+      opacity: 1;
+      border-color: $primary-2;
+    }
+  }
+
+  &.type-success.plain {
+    color: $success-1;
+    background-color: $button-bg;
+    border-color: $success-1;
+
+    &:hover {
+      opacity: 1;
+      color: white;
+      background-color: $success-1;
+      border-color: $success-1;
+    }
+  }
+
+  &.type-primary.plain {
+    color: $primary-1;
+    background-color: $button-bg;
+    border-color: $primary-1;
+
+    &:hover {
+      opacity: 1;
+      color: white;
+      background-color: $primary-1;
+      border-color: $primary-1;
+    }
+
+  }
+
+  &.type-info.plain {
+    color: $grey;
+    background-color: $button-bg;
+    border-color: $grey;
+
+    &:hover {
+      opacity: 1;
+      color: white;
+      background-color: $grey;
+      border-color: $grey;
+    }
+  }
+
+  &.type-warn.plain {
+    color: $warn-1;
+    background-color: $button-bg;
+    border-color: $warn-1;
+
+    &:hover {
+      opacity: 1;
+      color: white;
+      background-color: $warn-1;
+      border-color: $warn-1;
+    }
+  }
+
+  &.type-error.plain {
+    color: $error-1;
+    background-color: $button-bg;
+    border-color: $error-1;
+
+    &:hover {
+      opacity: 1;
+      color: white;
+      background-color: $error-1;
+      border-color: $error-1;
+    }
+
+    &:active {
+      opacity: 1;
+      color: white;
+      background-color: #d81e06;
+      border-color: #d81e06;
+    }
+  }
+
+  &.danger:hover {
+    border: 6px solid $error-1;
+    border-radius: $border-radius;
+    z-index: 1;
+    opacity: 0;
+    animation: danger 1s ease-out;
+    animation-iteration-count: infinite;
+  }
+
+
+  &.circle {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 16px;
+
+    .f-icon {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    &.type-primary:hover {
+      background-color: $primary-1;
+    }
+
+    &.type-success:hover {
+      background-color: $success-1;
+    }
+
+    &.type-warn:hover {
+      background-color: $warn-1;
+    }
+
+    &.type-error:hover {
+      background-color: $red-1;
+    }
+
+    &.type-info:hover {
+      background-color: $info-1;
+    }
+  }
+
+  .loading {
+    animation: spin 1s infinite linear;
+  }
+
+  &.loadingCloak {
+    opacity: .5;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
