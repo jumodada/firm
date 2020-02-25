@@ -24,6 +24,10 @@
   &-icon-right{
     right: 5px;
   }
+  &-icon-cancel{
+    right: 8px;
+    cursor: pointer;
+  }
    input ,textarea{
     color: $text;
     height: $input-height;
@@ -64,6 +68,18 @@
     min-height: $input-height;
     resize: vertical;
     padding: 6px 8px;
+  }
+  &-large{
+    input ,textarea{
+      height: $input-large-height;
+      font-size:$font-size-large;
+    }
+  }
+  &-small{
+    input ,textarea{
+      height: $input-small-height;
+      font-size:$font-size-small;
+    }
   }
   &-has-icon-left{
     input{

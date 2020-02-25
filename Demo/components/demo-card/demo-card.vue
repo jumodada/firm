@@ -42,9 +42,9 @@
         }
         .demo-card-description{
             padding: 10px 10px 10px 20px;
-            color: #57410b;
+            color: #1a2a3a;
             code{
-                color: #57410b;
+                color: #1a2a3a;
                 background-color: #ffecd9;
                 margin: 0 4px;
                 display: inline-block;
