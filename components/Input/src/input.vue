@@ -1,57 +1,73 @@
 <template>
-<div class="f-input-wrapper" ref="wrapper" :disabled="disabled">
-    <input type="text"
-           class="f-form-placeholder"
-           :value="value"
-           :disabled="disabled"
-           :readonly="readonly"
-           :placeholder="placeholder"
-           :class="{error:error}"
-           @input="$emit('input',$event.target.value)"
-           @change="$emit('change',$event.target.value)"
-           @blur="$emit('blur',$event.target.value)"
-           @focus="$emit('focus',$event.target.value)"
-           ref="input"
+    <div :class="inputClass" ref="wrapper" :disabled="disabled">
+        <Icon :class="iconClass"  font-size="18px" v-if="icon" :name="icon"></Icon>
+        <input type="text"
+               class="f-form-placeholder"
+               :value="value"
+               :disabled="disabled"
+               :readonly="readonly"
+               :maxlength="maxLength"
+               :placeholder="placeholder"
+               @input="$emit('input',$event.target.value)"
+               @change="$emit('change',$event.target.value)"
+               @blur="$emit('blur',$event.target.value)"
+               @focus="$emit('focus',$event.target.value)"
+               ref="input"
 
-    >
-    <xIcon v-if="error" name="gantan" color="#F1453D"></xIcon>
-    <div class="cloak" v-if="disabled" ref="cloak"></div>
-    <span v-if="error" :class="{errorMessage:error}">{{error}}</span>
-</div>
+        >
+        <span class="f-input-surplus-bar" v-if="showSurplus&&!icon">
+                {{this.value.length}}/{{this.maxLength}}
+        </span>
+    </div>
 
 </template>
 
 <script>
-    import xIcon from '../../icon/src/icon'
+    import Icon from '../../icon/src/icon'
+
     export default {
         name: "f-input",
-        components:{
-            xIcon
+        components: {
+            Icon
         },
-        props:{
-            value:String,
-            placeholder:String,
-            disabled:{
-                type:Boolean,
-                default:false
+        computed: {
+            inputClass() {
+                let positionClass = this.icon && this.iconPosition?`f-input-has-icon-${this.iconPosition}`:''
+                return [
+                    'f-input',
+                    positionClass
+                ]
             },
-            readonly:{
-                type:Boolean,
-                default:false
-            },
-            error:{
-                type:String,
-                validator(val){
-                    if(val.length>10)return console.error('不能多于十个字')
-                    return true
-                }
+            iconClass() {
+              return [
+                  'f-input-icon',
+                  `f-input-icon-${this.iconPosition}`
+              ]
             }
         },
-        mounted(){
-            if(this.disabled){
-                 this.$refs.cloak.style.width = getComputedStyle(this.$refs.wrapper).width
-            }
-
-        }
+        props: {
+            value: String,
+            maxLength: Number,
+            placeholder: String,
+            showSurplus:{
+              type:Boolean,
+              default:false
+            },
+            icon: String,
+            iconPosition: {
+                type: String,
+                default: 'left',
+                validator: val => ['left', 'right'].indexOf(val) > -1
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            readonly: {
+                type: Boolean,
+                default: false
+            },
+        },
+        methods: {}
     }
 </script>

@@ -1,7 +1,8 @@
-.f-input-wrapper{
+.f-input{
   font-size: 14px;
   display: inline-flex;
   align-items: center;
+  position: relative;
   > :not(:last-child){
     margin-right: .3em;
   }
@@ -11,15 +12,35 @@
     z-index: 2;
     opacity: 0;
   }
-  > input{
+  &-icon{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    fill:$text;
+  }
+  &-icon-left{
+    left: 8px;
+  }
+  &-icon-right{
+    right: 5px;
+  }
+   input{
     color: $text;
     height: $input-height;
-    border:1px solid $border-color;
+    border:$border-solid;
     border-radius: 5px;
     padding: 0 8px;
     font-size: inherit;
     transition: .23s all ease;
-
+     &::-webkit-input-placeholder{
+       color: $grey-3;
+     }
+     &:-moz-placeholder {
+       color: $grey-3;
+     }
+     &:-ms-input-placeholder {
+       color: $grey-3;
+     }
     &:hover{
       border-color: $border-color;
     }
@@ -28,16 +49,36 @@
       outline: none;
     }
     &[disabled]{
-      border-color: #ccc;
-      color:#ccc;
+      border-color: $border-color;
+      color:$disabled-text;
       cursor: not-allowed;
       pointer-events: none;
     }
     &.error{
-      border-color: $red;
+      border-color: $error-1;
 
     }
 
+  }
+  &-has-icon-left{
+    input{
+      padding-left:30px;
+    }
+  }
+  &-has-icon-right{
+    input{
+      padding-right:30px;
+    }
+  }
+  &-surplus-bar{
+    color:$text-3;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    z-index: 2;
+    padding-left: 6px;
+    background-color: $grey-1;
+    transform: translateY(-50%);
   }
   &[disabled]{
     cursor: not-allowed;

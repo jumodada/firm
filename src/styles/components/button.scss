@@ -85,7 +85,7 @@
   }
 
   &[disabled] {
-    color: $disabled;
+    color: $disabled-text;
     background: none;
     pointer-events: none;
     border-color: $border-color;

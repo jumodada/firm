@@ -1,9 +1,9 @@
 @import "color/color";
 
 
-$text:#1a2a3a;
-$text-hover:#2a3a4a;
-$text-disabled:#7a8a9a;
+$text:$grey-7;
+$text-2:$grey-5;
+$text-3:$grey-4;
 
 $line-1:$grey;
 $line-2:$grey-3;
@@ -13,11 +13,13 @@ $link-1:$blue-4;
 $link-2:$blue-5;
 $link-3:$blue-6;
 
-$disabled:$grey-3;
+$disabled-text:$grey-3;
+$disabled-bg:$grey-6;
 
 $border-color:$grey-3;
 $border-hover-color:$grey-7;
 $border-radius: 4px;
+$border-solid:1px solid $border-color;
 
 $primary-1:$blue;
 $primary-2:$blue-5;
@@ -39,7 +41,7 @@ $shadow-down: 0 1px 5px $shadow-color;
 $shadow-left: -1px 0 5px $shadow-color;
 $shadow-right: 1px 0 5px $shadow-color;
 $shadow-focus-1: 0 0 10px 1px $blue-5, 0 0 1px $blue-6;
-$shadow-focus-2:0 0 5px 1px $blue, 0 0 1px $blue-6;
+$shadow-focus-2:0 0 3px 1px $blue, 0 0 1px $blue-6;
 
 $button-active-bg: #ffffff;
 $button-bg: $grey-1;
@@ -48,9 +50,3 @@ $input-small-height:26px;
 $input-height:30px;
 $input-large-height:34px;
 
-
-.f-form-placeholder{
-  &::-webkit-input-placeholder,&::-moz-placeholder,&:-ms-input-placeholder  {
-    color: $grey-2;
-  }
-}
