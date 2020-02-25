@@ -1,6 +1,6 @@
 .f-input{
   font-size: 14px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   position: relative;
   > :not(:last-child){
@@ -24,14 +24,14 @@
   &-icon-right{
     right: 5px;
   }
-   input{
+   input ,textarea{
     color: $text;
     height: $input-height;
     border:$border-solid;
-    border-radius: 5px;
-    padding: 0 8px;
+    border-radius: $border-radius;
+    padding: $input-padding;
     font-size: inherit;
-    transition: .23s all ease;
+    transition: .23s box-shadow ease;
      &::-webkit-input-placeholder{
        color: $grey-3;
      }
@@ -60,6 +60,11 @@
     }
 
   }
+  textarea{
+    min-height: $input-height;
+    resize: vertical;
+    padding: 6px 8px;
+  }
   &-has-icon-left{
     input{
       padding-left:30px;
@@ -80,12 +85,23 @@
     background-color: $grey-1;
     transform: translateY(-50%);
   }
+  &-surplus-bar-disabled{
+    background-color: $grey-2;
+  }
+  &-surplus-bar-textarea{
+    top:auto;
+    bottom: 2px;
+    transform: translateY(0);
+  }
   &[disabled]{
     cursor: not-allowed;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
+   input,textarea{
+     background-color: $grey-2;
+   }
   }
   .errorMessage{
     color: $red;
