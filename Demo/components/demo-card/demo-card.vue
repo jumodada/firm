@@ -1,4 +1,5 @@
 <style lang="scss">
+
     .demo-card-wrapper {
         width: 60vw;
         position: relative;
@@ -7,26 +8,31 @@
         flex-direction: column;
         border: 1px solid #e2e2e2;
         border-radius: 5px;
+
         .demo-card-source {
             padding: 33px 23px;
-            button{
+
+            button {
                 margin-right: 10px;
             }
-            .f-button-group{
-                button{
+
+            .f-button-group {
+                button {
                     margin-right: 0;
                 }
             }
-            .row{
+
+            .row {
                 margin-top: 15px;
             }
         }
-        .demo-card-tip{
+
+        .demo-card-tip {
             position: absolute;
             top: 10px;
-            right:10px;
+            right: 10px;
         }
-        .demo-card-drop{
+        .demo-card-drop {
             height: 40px;
             width: 100%;
             cursor: pointer;
@@ -34,22 +40,27 @@
             justify-content: center;
             align-items: center;
             transition: .3s transform ease-in-out;
-            &:hover{
+
+            &:hover {
                 transform: translateY(7px);
             }
-            &-icon{
+
+            &-icon {
                 transition: .23s transform ease;
             }
-            &-down{
+
+            &-down {
                 transition: .23s all ease-in-out;
                 width: 100%;
                 padding: 10px;
             }
         }
-        .demo-card-description{
+
+        .demo-card-description {
             padding: 10px 10px 10px 20px;
             color: #1a2a3a;
-            code{
+
+            code {
                 color: #1a2a3a;
                 background-color: #ffecd9;
                 margin: 0 4px;
@@ -59,12 +70,18 @@
                 border-radius: 4px;
             }
         }
-        .icon-reverse{
+
+        .icon-reverse {
             transform: rotate(180deg);
-            &:hover{
+
+            &:hover {
                 transform: rotate(180deg) translateY(7px) !important;
             }
         }
+    }
+    .demo-card-tip-content {
+        color: #ff6666;
+        font-size: 13px;
     }
 </style>
 
@@ -74,18 +91,23 @@
         <div class="demo-card-source">
             <slot name="source"></slot>
         </div>
-        <f-icon v-if="tipShow" class="demo-card-tip" color="#F1453D" name="gantan"></f-icon>
+        <f-popover position="bottomRight" trigger="hover" class="demo-card-tip">
+            <f-icon v-if="tipShow" color="#F1453D" name="gantan"></f-icon>
+            <div class="demo-card-tip-content" slot="content">
+               {{tip}}
+            </div>
+        </f-popover>
         <div class="demo-card-description">
             <slot></slot>
         </div>
-       <transition @before-enter="beforeEnter"
-                   @enter="enter"
-                   @before-leave="beforeLeave"
-                   @leave="leave">
-           <div class="demo-card-drop-down" v-show="dropDownShow">
-               <slot name="highlight"></slot>
-           </div>
-       </transition>
+        <transition @before-enter="beforeEnter"
+                    @enter="enter"
+                    @before-leave="beforeLeave"
+                    @leave="leave">
+            <div class="demo-card-drop-down" v-show="dropDownShow">
+                <slot name="highlight"></slot>
+            </div>
+        </transition>
         <div :class="{'icon-reverse':dropDownShow}" class="demo-card-drop" @click="dropDownShow=!dropDownShow">
             <f-icon class="demo-card-drop-icon"
                     name="xia" color="#B1B1B1"></f-icon>
@@ -98,11 +120,12 @@
         name: 'demo-card',
         data() {
             return {
-                dropDownShow:false,
-                tipShow:false
+                dropDownShow: false,
+                tipShow: false,
+                tip: ''
             }
         },
-        methods:{
+        methods: {
             beforeEnter(el) {
                 el.style.height = 0
                 el.style.paddingTop = 0
@@ -125,11 +148,12 @@
             },
         },
         mounted() {
-            let {innerText}  = this.$slots.default[0].elm
+            let {innerText} = this.$slots.default[0].elm
             let arr = innerText.split('/')
-            if(arr.length===3){
+            if (arr.length === 3) {
                 this.$slots.default[0].elm.innerText = arr[0]
                 this.tipShow = true
+                this.tip = arr[1]
             }
         }
     }
