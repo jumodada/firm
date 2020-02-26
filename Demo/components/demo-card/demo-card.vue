@@ -1,6 +1,7 @@
 <style lang="scss">
     .demo-card-wrapper {
         width: 60vw;
+        position: relative;
         margin-left: 21px;
         display: inline-flex;
         flex-direction: column;
@@ -19,6 +20,11 @@
             .row{
                 margin-top: 15px;
             }
+        }
+        .demo-card-tip{
+            position: absolute;
+            top: 10px;
+            right:10px;
         }
         .demo-card-drop{
             height: 40px;
@@ -68,6 +74,7 @@
         <div class="demo-card-source">
             <slot name="source"></slot>
         </div>
+        <f-icon v-if="tipShow" class="demo-card-tip" color="#F1453D" name="gantan"></f-icon>
         <div class="demo-card-description">
             <slot></slot>
         </div>
@@ -91,7 +98,8 @@
         name: 'demo-card',
         data() {
             return {
-                dropDownShow:false
+                dropDownShow:false,
+                tipShow:false
             }
         },
         methods:{
@@ -115,6 +123,14 @@
                 el.style.paddingTop = 0
                 el.style.paddingBottom = 0
             },
+        },
+        mounted() {
+            let {innerText}  = this.$slots.default[0].elm
+            let arr = innerText.split('/')
+            if(arr.length===3){
+                this.$slots.default[0].elm.innerText = arr[0]
+                this.tipShow = true
+            }
         }
     }
 </script>

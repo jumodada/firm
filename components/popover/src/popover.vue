@@ -10,7 +10,7 @@
                 @after-leave="afterLeave"
         >
             <div ref="contentWrapper" class="content-wrapper"
-                 :class="[[`position-${position}`],themeStyle]"
+                 :class="[[`position-${position}`]]"
                  @mouseenter="hoverInOPen"
                  @mouseleave="hoverOutAndClose"
                  v-show="visible">
@@ -28,7 +28,7 @@
 
 <script>
     export default {
-        name: "x-popover",
+        name: "f-popover",
         data() {
             return {
                 visible: false,
@@ -52,18 +52,7 @@
                 default: 'click',
                 validator:(val)=>['click', 'hover', 'focus'].indexOf(val) > -1
             },
-            theme: {
-                type: String,
-                default: 'blackBorder',
-                validator:(val)=>['blackBorder', 'whiteBg'].indexOf(val) > -1
-            },
-        },
-        computed: {
-            themeStyle() {
-                if (this.theme === 'whiteBg') {
-                    return 'theme2'
-                }
-            }
+
         },
         methods: {
             removeAll() {
@@ -268,7 +257,3 @@
         },
     }
 </script>
-
-<style scoped lang="scss">
-    @import "popover";
-</style>

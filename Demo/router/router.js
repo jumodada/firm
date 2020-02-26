@@ -56,13 +56,13 @@ export default [
                 component: (resolve) => require(['../view/components/Input/index.md'], resolve)
             },
             {
-                path: '/components/Layout',
-                name: 'Layout',
+                path: '/components/Popover',
+                name: 'Popover',
                 meta: {
-                    name: '布局',
+                    name: '气泡',
                     type: 'component'
                 },
-                component: (resolve) => require(['../view/components/Layout/index.md'], resolve)
+                component: (resolve) => require(['../view/components/Popover/index.md'], resolve)
             },
             {
                 path: '/components/Table',

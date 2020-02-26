@@ -73,7 +73,7 @@ export default{
 :::
 
 ## 长度限制与清除
-:::demo 设置`max-length`控制输入字符的长度，`show-limit`可以开启长度提示。同时提供`clearable`，设置为`true`时，hover出现删除图标，点击可以清空输入框，并触发`on-cancel`事件。
+:::demo 设置`max-length`控制输入字符的长度，`show-limit`可以开启长度提示。同时提供`clearable`，设置为`true`时，hover出现删除图标，点击可以清空输入框，并触发`on-cancel`事件。/这是测试的语句/
 ```html
 <f-row>
 <f-input show-limit :max-length="10"  size="large" icon="zhuce" :width="300"   v-model="value1" placeholder="用户名不得超过10个字"></f-input>

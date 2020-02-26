@@ -8,6 +8,7 @@ import Row from '../components/layout/row'
 import Table from '../components/table'
 import Upload from '../components/Upload'
 import Progress from '../components/progress'
+import Popover from '../components/popover'
 
 const components = [
     Button,
@@ -19,7 +20,8 @@ const components = [
     Table,
     Upload,
     Progress,
-    Input
+    Input,
+    Popover
 ]
 
 const install = function (Vue) {
@@ -36,6 +38,7 @@ export default {
     Icon,
     Table,
     Upload,
-    Progress
+    Progress,
+    Popover
 }
 

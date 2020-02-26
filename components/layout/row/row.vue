@@ -49,6 +49,7 @@
 <style scoped lang="scss">
 .row{
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     &-left{
         justify-content: flex-start;
