@@ -101,6 +101,9 @@
     background-color: $grey-1;
     transform: translateY(-50%);
   }
+  &-surplus-bar-outside{
+    left:calc(100% + 3px);
+  }
   &-surplus-bar-disabled{
     background-color: $grey-2;
   }

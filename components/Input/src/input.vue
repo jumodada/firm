@@ -77,7 +77,7 @@
                 return this.clearable?!(this.icon&&this.cancelIconShow&&this.iconPosition==='right'):this.icon
             },
             maxLengthShow() {
-                return this.showLimit && this.iconPosition!=='right' && !this.cancelIconShow
+                return (this.showLimit && this.iconPosition!=='right' && !this.cancelIconShow)||this.showLimitOutside
             },
             inputStyle() {
                 let style = {}
@@ -106,6 +106,7 @@
                     'f-input-surplus-bar',
                     {
                         'f-input-surplus-bar-textarea': this.type === 'textarea',
+                        'f-input-surplus-bar-outside': this.showLimitOutside,
                         'f-input-surplus-bar-disabled': this.disabled
                     }
                 ]
@@ -150,6 +151,10 @@
                 default: 'off'
             },
             showLimit: {
+                type: Boolean,
+                default: false
+            },
+            showLimitOutside:{
                 type: Boolean,
                 default: false
             },
