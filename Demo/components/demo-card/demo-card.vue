@@ -12,10 +12,6 @@
         .demo-card-source {
             padding: 33px 23px;
 
-            button {
-                margin-left: 5px;
-                margin-right: 5px;
-            }
 
             .f-button-group {
                 button {
@@ -85,12 +81,18 @@
         color: #ff6666;
         font-size: 13px;
     }
+    .button{
+        button {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
 </style>
 
 
 <template>
     <div class="demo-card-wrapper">
-        <div class="demo-card-source">
+        <div :class="{button:$route.name==='button'}" class="demo-card-source">
             <slot name="source"></slot>
         </div>
         <f-popover position="bottomEnd" class="demo-card-tip">

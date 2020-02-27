@@ -31,10 +31,14 @@
 
     export default {
         name: "f-popover",
+        model: {
+            prop: 'visibleProps',
+            event: 'change'
+        },
         data() {
             return {
-                visible: false,
-                outClick: false
+                outClick: false,
+                visible: false
             }
         },
         mounted() {
@@ -47,7 +51,7 @@
             position: {
                 type: String,
                 default: 'top',
-                validator: (val) => ['top', 'topStart', 'topEnd', 'bottomStart', 'bottom', 'bottomEnd', 'leftStart', 'left', 'leftEnd', 'rightTop', 'right', 'rightBottom'].indexOf(val) > -1
+                validator: (val) => ['top', 'topStart', 'topEnd', 'bottomStart', 'bottom', 'bottomEnd', 'leftStart', 'left', 'leftEnd', 'rightStart', 'right', 'rightEnd'].indexOf(val) > -1
             },
             outside: {
                 type: Boolean,
@@ -58,7 +62,10 @@
                 default: 'click',
                 validator: (val) => ['click', 'hover', 'focus'].indexOf(val) > -1
             },
-
+            visibleProps: {
+                type: Boolean,
+                default: false
+            }
         },
         methods: {
             removeAll() {
@@ -69,23 +76,23 @@
                 clearTimeout(this.timer)
             },
             contentPosition() {
-                const {contentWrapper, trigger,popover} = this.$refs;
-                (this.outside ? document.body :popover).appendChild(contentWrapper)
+                const {contentWrapper, trigger, popover} = this.$refs;
+                (this.outside ? document.body : popover).appendChild(contentWrapper)
                 let {top, left, height, width} = trigger.getBoundingClientRect()
                 let contentWidth = contentWrapper.clientWidth
                 let contentHeight = contentWrapper.clientHeight
                 let widthDiffer = -(Number(contentWidth) - width)
                 let heightDiffer = -(Number(contentHeight) - height)
-                let _tTop,_rTop,_tLeft,_rLeft
-                if(this.outside){
+                let _tTop, _rTop, _tLeft, _rLeft
+                if (this.outside) {
                     _tTop = top + window.scrollY
                     _rTop = top + height + window.scrollY
                     _tLeft = top + left + window.scrollX
                     _rLeft = left + width + window.scrollX
-                }else{
-                    _tTop = _rTop = _tLeft = _rLeft= 0
+                } else {
+                    _tTop = _rTop = _tLeft = _rLeft = 0
                 }
-                let position  = {
+                let position = {
                     topStart: {
                         top: _tTop,
                         left: _tLeft,
@@ -119,32 +126,32 @@
                     bottomStart: {
                         top: _rTop,
                         left: _rLeft,
-                        transition: this.outside?`translate(-${width}px,0)`:`translate(0,${height}px)`
+                        transition: this.outside ? `translate(-${width}px,0)` : `translate(0,${height}px)`
                     },
                     bottom: {
                         top: _rTop,
                         left: _rLeft,
-                        transition: this.outside?`translate(${-width}px,0)`:`translate(0,${height}px)`
+                        transition: this.outside ? `translate(${-width}px,0)` : `translate(0,${height}px)`
                     },
                     bottomEnd: {
                         top: _rTop,
                         left: _rLeft,
-                        transition: this.outside?`translate(-${contentWidth}px,0)`:`translate(${widthDiffer}px,${height}px)`
+                        transition: this.outside ? `translate(-${contentWidth}px,0)` : `translate(${widthDiffer}px,${height}px)`
                     },
-                    rightTop: {
+                    rightStart: {
                         top: _tTop,
                         left: _rLeft,
-                        transition: this.outside?`translate(0,0)`:`translate(${width}px,0)`
+                        transition: this.outside ? `translate(0,0)` : `translate(${width}px,0)`
                     },
                     right: {
                         top: _tTop,
                         left: _rLeft,
-                        transition: this.outside?`translate(0,0)`:`translate(${width}px,${heightDiffer / 2}px)`
+                        transition: this.outside ? `translate(0,0)` : `translate(${width}px,${heightDiffer / 2}px)`
                     },
-                    rightBottom: {
+                    rightEnd: {
                         top: _tTop,
                         left: _rLeft,
-                        transition: this.outside?`translate(0,0)`:`translate(${width}px,${heightDiffer / 2}px)`
+                        transition: this.outside ? `translate(0,0)` : `translate(${width}px,${heightDiffer / 2}px)`
                     }
 
                 }
@@ -270,5 +277,17 @@
                 }
             }
         },
+        watch: {
+            visible() {
+                if (this.visible !== this.visibleProps) {
+                    this.$emit('change', this.visible)
+                }
+            },
+            visibleProps() {
+                if (this.visible !== this.visibleProps) {
+                    this.visible = this.visibleProps
+                }
+            }
+        }
     }
 </script>

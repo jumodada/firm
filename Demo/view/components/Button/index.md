@@ -5,7 +5,7 @@
 :::demo 支持五种类型的按钮，使用`dashed`、`type`、`round`、`plain`,`circle`为按钮添加固定样式
 ```html
 <f-row>
-<f-button>Default</f-button> 
+<f-button >Default</f-button> 
 <f-button dashed>Dashed</f-button> 
 <f-button type="primary">Type</f-button> 
 <f-button round>Round</f-button>  
@@ -20,8 +20,6 @@
 <f-button type="error">Error</f-button> 
 <f-button type="success">Success</f-button>
 </f-row>
- 
-
 ```
 :::
 

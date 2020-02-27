@@ -186,7 +186,7 @@
       bottom: calc(100% - 1px);
     }
   }
-  &.position-rightTop {
+  &.position-rightStart {
     margin-left: 10px;
     &::before, &::after {
       transform: translateY(10%);
@@ -220,7 +220,7 @@
       right: calc(100% - 1px);
     }
   }
-  &.position-rightBottom {
+  &.position-rightEnd {
     margin-left: 10px;
     &::before, &::after {
       transform: translateY(-103%);
