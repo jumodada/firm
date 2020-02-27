@@ -9,7 +9,7 @@
                 @leave="leave"
                 @after-leave="afterLeave"
         >
-            <div ref="contentWrapper" class="content-wrapper"
+            <div ref="contentWrapper" class="f-popover-content-wrapper"
                  :class="[[`position-${position}`]]"
                  @mouseenter="hoverInOPen"
                  @mouseleave="hoverOutAndClose"
@@ -19,14 +19,16 @@
                 </div>
             </div>
         </transition>
-        <span ref="trigger"
-              style="display: inline-block">
+        <span ref="trigger" style="display: inline-block">
             <slot></slot>
         </span>
     </div>
 </template>
 
 <script>
+
+    import {on, off} from "../../../src/utils/dom"
+
     export default {
         name: "f-popover",
         data() {
@@ -45,91 +47,104 @@
             position: {
                 type: String,
                 default: 'top',
-                validator:(val) =>['top', 'topLeft', 'topRight', 'bottomLeft', 'bottom', 'bottomRight', 'leftTop', 'left', 'leftBottom', 'rightTop', 'right', 'rightBottom'].indexOf(val) > -1
+                validator: (val) => ['top', 'topStart', 'topEnd', 'bottomStart', 'bottom', 'bottomEnd', 'leftStart', 'left', 'leftEnd', 'rightTop', 'right', 'rightBottom'].indexOf(val) > -1
+            },
+            outside: {
+                type: Boolean,
+                default: false
             },
             trigger: {
                 type: String,
                 default: 'click',
-                validator:(val)=>['click', 'hover', 'focus'].indexOf(val) > -1
+                validator: (val) => ['click', 'hover', 'focus'].indexOf(val) > -1
             },
 
         },
         methods: {
             removeAll() {
                 let {popover, contentWrapper} = this.$refs
-                this.event[this.trigger].event.forEach(eventName => popover.removeEventListener(eventName, this.event[this.trigger].fun))
+                this.event[this.trigger].event.forEach(eventName => off(popover, eventName, this.event[this.trigger].fn))
                 this.$el.remove()
                 contentWrapper.remove()
                 clearTimeout(this.timer)
             },
             contentPosition() {
-                const {contentWrapper, trigger} = this.$refs
-                document.body.appendChild(contentWrapper)
+                const {contentWrapper, trigger,popover} = this.$refs;
+                (this.outside ? document.body :popover).appendChild(contentWrapper)
                 let {top, left, height, width} = trigger.getBoundingClientRect()
                 let contentWidth = contentWrapper.clientWidth
                 let contentHeight = contentWrapper.clientHeight
                 let widthDiffer = -(Number(contentWidth) - width)
                 let heightDiffer = -(Number(contentHeight) - height)
-                let position = {
-                    topLeft: {
-                        top: top + window.scrollY,
-                        left: left + window.scrollX,
+                let _tTop,_rTop,_tLeft,_rLeft
+                if(this.outside){
+                    _tTop = top + window.scrollY
+                    _rTop = top + height + window.scrollY
+                    _tLeft = top + left + window.scrollX
+                    _rLeft = left + width + window.scrollX
+                }else{
+                    _tTop = _rTop = _tLeft = _rLeft= 0
+                }
+                let position  = {
+                    topStart: {
+                        top: _tTop,
+                        left: _tLeft,
                         transition: `translate(0,-100%)`
                     },
                     top: {
-                        top: top + window.scrollY,
-                        left: left + window.scrollX,
+                        top: _tTop,
+                        left: _tLeft,
                         transition: `translate(${widthDiffer / 2}px,-100%)`
                     },
-                    topRight: {
-                        top: top + window.scrollY,
-                        left: left + window.scrollX,
+                    topEnd: {
+                        top: _tTop,
+                        left: _tLeft,
                         transition: `translate(calc(-100% + ${width}px),-100%)`
                     },
-                    leftTop: {
-                        top: top + window.scrollY,
-                        left: left + window.scrollX,
+                    leftStart: {
+                        top: _tTop,
+                        left: _tLeft,
                         transition: `translate(-100%,0)`
                     },
                     left: {
-                        top: top + window.scrollY,
-                        left: left + window.scrollX,
+                        top: _tTop,
+                        left: _tLeft,
                         transition: `translate(-100%,${heightDiffer / 2}px)`
                     },
-                    leftBottom: {
-                        top: top + window.scrollY,
-                        left: left + window.scrollX,
+                    leftEnd: {
+                        top: _tTop,
+                        left: _tLeft,
                         transition: `translate(-100%,-50%)`
                     },
-                    bottomLeft: {
-                        top: top + height + window.scrollY,
-                        left: left + window.scrollX,
-                        transition: `translate(0,0)`
+                    bottomStart: {
+                        top: _rTop,
+                        left: _rLeft,
+                        transition: this.outside?`translate(-${width}px,0)`:`translate(0,${height}px)`
                     },
                     bottom: {
-                        top: top + height + window.scrollY,
-                        left: left + window.scrollX,
-                        transition: `translate(${widthDiffer / 2}px,0)`
+                        top: _rTop,
+                        left: _rLeft,
+                        transition: this.outside?`translate(${-width}px,0)`:`translate(0,${height}px)`
                     },
-                    bottomRight: {
-                        top: top + height + window.scrollY,
-                        left: left + window.scrollX,
-                        transition: `translate(calc(-100% + ${width}px),0)`
+                    bottomEnd: {
+                        top: _rTop,
+                        left: _rLeft,
+                        transition: this.outside?`translate(-${contentWidth}px,0)`:`translate(${widthDiffer}px,${height}px)`
                     },
                     rightTop: {
-                        top: top + window.scrollY,
-                        left: left + width + window.scrollX,
-                        transition: `translate(0,0)`
+                        top: _tTop,
+                        left: _rLeft,
+                        transition: this.outside?`translate(0,0)`:`translate(${width}px,0)`
                     },
                     right: {
-                        top: top + window.scrollY,
-                        left: left + width + window.scrollX,
-                        transition: `translate(0,${heightDiffer / 2}px)`
+                        top: _tTop,
+                        left: _rLeft,
+                        transition: this.outside?`translate(0,0)`:`translate(${width}px,${heightDiffer / 2}px)`
                     },
                     rightBottom: {
-                        top: top + window.scrollY,
-                        left: left + width + window.scrollX,
-                        transition: `translate(0,-50%)`
+                        top: _tTop,
+                        left: _rLeft,
+                        transition: this.outside?`translate(0,0)`:`translate(${width}px,${heightDiffer / 2}px)`
                     }
 
                 }
@@ -141,24 +156,24 @@
                 this.event = {
                     click: {
                         event: ['click'],
-                        fun: this.onClick
+                        fn: this.onClick
                     },
                     hover: {
                         event: ['mouseenter', 'mouseleave'],
-                        fun: this.hoverToggle
+                        fn: this.hoverToggle
                     },
                     focus: {
                         event: ['click'],
-                        fun: this.focusToggle
+                        fn: this.focusToggle
                     }
                 }
-                this.event[this.trigger].event.forEach(eventName => popover.addEventListener(eventName, this.event[this.trigger].fun))
+                this.event[this.trigger].event.forEach(eventName => on(popover, eventName, this.event[this.trigger].fn))
             },
             listenToDocument() {
-                document.addEventListener('click', this.eventHandler)
+                on(document, 'click', this.eventHandler)
             },
             removeListener() {
-                document.removeEventListener('click', this.eventHandler)
+                off(document, 'click', this.eventHandler)
             },
 
             isConWrapper(e) {    //判断点击的地方是否在contentWrapper里面

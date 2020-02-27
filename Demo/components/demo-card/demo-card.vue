@@ -13,11 +13,13 @@
             padding: 33px 23px;
 
             button {
-                margin-right: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
             }
 
             .f-button-group {
                 button {
+                    margin-left: 0;
                     margin-right: 0;
                 }
             }
@@ -91,7 +93,7 @@
         <div class="demo-card-source">
             <slot name="source"></slot>
         </div>
-        <f-popover position="bottomRight" trigger="hover" class="demo-card-tip">
+        <f-popover position="bottomEnd" class="demo-card-tip">
             <f-icon v-if="tipShow" color="#F1453D" name="gantan"></f-icon>
             <div class="demo-card-tip-content" slot="content">
                {{tip}}

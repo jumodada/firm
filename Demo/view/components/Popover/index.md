@@ -4,8 +4,8 @@
 ## 基础用法
 :::demo 暂定
 ```html
-<f-popover>
-
+<f-popover  position="rightBottom">
+<f-button>Top</f-button>
 </f-popover>
 
 <script>

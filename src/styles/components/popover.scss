@@ -5,14 +5,11 @@
   position: relative;
 }
 .contentSlot{
-  transition: .3s all ease-in-out;
-  max-width: 15em;
-  max-height: 15em;
   overflow: scroll;
   overflow-x:auto;
   overflow-y: auto;
 }
-.content-wrapper {
+.f-popover-content-wrapper {
   position: absolute;
   border: 1px solid $border-color;
   border-radius: $border-radius;
@@ -21,6 +18,8 @@
   transition: .3s all ease-in-out;
   padding: .5em 1em;
   z-index: 1000;
+  min-width: 150px;
+  min-height: 30px;
   word-break: break-all;
   &::before, &::after {
     content: '';
@@ -30,7 +29,7 @@
     height: 0;
     position: absolute;
   }
-  &.position-topLeft{
+  &.position-topStart{
     transform: translateY(-100%);
     margin-top: -10px;
     &::before, &::after {
@@ -65,7 +64,7 @@
       top: calc(100% - 1px);
     }
   }
-  &.position-topRight{
+  &.position-topEnd{
     transform: translateY(-100%);
     margin-top: -10px;
     &::before, &::after {
@@ -83,7 +82,7 @@
       top: calc(100% - 1px);
     }
   }
-  &.position-leftTop{
+  &.position-leftStart{
     transform: translateX(-100%);
     margin-left: -10px;
     &::before, &::after {
@@ -119,7 +118,7 @@
       left: calc(100% - 1px);
     }
   }
-  &.position-leftBottom {
+  &.position-leftEnd {
     transform: translateX(-100%);
     margin-left: -10px;
     &::before, &::after {
@@ -137,7 +136,7 @@
       left: calc(100% - 1px);
     }
   }
-  &.position-bottomLeft {
+  &.position-bottomStart {
     margin-top: 10px;
     &::before, &::after {
       left: 6px;
@@ -170,7 +169,7 @@
       bottom: calc(100% - 1px);
     }
   }
-  &.position-bottomRight {
+  &.position-bottomEnd {
     margin-top: 10px;
     &::before, &::after {
       left: 100%;
