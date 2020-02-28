@@ -26,7 +26,6 @@
         }
 
         .demo-card-tip {
-            position: absolute;
             top: 10px;
             right: 10px;
         }
@@ -95,7 +94,7 @@
         <div :class="{button:$route.name==='button'}" class="demo-card-source">
             <slot name="source"></slot>
         </div>
-        <f-popover position="bottomEnd" class="demo-card-tip">
+        <f-popover position="top" class="demo-card-tip">
             <f-icon v-if="tipShow" color="#F1453D" name="gantan"></f-icon>
             <div class="demo-card-tip-content" slot="content">
                {{tip}}

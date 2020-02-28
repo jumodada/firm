@@ -11,9 +11,8 @@
 }
 .f-popover-content-wrapper {
   position: absolute;
-  border: 1px solid $border-color;
   border-radius: $border-radius;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+  box-shadow: $shadow-down;
   background: white;
   transition: .3s all ease-in-out;
   padding: .5em 1em;

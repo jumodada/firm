@@ -4,14 +4,14 @@
 ## 触发方式
 :::demo 设置`trigger`改变气泡框的触发方式
 ```html
-<f-popover trigger="hover"  position="bottomStart">
+<f-popover trigger="hover"  position="bottom">
 <f-button class="button">Hover</f-button>
   <div slot="content">
   to do something......
   </div>
 </f-popover>
 
-<f-popover trigger="click"  position="bottomStart">
+<f-popover trigger="click"  position="top">
 <f-button class="button">Click</f-button>
   <div slot="content">
   to do something...... 

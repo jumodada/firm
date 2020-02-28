@@ -53,10 +53,6 @@
                 default: 'top',
                 validator: (val) => ['top', 'topStart', 'topEnd', 'bottomStart', 'bottom', 'bottomEnd', 'leftStart', 'left', 'leftEnd', 'rightStart', 'right', 'rightEnd'].indexOf(val) > -1
             },
-            outside: {
-                type: Boolean,
-                default: false
-            },
             trigger: {
                 type: String,
                 default: 'click',
@@ -76,22 +72,21 @@
                 clearTimeout(this.timer)
             },
             contentPosition() {
-                const {contentWrapper, trigger, popover} = this.$refs;
-                (this.outside ? document.body : popover).appendChild(contentWrapper)
+                const {contentWrapper, trigger} = this.$refs;
+                if(contentWrapper.parentElement.nodeName.toLowerCase()!=='body'){
+                    document.body.appendChild(contentWrapper)
+                }
                 let {top, left, height, width} = trigger.getBoundingClientRect()
                 let contentWidth = contentWrapper.clientWidth
                 let contentHeight = contentWrapper.clientHeight
                 let widthDiffer = -(Number(contentWidth) - width)
                 let heightDiffer = -(Number(contentHeight) - height)
+                console.log(left,width,contentWidth)
                 let _tTop, _rTop, _tLeft, _rLeft
-                if (this.outside) {
-                    _tTop = top + window.scrollY
-                    _rTop = top + height + window.scrollY
-                    _tLeft = top + left + window.scrollX
-                    _rLeft = left + width + window.scrollX
-                } else {
-                    _tTop = _rTop = _tLeft = _rLeft = 0
-                }
+                _tTop = top + window.scrollY
+                _rTop = top + height + window.scrollY
+                _tLeft =  left + window.scrollX
+                _rLeft = left + width + window.scrollX
                 let position = {
                     topStart: {
                         top: _tTop,
@@ -101,7 +96,7 @@
                     top: {
                         top: _tTop,
                         left: _tLeft,
-                        transition: `translate(${widthDiffer / 2}px,-100%)`
+                        transition: `translate(${widthDiffer/2}px,-100%)`
                     },
                     topEnd: {
                         top: _tTop,
@@ -121,37 +116,37 @@
                     leftEnd: {
                         top: _tTop,
                         left: _tLeft,
-                        transition: `translate(-100%,-50%)`
+                        transition: `translate(-100%,${heightDiffer}px)`
                     },
                     bottomStart: {
                         top: _rTop,
                         left: _rLeft,
-                        transition: this.outside ? `translate(-${width}px,0)` : `translate(0,${height}px)`
+                        transition:`translate(-${width}px,0)`
                     },
                     bottom: {
                         top: _rTop,
                         left: _rLeft,
-                        transition: this.outside ? `translate(${-width}px,0)` : `translate(0,${height}px)`
+                        transition: `translate(calc(${-(width+contentWidth)/2+'px'}),0)`
                     },
                     bottomEnd: {
                         top: _rTop,
                         left: _rLeft,
-                        transition: this.outside ? `translate(-${contentWidth}px,0)` : `translate(${widthDiffer}px,${height}px)`
+                        transition: `translate(-${contentWidth}px,0)`
                     },
                     rightStart: {
                         top: _tTop,
                         left: _rLeft,
-                        transition: this.outside ? `translate(0,0)` : `translate(${width}px,0)`
+                        transition: `translate(0,0)`
                     },
                     right: {
                         top: _tTop,
                         left: _rLeft,
-                        transition: this.outside ? `translate(0,0)` : `translate(${width}px,${heightDiffer / 2}px)`
+                        transition: `translate(0,0)`
                     },
                     rightEnd: {
                         top: _tTop,
                         left: _rLeft,
-                        transition: this.outside ? `translate(0,0)` : `translate(${width}px,${heightDiffer / 2}px)`
+                        transition: `translate(0,0)`
                     }
 
                 }
