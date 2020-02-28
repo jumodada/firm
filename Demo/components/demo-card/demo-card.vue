@@ -26,6 +26,7 @@
         }
 
         .demo-card-tip {
+            position: absolute;
             top: 10px;
             right: 10px;
         }

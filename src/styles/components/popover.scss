@@ -5,9 +5,8 @@
   position: relative;
 }
 .contentSlot{
-  overflow: scroll;
-  overflow-x:auto;
-  overflow-y: auto;
+
+
 }
 .f-popover-content-wrapper {
   position: absolute;
@@ -20,6 +19,7 @@
   min-width: 150px;
   min-height: 30px;
   word-break: break-all;
+  transform-origin: center top;
   &::before, &::after {
     content: '';
     display: block;

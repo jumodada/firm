@@ -14,7 +14,7 @@
                  @mouseenter="hoverInOPen"
                  @mouseleave="hoverOutAndClose"
                  v-show="visible">
-                <div class="contentSlot" ref="contentSlot">
+                <div class="content-slot" ref="contentSlot">
                     <slot name="content" :close="outerClick"></slot>
                 </div>
             </div>
@@ -72,102 +72,64 @@
                 clearTimeout(this.timer)
             },
             contentPosition() {
-                const {contentWrapper, trigger} = this.$refs;
-                if(contentWrapper.parentElement.nodeName.toLowerCase()!=='body'){
+                const {contentWrapper,trigger} = this.$refs;
+                if (contentWrapper.parentElement.nodeName.toLowerCase() !== 'body') {
                     document.body.appendChild(contentWrapper)
                 }
                 let {top, left, height, width} = trigger.getBoundingClientRect()
-                let contentWidth = contentWrapper.clientWidth
-                let contentHeight = contentWrapper.clientHeight
+                this.setPosition(contentWrapper,top,left,width,height)
+                this.$nextTick(()=>{this.setTransform(contentWrapper,height,width)})
+            },
+            setTransform($el,height,width){
+                let contentWidth = $el.clientWidth
+                let contentHeight = $el.clientHeight
                 let widthDiffer = -(Number(contentWidth) - width)
                 let heightDiffer = -(Number(contentHeight) - height)
-                console.log(left,width,contentWidth)
+                let transform = {
+                    topStart: `translate(0,-100%)`,
+                    top: `translate(${widthDiffer / 2}px,-100%)`,
+                    topEnd: `translate(calc(-100% + ${width}px),-100%)`,
+                    leftStart: `translate(-100%,0)`,
+                    left:`translate(-100%,${heightDiffer / 2}px)`,
+                    leftEnd:`translate(-100%,${heightDiffer}px)`,
+                    bottomStart:`translate(-${width}px,0)`,
+                    bottom:`translate(calc(${-(width + contentWidth) / 2 + 'px'}),0)`,
+                    bottomEnd: `translate(-${contentWidth}px,0)`,
+                    rightStart:`translate(0,0)`,
+                    right: `translate(0,0)`,
+                    rightEnd:`translate(0,0)`
+                }
+                $el.style.transform = transform[this.position]
+            },
+            setPosition($el,top,left,width,height){
                 let _tTop, _rTop, _tLeft, _rLeft
                 _tTop = top + window.scrollY
                 _rTop = top + height + window.scrollY
-                _tLeft =  left + window.scrollX
+                _tLeft = left + window.scrollX
                 _rLeft = left + width + window.scrollX
                 let position = {
-                    topStart: {
-                        top: _tTop,
-                        left: _tLeft,
-                        transition: `translate(0,-100%)`
-                    },
-                    top: {
-                        top: _tTop,
-                        left: _tLeft,
-                        transition: `translate(${widthDiffer/2}px,-100%)`
-                    },
-                    topEnd: {
-                        top: _tTop,
-                        left: _tLeft,
-                        transition: `translate(calc(-100% + ${width}px),-100%)`
-                    },
-                    leftStart: {
-                        top: _tTop,
-                        left: _tLeft,
-                        transition: `translate(-100%,0)`
-                    },
-                    left: {
-                        top: _tTop,
-                        left: _tLeft,
-                        transition: `translate(-100%,${heightDiffer / 2}px)`
-                    },
-                    leftEnd: {
-                        top: _tTop,
-                        left: _tLeft,
-                        transition: `translate(-100%,${heightDiffer}px)`
-                    },
-                    bottomStart: {
-                        top: _rTop,
-                        left: _rLeft,
-                        transition:`translate(-${width}px,0)`
-                    },
-                    bottom: {
-                        top: _rTop,
-                        left: _rLeft,
-                        transition: `translate(calc(${-(width+contentWidth)/2+'px'}),0)`
-                    },
-                    bottomEnd: {
-                        top: _rTop,
-                        left: _rLeft,
-                        transition: `translate(-${contentWidth}px,0)`
-                    },
-                    rightStart: {
-                        top: _tTop,
-                        left: _rLeft,
-                        transition: `translate(0,0)`
-                    },
-                    right: {
-                        top: _tTop,
-                        left: _rLeft,
-                        transition: `translate(0,0)`
-                    },
-                    rightEnd: {
-                        top: _tTop,
-                        left: _rLeft,
-                        transition: `translate(0,0)`
-                    }
+                    topStart: {top: _tTop, left: _tLeft,},
+                    top: {top: _tTop, left: _tLeft,},
+                    topEnd: {top: _tTop, left: _tLeft,},
+                    leftStart: {top: _tTop, left: _tLeft,},
+                    left: {top: _tTop, left: _tLeft,},
+                    leftEnd: {top: _tTop, left: _tLeft,},
+                    bottomStart: {top: _rTop, left: _rLeft,},
+                    bottom: {top: _rTop, left: _rLeft,},
+                    bottomEnd: {top: _rTop, left: _rLeft,},
+                    rightStart: {top: _tTop, left: _rLeft,},
+                    right: {top: _tTop, left: _rLeft,},
+                    rightEnd: {top: _tTop, left: _rLeft,}
 
                 }
-                Array.from(['left', 'top']).forEach(attr => contentWrapper.style[attr] = position[this.position][attr] + 'px')
-                contentWrapper.style.transform = position[this.position].transition
+                Array.from(['left', 'top']).forEach(attr => $el.style[attr] = position[this.position][attr] + 'px')
             },
             addEventListener() {
                 let {popover} = this.$refs
                 this.event = {
-                    click: {
-                        event: ['click'],
-                        fn: this.onClick
-                    },
-                    hover: {
-                        event: ['mouseenter', 'mouseleave'],
-                        fn: this.hoverToggle
-                    },
-                    focus: {
-                        event: ['click'],
-                        fn: this.focusToggle
-                    }
+                    click: {event: ['click'], fn: this.onClick},
+                    hover: {event: ['mouseenter', 'mouseleave'], fn: this.hoverToggle},
+                    focus: {event: ['click'], fn: this.focusToggle}
                 }
                 this.event[this.trigger].event.forEach(eventName => on(popover, eventName, this.event[this.trigger].fn))
             },
