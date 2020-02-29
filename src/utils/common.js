@@ -25,7 +25,7 @@ function deepClone(item) {
                     }
                 }
             } else {
-                result = false && item.constructor ? new item.constructor() : item
+                result = false ? new item.constructor() : item
             }
         } else {
             result = item

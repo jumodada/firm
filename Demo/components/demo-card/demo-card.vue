@@ -95,8 +95,8 @@
         <div :class="{button:$route.name==='button'}" class="demo-card-source">
             <slot name="source"></slot>
         </div>
-        <f-popover position="top" class="demo-card-tip">
-            <f-icon v-if="tipShow" color="#F1453D" name="gantan"></f-icon>
+        <f-popover v-if="tipShow" position="top" class="demo-card-tip">
+            <f-icon color="#F1453D" name="gantan"></f-icon>
             <div class="demo-card-tip-content" slot="content">
                {{tip}}
             </div>

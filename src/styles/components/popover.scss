@@ -1,7 +1,6 @@
 .popover {
   display: inline-block;
   vertical-align: top;
-  transition: .3s all ease-in-out;
   position: relative;
 }
 .contentSlot{
@@ -13,7 +12,7 @@
   border-radius: $border-radius;
   box-shadow: $shadow-down;
   background: white;
-  transition: .3s all ease-in-out;
+  transition: .3s opacity ease-in-out;
   padding: .5em 1em;
   z-index: 1000;
   min-width: 150px;
