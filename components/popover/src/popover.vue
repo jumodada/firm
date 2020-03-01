@@ -1,5 +1,5 @@
 <template>
-    <div class="popover"
+    <div class="f-popover"
          ref="popover"
     >
         <transition
@@ -9,13 +9,27 @@
                 @leave="leave"
                 @after-leave="afterLeave"
         >
-            <div ref="contentWrapper" class="f-popover-content-wrapper"
-                 :class="[[`position-${position}`]]"
+            <div ref="contentWrapper"
+                 :class="wrapperClass"
                  @mouseenter="hoverInOPen"
                  @mouseleave="hoverOutAndClose"
+                 :style="{width:this.width+'px'}"
                  v-show="visible">
-                <div class="content-slot" ref="contentSlot">
-                    <slot name="content" :close="outerClick"></slot>
+                <div class="f-popover-content-title" v-if="title||$slots.title">
+                    <Icon class="f-popover-content-title-icon" v-if="(title&&titleIcon)||confirm"
+                          :color="titleIconColor"
+                          font-size="16px" :name="titleIcon"></Icon>
+                    <span v-if="title">{{title}}</span>
+                    <slot name="title" v-else></slot>
+                </div>
+                <div v-if="content">
+                    {{content}}
+                </div>
+                <slot v-else name="content"></slot>
+                <slot class="f-popover-content-footer" name="footer"></slot>
+                <div class="f-popover-content-footer" v-if="!$slots.footer&&confirm">
+                    <Button @click="clickCancel" type="text" size="mini">取消</Button>
+                    <Button :loading="confirmLoading" @click="clickConfirm" size="mini" type="primary">确定</Button>
                 </div>
             </div>
         </transition>
@@ -28,18 +42,34 @@
 <script>
 
     import {on, off} from "../../../src/utils/dom"
-    import {getAllScrollParents} from "../../../src/utils/window";
+    import {getAllScrollParents} from "../../../src/utils/window"
+    import Button from '../../button'
+    import Icon from '../../icon'
+    import {isPromise} from "../../../src/utils/type-of";
 
     export default {
         name: "f-popover",
+        components: {Button, Icon},
         model: {
             prop: 'visibleProps',
             event: 'change'
         },
+        computed: {
+            wrapperClass() {
+                return [
+                    `position-${this.position}`,
+                    'f-popover-content-wrapper',
+                    {
+                        'f-popover-content-slot-is-exist': this.$slots.content
+                    }
+                ]
+            }
+        },
         data() {
             return {
                 outClick: false,
-                visible: false
+                visible: false,
+                confirmLoading: false,
             }
         },
         mounted() {
@@ -54,6 +84,22 @@
                 default: 'top',
                 validator: (val) => ['top', 'topStart', 'topEnd', 'bottomStart', 'bottom', 'bottomEnd', 'leftStart', 'left', 'leftEnd', 'rightStart', 'right', 'rightEnd'].indexOf(val) > -1
             },
+            beforeConfirm: Function,
+            content: String,
+            title: String,
+            titleIcon: {
+                type: String,
+                default: 'gantan'
+            },
+            titleIconColor: {
+                type: String,
+                default: '#ffb311'
+            },
+            confirm: {
+                type: Boolean,
+                default: false
+            },
+            width: Number | String,
             trigger: {
                 type: String,
                 default: 'click',
@@ -68,16 +114,17 @@
             removeAll() {
                 let {popover, contentWrapper} = this.$refs
                 this.event[this.trigger].event.forEach(eventName => off(popover, eventName, this.event[this.trigger].fn))
-                this.scrollParents.forEach(node=>{
-                    if(node)node.removeEventListener('scroll',()=> this.contentPosition())
+                if (!this.scrollParents) this.scrollParents = getAllScrollParents(this.$refs.popover)
+                this.scrollParents.forEach(node => {
+                    if (node) node.removeEventListener('scroll', () => this.contentPosition())
                 })
-                window.removeEventListener('resize',()=>this.contentPosition())
+                window.removeEventListener('resize', () => this.contentPosition())
                 this.$el.remove()
                 contentWrapper.remove()
                 clearTimeout(this.timer)
             },
             contentPosition() {
-                if(!this.visible)return
+                if (!this.visible) return
                 const {contentWrapper, trigger} = this.$refs;
                 if (contentWrapper.parentElement.nodeName.toLowerCase() !== 'body') {
                     document.body.appendChild(contentWrapper)
@@ -140,8 +187,8 @@
                     focus: {event: ['click'], fn: this.focusToggle}
                 }
                 this.scrollParents = getAllScrollParents(this.$refs.popover)
-                this.scrollParents.forEach(node=>node.addEventListener('scroll',()=> this.contentPosition()))
-                window.addEventListener('resize',()=>this.contentPosition())
+                this.scrollParents.forEach(node => node.addEventListener('scroll', () => this.contentPosition()))
+                window.addEventListener('resize', () => this.contentPosition())
                 this.event[this.trigger].event.forEach(eventName => on(popover, eventName, this.event[this.trigger].fn))
             },
             listenToDocument() {
@@ -168,10 +215,6 @@
                 clearTimeout(this.timer)
                 if (this.outClick || this.trigger !== 'hover') return
                 this.visible = true
-            },
-            outerClick() {
-                this.outClick = true
-                this.visible = false
             },
             clickCloseAll() {
                 this.visible = false
@@ -224,11 +267,10 @@
             },
 
             beforeEnter(el) {
-                this.$refs.contentSlot.style.overflow = ''
+                this.$refs.contentWrapper.style.overflow = ''
                 el.style.opacity = 0
             },
             enter(el) {
-
                 setTimeout(() => el.style.opacity = 1, 30)
             },
             leave(el) {
@@ -236,12 +278,28 @@
             },
             beforeLeave(el) {
                 el.style.opacity = 1
-                this.$refs.contentSlot.style.overflow = 'hidden'
             },
             afterLeave() {
                 this.outClick = false
-                if (this.$refs.contentSlot) {
-                    this.$refs.contentSlot.style.overflow = ''
+                this.confirmLoading = false
+                if (this.$refs.contentWrapper) {
+                    this.$refs.contentWrapper.style.overflow = ''
+                }
+            },
+            clickCancel(e) {
+                this.visible = false
+                this.$emit('on-cancel', e)
+            },
+            clickConfirm(e) {
+                if (isPromise(this.beforeConfirm())) {
+                    this.confirmLoading = true
+                    this.beforeConfirm().then(res => {
+                        this.visible = false
+                        this.$emit('on-confirm', e,res)
+                    })
+                } else {
+                    this.visible = false
+                    this.$emit('on-confirm', e)
                 }
             }
         },

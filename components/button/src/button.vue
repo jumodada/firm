@@ -1,5 +1,4 @@
 <template>
-
     <button class="f-button"
             :class="[[`icon-${position}`],
              typeStyle,sizeStyle,plainStyle,dangerStyle,dashedStyle,loadingStyle,circleStyle]
@@ -10,6 +9,7 @@
             @click="onClick"
             @focus="focusOn"
             @blur="blurIt"
+
     >
 
         <f-icon :name="loading?'loading':icon"
@@ -24,7 +24,6 @@
             </slot>
         </span>
     </button>
-
 </template>
 <script>
 
@@ -36,8 +35,8 @@
             'f-icon': Icon
         },
         methods: {
-            onClick() {
-                this.$emit('click')
+            onClick(e) {
+                this.$emit('click',e)
                 this.dangerAnimation()
             },
             dangerAnimation() {
@@ -96,7 +95,7 @@
                 if (this.loading) {
                     return 'loadingCloak'
                 }
-            }
+            },
 
         },
         props: {
@@ -109,7 +108,7 @@
             },
             type: {
                 type: String,
-                validator:(val)=>['primary', 'success', 'warn', 'error', 'info'].indexOf(val) > -1
+                validator:(val)=>['primary','text', 'success', 'warn', 'error', 'info'].indexOf(val) > -1
             },
             plain: {
                 type: Boolean,

@@ -33,3 +33,5 @@ export const isFile = (val) =>
 
 export const isFormData = (val) =>
     typeOf(val, 'FormData')
+
+export const  isPromise= (obj)=> !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function'

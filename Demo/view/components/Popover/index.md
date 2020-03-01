@@ -4,25 +4,16 @@
 ## 触发方式
 :::demo 设置`trigger`改变气泡框的触发方式
 ```html
-<f-popover trigger="hover"  position="bottom">
+<f-popover title="提示" content="这是Hover触发的内容"  trigger="hover" >
 <f-button class="button">Hover</f-button>
-  <div slot="content">
-  to do something......
-  </div>
 </f-popover>
 
-<f-popover trigger="click"  position="top">
+<f-popover @on-confirm="yy" :before-confirm="xxx" confirm  title="提示" content="这是Click触发的内容" trigger="click" >
 <f-button class="button">Click</f-button>
-  <div slot="content">
-  to do something...... 
-  </div>
 </f-popover>
 
-<f-popover trigger="focus"  position="bottomStart">
+<f-popover title="提示" content="这是Focus触发的内容" trigger="focus">
 <f-button class="button">Focus</f-button>
-  <div slot="content">
-  to do something...... 
-  </div>
 </f-popover>
 
 
@@ -32,7 +23,20 @@ export default {
         return {
           
         }
-    }
+    },
+    methods:{
+     xxx(){ 
+            return new Promise(resolve=>{
+        setTimeout(()=>{
+      resolve(1)  
+},2000)            
+
+})
+      },
+yy(e,res){
+console.log(e,res)
+}
+   }
  
 }
 </script>
