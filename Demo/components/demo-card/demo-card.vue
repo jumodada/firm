@@ -87,6 +87,28 @@
             margin-right: 5px;
         }
     }
+    .f-popover{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .grid-top{
+        width:300px;
+        margin-top: 20px;
+        margin-left: 100px;
+        display: flex;
+        justify-content: center;
+    }
+    .grid-center{
+        margin-top: 20px;
+        width:399px;
+        margin-left: 50px;
+    }
+    .float-right{
+        float: right;
+    }
+    .float-left{
+        float: left;
+    }
 </style>
 
 

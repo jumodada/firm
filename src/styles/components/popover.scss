@@ -246,9 +246,12 @@
   }
   &-content-footer{
     text-align: right;
-    margin-top: 12px;
+    margin-top: 16px;
   }
   &-content-slot-is-exist{
     padding: 12px;
+  }
+  &-has-icon{
+    margin-left: 22px;
   }
 }

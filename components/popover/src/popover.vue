@@ -23,8 +23,10 @@
                     <span v-if="title">{{title}}</span>
                     <slot name="title" v-else></slot>
                 </div>
-                <div v-if="content">{{content}}</div>
-                <slot v-else name="content"></slot>
+                <div :class="{'f-popover-has-icon':titleIcon||confirm}">
+                    <div v-if="content">{{content}}</div>
+                    <slot v-else name="content"></slot>
+                </div>
                 <div class="f-popover-content-footer" v-if="confirm">
                     <Button @click="clickCancel" type="text" size="mini">取消</Button>
                     <Button :loading="confirmLoading" @click="clickConfirm" size="mini" type="primary">确定</Button>
@@ -46,7 +48,6 @@
     import {getAllScrollParents} from "../../../src/utils/window"
     import Button from '../../button'
     import Icon from '../../icon'
-    import {isPromise} from "../../../src/utils/type-of";
 
     export default {
         name: "f-popover",
@@ -273,12 +274,22 @@
                 this.$emit('on-cancel', e)
             },
             clickConfirm(e) {
-                if (isPromise(this.beforeConfirm())) {
-                    this.confirmLoading = true
-                    this.beforeConfirm().then(res => {
-                        this.visible = false
-                        this.$emit('on-confirm', e, res)
-                    })
+                if (this.beforeConfirm) {
+                    try{
+                        this.confirmLoading = true
+                        this.beforeConfirm().then(res => {
+                            this.visible = false
+                            this.$emit('on-confirm-success', e, res)
+                        }).catch(err=>{
+                            this.confirmLoading = false
+                            this.$emit('on-confirm-failed', e, err)
+                        }).finally(()=>{
+                            this.$emit('on-confirm', e)
+                        })
+                    }catch (e) {
+                        this.confirmLoading = false
+                        console.warn(e)
+                    }
                 } else {
                     this.visible = false
                     this.$emit('on-confirm', e)
