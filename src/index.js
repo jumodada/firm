@@ -9,7 +9,7 @@ import Table from '../components/table'
 import Upload from '../components/Upload'
 import Progress from '../components/progress'
 import Popover from '../components/popover'
-import Message from '../components/message/plugin'
+import Message from '../components/message'
 const components = [
     Button,
     Icon,

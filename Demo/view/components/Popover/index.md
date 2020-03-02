@@ -40,12 +40,12 @@ export default {
 <f-popover v-model="visible" title-icon="gantan"  trigger="click"  position="right-start">
 <f-button size="small" type="error" class="button">撤销</f-button>
   <div slot="title">提示</div>
-  <div slot="content" >
+  <div slot="content">
       <div>确定撤销该商品吗</div>
   </div>
 <div slot="footer">
-    <f-button @click="visible=false" type="text" size="mini">取消</f-button>
-    <f-button @click="visible=false" type="primary" size="mini">确定</f-button>
+    <f-button @click="handleCancel" type="text" size="mini">取消</f-button>
+    <f-button @click="handleConfirm" type="primary" size="mini">确定</f-button>
 </div>
 </f-popover>
 
@@ -58,8 +58,15 @@ export default {
         visible:false 
     }
   },
-    mounted(){
-   console.log(this.$message) 
+    methods:{
+     handleCancel(){
+        this.visible = false
+        this.$message.warn('点击了取消')   
+     },
+    handleConfirm(){
+        this.visible = false
+        this.$message.success('点击了确定')   
+     }
    }
 }
 </script>
