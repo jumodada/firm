@@ -16,20 +16,21 @@
                  :style="{width:this.width+'px'}"
                  v-show="visible">
                 <div class="f-popover-content-title" v-if="title||$slots.title">
-                    <Icon class="f-popover-content-title-icon" v-if="(title&&titleIcon)||confirm"
-                          :color="titleIconColor"
+                    <Icon class="f-popover-content-title-icon" v-if="titleIcon&&!confirm" :color="titleIconColor"
                           font-size="16px" :name="titleIcon"></Icon>
+                    <Icon class="f-popover-content-title-icon" v-if="confirm" :color="titleIconColor" font-size="16px"
+                          :name="titleIcon||'gantan'"></Icon>
                     <span v-if="title">{{title}}</span>
                     <slot name="title" v-else></slot>
                 </div>
-                <div v-if="content">
-                    {{content}}
-                </div>
+                <div v-if="content">{{content}}</div>
                 <slot v-else name="content"></slot>
-                <slot class="f-popover-content-footer" name="footer"></slot>
-                <div class="f-popover-content-footer" v-if="!$slots.footer&&confirm">
+                <div class="f-popover-content-footer" v-if="confirm">
                     <Button @click="clickCancel" type="text" size="mini">取消</Button>
                     <Button :loading="confirmLoading" @click="clickConfirm" size="mini" type="primary">确定</Button>
+                </div>
+                <div v-else class="f-popover-content-footer">
+                    <slot name="footer"></slot>
                 </div>
             </div>
         </transition>
@@ -82,15 +83,12 @@
             position: {
                 type: String,
                 default: 'top',
-                validator: (val) => ['top', 'topStart', 'topEnd', 'bottomStart', 'bottom', 'bottomEnd', 'leftStart', 'left', 'leftEnd', 'rightStart', 'right', 'rightEnd'].indexOf(val) > -1
+                validator: (val) => ['top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'left-start', 'left', 'left-end', 'right-start', 'right', 'right-end'].indexOf(val) > -1
             },
             beforeConfirm: Function,
             content: String,
             title: String,
-            titleIcon: {
-                type: String,
-                default: 'gantan'
-            },
+            titleIcon: String,
             titleIconColor: {
                 type: String,
                 default: '#ffb311'
@@ -131,9 +129,7 @@
                 }
                 let {top, left, height, width} = trigger.getBoundingClientRect()
                 this.setPosition(contentWrapper, top, left, width, height)
-                this.$nextTick(() => {
-                    this.setTransform(contentWrapper, height, width)
-                })
+                this.$nextTick(() => this.setTransform(contentWrapper, height, width))
             },
             setTransform($el, height, width) {
                 let contentWidth = $el.clientWidth
@@ -141,18 +137,18 @@
                 let widthDiffer = -(Number(contentWidth) - width)
                 let heightDiffer = -(Number(contentHeight) - height)
                 let transform = {
-                    topStart: `translate(0,-100%)`,
+                    'top-start': `translate(0,-100%)`,
                     top: `translate(${widthDiffer / 2}px,-100%)`,
-                    topEnd: `translate(calc(-100% + ${width}px),-100%)`,
-                    leftStart: `translate(-100%,0)`,
+                    'top-end': `translate(calc(-100% + ${width}px),-100%)`,
+                    'left-start': `translate(-100%,0)`,
                     left: `translate(-100%,${heightDiffer / 2}px)`,
-                    leftEnd: `translate(-100%,${heightDiffer}px)`,
-                    bottomStart: `translate(-${width}px,0)`,
+                    'left-end': `translate(-100%,${heightDiffer}px)`,
+                    'bottom-start': `translate(-${width}px,0)`,
                     bottom: `translate(calc(${-(width + contentWidth) / 2 + 'px'}),0)`,
-                    bottomEnd: `translate(-${contentWidth}px,0)`,
-                    rightStart: `translate(0,0)`,
-                    right: `translate(0,0)`,
-                    rightEnd: `translate(0,0)`
+                    'bottom-end': `translate(-${contentWidth}px,0)`,
+                    'right-start': `translate(0,0)`,
+                    right: `translate(0,${heightDiffer / 2}px)`,
+                    'right-end': `translate(0,${heightDiffer}px)`
                 }
                 $el.style.transform = transform[this.position]
             },
@@ -162,29 +158,21 @@
                 _rTop = top + height + window.scrollY
                 _tLeft = left + window.scrollX
                 _rLeft = left + width + window.scrollX
+                let _position = this.position.split('-')[0]
                 let position = {
-                    topStart: {top: _tTop, left: _tLeft,},
-                    top: {top: _tTop, left: _tLeft,},
-                    topEnd: {top: _tTop, left: _tLeft,},
-                    leftStart: {top: _tTop, left: _tLeft,},
-                    left: {top: _tTop, left: _tLeft,},
-                    leftEnd: {top: _tTop, left: _tLeft,},
-                    bottomStart: {top: _rTop, left: _rLeft,},
-                    bottom: {top: _rTop, left: _rLeft,},
-                    bottomEnd: {top: _rTop, left: _rLeft,},
-                    rightStart: {top: _tTop, left: _rLeft,},
-                    right: {top: _tTop, left: _rLeft,},
-                    rightEnd: {top: _tTop, left: _rLeft,}
-
+                    top: {top: _tTop, left: _tLeft},
+                    left: {top: _tTop, left: _tLeft},
+                    bottom: {top: _rTop, left: _rLeft},
+                    right: {top: _tTop, left: _rLeft}
                 }
-                Array.from(['left', 'top']).forEach(attr => $el.style[attr] = position[this.position][attr] + 'px')
+                Array.from(['left', 'top']).forEach(attr => $el.style[attr] = position[_position][attr] + 'px')
             },
             addEventListener() {
                 let {popover} = this.$refs
                 this.event = {
                     click: {event: ['click'], fn: this.onClick},
                     hover: {event: ['mouseenter', 'mouseleave'], fn: this.hoverToggle},
-                    focus: {event: ['click'], fn: this.focusToggle}
+                    focus: {event: ['mousedown', 'mouseup'], fn: this.focusToggle},
                 }
                 this.scrollParents = getAllScrollParents(this.$refs.popover)
                 this.scrollParents.forEach(node => node.addEventListener('scroll', () => this.contentPosition()))
@@ -221,12 +209,14 @@
                 this.removeListener()
             },
             eventHandler(e) {
+                if (this.confirmLoading) return
                 if (this.isPopover(e) || this.isConWrapper(e)) return
                 if (!this.isConWrapper(e) && this.$refs.popover && !(this.$refs.popover === e.target || this.$refs.popover.contains(e.target))) {
                     this.clickCloseAll()
                 }
             },
             clickToggle() {
+                if (this.confirmLoading) return
                 this.visible = !this.visible
                 if (this.visible) {
                     this.$nextTick(() => {
@@ -247,17 +237,9 @@
                     this.timer = setTimeout(() => this.visible = false, 120)
                 }
             },
-            focusToggle() {
-                let judge = this.$refs.trigger.children[0] === document.activeElement
-                if (judge) {
-                    this.visible = true
-                    this.$nextTick(() => {
-                        this.contentPosition()
-                        this.listenToDocument()
-                    })
-                } else {
-                    this.removeListener()
-                }
+            focusToggle(e) {
+                this.visible = e.type==='mousedown'
+                this.contentPosition()
             },
             onClick() {
                 if (this.trigger !== 'click') return
@@ -280,13 +262,13 @@
                 el.style.opacity = 1
             },
             afterLeave() {
-                this.outClick = false
-                this.confirmLoading = false
+                this.confirmLoading = this.outClick = false
                 if (this.$refs.contentWrapper) {
                     this.$refs.contentWrapper.style.overflow = ''
                 }
             },
             clickCancel(e) {
+                if (this.confirmLoading) return
                 this.visible = false
                 this.$emit('on-cancel', e)
             },
@@ -295,7 +277,7 @@
                     this.confirmLoading = true
                     this.beforeConfirm().then(res => {
                         this.visible = false
-                        this.$emit('on-confirm', e,res)
+                        this.$emit('on-confirm', e, res)
                     })
                 } else {
                     this.visible = false

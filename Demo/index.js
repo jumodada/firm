@@ -10,7 +10,6 @@ import '../src/styles/index.scss'
 Vue.use(X)
 Vue.component(demoCard.name, demoCard)
 
-
 router.afterEach(() => {
    Vue.nextTick(() => document.querySelectorAll('pre code').forEach(block=>highlightJs.highlightBlock(block)))
 })

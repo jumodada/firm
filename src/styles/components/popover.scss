@@ -5,7 +5,7 @@
   &-content-wrapper {
     position: absolute;
     border-radius: $border-radius;
-    box-shadow: $shadow-down;
+    filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 0.2));
     background: white;
     font-size: 14px;
     transition: .17s opacity ease-in-out;
@@ -24,7 +24,7 @@
       height: 0;
       position: absolute;
     }
-    &.position-topStart{
+    &.position-top-start{
       transform: translateY(-100%);
       margin-top: -10px;
       &::before, &::after {
@@ -59,7 +59,7 @@
         top: calc(100% - 1px);
       }
     }
-    &.position-topEnd{
+    &.position-top-end{
       transform: translateY(-100%);
       margin-top: -10px;
       &::before, &::after {
@@ -77,7 +77,7 @@
         top: calc(100% - 1px);
       }
     }
-    &.position-leftStart{
+    &.position-left-start{
       transform: translateX(-100%);
       margin-left: -10px;
       &::before, &::after {
@@ -113,7 +113,7 @@
         left: calc(100% - 1px);
       }
     }
-    &.position-leftEnd {
+    &.position-left-end {
       transform: translateX(-100%);
       margin-left: -10px;
       &::before, &::after {
@@ -131,7 +131,7 @@
         left: calc(100% - 1px);
       }
     }
-    &.position-bottomStart {
+    &.position-bottom-start {
       margin-top: 10px;
       &::before, &::after {
         left: 6px;
@@ -164,7 +164,7 @@
         bottom: calc(100% - 1px);
       }
     }
-    &.position-bottomEnd {
+    &.position-bottom-end {
       margin-top: 10px;
       &::before, &::after {
         left: 100%;
@@ -181,7 +181,7 @@
         bottom: calc(100% - 1px);
       }
     }
-    &.position-rightStart {
+    &.position-right-start {
       margin-left: 10px;
       &::before, &::after {
         transform: translateY(10%);
@@ -215,7 +215,7 @@
         right: calc(100% - 1px);
       }
     }
-    &.position-rightEnd {
+    &.position-right-end {
       margin-left: 10px;
       &::before, &::after {
         transform: translateY(-103%);

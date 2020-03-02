@@ -8,7 +8,7 @@
 <f-button class="button">Hover</f-button>
 </f-popover>
 
-<f-popover @on-confirm="yy" :before-confirm="xxx" confirm  title="提示" content="这是Click触发的内容" trigger="click" >
+<f-popover  title="提示" content="这是Click触发的内容" trigger="click" >
 <f-button class="button">Click</f-button>
 </f-popover>
 
@@ -23,21 +23,7 @@ export default {
         return {
           
         }
-    },
-    methods:{
-     xxx(){ 
-            return new Promise(resolve=>{
-        setTimeout(()=>{
-      resolve(1)  
-},2000)            
-
-})
-      },
-yy(e,res){
-console.log(e,res)
-}
-   }
- 
+    }
 }
 </script>
 
@@ -47,27 +33,34 @@ console.log(e,res)
 :::
 
 
-## 内部关闭
-:::demo   通过`v-model`绑定控制显示关闭
+## 自定义内容
+:::demo   可以通过具名插槽自定义气泡框的内容。利用`v-model`绑定控制气泡框的展示与隐藏。
 ```html
 
-<f-popover v-model="visible"  trigger="click"  position="right">
-<f-button class="button">Click</f-button>
-  <div @click="visible=false" slot="content" >
-      <div>todo-list</div>
+<f-popover v-model="visible" title-icon="gantan"  trigger="click"  position="right-start">
+<f-button size="small" type="error" class="button">撤销</f-button>
+  <div slot="title">提示</div>
+  <div slot="content" >
+      <div>确定撤销该商品吗</div>
   </div>
+<div slot="footer">
+    <f-button @click="visible=false" type="text" size="mini">取消</f-button>
+    <f-button @click="visible=false" type="primary" size="mini">确定</f-button>
+</div>
 </f-popover>
 
 
 
 <script>
 export default {
-    data(){
-        return {
-            visible:true
-        }
+  data(){
+    return {
+        visible:false 
     }
- 
+  },
+    mounted(){
+   console.log(this.$message) 
+   }
 }
 </script>
 
