@@ -1,5 +1,6 @@
 .f-button {
   font-size: 14px;
+  position: relative;
   padding: 10px 20px;
   border-radius: $border-radius;
   border: 1px solid $border-color;
@@ -284,7 +285,12 @@
   .loading {
     animation: spin 1s infinite linear;
   }
-
+  &-loading{
+    visibility: hidden;
+  }
+  &-loading-icon{
+   position: absolute;
+  }
   &.loadingCloak {
     opacity: .5;
   }

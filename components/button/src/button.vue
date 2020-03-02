@@ -11,13 +11,23 @@
             @blur="blurIt"
 
     >
-
-        <f-icon :name="loading?'loading':icon"
+        <f-icon :name="icon"
                 :color="color"
+                :font-size="iconSize"
+                :class="{'f-button-loading':loading}"
                 :style="disabledStyle"
-                v-if="icon || loading" :class="{loading:loading}">
+                v-if="icon">
+        </f-icon>
+        <f-icon name="loading"
+                :color="color"
+                :font-size="iconSize"
+                class="f-button-loading-icon"
+                :class="{loading:loading}"
+                :style="disabledStyle"
+                v-if="loading">
         </f-icon>
         <span class="f-button-content"
+              :class="{'f-button-loading':loading}"
              :style="disabledStyle"
         >
             <slot>
@@ -96,7 +106,12 @@
                     return 'loadingCloak'
                 }
             },
-
+            iconSize(){
+                if(this.size==='large')return '22px'
+                if(this.size==='medium')return '20px'
+                if(this.size==='small')return '18px'
+                if(this.size==='mini')return '16px'
+            }
         },
         props: {
             icon: {
