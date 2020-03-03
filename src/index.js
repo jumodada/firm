@@ -9,6 +9,7 @@ import Table from '../components/table'
 import Upload from '../components/Upload'
 import Progress from '../components/progress'
 import Popover from '../components/popover'
+import Switch from '../components/switch'
 import Message from '../components/message'
 const components = [
     Button,
@@ -22,6 +23,7 @@ const components = [
     Progress,
     Input,
     Popover,
+    Switch
 ]
 
 const install = function (Vue) {
@@ -42,6 +44,7 @@ export default {
     Table,
     Upload,
     Progress,
-    Popover
+    Popover,
+    Switch
 }
 

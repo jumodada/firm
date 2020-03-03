@@ -46,7 +46,7 @@
     @import "../../assets/styles/color-select";
     @import "../../assets/styles/shadow-select";
     .firm-slider{
-        width: 260px;
+        width: 300px;
         height: calc(100vh - 70px);
         box-shadow: $shadow-right-black;
         background-color: $slider-dark-2;
@@ -75,6 +75,7 @@
             }
             &-es{
                 font-size: 16px;
+                margin-left: 20px;
                 margin-right: 5px;
                 color: #edf0f6;
             }

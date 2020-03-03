@@ -2,14 +2,16 @@
 
 
 ## 基本用法
-:::demo 通过`columns`和`data`设置表头和表格数据。`align`设置对齐方式：left、right和center。
+:::demo 通过`columns`和`data`设置列和行数据。`align`设置对齐方式：left、right和center。
 ```html
- <f-table  :columns="columns" :data="data"></f-table>
+    <f-row>边框：<f-switch v-model="bordered"></f-switch></f-row>
+ <f-table :bordered="bordered"  :columns="columns" :data="data"></f-table>
 
 <script>
 export default {
     data(){
         return {
+            bordered:false,
             columns:[
                {title:'商品名称',key:'name'},
                {title:'规格',key:'sku'},
@@ -36,7 +38,7 @@ export default {
 ## 固定表头
 :::demo 设置`max-height`
 ```html
- <f-table  max-height="320"  :columns="columns" :data="data"></f-table>
+ <f-table max-height="320"  :columns="columns" :data="data"></f-table>
 
 <script>
 export default {
@@ -70,3 +72,32 @@ export default {
 
 ```
 :::
+
+
+## API
+
+~~*~~
+### Props
+| 参数      | 说明    | 类型      | 可选值       | 默认   |
+|---------- |-------- |---------- |-------------  |-------- |
+| columns     | 列的数据   | array  |   -   | [ ] |
+| data     | 行的数据   | array  |   -   | [ ] |
+| bordered     | 设置格子边框   | boolean  |   false/true  | false|
+
+
+### Events
+| 事件名      | 说明    | 参数      |
+|---------- |-------- |---------- |
+| on-confirm     | 点击确后触发   | - |
+| on-confirm-success     | 绑定`before-confirm`，调用成功后触发   | - |
+| on-confirm-failed     | 绑定`before-confirm`，调用失败后触发   | - |
+| on-confirm-timeOut     | 绑定`before-confirm`，超时触发。需设置`before-timeOut `   | - |
+
+
+### Slot
+| 名称       | 说明    
+|---------- |-------- |
+| -    | 弹出框内嵌的内容 |
+| title     | 标题   |
+| content   | 内容   |
+| footer    | 尾部。css设置了`text-align:right`   |

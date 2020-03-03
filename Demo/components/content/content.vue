@@ -34,6 +34,7 @@
                 width: 100%;
                 color: #949ba9;
                 font-size: 14px;
+                margin-left: 10px;
                 border-collapse: collapse;
                 td,tr{
                     text-align: left;
@@ -60,6 +61,10 @@
                         color: #7e8592;
                     }
                 }
+            }
+            s{
+                text-decoration: none;
+                color: red;
             }
         }
     }
