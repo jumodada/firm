@@ -145,16 +145,25 @@ export default {
 
 
 ## 确认框与异步
-:::demo 设置`confirm`开启确认框默认。绑定`before-confirm`函数时返回的必须是一个`promise`,不然则会在控制台抛出一个警告。
+:::demo 设置`confirm`开启确认框。
 ```html
 <f-popover @on-confirm-failed="handleFailed" @on-cancel="handleCancel" :before-confirm="notPromise" confirm  title="提示" content="确定要发送吗">
-<f-button type="warn" class="button">不为Promise</f-button>
+<f-button type="warn" class="button">立即结束</f-button>
 </f-popover>
 <f-popover @on-confirm-success="handleSuccess" @on-cancel="handleCancel" :before-confirm="handleBeforeSuccess" confirm  title="提示" content="确定要发送吗">
 <f-button type="success" class="button">成功</f-button>
 </f-popover>
 <f-popover @on-confirm-failed="handleFailed" @on-cancel="handleCancel" :before-confirm="handleBeforeFailed" confirm  title="提示" content="确定要发送吗">
 <f-button type="error"  class="button">失败</f-button>
+</f-popover>
+<f-popover :confirm-timeout="1000"
+ @on-confirm-failed="handleFailed"
+ @on-confirm-timeOut="handleTimeout"
+ @on-cancel="handleCancel"
+ :before-confirm="handleBeforeFailed" 
+ confirm  
+ title="提示" content="确定要发送吗">
+<f-button type="info"  class="button">超时</f-button>
 </f-popover>
 <script>
 export default {
@@ -190,6 +199,9 @@ export default {
      handleFailed(){
         this.$message.error('发送失败') 
      },
+     handleTimeout(){
+     this.$message.error('请求超时')
+     }
    }
 }
 </script>

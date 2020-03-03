@@ -90,6 +90,10 @@
             content: String,
             title: String,
             titleIcon: String,
+            confirmTimeout: {
+                type:Number,
+                validator:val=>val>0
+            },
             titleIconColor: {
                 type: String,
                 default: '#ffb311'
@@ -275,21 +279,22 @@
             },
             clickConfirm(e) {
                 if (this.beforeConfirm) {
-                    try{
-                        this.confirmLoading = true
-                        this.beforeConfirm().then(res => {
-                            this.visible = false
-                            this.$emit('on-confirm-success', e, res)
-                        }).catch(err=>{
-                            this.confirmLoading = false
-                            this.$emit('on-confirm-failed', e, err)
-                        }).finally(()=>{
-                            this.$emit('on-confirm', e)
-                        })
-                    }catch (e) {
+                    this.confirmLoading = true
+                    let racePromise = [Promise.resolve(this.beforeConfirm())]
+                    if(this.confirmTimeout)racePromise.push(new Promise((resolve, reject) => {
+                        setTimeout(()=>{
+                            reject('time out')
+                        },this.confirmTimeout)
+                    }))
+                    Promise.race(racePromise).then(res => {
+                        this.visible = false
+                        this.$emit('on-confirm-success', e, res)
+                    }).catch(err=>{
                         this.confirmLoading = false
-                        console.warn(e)
-                    }
+                        this.$emit(err ==='time out'?'on-confirm-timeOut':'on-confirm-failed', e, err)
+                    }).finally(()=>{
+                        this.$emit('on-confirm', e)
+                    })
                 } else {
                     this.visible = false
                     this.$emit('on-confirm', e)
