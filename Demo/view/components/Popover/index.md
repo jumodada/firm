@@ -64,7 +64,7 @@ export default {
      },
     handleConfirm(){
         this.visible = false
-        this.$message.success('点击了确定')   
+        this.$message.success('已撤销')   
      }
    }
 }

@@ -3,11 +3,13 @@
         <div class="firm-slider-ul">
             <div class="firm-slider-ul-name">指南</div>
             <router-link :key="item.path" :to="item.path" class="firm-slider-li" v-for="item in compass">
-                {{item.meta.name}}
+                <span class="firm-slider-li-es">{{item.name}}</span>
+                <span class="firm-slider-li-zh">{{item.meta.name}}</span>
             </router-link>
             <div class="firm-slider-ul-name">组件</div>
             <router-link :key="item.path" :to="item.path" class="firm-slider-li" v-for="item in components">
-                {{item.meta.name}}
+                <span class="firm-slider-li-es">{{item.name}}</span>
+                <span class="firm-slider-li-zh">{{item.meta.name}}</span>
             </router-link>
         </div>
     </div>
@@ -51,7 +53,7 @@
         overflow: auto;
         &-ul{
             margin-top: 20px;
-            color: $text1-grey;
+            color: #ffb311;
             display: flex;
             flex-direction: column;
             align-items: start;
@@ -70,6 +72,15 @@
             &:hover{
                 color: $text1-orange;
                 transform: translateX(3px);
+            }
+            &-es{
+                font-size: 16px;
+                margin-right: 5px;
+                color: #edf0f6;
+            }
+            &-zh{
+                font-size: 13px;
+                color: #c2c5cb;
             }
         }
     }

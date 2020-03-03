@@ -81,11 +81,9 @@
         color: #ff6666;
         font-size: 13px;
     }
-    .button{
-        button {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
+    button {
+        margin-left: 5px;
+        margin-right: 5px;
     }
     .f-popover{
         margin-left: 10px;

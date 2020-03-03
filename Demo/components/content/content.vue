@@ -36,10 +36,11 @@
                 font-size: 14px;
                 border-collapse: collapse;
                 td,tr{
-                    text-align: center;
+                    text-align: left;
                 }
                 th{
                     color: #5a6a7a;
+                    padding-left: 10px;
                 }
                 td{
                     padding: 15px 10px;

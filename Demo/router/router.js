@@ -39,7 +39,7 @@ export default [
             },
             {
                 path: '/components/Button',
-                name: 'button',
+                name: 'Button',
                 meta: {
                     name: '按钮',
                     type: 'component'
