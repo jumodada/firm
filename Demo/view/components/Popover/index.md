@@ -145,7 +145,7 @@ export default {
 
 
 ## 确认框与异步
-:::demo 设置`confirm`开启确认框。
+:::demo 设置`confirm`开启确认框。绑定`before-confirm`钩子可以进行一些异步操作。
 ```html
 <f-popover @on-confirm-failed="handleFailed" @on-cancel="handleCancel" :before-confirm="notPromise" confirm  title="提示" content="确定要发送吗">
 <f-button type="warn" class="button">立即结束</f-button>
@@ -210,3 +210,35 @@ export default {
 
 ```
 :::
+## API
+
+
+### Props
+| 参数      | 说明    | 类型      | 可选值       | 默认   |
+|---------- |-------- |---------- |-------------  |-------- |
+| title     | 弹出框标题   | string  |   -   | - |
+| content     | 弹出框内容   | string  |   -   | - |
+| trigger     | 弹出框的触发方式   | string  |   hover/click/focus   | click |
+| position     | 弹出框出现位置   | string  |   top/top-start/top-end/right/right-start/right-end/left/left-start/left-end/bottom/bottom-start/bottom-end   | top |
+| confirm     | 开启确认框，提供`on-confirm`和`on-cancel`方法   | boolean  |  false/true  | false |
+| before-confirm     | 绑定则在点击确认框后调用，希望返回一个`promise`，成功则关闭弹出框  | function  |  -  | - |
+| before-timeOut     | 绑定`before-confirm`后的超时限制  | number  |  -  | - |
+
+
+### Events
+| 事件名      | 说明    | 参数      |
+|---------- |-------- |---------- |
+| on-confirm     | 点击确后触发   | - |
+| on-confirm-success     | 绑定`before-confirm`，调用成功后触发   | - |
+| on-confirm-failed     | 绑定`before-confirm`，调用失败后触发   | - |
+| on-confirm-timeOut     | 绑定`before-confirm`，超时触发。需设置`before-timeOut `   | - |
+
+
+### Slot
+| 名称       | 说明    
+|---------- |-------- |
+| -    | 弹出框内嵌的内容 |
+| title     | 标题   |
+| content   | 内容   |
+| footer    | 尾部。css设置了`text-align:right`   |
+

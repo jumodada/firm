@@ -30,6 +30,36 @@
                 color: #ffb311;
                 opacity: 0;
             }
+            >div >table{
+                width: 100%;
+                color: #949ba9;
+                font-size: 14px;
+                border-collapse: collapse;
+                td,tr{
+                    text-align: center;
+                }
+                th{
+                    color: #5a6a7a;
+                }
+                td{
+                    padding: 15px 10px;
+                    max-width: 230px;
+                    white-space: pre-wrap;
+                    border-bottom: .5px solid #e9eaed;
+                    code{
+                        color: #1a2a3a;
+                        background-color: #ffecd9;
+                        margin: 0 4px;
+                        display: inline-block;
+                        padding: 2px 5px;
+                        font-size: 15px;
+                        border-radius: 4px;
+                    }
+                    &:first-child{
+                        color: #7e8592;
+                    }
+                }
+            }
         }
     }
     .catalogue{
