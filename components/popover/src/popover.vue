@@ -1,7 +1,6 @@
 <template>
     <div class="f-popover"
          ref="popover"
-         v-click-outside="clickCloseAll"
          v-element-position-detector="contentPosition"
     >
         <transition
@@ -12,6 +11,7 @@
                 @after-leave="afterLeave"
         >
             <div ref="contentWrapper"
+                 v-click-outside="clickCloseAll"
                  :class="wrapperClass"
                  @mouseenter="hoverInOPen"
                  @mouseleave="hoverOutAndClose"
@@ -47,7 +47,6 @@
 <script>
 
     import {on, off} from "../../../src/utils/dom"
-    import {getAllScrollParents} from "../../../src/utils/window"
     import Button from '../../button'
     import Icon from '../../icon'
     import clickOutside from "../../../src/directive/clickoutside"
