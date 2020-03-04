@@ -26,7 +26,8 @@ export const getParentNode = (el) => {
 }
 
 export const isBody = (node)=>{
-    return getNodeName(node) === 'body'
+    let name =getNodeName(node)
+    return name === 'body'||name==='html'
 }
 
 export const isHTMLElement = (node)=> {

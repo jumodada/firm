@@ -2,6 +2,7 @@
     <div class="f-popover"
          ref="popover"
          v-click-outside="clickCloseAll"
+         v-element-position-detector="contentPosition"
     >
         <transition
                 @before-enter="beforeEnter"
@@ -50,10 +51,11 @@
     import Button from '../../button'
     import Icon from '../../icon'
     import clickOutside from "../../../src/directive/clickoutside"
+    import elementPositionDetector from "../../../src/directive/elementPositionDetector"
     export default {
         name: "f-popover",
         components: {Button, Icon},
-        directives:{clickOutside},
+        directives:{clickOutside,elementPositionDetector},
         model: {
             prop: 'visibleProps',
             event: 'change'
@@ -119,11 +121,6 @@
             removeAll() {
                 let {popover, contentWrapper} = this.$refs
                 this.event[this.trigger].event.forEach(eventName => off(popover, eventName, this.event[this.trigger].fn))
-                if (!this.scrollParents) this.scrollParents = getAllScrollParents(this.$refs.popover)
-                this.scrollParents.forEach(node => {
-                    if (node) node.removeEventListener('scroll', () => this.contentPosition())
-                })
-                window.removeEventListener('resize', () => this.contentPosition())
                 this.$el.remove()
                 contentWrapper.remove()
                 clearTimeout(this.timer)
@@ -181,9 +178,6 @@
                     hover: {event: ['mouseenter', 'mouseleave'], fn: this.hoverToggle},
                     focus: {event: ['mousedown', 'mouseup'], fn: this.focusToggle},
                 }
-                this.scrollParents = getAllScrollParents(this.$refs.popover)
-                this.scrollParents.forEach(node => node.addEventListener('scroll', () => this.contentPosition()))
-                window.addEventListener('resize', () => this.contentPosition())
                 this.event[this.trigger].event.forEach(eventName => on(popover, eventName, this.event[this.trigger].fn))
             },
             hoverOutAndClose() {
@@ -203,9 +197,7 @@
                 if (this.confirmLoading) return
                 this.visible = !this.visible
                 if (this.visible) {
-                    this.$nextTick(() => {
-                        this.contentPosition()
-                    })
+                    this.$nextTick(() => this.contentPosition())
                 }
             },
             hoverToggle(e) {
