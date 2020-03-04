@@ -4,14 +4,19 @@
 ## 基本用法
 :::demo 通过`columns`和`data`设置列和行数据。`align`设置对齐方式：left、right和center。
 ```html
-    <f-row>边框：<f-switch v-model="bordered"></f-switch></f-row>
- <f-table :bordered="bordered"  :columns="columns" :data="data"></f-table>
+ <f-row>
+<f-col span="6">边框：<f-switch v-model="bordered"></f-switch></f-col>
+<f-col span="6">条纹：<f-switch v-model="stripe"></f-switch></f-col>
+<f-col span="6"><f-selector></f-selector></f-col>
+</f-row>
+ <f-table :bordered="bordered" :stripe="stripe"  :columns="columns" :data="data"></f-table>
 
 <script>
 export default {
     data(){
         return {
             bordered:false,
+            stripe:false,
             columns:[
                {title:'商品名称',key:'name'},
                {title:'规格',key:'sku'},

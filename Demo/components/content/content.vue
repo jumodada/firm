@@ -72,6 +72,10 @@
         width: 13vw;
         margin-top: 40px;
     }
+    .row{
+        margin-bottom: 10px;
+        color: #313639;
+    }
 </style>
 
 <template>

@@ -4,26 +4,30 @@ import Input from '../components/Input'
 import Icon from '../components/icon'
 import Collapse from '../components/collapse'
 import CollapseItem from '../components/collapse-item'
-import Row from '../components/layout/row'
+import Row from '../components/row'
 import Table from '../components/table'
 import Upload from '../components/Upload'
 import Progress from '../components/progress'
 import Popover from '../components/popover'
 import Switch from '../components/switch'
 import Message from '../components/message'
+import Col from '../components/col'
+import Selector from '../components/selector'
 const components = [
     Button,
     Icon,
     Collapse,
     CollapseItem,
     Row,
+    Col,
     ButtonGroup,
     Table,
     Upload,
     Progress,
     Input,
     Popover,
-    Switch
+    Switch,
+    Selector
 ]
 
 const install = function (Vue) {
@@ -38,6 +42,8 @@ export default {
     version: '0.0.1',
     install,
     Message,
+    Row,
+    Col,
     Button,
     Input,
     Icon,
@@ -45,6 +51,7 @@ export default {
     Upload,
     Progress,
     Popover,
-    Switch
+    Switch,
+    Selector
 }
 

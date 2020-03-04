@@ -278,10 +278,6 @@
                 type: Boolean,
                 default: false
             },
-            checkBoxOn: {
-                type: Boolean,
-                default: false
-            },
             selectedItems: {
                 type: Array,
                 default: () => []

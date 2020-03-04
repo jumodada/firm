@@ -1,0 +1,17 @@
+.f-select{
+  display: inline-block;
+  &-input{
+    transition: box-shadow .23s ease;
+    border: $border-solid;
+    border-radius: $border-radius;
+    height: $input-height;
+    &:focus{
+      box-shadow:$shadow-focus-2;
+      outline: none;
+    }
+    &:hover{
+      cursor: pointer;
+      box-shadow:$shadow-hover-2;
+    }
+  }
+}
