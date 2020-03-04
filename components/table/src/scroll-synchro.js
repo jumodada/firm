@@ -1,4 +1,4 @@
-import {isFirefox,listenToScroll} from "../../../src/utils/scroll"
+import {isFirefox,listenToScroll} from "../../../src/directive/scroll"
 
 const data={
     currentScrollLeft:0,

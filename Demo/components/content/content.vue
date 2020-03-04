@@ -91,7 +91,7 @@
 <script>
     import slider from '../slide'
     import catalogue from '../catalogue'
-    import xScroll from "../../../src/utils/scroll"
+    import xScroll from "../../../src/directive/scroll"
     export default {
         name: "components",
         directives: {

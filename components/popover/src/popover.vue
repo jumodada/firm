@@ -1,6 +1,7 @@
 <template>
     <div class="f-popover"
          ref="popover"
+         v-click-outside="clickCloseAll"
     >
         <transition
                 @before-enter="beforeEnter"
@@ -48,10 +49,11 @@
     import {getAllScrollParents} from "../../../src/utils/window"
     import Button from '../../button'
     import Icon from '../../icon'
-
+    import clickOutside from "../../../src/directive/clickoutside"
     export default {
         name: "f-popover",
         components: {Button, Icon},
+        directives:{clickOutside},
         model: {
             prop: 'visibleProps',
             event: 'change'
@@ -184,21 +186,6 @@
                 window.addEventListener('resize', () => this.contentPosition())
                 this.event[this.trigger].event.forEach(eventName => on(popover, eventName, this.event[this.trigger].fn))
             },
-            listenToDocument() {
-                on(document, 'click', this.eventHandler)
-            },
-            removeListener() {
-                off(document, 'click', this.eventHandler)
-            },
-
-            isConWrapper(e) {    //判断点击的地方是否在contentWrapper里面
-                let path = e.path || e.composedPath()
-                return path.some(child => child === this.$refs.contentWrapper)
-            },
-            isPopover(e) {    //判断点击的地方是否在contentPopover里面
-                let path = e.path || e.composedPath()
-                return path.some(child => child === this.$refs.popover)
-            },
             hoverOutAndClose() {
                 clearTimeout(this.timer)
                 if (this.trigger !== 'hover') return
@@ -211,14 +198,6 @@
             },
             clickCloseAll() {
                 this.visible = false
-                this.removeListener()
-            },
-            eventHandler(e) {
-                if (this.confirmLoading) return
-                if (this.isPopover(e) || this.isConWrapper(e)) return
-                if (!this.isConWrapper(e) && this.$refs.popover && !(this.$refs.popover === e.target || this.$refs.popover.contains(e.target))) {
-                    this.clickCloseAll()
-                }
             },
             clickToggle() {
                 if (this.confirmLoading) return
@@ -226,10 +205,7 @@
                 if (this.visible) {
                     this.$nextTick(() => {
                         this.contentPosition()
-                        this.listenToDocument()
                     })
-                } else {
-                    this.removeListener()
                 }
             },
             hoverToggle(e) {
