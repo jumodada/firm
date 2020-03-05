@@ -7,9 +7,6 @@ export default {
         binding._clickHandler = handler
         document.addEventListener('click', handler)
     },
-    update(el, binding){
-      console.log(el)
-    },
     unbind(el,binding) {
         document.removeEventListener('click', binding._clickHandler)
     }

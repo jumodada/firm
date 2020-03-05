@@ -2,6 +2,7 @@
     <div class="f-popover"
          ref="popover"
          v-element-position-detector="contentPosition"
+         v-click-outside="clickCloseAll"
     >
         <transition
                 @before-enter="beforeEnter"
@@ -11,7 +12,6 @@
                 @after-leave="afterLeave"
         >
             <div ref="contentWrapper"
-                 v-click-outside="clickCloseAll"
                  :class="wrapperClass"
                  @mouseenter="hoverInOPen"
                  @mouseleave="hoverOutAndClose"
@@ -189,7 +189,8 @@
                 if (this.outClick || this.trigger !== 'hover') return
                 this.visible = true
             },
-            clickCloseAll() {
+            clickCloseAll(e) {
+                if(this.$refs.contentWrapper.contains(e.target))return
                 this.visible = false
             },
             clickToggle() {
