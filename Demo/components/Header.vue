@@ -14,9 +14,12 @@
             <f-icon :color="fColor" name="right"></f-icon>
         </div>
         <div :class="{'header-angle':atHome}">
-            <f-icon :color="fColor"
-                    font-size="35px"
-                    :class="atHome?'header-angle-icon-home':'header-angle-icon-other'" name="github1"></f-icon>
+            <a href="https://github.com/jumodada/firm" target="_blank">
+                <f-icon :color="fColor"
+                        font-size="35px"
+                        :class="atHome?'header-angle-icon-home':'header-angle-icon-other'" name="github1">
+                </f-icon>
+            </a>
         </div>
     </div>
 </template>

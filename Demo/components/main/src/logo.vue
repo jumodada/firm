@@ -44,7 +44,7 @@
             </div>
             <div class="dot" ref="dot"></div>
         </div>
-        <f-button class="firm-enter-button">快速开始</f-button>
+        <f-button @click="toStart" class="firm-enter-button">快速开始</f-button>
     </div>
 </template>
 
@@ -245,15 +245,15 @@
                     targets: '.dot',
 
                     translateY: [
-                        {value: ['-30vh', '-40vh'], duration: 500, endDelay: 20, easing: 'easeInOutSine'},
-                        {value: ['-40vh', '-72vh'], duration: 500, endDelay: 20, easing: 'easeInOutSine'},
-                        {value: ['-72vh', '-20vh'], duration: 300, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
-                        {value: ['-20vh', '-60vh'], duration: 260, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
-                        {value: ['-60vh', '-20vh'], duration: 400, easing: 'cubicBezier(0.225, 1, 0.7, 0.980)'},
-                        {value: ['-20vh', '-46vh'], duration: 350, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
-                        {value: ['-46vh', '-20vh'], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
-                        {value: ['-20vh', '-24vh'], duration: 400, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
-                        {value: ['-24vh', '-20vh'], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: ['-30vh', '-30vh'], duration: 500, endDelay: 20, easing: 'easeInOutSine'},
+                        {value: ['-30vh', '-62vh'], duration: 500, endDelay: 20, easing: 'easeInOutSine'},
+                        {value: ['-62vh', '-10vh'], duration: 300, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: ['-10vh', '-50vh'], duration: 260, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
+                        {value: ['-50vh', '-10vh'], duration: 400, easing: 'cubicBezier(0.225, 1, 0.7, 0.980)'},
+                        {value: ['-10vh', '-36vh'], duration: 350, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
+                        {value: ['-36vh', '-10vh'], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
+                        {value: ['-10vh', '-14vh'], duration: 400, easing: 'cubicBezier(.9, 1, 0.115, 0.180)'},
+                        {value: ['-14vh', '-9vh'], duration: 500, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
                     ],
                     translateX: [
                         {value: '-30vw', duration: 300, endDelay: 30, easing: 'cubicBezier(0.225, 1, 0.915, 0.980)'},
@@ -283,6 +283,11 @@
                 }, 2000)
                 target.play()
             },
+            toStart(){
+                this.$router.push({
+                    path:`components/start`
+                })
+            }
         }
     }
 </script>

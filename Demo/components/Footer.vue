@@ -6,7 +6,7 @@
                 <span>首页</span>
                 <span>安装</span>
                 <span>开始使用</span>
-                <span>github</span>
+<!--                <span>github</span>-->
             </div>
             <div class="firm-footer-link-dependence">
                 <span>官网依赖</span>
@@ -18,8 +18,8 @@
             <div class="firm-footer-link-about">
                 <span>关于</span>
                 <span> <a target="_blank" href="https://github.com/jumodada/firm">github</a></span>
-                <span> <a target="_blank" href="https://github.com/juliangarnier/anime">联系邮箱</a></span>
-                <span> <a target="_blank" href="https://github.com/markedjs/marked">API设计</a></span>
+<!--                <span> <a target="_blank" href="https://github.com/juliangarnier/anime">联系邮箱</a></span>-->
+<!--                <span> <a target="_blank" href="https://github.com/markedjs/marked">API设计</a></span>-->
             </div>
             <div class="firm-footer-link-more">
                 <span>更多</span>
