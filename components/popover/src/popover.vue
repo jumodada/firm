@@ -1,7 +1,7 @@
 <template>
     <div class="f-popover"
          ref="popover"
-         v-element-position-detector="contentPosition"
+         v-element-position-detector="setPopover"
          v-click-outside="clickCloseAll"
     >
         <transition
@@ -51,10 +51,12 @@
     import Icon from '../../icon'
     import clickOutside from "../../../src/directive/clickoutside"
     import elementPositionDetector from "../../../src/directive/elementPositionDetector"
+    import {setPopoverPosition} from "../../../src/utils/set-position";
+
     export default {
         name: "f-popover",
         components: {Button, Icon},
-        directives:{clickOutside,elementPositionDetector},
+        directives: {clickOutside, elementPositionDetector},
         model: {
             prop: 'visibleProps',
             event: 'change'
@@ -94,8 +96,8 @@
             title: String,
             titleIcon: String,
             confirmTimeout: {
-                type:Number,
-                validator:val=>val>0
+                type: Number,
+                validator: val => val > 0
             },
             titleIconColor: {
                 type: String,
@@ -124,51 +126,10 @@
                 contentWrapper.remove()
                 clearTimeout(this.timer)
             },
-            contentPosition() {
+            setPopover() {
                 if (!this.visible) return
-                const {contentWrapper, trigger} = this.$refs;
-                if (contentWrapper.parentElement.nodeName.toLowerCase() !== 'body') {
-                    document.body.appendChild(contentWrapper)
-                }
-                let {top, left, height, width} = trigger.getBoundingClientRect()
-                this.setPosition(contentWrapper, top, left, width, height)
-                this.$nextTick(() => this.setTransform(contentWrapper, height, width))
-            },
-            setTransform($el, height, width) {
-                let contentWidth = $el.clientWidth
-                let contentHeight = $el.clientHeight
-                let widthDiffer = -(Number(contentWidth) - width)
-                let heightDiffer = -(Number(contentHeight) - height)
-                let transform = {
-                    'top-start': `translate(0,-100%)`,
-                    top: `translate(${widthDiffer / 2}px,-100%)`,
-                    'top-end': `translate(calc(-100% + ${width}px),-100%)`,
-                    'left-start': `translate(-100%,0)`,
-                    left: `translate(-100%,${heightDiffer / 2}px)`,
-                    'left-end': `translate(-100%,${heightDiffer}px)`,
-                    'bottom-start': `translate(-${width}px,0)`,
-                    bottom: `translate(calc(${-(width + contentWidth) / 2 + 'px'}),0)`,
-                    'bottom-end': `translate(-${contentWidth}px,0)`,
-                    'right-start': `translate(0,0)`,
-                    right: `translate(0,${heightDiffer / 2}px)`,
-                    'right-end': `translate(0,${heightDiffer}px)`
-                }
-                $el.style.transform = transform[this.position]
-            },
-            setPosition($el, top, left, width, height) {
-                let _tTop, _rTop, _tLeft, _rLeft
-                _tTop = top + window.scrollY
-                _rTop = top + height + window.scrollY
-                _tLeft = left + window.scrollX
-                _rLeft = left + width + window.scrollX
-                let _position = this.position.split('-')[0]
-                let position = {
-                    top: {top: _tTop, left: _tLeft},
-                    left: {top: _tTop, left: _tLeft},
-                    bottom: {top: _rTop, left: _rLeft},
-                    right: {top: _tTop, left: _rLeft}
-                }
-                Array.from(['left', 'top']).forEach(attr => $el.style[attr] = position[_position][attr] + 'px')
+                const {contentWrapper, trigger} = this.$refs
+                setPopoverPosition(this,trigger,contentWrapper)
             },
             addEventListener() {
                 let {popover} = this.$refs
@@ -190,14 +151,15 @@
                 this.visible = true
             },
             clickCloseAll(e) {
-                if(this.$refs.contentWrapper.contains(e.target))return
+                if(this.confirmLoading) return 
+                if (this.$refs.contentWrapper.contains(e.target)) return
                 this.visible = false
             },
             clickToggle() {
                 if (this.confirmLoading) return
                 this.visible = !this.visible
                 if (this.visible) {
-                    this.$nextTick(() => this.contentPosition())
+                    this.$nextTick(() => this.setPopover())
                 }
             },
             hoverToggle(e) {
@@ -205,14 +167,14 @@
                 this.outClick = false
                 if (e.type === 'mouseenter') {
                     this.visible = true
-                    this.$nextTick(() => this.contentPosition())
+                    this.$nextTick(() => this.setPopover())
                 } else {
                     this.timer = setTimeout(() => this.visible = false, 120)
                 }
             },
             focusToggle(e) {
-                this.visible = e.type==='mousedown'
-                this.contentPosition()
+                this.visible = e.type === 'mousedown'
+                this.setPopover()
             },
             onClick() {
                 if (this.trigger !== 'click') return
@@ -249,18 +211,18 @@
                 if (this.beforeConfirm) {
                     this.confirmLoading = true
                     let racePromise = [Promise.resolve(this.beforeConfirm())]
-                    if(this.confirmTimeout)racePromise.push(new Promise((resolve, reject) => {
-                        setTimeout(()=>{
+                    if (this.confirmTimeout) racePromise.push(new Promise((resolve, reject) => {
+                        setTimeout(() => {
                             reject('time out')
-                        },this.confirmTimeout)
+                        }, this.confirmTimeout)
                     }))
                     Promise.race(racePromise).then(res => {
                         this.visible = false
                         this.$emit('on-confirm-success', e, res)
-                    }).catch(err=>{
+                    }).catch(err => {
                         this.confirmLoading = false
-                        this.$emit(err ==='time out'?'on-confirm-timeOut':'on-confirm-failed', e, err)
-                    }).finally(()=>{
+                        this.$emit(err === 'time out' ? 'on-confirm-timeOut' : 'on-confirm-failed', e, err)
+                    }).finally(() => {
                         this.$emit('on-confirm', e)
                     })
                 } else {
