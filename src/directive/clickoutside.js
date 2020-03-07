@@ -4,10 +4,11 @@ export default {
             if (el.contains(e.target)) return false
             if (binding.expression) binding.value(e)
         }
-        binding._clickHandler = handler
+        el._click_outside_handler = handler
         document.addEventListener('click', handler)
     },
-    unbind(el,binding) {
-        document.removeEventListener('click', binding._clickHandler)
+    unbind(el) {
+        document.removeEventListener('click', el._click_outside_handler)
+        delete el._click_outside_handler
     }
 };

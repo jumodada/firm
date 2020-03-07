@@ -10,16 +10,16 @@ export default {
             if (node) node.addEventListener('scroll', handler)
         })
         window.addEventListener('resize', handler)
-        el._clickHandler = handler
+        el._element_position_detector  = handler
         el._$scrollParents = $parents
     },
     unbind(el) {
         if(!el._$scrollParents)el._$scrollParents = getAllScrollParents(el)
         el._$scrollParents.forEach(node => {
-            if (node) node.removeEventListener('scroll',el._clickHandler)
+            if (node) node.removeEventListener('scroll',el._element_position_detector)
         })
-        window.removeEventListener('resize',el._clickHandler)
-        delete el._clickHandler
+        window.removeEventListener('resize',el._element_position_detector)
+        delete el._element_position_detector
         delete el._$scrollParents
 
     }

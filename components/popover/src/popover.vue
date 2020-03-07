@@ -151,8 +151,9 @@
                 this.visible = true
             },
             clickCloseAll(e) {
-                if(this.confirmLoading) return 
-                if (this.$refs.contentWrapper.contains(e.target)) return
+                console.log(1)
+                if(this.confirmLoading) return
+                if (this.$refs.contentWrapper&&this.$refs.contentWrapper.contains(e.target)) return
                 this.visible = false
             },
             clickToggle() {
