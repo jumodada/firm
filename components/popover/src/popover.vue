@@ -51,7 +51,7 @@
     import Icon from '../../icon'
     import clickOutside from "../../../src/directive/clickoutside"
     import elementPositionDetector from "../../../src/directive/elementPositionDetector"
-    import {setPopoverPosition} from "../../../src/utils/set-position";
+    import {setPopoverPosition} from "../../../src/utils/set-position"
 
     export default {
         name: "f-popover",
@@ -151,7 +151,6 @@
                 this.visible = true
             },
             clickCloseAll(e) {
-                console.log(1)
                 if(this.confirmLoading) return
                 if (this.$refs.contentWrapper&&this.$refs.contentWrapper.contains(e.target)) return
                 this.visible = false
@@ -177,9 +176,9 @@
                 this.visible = e.type === 'mousedown'
                 this.setPopover()
             },
-            onClick() {
+            onClick(e) {
                 if (this.trigger !== 'click') return
-                if (this.$refs.trigger.contains(event.target)) {
+                if (this.$refs.trigger.contains(e.target)) {
                     this.clickToggle()
                 }
             },

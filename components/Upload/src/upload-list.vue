@@ -1,8 +1,8 @@
 <template>
         <transition-group
-                class="f-upload-ul" name="fade-li" tag="ul">
+                class="f-upload-ul" name="fade-drop" tag="ul">
             <li v-for="(file,index) in fileLists" :key="file.uid">
-               <transition name="fade-li">
+               <transition name="fade-drop">
                    <div v-if="file.status!=='finished'">
                       <div class="f-upload-ul-file-info">
                           <Icon color="#c2c5cb" font-size="16" :name="formatName(file)"></Icon>

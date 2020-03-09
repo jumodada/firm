@@ -1,7 +1,9 @@
-.fade-li-enter-active,  .fade-li-leave-active {
-  transition: all .4s;
-}
-.fade-li-enter,.fade-li-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
+$list:drop fade-drop;
+@each $name in $list {
+  .#{$name}-enter-active {
+    animation: #{$name} .2s;
+  }
+  .#{$name}-leave-active {
+    animation: #{$name} .2s reverse;
+  }
 }

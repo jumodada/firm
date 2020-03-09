@@ -14,4 +14,13 @@
       box-shadow:$shadow-hover-2;
     }
   }
+  &-drop{
+    position: absolute;
+    z-index: 2000;
+    background-color: $grey-1;
+    width: auto;
+    padding: 5px;
+    box-shadow: $shadow-right;
+    border-radius: $border-drop-radius;
+  }
 }

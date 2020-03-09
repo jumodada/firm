@@ -26,15 +26,16 @@ export const setTransform = ($el, height, width,self) => {
         right: `translate(0,${heightDiffer / 2}px)`,
         'right-end': `translate(0,${heightDiffer}px)`
     }
-    $el.style.transform = transform[self.position]
+    $el.style.transform = self.position ? transform[self.position] : transform['bottom-start']
 }
 export const setPosition = ($el, top, left, width, height,self) => {
     let _tTop, _rTop, _tLeft, _rLeft
     _tTop = top + window.scrollY
-    _rTop = top + height + window.scrollY
+    _rTop = top + height + window.scrollY+3
     _tLeft = left + window.scrollX
     _rLeft = left + width + window.scrollX
-    let _position = self.position.split('-')[0]
+    let _position
+    _position = self.position ? self.position.split('-')[0] : 'bottom'
     let position = {
         top: {top: _tTop, left: _tLeft},
         left: {top: _tTop, left: _tLeft},
@@ -42,4 +43,5 @@ export const setPosition = ($el, top, left, width, height,self) => {
         right: {top: _tTop, left: _rLeft}
     }
     Array.from(['left', 'top']).forEach(attr => $el.style[attr] = position[_position][attr] + 'px')
+    if(self.width)$el.style['min-width'] = self.width+'px'
 }

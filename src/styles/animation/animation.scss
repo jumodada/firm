@@ -8,7 +8,6 @@
     width: 100%;
   }
 }
-
 @keyframes progress-active-two {
   0% {
     transform: translate(10px, 70%)  rotate(720deg);
@@ -20,7 +19,6 @@
     transform: translate(10px, 70%)  rotate(720deg);
   }
 }
-
 @keyframes stripe {
   from {
     background-position: 0 0;
@@ -30,8 +28,6 @@
     background-position: 600px 0
   }
 }
-
-
 @keyframes loop {
   to {
     top: -8px;
@@ -42,7 +38,6 @@
     opacity: 0;
   }
 }
-
 .loop {
   position: relative;
 
@@ -64,8 +59,6 @@
     flex-shrink: 0;
   }
 }
-
-
 @keyframes danger {
   0% {
     transform: scale(1);
@@ -88,7 +81,6 @@
     opacity: 0.0;
   }
 }
-
 @-webkit-keyframes danger {
   0% {
     -webkit-transform: scale(0);
@@ -111,7 +103,6 @@
     opacity: 0.0;
   }
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -142,5 +133,25 @@
   }
   100%{
     opacity: 1;
+  }
+}
+@keyframes drop {
+   0% {
+     opacity: 0;
+     transform: scaleY(0.8) translateX(-100%);
+   }
+   100% {
+     opacity: 1;
+     transform: scale(1) translateX(-100%);
+   }
+ }
+@keyframes fade-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
   }
 }

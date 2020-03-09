@@ -35,7 +35,7 @@
         methods:{
             focusToggle(e){
                 console.log(e)
-            }
+            },
         }
     }
 </script>
