@@ -12,7 +12,6 @@ import Popover from '../components/popover'
 import Switch from '../components/switch'
 import Message from '../components/message'
 import Col from '../components/col'
-import Selector from '../components/selector'
 const components = [
     Button,
     Icon,
@@ -27,7 +26,7 @@ const components = [
     Input,
     Popover,
     Switch,
-    Selector
+    Option
 ]
 
 const install = function (Vue) {
@@ -52,6 +51,5 @@ export default {
     Progress,
     Popover,
     Switch,
-    Selector
 }
 

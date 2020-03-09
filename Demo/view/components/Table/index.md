@@ -7,7 +7,8 @@
  <f-row>
 <f-col span="6">边框：<f-switch v-model="bordered"></f-switch></f-col>
 <f-col span="6">条纹：<f-switch v-model="stripe"></f-switch></f-col>
-<f-col span="6"><f-selector></f-selector></f-col>
+<f-col span="6">
+</f-col>
 </f-row>
  <f-table :bordered="bordered" :stripe="stripe"  :columns="columns" :data="data"></f-table>
 
@@ -17,6 +18,32 @@ export default {
         return {
             bordered:false,
             stripe:false,
+ cityList: [
+                    {
+                        value: 'New York',
+                        label: 'New York'
+                    },
+                    {
+                        value: 'London',
+                        label: 'London'
+                    },
+                    {
+                        value: 'Sydney',
+                        label: 'Sydney'
+                    },
+                    {
+                        value: 'Ottawa',
+                        label: 'Ottawa'
+                    },
+                    {
+                        value: 'Paris',
+                        label: 'Paris'
+                    },
+                    {
+                        value: 'Canberra',
+                        label: 'Canberra'
+                    }
+                ],
             columns:[
                {title:'商品名称',key:'name'},
                {title:'规格',key:'sku'},
