@@ -21,10 +21,6 @@
             <div class="card-group-item-content-main">
                 包括组件功能、流程使用逻辑、以及友好的API设计
             </div>
-            <div class="card-group-item-content-more">
-                更多
-                <f-icon color="white" name="right"></f-icon>
-            </div>
         </div>
     </div>
 </template>

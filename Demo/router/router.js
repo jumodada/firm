@@ -12,31 +12,12 @@ export default [
         },
         children: []
     },
-
     {
         path: '/components',
         name: 'components',
         component: Content,
-        redirect:'/components/install',
+        redirect:'/components/Button',
         children: [
-            {
-                path: '/components/install',
-                name: 'install',
-                meta: {
-                    name: '安装',
-                    type: 'compass'
-                },
-                component: (resolve) => require(['../view/components/install/index.md'], resolve)
-            },
-            {
-                path: '/components/start',
-                name: 'start',
-                meta: {
-                    name: '快速开始',
-                    type: 'compass'
-                },
-                component: (resolve) => require(['../view/components/start'], resolve)
-            },
             {
                 path: '/components/Button',
                 name: 'Button',
@@ -54,6 +35,15 @@ export default [
                     type: 'component'
                 },
                 component: (resolve) => require(['../view/components/Input/index.md'], resolve)
+            },
+            {
+                path: '/components/Tabs',
+                name: 'Tabs',
+                meta: {
+                    name: '标签页',
+                    type: 'component'
+                },
+                component: (resolve) => require(['../view/components/tabs/index.md'], resolve)
             },
             {
                 path: '/components/Popover',

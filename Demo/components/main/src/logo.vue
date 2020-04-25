@@ -285,7 +285,7 @@
             },
             toStart(){
                 this.$router.push({
-                    path:`components/start`
+                    path:`components/Button`
                 })
             }
         }

@@ -12,6 +12,8 @@ import Popover from '../components/popover'
 import Switch from '../components/switch'
 import Message from '../components/message'
 import Col from '../components/col'
+import Tabs from '../components/tabs'
+import TabsItem from '../components/tabs-item'
 const components = [
     Button,
     Icon,
@@ -26,6 +28,8 @@ const components = [
     Input,
     Popover,
     Switch,
+    Tabs,
+    TabsItem,
     Option
 ]
 
@@ -48,6 +52,8 @@ export default {
     Icon,
     Table,
     Upload,
+    Tabs,
+    TabsItem,
     Progress,
     Popover,
     Switch,

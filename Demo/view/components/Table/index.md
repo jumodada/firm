@@ -106,9 +106,130 @@ export default {
 :::
 
 
+## 固定列
+:::demo 设置`width`和`fixed`。fixed支持`left`和`right`。
+```html
+ <f-table width="600"  :columns="columns" :data="data"></f-table>
+
+<script>
+export default {
+    data(){
+        return {
+            columns:[
+               {title:'规格',key:'sku',width:140},
+               {title:'商品名称',key:'name',width:140,fixed:'left'},
+               {title:'库存数量',key:'stock',width:140},
+               {title:'销售数量',key:'sale',width:140},
+               {title:'单价',key:'price',align:'center',width:140,fixed:'right'},
+               {title:'进价',key:'purchase',width:140}              
+            ],
+            data:[
+              {name:'陶锅',sku:'2.5L',stock:11,price:435,sale:0,purchase:389},
+              {name:'保温杯',sku:'500ml',stock:2234,price:99,sale:1135,purchase:50},
+              {name:'一次性医用口罩',sku:'袋',stock:0,price:6,sale:9999,purchase:2.5},
+              {name:'薏仁茶',sku:'盒',stock:648,price:34,sale:3014,purchase:28},
+              {name:'牛奶',sku:'箱',stock:2376,price:66,sale:201,purchase:39}
+            ]
+        }
+    }
+ 
+}
+</script>
+
+```
+:::
+
+
+## 自定义模板
+:::demo设置`slot`来自定义内容。
+```html
+ <f-table  :columns="columns" :data="data">
+    <template slot="action" slot-scope="{row,index}">
+   <f-popover @on-confirm-success="deleteGoods(index)" :before-confirm="handleBeforeSuccess" @on-cancel="handleCancel(row)"  confirm  title="提示" content="确定要删除吗">
+   <f-button  type="error" size="mini"  class="button">删除</f-button>
+   </f-popover>
+    </template>
+</f-table>
+
+<script>
+export default {
+    data(){
+        return {
+            columns:[
+               {title:'商品名称',key:'name'},   
+               {title:'规格',key:'sku'},
+               {title:'销售数量',key:'sale'},
+               {title:'单价',key:'price'},
+               {title:'进价',key:'purchase'}, 
+               {title:'操作',slot:'action',align:'center',width:140}, 
+            ],
+            data:[
+              {name:'陶锅',sku:'2.5L',stock:11,price:435,sale:0,purchase:389},
+              {name:'保温杯',sku:'500ml',stock:2234,price:99,sale:1135,purchase:50},
+              {name:'一次性医用口罩',sku:'袋',stock:0,price:6,sale:9999,purchase:2.5},
+              {name:'薏仁茶',sku:'盒',stock:648,price:34,sale:3014,purchase:28},
+              {name:'牛奶',sku:'箱',stock:2376,price:66,sale:201,purchase:39}
+            ]
+        }
+    },
+    methods:{
+       handleCancel(){
+          this.$message.error('已取消') 
+       }, 
+      handleBeforeSuccess(){
+         return new Promise((resolve,reject)=>{
+           resolve('success')
+       })
+      }, 
+      deleteGoods(index){
+        this.data.splice(index,1)
+       }, 
+     }
+ 
+}
+</script>
+
+```
+:::
+
+## 加载中
+:::demo设置`loading`来控制加载动画的显隐。
+```html
+ <f-table :loading="loading"  :columns="columns" :data="data"></f-table>
+ <f-switch style="margin-top:10px" v-model="loading"></f-switch>
+<script>
+export default {
+    data(){
+        return {
+            columns:[
+               {title:'商品名称',key:'name'},   
+               {title:'规格',key:'sku'},
+               {title:'销售数量',key:'sale'},
+               {title:'单价',key:'price'},
+               {title:'进价',key:'purchase'},  
+            ],
+            data:[
+              {name:'陶锅',sku:'2.5L',stock:11,price:435,sale:0,purchase:389},
+              {name:'保温杯',sku:'500ml',stock:2234,price:99,sale:1135,purchase:50},
+              {name:'一次性医用口罩',sku:'袋',stock:0,price:6,sale:9999,purchase:2.5},
+              {name:'薏仁茶',sku:'盒',stock:648,price:34,sale:3014,purchase:28},
+              {name:'牛奶',sku:'箱',stock:2376,price:66,sale:201,purchase:39}
+            ],
+            loading:false
+        }
+    },
+    methods:{
+     
+     }
+ 
+}
+</script>
+
+```
+:::
+
 ## API
 
-~~*~~
 ### Props
 | 参数      | 说明    | 类型      | 可选值       | 默认   |
 |---------- |-------- |---------- |-------------  |-------- |

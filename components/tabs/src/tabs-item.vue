@@ -4,7 +4,7 @@
             >
                 <div class="tabs-item"
                      :class="{disabled:disabled,reverse:isReverse}"
-                     v-if="parseInt(active)===parseInt(name)">
+                     v-if="parseInt(active)===parseInt(index)">
                     <slot></slot>
                 </div>
             </transition>
@@ -12,13 +12,13 @@
 
 <script>
     export default {
-        name: "xTabs-item",
+        name: "f-tabs-item",
         props:{
-            item:{
+            name:{
                 type:String,
                 required: true
             },
-            name:{
+            index:{
                 type: String|Number,
                 required: true
             },
@@ -35,8 +35,8 @@
             }
         },
         created(){
-             this.$parent.headerClass.push(this.item)
-             this.$parent.disabledClass[this.name] = this.disabled
+             this.$parent.headerClass.push(this.name)
+             this.$parent.disabledClass[this.index] = this.disabled
         }
     }
 </script>
