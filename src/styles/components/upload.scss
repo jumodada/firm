@@ -1,0 +1,68 @@
+.f-upload {
+  margin: 0;
+  padding: 0;
+  &-select {
+    &-input {
+      display: none;
+    }
+  }
+  &-drag{
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px dashed #c2c5cb;
+    border-radius: 7px;
+    display: flex;
+    transition: all .3s ease;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+      border: 1px dashed #26acee;
+      box-shadow:$shadow-focus-1;
+    }
+  }
+  &-is-on-drag{
+    border: 1px dashed #26acee;
+    box-shadow:$shadow-focus-1;
+  }
+  &-ul{
+    padding: 0;
+    margin: 12px 0 0;
+    list-style: none;
+    color:#c2c5cb;
+    li{
+      margin-top: 5px;
+      transition: color.23s ease;
+      &:hover{
+        color:#26acee;
+      }
+    }
+  }
+  &-ul-file-info{
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: background-color .25s ease;
+    overflow: hidden;
+    &-delete{
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+    &:hover{
+      background-color: #f9f9f9;
+      .f-upload-ul-file-info-delete{
+        right: 2px;
+      }
+    }
+    span{
+      cursor: pointer;
+    }
+    svg{
+      margin-right: 5px;
+    }
+  }
+}

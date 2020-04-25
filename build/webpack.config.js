@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {join:pathJoin} = require('path')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -12,11 +12,14 @@ const webpackConfig = {
     entry:'./Demo/index.js',
     output:{
         filename:'[name].[hash].js',
-        path:pathJoin(__dirname,'./dist')
+        path:path.join(__dirname,'./dist')
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
-        modules: ['node_modules']
+        modules: ['node_modules'],
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
     },
     devServer: {
         host: '0.0.0.0',
@@ -30,6 +33,7 @@ const webpackConfig = {
     stats: {
         children: false
     },
+
     module: {
         rules: [
             {
@@ -50,13 +54,44 @@ const webpackConfig = {
                 use: [
                     isProd ? MiniCssExtractPlugin.loader : 'style-loader',
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: path.resolve(__dirname, '../src/styles/global.scss')
+                        }
+                    }
                 ]
             },
             {
                 test: /\.svg/,
                 use: ['file-loader']
-            }
+            },
+            // {
+            //     test: /\.md$/,
+            //     use: [{
+            //         loader: 'html-loader'
+            //     }, {
+            //         loader: 'markdown-loader',
+            //     }
+            //     ]
+            // }
+            {
+                test: /\.md$/,
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            compilerOptions: {
+                                preserveWhitespace: false
+                            }
+                        }
+                    },
+                    {
+                        loader: path.resolve(__dirname, '../Demo/md-loader/index.js')
+                    }
+                ]
+            },
         ]
     },
     plugins: [

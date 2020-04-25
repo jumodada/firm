@@ -10,3 +10,7 @@ yarn.lock
 dist
 .Ds_Store/
 docs/
+src/styles/.sass-cache
+src/global.css
+src/global.css.map
+.sass-cache

@@ -1,5 +1,4 @@
 <template>
-
     <div class="cascader-item">
 
         <div class="now"
@@ -12,7 +11,7 @@
                  :class="{activeItem:activeItem(item),disabled:item.disabled}"
             >
                 {{item.name}}
-                <x-icon  class="x-icon"  :loading="iconLoading(item)" :name="theIcon(item) || !item.isLeaf&&'right'"  v-if="item.children || dynamic" color="#e6e6e6"></x-icon>
+                <f-icon  class="f-icon"  :loading="iconLoading(item)" :name="theIcon(item) || !item.isLeaf&&'right'"  v-if="item.children || dynamic" color="#e6e6e6"></f-icon>
             </div>
         </div>
         <transition
@@ -35,7 +34,7 @@
 </template>
 
 <script>
-    import Icon from '../currency/icon/src/icon'
+    import Icon from '../icon/src/icon'
     export default {
         name: "xCascaderItems",
         props: {
@@ -143,13 +142,13 @@
             }
         },
         components:{
-            'x-icon':Icon
+            'f-icon':Icon
         }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../../src/global";
+    @import "../../src/styles/global";
 
     .cascader-item{
         display: flex;
@@ -190,7 +189,7 @@
                     pointer-events: none;
                     opacity: 0.3;
                 }
-                .x-icon{
+                .f-icon{
                     margin-left:auto;
                 }
                 &:hover{

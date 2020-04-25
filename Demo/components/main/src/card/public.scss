@@ -4,8 +4,8 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  width: 300px;
-  height: 450px;
+  width: 23vw;
+  height: 34vw;
   border-radius: 10px;
   transition: .35s all ease;
   cursor: pointer;
@@ -19,7 +19,7 @@
   }
 
   &:not(:first-child) {
-    margin-left: 3rem;
+    margin-left: 8vw;
   }
 
   &:nth-child(2) {
@@ -34,7 +34,7 @@
     background-color: #E74c3c;
 
     .card-group-item-title {
-      background-color: #E74c3c;
+      background-color: #cd4138;
     }
   }
 
@@ -45,7 +45,7 @@
 
   &-title {
     width: 100%;
-    height: 140px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,6 +78,104 @@
       position: absolute;
       right: 30px;
       bottom: 30px;
+      a{
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 577px) {
+  .card-group-item {
+    &-title {
+      width: 100%;
+      height: 120px;
+    }
+
+    &-content {
+      margin-top: 9px;
+      padding: 13px;
+
+      &-header {
+        font-size: 16px;
+      }
+      &-main {
+        padding: 0 3px;
+        margin-top: 10px;
+        font-size: 12px;
+      }
+
+      &-more {
+        right: 30px;
+        bottom: 30px;
+      }
+    }
+  }
+}
+@media (min-width: 769px) {
+  .card-group-item {
+
+    &-title {
+      width: 100%;
+      height: 100px;
+    }
+
+    &-content {
+      margin-top: 9px;
+      padding: 13px;
+
+      &-header {
+        font-size: 18px;
+      }
+      &-main {
+        padding: 0 5px;
+        margin-top: 13px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media (min-width: 993px) {
+  .card-group-item {
+
+    &-title {
+      height: 110px;
+    }
+
+    &-content {
+      margin-top: 15px;
+      padding: 16px;
+
+      &-header {
+        font-size: 20px;
+      }
+      &-main {
+        padding: 0 7px;
+        margin-top: 17px;
+        font-size: 15px;
+      }
+    }
+  }
+}
+@media (min-width: 1201px) {
+  .card-group-item {
+
+    &-title {
+      height: 120px;
+    }
+
+    &-content {
+      margin-top: 20px;
+
+      &-header {
+        font-size: 24px;
+      }
+      &-main {
+        padding: 0 10px;
+        margin-top: 19px;
+        font-size: 16px;
+      }
     }
   }
 }

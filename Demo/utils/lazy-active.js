@@ -39,7 +39,6 @@ function componentsOffsetTop($els) {
 function collectElementArr($el) {
     let childrenScrollHeight = []
     $children = $el.$children
-    console.log($children)
     $children.map(child => childrenScrollHeight.push(child.$el.scrollHeight))
     _reduce(childrenScrollHeight)
     return childrenScrollHeight

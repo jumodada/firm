@@ -12,11 +12,12 @@
                 组件
             </div>
             <div class="card-group-item-content-main">
-                安装即用，快速开发
+                未发布npm包，根据是否能写出组件来衡量自己对vue的熟悉程度。
+                期待vue3.0正式版发布。
             </div>
             <div class="card-group-item-content-more">
-                更多
-                <x-icon color="white" name="right"></x-icon>
+                <router-link to="/components/Button">更多</router-link>
+                <f-icon color="white" name="right"></f-icon>
             </div>
         </div>
     </div>

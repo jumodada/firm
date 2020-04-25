@@ -1,0 +1,94 @@
+.f-switch{
+  height: 20px;
+  width: 50px;
+  background-color: rgba(231, 231, 231, 0.95);
+  color: white;
+  border-radius: 35px;
+  display: inline-flex;
+  position: relative;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  &-open{
+    position: absolute;
+    left: 7px;
+    top: 0;
+    opacity: 1;
+  }
+  &-close{
+    position: absolute;
+    left: 24px;
+    top:0;
+  }
+  &::after{
+    content: "";
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #fff;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    cursor: pointer;
+    transition: left .2s ease-in-out,width .2s ease-in-out;
+  }
+  &.checked{
+    &:after{
+      left: 31px;
+    }
+  }
+  &.openStatus{
+    background-color: $primary-1;
+    color: white;
+  }
+  &.big{
+    height: 25px;
+    width: 60px;
+    font-size: 15px;
+    border-radius: 22px;
+    .switch-open{
+      left: 10px;
+      top: 1px;
+    }
+    .switch-close{
+      left: 30px;
+      top:1px;
+    }
+    &::after{
+      width: 23px;
+      height: 23px;
+    }
+    &.checked{
+      &:after{
+        left: 36px;
+      }
+    }
+  }
+  &.small{
+    height: 17px;
+    width: 42px;
+    font-size: 13px;
+    border-radius: 18px;
+    .switch-open{
+      left: 7px;
+      top: -1px;
+    }
+    .switch-close{
+      left: 20px;
+      top:-1px;
+    }
+    &::after{
+      width: 15px;
+      height: 15px;
+    }
+    &.checked{
+      &:after{
+        left: 26px;
+      }
+    }
+  }
+
+}

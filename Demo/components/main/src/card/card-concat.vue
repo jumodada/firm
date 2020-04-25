@@ -20,14 +20,10 @@
             <div class="card-group-item-content-main">
                 个人项目玩具，希望与更多vue开发者交流UI组件的开发和日常使用
             </div>
-            <div class="card-group-item-content-more">
-                更多
-                <x-icon color="white" name="right"></x-icon>
-            </div>
         </div>
         <div class="card-group-item-content-more">
-            更多
-            <x-icon color="white" name="right"></x-icon>
+            <a target="_blank" href="https://s1.ax1x.com/2020/04/24/J0Lc38.jpg">更多</a>
+            <f-icon color="white" name="right"></f-icon>
         </div>
     </div>
 </template>

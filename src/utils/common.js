@@ -1,40 +1,38 @@
 
 
-function deepClone(item,hash = new WeakMap()) {
+function deepClone(item) {
     if (!item) return item
-    if (hash.has(item))return hash.get(item);  //检查循环引用
-    var result,
-        type = Object.prototype.toString.call(item).slice(8,this.length-1),
-        fk= ['String','Number','Boolean','Function'].indexOf(type)>-1
 
-    if(fk){
-        result = item;//直接赋值
-    }else if(item.nodeType && typeof item.cloneNode === "function"){
-        result = item.cloneNode(true);          //是否是dom对象
-    }else{
+    var types = [ Number, String, Boolean ], result;
+    types.forEach(function(type) {
+        if (item instanceof type) result = type( item )
+    })
 
-        let other = {           //需要递归或者其他的操作
-            Array() {
-                result = []
-                item.forEach((child, index)=>{
-                    hash.set(item, result);
-                    result[index] = deepClone(child,hash)
-                })
-            },
-            Date(){
-                result = new Date(item)
-            },
-            Object(){
-                result = {}
-                Reflect.ownKeys(item).forEach(child=>{
-                    hash.set(item, result);
-                    result[child] = deepClone(item[child],hash)
-                })
+    if (typeof result === 'undefined') {
+        if (Object.prototype.toString.call(item).slice(8,-1) === 'Array') {
+            result = []
+            item.forEach((child, index)=>result[index] = deepClone( child ))
+        } else if (typeof item === 'object') {
+            if (item.nodeType && typeof item.cloneNode === 'function') {
+                result = item.cloneNode(true)
+            } else if (!item.prototype) {
+                if (item instanceof Date) {
+                    result = new Date(item)
+                } else {
+                    result = {};
+                    for (let i in item) {
+                        result[i] = deepClone( item[i] )
+                    }
+                }
+            } else {
+                result = false ? new item.constructor() : item
             }
+        } else {
+            result = item
         }
-        other[type]()
     }
-    return result;
+
+    return result
 }
 
 

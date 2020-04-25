@@ -1,0 +1,232 @@
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0 ;
+}
+.f-table-wrapper{
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-right: none;
+  border-bottom: none;
+
+  &::after{
+    content: "";
+    position: absolute;
+    background-color: $border-color;
+    top:calc(100% - 1px);
+    width: 100%;
+    height: 1px;
+    left: 0;
+    z-index: 1;
+  }
+  &.borderHidden{
+    border-bottom: none;
+  }
+  &.bordered{
+    border-right-style: none;
+    border-bottom-style: none;
+    &::before{
+      content: "";
+      position: absolute;
+      background-color: $border-color;
+      top:0;
+      width: 1px;
+      height: 100%;
+      right: 0;
+      z-index: 1;
+    }
+  }
+}
+.f-table{
+  transition: .3s all ease;
+  -webkit-font-smoothing: antialiased;
+  color:#515a6e;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  width: inherit;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  box-sizing: border-box;
+  th{
+    background-color: #f9f9f9;
+  }
+  &.bordered{
+    th,td{
+      border-right: $border-solid;
+    }
+  }
+  &-cell {
+    padding: 6px 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+    word-wrap: normal;
+    vertical-align: middle;
+  }
+
+  &.stripe{
+    tbody {
+      >tr{
+        &:nth-child(even){
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+  td,th{
+    color:lighten(#515a6e,13.5%);
+    padding: 6px 0;
+    border-bottom: $border-solid;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    .td-div{
+      padding: 6px 12px;
+      box-sizing: border-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      word-break: break-all;
+      word-wrap: normal;
+      vertical-align: middle;
+    }
+  }
+  th{
+    border-right: 0;
+  }
+  tbody{
+    tr{
+      transition: .3s background-color  ease-in-out;
+      &:hover{
+        background-color: #f9f9f9;
+      }
+    }
+  }
+  .onHover{
+    background-color: #f9f9f9;
+  }
+  &-th{
+    &-icon{
+      fill: #666666;
+      margin-left: .15em;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 1em;
+      height: 1em;
+      cursor: pointer;
+    }
+  }
+  &-loading{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,.6);
+    z-index: 2;
+  }
+  &-main{
+    width: 100%;
+    &-header{
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      z-index: 3;
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      overflow: -moz-scrollbars-none;
+    }
+  }
+
+  &-left{
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+    overflow: hidden;
+    box-shadow: $shadow-left;
+    transition: box-shadow .23s ease;
+    &-header{
+      background-color: #f9f9f9;
+      z-index: 4;
+    }
+    &-body{
+      will-change: transform;
+      z-index: 4;
+      background-color: white;
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      overflow: -moz-scrollbars-none;
+    }
+  }
+  &-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: $shadow-right;
+    transition: box-shadow .23s ease;
+    will-change: transform;
+    overflow: hidden;
+    &-body{
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      overflow: -moz-scrollbars-none;
+      z-index: 4;
+      background-color: white;
+    }
+    &-header{
+      z-index: 4;
+    }
+  }
+  &-overflow-y{
+    overflow-y: scroll;
+  }
+  &-right-header-fixed {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    border-top: $border-solid;
+    border-bottom: $border-solid;
+    background-color: #f9f9f9;
+    z-index: 2;
+  }
+  &-visable-hidden{
+    visibility: hidden;
+  }
+}
+.f-align-left{
+  text-align: left ;
+}
+.f-align-right{
+  text-align: right;
+}
+.f-align-center{
+  text-align: center;
+}
+.boxShadowNone{
+  box-shadow: none !important;
+}
+.stopScroll{
+  pointer-events:none!important;
+}

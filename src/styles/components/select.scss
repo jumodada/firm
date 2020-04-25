@@ -1,0 +1,26 @@
+.f-select{
+  display: inline-block;
+  &-input{
+    transition: box-shadow .23s ease;
+    border: $border-solid;
+    border-radius: $border-radius;
+    height: $input-height;
+    &:focus{
+      box-shadow:$shadow-focus-2;
+      outline: none;
+    }
+    &:hover{
+      cursor: pointer;
+      box-shadow:$shadow-hover-2;
+    }
+  }
+  &-drop{
+    position: absolute;
+    z-index: 2000;
+    background-color: $grey-1;
+    width: auto;
+    padding: 5px;
+    box-shadow: $shadow-right;
+    border-radius: $border-drop-radius;
+  }
+}

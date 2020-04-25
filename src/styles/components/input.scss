@@ -1,0 +1,128 @@
+.f-input{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  > :not(:last-child){
+    margin-right: .3em;
+  }
+  .cloak{
+    position: absolute;
+    height: $input-height;
+    z-index: 2;
+    opacity: 0;
+  }
+  &-icon{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    fill:$text;
+  }
+  &-icon-left{
+    left: 8px;
+  }
+  &-icon-right{
+    right: 5px;
+  }
+  &-icon-cancel{
+    right: 8px;
+    cursor: pointer;
+  }
+  input ,textarea{
+    color: $text;
+    height: $input-height;
+    border:$border-solid;
+    border-radius: $border-radius;
+    padding: $input-padding;
+    font-size: inherit;
+    transition: .23s box-shadow ease;
+     &::-webkit-input-placeholder{
+       color: $grey-3;
+     }
+     &:-moz-placeholder {
+       color: $grey-3;
+     }
+     &:-ms-input-placeholder {
+       color: $grey-3;
+     }
+    &:hover{
+      border-color: $border-color;
+    }
+    &:focus{
+      box-shadow:$shadow-focus-2;
+      outline: none;
+    }
+    &[disabled]{
+      border-color: $border-color;
+      color:$disabled-text;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    &.error{
+      border-color: $error-1;
+
+    }
+
+  }
+  textarea{
+    min-height: $input-height;
+    resize: vertical;
+    padding: 6px 8px;
+  }
+  &-large{
+    input ,textarea{
+      height: $input-large-height;
+      font-size:$font-size-large;
+    }
+  }
+  &-small{
+    input ,textarea{
+      height: $input-small-height;
+      font-size:$font-size-small;
+    }
+  }
+  &-has-icon-left{
+    input{
+      padding-left:30px;
+    }
+  }
+  &-has-icon-right{
+    input{
+      padding-right:30px;
+    }
+  }
+  &-surplus-bar{
+    color:$text-3;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    z-index: 2;
+    padding-left: 6px;
+    background-color: $grey-1;
+    transform: translateY(-50%);
+  }
+  &-surplus-bar-outside{
+    left:calc(100% + 3px);
+  }
+  &-surplus-bar-disabled{
+    background-color: $grey-2;
+  }
+  &-surplus-bar-textarea{
+    top:auto;
+    bottom: 2px;
+    transform: translateY(0);
+  }
+  &[disabled]{
+    cursor: not-allowed;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+   input,textarea{
+     background-color: $grey-2;
+   }
+  }
+  .errorMessage{
+    color: $red;
+  }
+}

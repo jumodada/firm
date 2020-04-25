@@ -1,0 +1,9 @@
+$list:drop fade-drop;
+@each $name in $list {
+  .#{$name}-enter-active {
+    animation: #{$name} .2s;
+  }
+  .#{$name}-leave-active {
+    animation: #{$name} .2s reverse;
+  }
+}

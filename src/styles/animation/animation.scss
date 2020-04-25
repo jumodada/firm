@@ -1,0 +1,157 @@
+@keyframes progress-active-one {
+  0% {
+    opacity: .3;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}
+@keyframes progress-active-two {
+  0% {
+    transform: translate(10px, 70%)  rotate(720deg);
+  }
+  50% {
+    transform: translate(0, 50%)  rotate(150deg);
+  }
+  100% {
+    transform: translate(10px, 70%)  rotate(720deg);
+  }
+}
+@keyframes stripe {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 600px 0
+  }
+}
+@keyframes loop {
+  to {
+    top: -8px;
+    left: -8px;
+    bottom: -8px;
+    right: -8px;
+    border-width: 6px;
+    opacity: 0;
+  }
+}
+.loop {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    background-color: inherit;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    left: -3px;
+    bottom: -3px;
+    right: -3px;
+    border-radius: inherit;
+    border: 0 solid inherit;
+    opacity: .3;
+    animation: loop .3s ease-in-out;
+    flex-shrink: 0;
+  }
+}
+@keyframes danger {
+  0% {
+    transform: scale(1);
+    opacity: 0.0;
+  }
+  25% {
+    transform: scale(1.02);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.3;
+  }
+  75% {
+    transform: scale(1.06);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 0.0;
+  }
+}
+@-webkit-keyframes danger {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0.0;
+  }
+  25% {
+    -webkit-transform: scale(0);
+    opacity: 0.1;
+  }
+  50% {
+    -webkit-transform: scale(0.1);
+    opacity: 0.3;
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0.0;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes slideUp {
+  0%{
+    transform: translateY(0%) translateX(-50%);
+  }
+  100%{
+    transform: translateY(-100%) translateX(-50%);
+  }
+}
+@keyframes slideDown {
+  0%{
+    transform: translateY(-100%) translateX(-50%);
+  }
+  100%{
+    transform: translateY(0%) translateX(-50%);
+  }
+}
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes drop {
+   0% {
+     opacity: 0;
+     transform: scaleY(0.8) translateX(-100%);
+   }
+   100% {
+     opacity: 1;
+     transform: scale(1) translateX(-100%);
+   }
+ }
+@keyframes fade-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}

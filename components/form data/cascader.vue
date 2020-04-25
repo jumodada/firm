@@ -6,18 +6,18 @@
             <div class="trigger-text">{{selectedArray}}</div>
               <span class="icon-span" @click="clealAll">
                    <transition name="fade" mode="out-in">
-                   <x-icon name="xia" color="#dbdbdb" class="trigger-x-icon-xia"
+                   <f-icon name="xia" color="#dbdbdb" class="trigger-f-icon-xia"
                            :class="[{rotate:popoverVisible}]"
                            v-if="IconToggle"
                            key="xia"
 
                    >
 
-                   </x-icon>
-                    <x-icon name="wrong" color="#dbdbdb" class="trigger-x-icon-wrong"
+                   </f-icon>
+                    <f-icon name="wrong" color="#dbdbdb" class="trigger-f-icon-wrong"
                             key="wrong"
                             v-if="!IconToggle">
-                    </x-icon>
+                    </f-icon>
                 </transition>
               </span>
         </div>
@@ -47,13 +47,13 @@
 </template>
 
 <script>
-    import Icon from '../currency/icon/src/icon'
+    import Icon from '../icon/src/icon'
     import xCascaderItems from './cascader-item'
     export default {
         name: 'x-',
         components: {
             xCascaderItems,
-            'x-icon':Icon
+            'f-icon':Icon
         },
         props: {
             source: {
@@ -221,7 +221,6 @@
                    this.$nextTick(()=>{
                       let height= el.children[0].children[0].clientHeight
                        el.style.height = height+ 'px'
-
                    })
             },
             beforeLeave(el) {
@@ -276,7 +275,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../src/global";
+    @import "../../src/styles/global";
 
     .fade-enter-active, .fade-leave-active {
         transition: all .2s;
@@ -294,7 +293,7 @@
             padding: 0.3em 1em;
             display: flex;
             align-items: center;
-            color: $font-color;
+            color: $text;
             border-radius: 5px;
             overflow: auto;
             transition: all .3s cubic-bezier(.645,.045,.355,1);
@@ -318,11 +317,11 @@
                 display:flex;
                 justify-content: center;
                 align-items: center;
-                .trigger-x-icon-xia{
+                .trigger-f-icon-xia{
                     display: inline-flex;
                     transition: all .3s ease;
                 }
-                .trigger-x-icon-wrong{
+                .trigger-f-icon-wrong{
                     display: inline-flex;
                 }
                 .rotate{
@@ -337,13 +336,9 @@
     }
     .popover-wrapper {
         position: absolute;
-        color:$font-color;
+        color:$text;
         display: flex;
         transition: all .3s ;
-        @extend .box-shadow;
-        .popover{
-
-        }
         .label {
             white-space: nowrap;
         }
